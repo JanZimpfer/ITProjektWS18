@@ -1,14 +1,15 @@
 package de.hdm.gwt.itprojektws18.server;
 
-import de.hdm.gwt.itprojektws18.client.GreetingService;
 import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
+public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
 
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 

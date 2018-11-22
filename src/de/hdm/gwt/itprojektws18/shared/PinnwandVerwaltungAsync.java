@@ -1,10 +1,10 @@
-package de.hdm.gwt.itprojektws18.client;
+package de.hdm.gwt.itprojektws18.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
  * The async counterpart of <code>GreetingService</code>.
  */
-public interface GreetingServiceAsync {
+public interface PinnwandVerwaltungAsync {
 	void greetServer(String input, AsyncCallback<String> callback) throws IllegalArgumentException;
 }

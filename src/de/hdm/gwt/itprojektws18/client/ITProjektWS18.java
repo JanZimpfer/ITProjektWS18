@@ -1,6 +1,9 @@
 package de.hdm.gwt.itprojektws18.client;
 
 import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -31,7 +34,7 @@ public class ITProjektWS18 implements EntryPoint {
 	/**
 	 * Create a remote service proxy to talk to the server-side Greeting service.
 	 */
-	private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+	private final PinnwandVerwaltungAsync greetingService = GWT.create(PinnwandVerwaltung.class);
 
 	/**
 	 * This is the entry point method.
