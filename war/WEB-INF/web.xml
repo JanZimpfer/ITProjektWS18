@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
-    <servlet-class>de.hdm.gwt.itprojektws18.server.GreetingServiceImpl</servlet-class>
+    <servlet-class>de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
