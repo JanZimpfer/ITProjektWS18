@@ -29,7 +29,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo + ".<br><br>It looks like you are using:<br>"
 				+ userAgent;
 	}
-
+	
+	
 	/**
 	 * Escape an html string. Escaping data received from the client helps to
 	 * prevent cross-site script vulnerabilities.
