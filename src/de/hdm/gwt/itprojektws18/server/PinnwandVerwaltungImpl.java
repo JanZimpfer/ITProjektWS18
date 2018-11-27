@@ -1,47 +1,278 @@
 package de.hdm.gwt.itprojektws18.server;
 
-import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import java.util.Vector;
 
-/**
- * The server-side implementation of the RPC service.
- */
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import de.hdm.gwt.itprojektws18.server.db.NutzerMapper;
+import de.hdm.gwt.itprojektws18.server.db.PinnwandMapper;
+import de.hdm.gwt.itprojektws18.server.db.BeitragMapper;
+import de.hdm.gwt.itprojektws18.server.db.KommentarMapper;
+import de.hdm.gwt.itprojektws18.server.db.LikeMapper;
+import de.hdm.gwt.itprojektws18.server.db.AbonnementMapper;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+
+
 @SuppressWarnings("serial")
 public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
-
-	public String greetServer(String input) throws IllegalArgumentException {
-		// Verify that the input is valid. 
-		if (!FieldVerifier.isValidName(input)) {
-			// If the input is not valid, throw an IllegalArgumentException back to
-			// the client.
-			throw new IllegalArgumentException("Name must be at least 4 characters long");
-		}
-
-		String serverInfo = getServletContext().getServerInfo();
-		String userAgent = getThreadLocalRequest().getHeader("User-Agent");
-
-		// Escape data from the client to avoid cross-site script vulnerabilities.
-		input = escapeHtml(input);
-		userAgent = escapeHtml(userAgent);
-
-		return "Hello, " + input + "!<br><br>I am running " + serverInfo + ".<br><br>It looks like you are using:<br>"
-				+ userAgent;
+	
+	public PinnwandVerwaltungImpl() {
+		
+	}
+	
+	/**
+	 * Serialisierung
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Referenzen auf Mapperklassen
+	 */
+	private NutzerMapper nMapper = null;
+	private PinnwandMapper pMapper = null;
+	private BeitragMapper bMapper = null;
+	private KommentarMapper = null;
+	private LikeMapper lMapper = null;
+	private AbonnementMapper aMapper = null;
+	
+	
+	/*
+	 **********************************
+	 * Abschnitt Beginn: Initialisierung
+	 **********************************
+	 */
+	
+	public void init() {
+		
+		this.nMapper = NutzerMapper.nutzermapper();
+		this.pMapper = PinnwandMapper.pinnwandMapper();
+		this.bMapper = BeitragMapper.beitragMapper();
+		this.kMapper = KommentarMapper.kommentarMapper();
+		this.lMapper = LikeMapper.likeMapper();
+		this.aMapper = AbonnementMApper.abonnementMapper();
 	}
 	
 	
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
+	/*
+	 **********************************
+	 * Abschnitt Ende: Initialisierung
+	 **********************************
 	 */
-	private String escapeHtml(String html) {
-		if (html == null) {
-			return null;
-		}
-		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+	
+	
+	/*
+	 **********************************
+	 * Abschnitt Beginn: Nutzer
+	 **********************************
+	 */
+	
+	
+	/**
+	 * Ersellen eines Nutzers und anschliessendes Speichern in der DB
+	 * @param vorname
+	 * @param nachname
+	 * @param nickname
+	 * @return nutzer
+	 */
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname) {
+		
+		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
+		Nutzer n = new Nutzer();
+		
+		n.setVorname(vorname);
+		n.setNachname(nachname);
+		n.setNickname(nickname);
+		
+		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+		//auf den nächsthöchsten Wert gesetzt wird
+		n.setId(1);
+		
+		//Speichern in der DB
+		return this.nMapper.insertNutzer(n);
+		
+	}
+
+	/**
+	 * Speichern eines bearbeiteten Nutzers
+	 * @param Nutzer n
+	 */
+	public void speichern(Nutzer n) {
+		
+		//Bearbeiten
+		n.setVorname(null);
+		n.setNachname(null);
+		n.setNickname(null);
+		
+		nMapper.updateNutzer(n);
+				
+	}
+	
+	/**
+	 * Auslesen eines Nutzers anhand seiner ID
+	 * @param nutzerID
+	 * @return Nutzer
+	 */
+	public Nutzer getNutzerbyID(int nutzerID) {
+		return this.nMapper.getNutzerbyid(nutzerID);
+	}
+	
+	/**
+	 * Auslesen eines Nutzers anhand seines Vor- und Nachnamens
+	 * @param vorname
+	 * @param nachname
+	 * @return Nutzer
+	 */
+	public Nutzer getNutzerByName(String vorname, String nachname) {
+		return this.nMapper.getNuterByName(vorname, nachname);
+	}
+	
+	/**
+	 * Auslesen eines Nutzers anhand seines Nickname
+	 * @param nickname
+	 * @return Nutzer
+	 */
+	public Nutzer getNutzerByNickname(String nickname) {
+		return this.nMapper.getNutzerByNickname(nickname);
+	}
+	
+	/**
+	 * Loeschen eines Nutzers
+	 * @param Nutzer n
+	 */
+	public void loeschen (Nutzer n) {
+		
+	}
+	
+	/*
+	 **********************************
+	 * Abschnitt Ende: Nutzer
+	 **********************************
+	 */
+	
+	/*
+	 **********************************
+	 * Abschnitt Beginn: Pinnwand
+	 **********************************
+	 */
+	
+	/**
+	 * Erstellen einer Pinnwand und anschliessendes Speichern in der DB
+	 * @param Nutzer n - Inhaber der Pinnwand
+	 * @return Pinnwnad
+	 */
+	public Pinnwand erstellePinnwand (Nutzer n) {
+		
+		//Erstellen eines Pinnwandobjekts
+		//Zuweisen der InhaberID
+		Pinnwand p = new Pinnwand();
+		p.setInhaberId(n.getId());
+		
+		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+		//auf den nächsthöchsten Wert gesetzt wird
+		p.setId(1);
+		
+		//Speichern in der DB
+		return this.pMapper.insert(p);
+	}
+	
+	/**
+	 * Speichern einer bearbeiteten Pinnwand
+	 * @param Pinnwand p
+	 */
+	public void speichern (Pinnwand p) {
+		
+		pMapper.update(p);
+		
+	}
+	
+	/**
+	 * Auslesen einer Pinnwand anhand dessen ID
+	 * @param pinnwandID
+	 * @return Pinnwand
+	 */
+	public Pinnwand getPinnwandByID(int pinnwandID) {
+		
+		return this.pMapper.getPinnwandByID(pinnwandID);
+	}
+	
+	/**
+	 * Loeschen einer Pinnwand
+	 * @param Pinnwand p
+	 */
+	public void loeschen (Pinnwand p) {
+		
+	}
+	
+	/*
+	 **********************************
+	 * Abschnitt Ende: Pinnwand
+	 **********************************
+	 */
+	
+	
+	/*
+	 **********************************
+	 * Abschnitt Beginn: Beitrag
+	 **********************************
+	 */
+	
+	
+	/**
+	 * Erstellen eines Beitrags und anschliessendes Speichern in der DB
+	 * @param Ziel-Pinnwand p
+	 * @param text
+	 * @return Beitrag
+	 */
+	public Beitrag erstelleBeitrag(Pinnwand p, String text) {
+		
+		//Erstellen eines Beitragobjekts
+		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
+		Beitrag b = new Beitrag();
+		b.setZielId(p.getId());
+		
+		//Setzen des Inhalts des Beitrags (Text)
+		b.setText(text);
+		
+		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+		//auf den nächsthöchsten Wert gesetzt wird
+		b.setId(1);
+		
+		//Speichern in dr DB
+		return this.bMapper.insert(b);
+	}
+	
+	/**
+	 * Speichern eines bearbeiteten Beitrags
+	 * @param Beitrag b
+	 */
+	public void speichern (Beitrag b) {
+		
+		//Bearbeiten
+		b.setText(null);
+		
+		bMapper.update(b);
+	}
+	
+	/**
+	 * Auslesen eines Beitrags anhand seiner ID
+	 * @param beitragID
+	 * @return Beitrag
+	 */
+	public Beitrag getBeitragByID(int beitragID) {
+		
+		return this.bMapper.getBeitragById(beitragID);
+	}
+	
+	//getAllBeitraegeByPinnwand
+	
+	/**
+	 * Loeschen eines Beitrags
+	 * @param Beitrag b
+	 */
+	public void loeschen(Beitrag b) {
+		
 	}
 }
