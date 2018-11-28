@@ -19,22 +19,22 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class AbonnementMapper {
 	
-	public static AbonnementMapper AbonnementMapper = null;
+	private static AbonnementMapper abonnementMapper = null;
 	
 	protected AbonnementMapper () {}
 	
-	public static AbonnementMapper AbonnementMapper() {
+	public static AbonnementMapper abonnementMapper() {
 		
-		if ( AbonnementMapper ==null ) {
+		if ( abonnementMapper ==null ) {
 			
-			AbonnementMapper = new AbonnementMapper ();	
+			abonnementMapper = new AbonnementMapper ();	
 		}
 		
-		return AbonnementMapper;
+		return abonnementMapper;
 		
 	}
 	
-public Abonnement insertAbonnement (Abonnement Abonnement) {
+public Abonnement insertAbonnement (Abonnement abonnement) {
 	
 	Connection con=DBConnection.connection() ;
 	
@@ -44,14 +44,14 @@ public Abonnement insertAbonnement (Abonnement Abonnement) {
 			
 			if(rs.next()) {
 				
-				Abonnement.setId(rs.getInt("MAX id") + 1 );
+				abonnement.setId(rs.getInt("MAX id") + 1 );
 				
 				 stmt=con.createStatement();
 				stmt.executeUpdate("INSERT INTO abonnement (id, bezugsprofilId, erstellungszeitpunkt)"+ "Values ( "+
 			
-					Abonnement.getId()+","+
-					Abonnement.getBezugsProfilId() + ""+
-					Abonnement.getErstellZeitpunkt() +")");
+					abonnement.getId()+","+
+					abonnement.getBezugsProfilId() + ""+
+					abonnement.getErstellZeitpunkt() +")");
 			
 				}			
 	
@@ -62,19 +62,19 @@ public Abonnement insertAbonnement (Abonnement Abonnement) {
 		
 	}
 
-	return Abonnement;
+	return abonnement;
 	
 
 }
 	
 
-public void  deleteAbonnement(Abonnement Abonnement) {
+public void  deleteAbonnement(Abonnement abonnement) {
 	
 	Connection con=DBConnection.connection();
 	
 	try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + Abonnement.getId());
+			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + abonnement.getId());
 			
 	}
 	
@@ -86,7 +86,7 @@ public void  deleteAbonnement(Abonnement Abonnement) {
 	}
 
 
-public Vector<Abonnement> getAllAbosFor (Nutzer Nutzer){
+public Vector<Abonnement> getAllAbosFor (Nutzer nutzer){
 	
 	Connection con=DBConnection.connection();
 	Vector <Abonnement> result =new Vector <Abonnement> ();
@@ -94,7 +94,7 @@ public Vector<Abonnement> getAllAbosFor (Nutzer Nutzer){
 try {
 	
 	Statement stmt=con.createStatement();
-	ResultSet rs= stmt.executeQuery("SELECT id FROM abonnement" + "WHERE bezugsprofilId=" + Nutzer.getId());
+	ResultSet rs= stmt.executeQuery("SELECT id FROM abonnement" + "WHERE bezugsprofilId=" + nutzer.getId());
 	
 	while(rs.next()) {
 		
