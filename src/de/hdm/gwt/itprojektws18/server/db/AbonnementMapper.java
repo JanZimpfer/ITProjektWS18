@@ -50,7 +50,7 @@ public Abonnement insertAbonnement (Abonnement Abonnement) {
 				stmt.executeUpdate("INSERT INTO abonnement (id, bezugsprofilId, erstellungszeitpunkt)"+ "Values ( "+
 			
 					Abonnement.getId()+","+
-					Abonnement.getBezugsprofilId() + ""+
+					Abonnement.getBezugsProfilId() + ""+
 					Abonnement.getErstellZeitpunkt() +")");
 			
 				}			
@@ -100,7 +100,7 @@ try {
 		
 		Abonnement abo= new Abonnement ();
 		abo.setId(rs.getInt("id"));
-		abo.setBezugsprofilId(rs.getInt("bezugsprofilId"));
+		abo.setBezugsProfilId(rs.getInt("bezugsprofilId"));
 		
 		result.addElement(abo);
 		
