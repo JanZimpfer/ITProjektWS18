@@ -30,8 +30,13 @@ public class BeitragMapper {
 		}
 		
 		return beitragMapper;
-		
+	
 	}
+	
+	/**
+	 * Einfügen eines Beitrag-Objekts in die Datenbank
+	 *
+	 */
 	
 	public Beitrag insertBeitrag(Beitrag b) {
 		Connection con = DBConnection.connection();
