@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 
 /**Dies ist eine Mapper-Klasse, die Nutzer-Objekte auf eine relationale
@@ -86,7 +87,7 @@ public void  deleteAbonnement(Abonnement abonnement) {
 	}
 
 
-public Vector<Abonnement> getAllAbosFor (Nutzer nutzer){
+public Vector<Abonnement> getAllAbosByNutzer (Nutzer nutzer){
 	
 	Connection con=DBConnection.connection();
 	Vector <Abonnement> result =new Vector <Abonnement> ();
@@ -113,6 +114,10 @@ try {
 
 return result;
 	
+	
+}
+
+public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 	
 }
 
