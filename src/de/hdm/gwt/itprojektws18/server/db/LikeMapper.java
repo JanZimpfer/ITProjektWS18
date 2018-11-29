@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
@@ -47,10 +48,22 @@ private static LikeMapper likeMapper = null;
 	
 	public Vector<Like> getAllLikesByNutzer (Nutzer n) {
 		/*
-		 * Auslesen der Beitrag-ID um diese dann an
-		 * getAllKommentareByPinnwand(int beitragId) zu uebergeben
+		 * Auslesen der Nutzer-ID um diese dann an
+		 * getAllLikesByNutzer(int nutzerId) zu uebergeben
 		 */
 		return getAllLikesByNutzer(n.getId());
+	}
+	
+	public Vector<Like> getAllLikesByBeitrag (int beitragId) {
+		
+	}
+	
+	public Vector<Like> getAllLikesByBeitrag (Beitrag b) {
+		/*
+		 * Auslesen der Beitrag-ID um diese dann an
+		 * getAllLikesByBeitrag(int beitragId) zu uebergeben
+		 */
+		return getAllLikesByBeitrag(b.getId());
 	}
 	
 }

@@ -157,6 +157,20 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void loeschen (Nutzer n) {
 		
+		/*
+		 * Zunaechst wird die Pinnwand des Nutzers geloescht.
+		 * Dies loest eine Loesch-Kaskade aus die alle zugehörigen Objekte loescht.
+		 * 
+		 */
+		
+		Pinnwand p1 = this.getPinnwandByNutzer(n);
+		
+		if (p1 != null) {
+			this.loeschen(p1);
+		}
+		
+		//Loeschen des Nutzers
+		this.nMapper.deleteNutzer(n);
 	}
 	
 	/*
@@ -215,12 +229,43 @@ public PinnwandVerwaltungImpl() {
 	}
 	
 	/**
+	 * Auslesen einer Pinnwand anhand des Nutzers
+	 * @param Nutzer n
+	 * @return Pinnwand
+	 */
+	@Override
+	public Pinnwand getPinnwandByNutzer(Nutzer n) {
+		return this.pMapper.getPinnwandByNutzer(n);
+	}
+	
+	/**
 	 * Loeschen einer Pinnwand
 	 * @param Pinnwand p
 	 */
 	@Override
 	public void loeschen (Pinnwand p) {
 		
+		//Zunaechst werden alle Beitraege der Pinnwand geloescht
+		Vector<Beitrag> beitraege = this.getAllBeitraegeByPinnwand(p);
+		
+		if (beitraege != null) {
+			for (Beitrag b : beitraege) {
+				this.loeschen(b);
+			}
+		}
+		
+		
+		//Loeschen aller Abonnements einer Pinnwand
+		Vector<Abonnement> abos = this.getAllAbosFor(p);
+		
+		if (abos != null) {
+			for (Abonnement a : abos) {
+				this.loeschen(a);
+			}
+		}
+		
+		//Loeschen der Pinnwand
+		this.pMapper.delete(p);
 	}
 	
 	/*
@@ -314,6 +359,26 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void loeschen(Beitrag b) {
 		
+		//Loeschen aller Kommentare eines Beitrags
+		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
+		
+		if (kommentare != null) {
+			for (Kommentar k : kommentare) {
+				this.loeschen(k);
+			}
+		}
+		
+		//Loeschen aller Likes eines Beitrags
+		Vector<Like> likes = this.getAllLikesByBeitrag(b);
+		
+		if (likes != null) {
+			for (Like l : likes) {
+				this.loeschen(l);
+			}
+		}
+		
+		//Beitrag loeschen
+		this.bMapper.deleteBeitrag(b);
 	}
 
 
@@ -364,7 +429,7 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public void loeschen (Kommentar k) {
-		
+		this.kMapper.deleteKommentar(k);
 	}	
 	
 	/**
@@ -384,6 +449,17 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public Vector<Kommentar> getAllKommentareByBeitrag (Beitrag b) {
 		return this.kMapper.getAllKommentareByBeitrag(b);
+	}
+	
+	/**
+	 * Auslesen aller Kommentare eines bestimmten Nutzers
+	 * @param Nutzer n
+	 * @return Vector<Kommentar>
+	 */
+	@Override
+	public Vector<Kommentar> getAllKommentareByNutzer (Nutzer n) {
+		
+		return this.kMapper.getAllKommentareByNutzer(n);
 	}
 	
 	
@@ -426,8 +502,10 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public void loeschen (Like l) {
-		
+		this.lMapper.deleteLike(l);
 	}
+	
+	
 	
 	/**
 	 * Auslesen aller Likes eines Nutezrs
@@ -439,6 +517,15 @@ public PinnwandVerwaltungImpl() {
 		return this.lMapper.getAllLikesByNutzer(n);
 	}
 	
+	/**
+	 * Auslesen aller Likes eines Beitrags
+	 * @param Beitrag b
+	 * @return Vector<Like>
+	 */
+	@Override
+	public Vector<Like> getAllLikesByBeitrag (Beitrag b) {
+		return this.lMapper.getAllLikesByBeitrag(b);
+	}
 	
 	/*
 	 **********************************
@@ -475,16 +562,29 @@ public PinnwandVerwaltungImpl() {
 	 * @param Abonnement
 	 */
 	@Override
-	public void deleteAbonnement (Abonnement a) {
+	public void loeschen (Abonnement a) {
 	
-	
+		this.aMapper.deleteAbonnement(a);
 	}
 	
+	
+	/**
+	 * Auslesen aller Abonnements eines Nutzers
+	 */
 	@Override
 	public Vector<Abonnement> getAllAbosFor (Nutzer n) {
-		return this.aMapper.getAllAbosFor(n);
+		return this.aMapper.getAllAbosByNutzer(n);
 	}
 	
+	/**
+	 * Auslesen aller Abonnements einer Pinnwand
+	 * @param Pinnwand p
+	 * @return Vector<Abonnement>
+	 */
+	@Override
+	public Vector<Abonnement> getAllAbosFor (Pinnwand p) {
+		return this.aMapper.getAllAbosByPinnwand(p);
+	}
 
 
 }

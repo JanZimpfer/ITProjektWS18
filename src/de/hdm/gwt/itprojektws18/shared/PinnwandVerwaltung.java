@@ -66,8 +66,17 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n);
 
-	void deleteAbonnement(Abonnement a);
+	void loeschen(Abonnement a);
 
 	Vector<Abonnement> getAllAbosFor(Nutzer n);
+
+	Vector<Kommentar> getAllKommentareByNutzer(Nutzer n);
+
+	Vector<Like> getAllLikesByBeitrag(Beitrag b);
+
+	Pinnwand getPinnwandByNutzer(Nutzer n);
+
+	Vector<Abonnement> getAllAbosFor(Pinnwand p);
+
 	
 }

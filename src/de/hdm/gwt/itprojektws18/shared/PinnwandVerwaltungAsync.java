@@ -64,7 +64,15 @@ public interface PinnwandVerwaltungAsync {
 
 	void erstelleAbonnement(Pinnwand p, Nutzer n, AsyncCallback<Abonnement> callback);
 
-	void deleteAbonnement(Abonnement a, AsyncCallback<Void> callback);
-
 	void getAllAbosFor(Nutzer n, AsyncCallback<Vector<Abonnement>> callback);
+
+	void loeschen(Abonnement a, AsyncCallback<Void> callback);
+
+	void getAllKommentareByNutzer(Nutzer n, AsyncCallback<Vector<Kommentar>> callback);
+
+	void getAllLikesByBeitrag(Beitrag b, AsyncCallback<Vector<Like>> callback);
+
+	void getPinnwandByNutzer(Nutzer n, AsyncCallback<Pinnwand> callback);
+
+	void getAllAbosFor(Pinnwand p, AsyncCallback<Vector<Abonnement>> callback);
 }

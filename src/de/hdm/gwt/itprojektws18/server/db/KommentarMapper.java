@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class KommentarMapper {
 
@@ -55,9 +56,21 @@ private static KommentarMapper kommentarMapper = null;
 		 * Auslesen der Beitrag-ID um diese dann an
 		 * getAllKommentareByPinnwand(int beitragId) zu uebergeben
 		 */
-		return getAllKommentareByPinnwand(b.getId());
+		return getAllKommentareByBeitrag(b.getId());
 	}
 	
+	
+	public Vector<Kommentar> getAllKommentareByNutzer (int nutzerId) {
+		
+	}
+	
+	public Vector<Kommentar> getAllKommentareByNutzer (Nutzer n) {
+		/*
+		 * Auslesen der Nutzer-ID(entspricht dem Autor) um diese dann an
+		 * getAllKommentareByNutzer (int nutzerId) zu uebergeben
+		 */
+		return getAllKommentareByNutzer(n.getId());
+	}
 	
 	
 }
