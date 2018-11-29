@@ -8,11 +8,12 @@ import java.util.Vector;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 /**
  * Diese Mapper Klasse stellt, Beitrags-Objekte auf einer relationalen Datenbank dar.
- * Sie beinhaltet Methoden zum suchen, erzeugen, bearbeiten und löschen von Beitrags-
- * Objekten. DB-Strukturen können hierdurch in Objekt-Strukturen und anders herum 
+ * Sie beinhaltet Methoden zum suchen, erzeugen, bearbeiten und lï¿½schen von Beitrags-
+ * Objekten. DB-Strukturen kï¿½nnen hierdurch in Objekt-Strukturen und anders herum 
  * umgewandelt werden.
  */
 
@@ -34,7 +35,7 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Einfügen eines Beitrag-Objekts in die Datenbank
+	 * Einfï¿½gen eines Beitrag-Objekts in die Datenbank
 	 *
 	 */
 	
@@ -168,7 +169,7 @@ public class BeitragMapper {
 		return result;
 	}
 	
-	public Vector<Beitrag> getAllBeitraege(int zielId) {
+	public Vector<Beitrag> getAllBeitraegeByPinnwand(int zielId) {
 		Connection con = DBConnection.connection();
 		Vector<Beitrag> result = new Vector<Beitrag>();
 		
@@ -191,6 +192,14 @@ public class BeitragMapper {
 			e2.printStackTrace();
 		}
 		return result;
+	}
+	
+	public Vector <Beitrag> getAllBeitraegeByPinnwand (Pinnwand p) {
+		/*
+		 * Auslesen der Pinnwand-ID um diese dann an
+		 * getAllBeitraegeByPinnwand(int zielId) zu uebergeben.
+		 */
+		return getAllBeitraegeByPinnwand(p.getId());
 	}
 
 }

@@ -17,19 +17,19 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class NutzerMapper {
 
-	private static NutzerMapper nutzermapper = null;
+	private static NutzerMapper nutzerMapper = null;
 	
 	protected NutzerMapper () {}
 	
-	public static NutzerMapper nutzermapper () {
+	public static NutzerMapper nutzerMapper () {
 		
-		if ( nutzermapper == null) {
+		if ( nutzerMapper == null) {
 			
-			nutzermapper = new NutzerMapper();
+			nutzerMapper = new NutzerMapper();
 			
 		}
 		
-		return nutzermapper; 
+		return nutzerMapper; 
 			
 		}
 	
@@ -168,8 +168,8 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("UPDATE nutzer " + "set nutzerVorname=\"" + nutzer.getVorname() + "\"" + "set nutzerNachname=\""+ nutzer.getNachname() + 
-								"set nutzerNickname=\"" + nutzer.getNickname() + "\"" +"WHERE id=" + nutzer.getId() );
+			stmt.executeUpdate("UPDATE nutzer " + "set Vorname=\"" + nutzer.getVorname() + "\"" + "set Nachname=\""+ nutzer.getNachname() + 
+								"set Nickname=\"" + nutzer.getNickname() + "\"" +"WHERE id=" + nutzer.getId() );
 			
 		}
 		catch(SQLException e2) {

@@ -8,20 +8,19 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import de.hdm.gwt.itprojektws18.server.db.NutzerMapper;
 import de.hdm.gwt.itprojektws18.server.db.PinnwandMapper;
 import de.hdm.gwt.itprojektws18.server.db.BeitragMapper;
-import de.hdm.gwt.itprojektws18.server.db.KommentarMapper;
-import de.hdm.gwt.itprojektws18.server.db.LikeMapper;
+//import de.hdm.gwt.itprojektws18.server.db.KommentarMapper;
+//import de.hdm.gwt.itprojektws18.server.db.LikeMapper;
 import de.hdm.gwt.itprojektws18.server.db.AbonnementMapper;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
+import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 
 
 @SuppressWarnings("serial")
-public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements PinnwandVerwaltung {
+public class PinnwandVerwaltungImpl extends RemoteServiceServlet
+implements PinnwandVerwaltung {
 	
-	public PinnwandVerwaltungImpl() {
-		
-	}
 	
 	/**
 	 * Serialisierung
@@ -34,8 +33,8 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	private NutzerMapper nMapper = null;
 	private PinnwandMapper pMapper = null;
 	private BeitragMapper bMapper = null;
-	private KommentarMapper = null;
-	private LikeMapper lMapper = null;
+	//private KommentarMapper = null;
+	//private LikeMapper lMapper = null;
 	private AbonnementMapper aMapper = null;
 	
 	
@@ -45,14 +44,19 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	 **********************************
 	 */
 	
+		
+public PinnwandVerwaltungImpl() {
+		
+	}
+	
 	public void init() {
 		
-		this.nMapper = NutzerMapper.nutzermapper();
+		this.nMapper = NutzerMapper.nutzerMapper();
 		this.pMapper = PinnwandMapper.pinnwandMapper();
 		this.bMapper = BeitragMapper.beitragMapper();
-		this.kMapper = KommentarMapper.kommentarMapper();
-		this.lMapper = LikeMapper.likeMapper();
-		this.aMapper = AbonnementMApper.abonnementMapper();
+	//	this.kMapper = KommentarMapper.kommentarMapper();
+	//	this.lMapper = LikeMapper.likeMapper();
+		this.aMapper = AbonnementMapper.abonnementMapper();
 	}
 	
 	
@@ -241,7 +245,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		b.setId(1);
 		
 		//Speichern in dr DB
-		return this.bMapper.insert(b);
+		return this.bMapper.insertBeitrag(b);
 	}
 	
 	/**
@@ -253,7 +257,7 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		//Bearbeiten
 		b.setText(null);
 		
-		bMapper.update(b);
+		bMapper.updateBeitrag(b);
 	}
 	
 	/**
@@ -266,7 +270,24 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 		return this.bMapper.getBeitragById(beitragID);
 	}
 	
-	//getAllBeitraegeByPinnwand
+	/**
+	 * Auslesen aller Beitraege
+	 * @return Vector<Beitrag>
+	 */
+	public Vector <Beitrag> getAllBeitraege() {
+		
+		return this.bMapper.getAllBeitraege();
+	}
+	
+	/**
+	 * Auslesen aller Beitraege einer bestimmten Pinnwand
+	 * @param Pinnwand p
+	 * @return Vector<Beitrag>
+	 */
+	public Vector<Beitrag> getAllBeitraegeByPinnwand (Pinnwand p) {
+		
+		return this.bMapper.getAllBeitraegeByPinnwand(p);
+	}
 	
 	/**
 	 * Loeschen eines Beitrags
@@ -275,4 +296,59 @@ public class PinnwandVerwaltungImpl extends RemoteServiceServlet implements Pinn
 	public void loeschen(Beitrag b) {
 		
 	}
+
+
+	@Override
+	public String greetServer(String name) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*
+	 **********************************
+	 * Abschnitt Ende: Beitrag
+	 **********************************
+	 */
+	
+	
+	/*
+	 **********************************
+	 * Abschnitt Beginn: Abonnement
+	 **********************************
+	 */
+	
+	
+	/**
+	 * Erstellen eines Abonnements und anschliessendes Speichern in der DB
+	 * @param Pinnwand p (Abonnement-Ziel)
+	 * @param Nutzer n (Abonnent)
+	 * @return Abonnement
+	 */
+public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n) {
+		
+		//Erstellen eines Abonnementobjekts
+		//Zuweisen der PinnwandID, die abonniert werden soll
+		Abonnement a = new Abonnement();
+		a.setBezugsProfilId(p.getId());
+		
+		
+		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+		//auf den nächsthöchsten Wert gesetzt wird
+		a.setId(1);
+		
+		//Speichern in dr DB
+		return this.aMapper.insertAbonnement(a);
+	}
+
+/**
+ * Loeschen eines Abonnements
+ * @param Abonnement
+ */
+public void deleteAbonnement (Abonnement a) {
+	
+	
+}
+	
+
+
 }
