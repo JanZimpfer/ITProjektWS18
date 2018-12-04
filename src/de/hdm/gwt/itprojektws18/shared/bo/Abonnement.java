@@ -25,5 +25,28 @@ public class Abonnement extends BusinessObject{
 		this.nutzerFK = nutzerFK;
 	}
 	
+	
+	/**
+	 * Fremdschlüsselbeziehung zur Pinnwand
+	 */
+	private int pinnwandFK;
+
+	/**
+	 * Der Fremdschlüssel zur Pinnwand wird ausgelesen
+	 * @return
+	 */
+	public int getPinnwandFK() {
+		return pinnwandFK;
+	}
+
+	/**
+	 * Der Fremdschlüssel zur Pinnwand wird gesetzt
+	 * @param pinnwandFK
+	 */
+	public void setPinnwandFK(int pinnwandFK) {
+		this.pinnwandFK = pinnwandFK;
+	}
+	
+	
 
 }
