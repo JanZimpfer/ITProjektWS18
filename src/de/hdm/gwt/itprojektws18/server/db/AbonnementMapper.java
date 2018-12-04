@@ -128,7 +128,7 @@ public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 try {
 	
 	Statement stmt = con.createStatement();
-	ResultSet rs =stmt.executeQuery("SELECT (id, nutzerFK,pinnwandFK) FROM abonnement" + "WHERE pinnwandFK =" + p.pinnwandFK());
+	ResultSet rs =stmt.executeQuery("SELECT (id, nutzerFK,pinnwandFK) FROM abonnement" + "WHERE pinnwandFK =" + p.getId());
 	
 	while(rs.next()) {
 		
