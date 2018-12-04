@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**
  * Dies ist eine Mapper-Klasse, die Pinnwand-Objekte auf eine relationale
@@ -131,6 +132,10 @@ public class PinnwandMapper {
 		}
 
 		return null;
+	}
+	
+	public Pinnwand getPinnwandByNutzer (Nutzer n) {
+		
 	}
 
 	/**
