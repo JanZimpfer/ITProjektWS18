@@ -137,7 +137,7 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public Nutzer getNutzerByName(String vorname, String nachname) {
-		return this.nMapper.getNuterByName(vorname, nachname);
+		return this.nMapper.getNutzerByName(vorname, nachname);
 	}
 	
 	/**
