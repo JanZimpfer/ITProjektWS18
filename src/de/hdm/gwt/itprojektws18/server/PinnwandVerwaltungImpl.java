@@ -462,6 +462,18 @@ public PinnwandVerwaltungImpl() {
 		return this.kMapper.getAllKommentareByNutzer(n);
 	}
 	
+	/**
+	 * Speichern eines bearbeiteten Kommentars
+	 * @param k
+	 */
+	public void speichern (Kommentar k) {
+		
+		
+		//kMapper.update(k);
+		
+	}
+	
+	
 	
 	/*
 	 **********************************
@@ -526,6 +538,7 @@ public PinnwandVerwaltungImpl() {
 	public Vector<Like> getAllLikesByBeitrag (Beitrag b) {
 		return this.lMapper.getAllLikesByBeitrag(b);
 	}
+	
 	
 	/*
 	 **********************************

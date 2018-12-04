@@ -1,6 +1,9 @@
 package de.hdm.gwt.itprojektws18.server.report;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import java.text.SimpleDateFormat;
+import java.util.Vector;
+
 
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
 import de.hdm.gwt.itprojektws18.shared.report.*;
@@ -37,7 +40,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 	else {
 		
-		//Vector <Nutzer> alleNutzer = new Vector <Nutzer>();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
+
+		Vector <Nutzer> alleNutzer = new Vector <Nutzer>();
+		
+	
 		
 		
 		
