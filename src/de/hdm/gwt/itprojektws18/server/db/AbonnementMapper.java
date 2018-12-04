@@ -35,7 +35,7 @@ public class AbonnementMapper {
 		
 	}
 	
-public Abonnement insertAbonnement (Abonnement abonnement) {
+public Abonnement insertAbonnement (Abonnement a) {
 	
 	Connection con=DBConnection.connection() ;
 	
@@ -45,14 +45,15 @@ public Abonnement insertAbonnement (Abonnement abonnement) {
 			
 			if(rs.next()) {
 				
-				abonnement.setId(rs.getInt("MAX id") + 1 );
+				a.setId(rs.getInt("MAX id") + 1 );
 				
 				 stmt=con.createStatement();
-				stmt.executeUpdate("INSERT INTO abonnement (id, bezugsprofilId, erstellungszeitpunkt)"+ "Values ( "+
+				stmt.executeUpdate("INSERT INTO abonnement (id, nutzerFK, pinnwandFK erstellzeitpunkt)"+ "Values ( "+
 			
-					abonnement.getId()+","+
-					abonnement.getBezugsProfilId() + ""+
-					abonnement.getErstellZeitpunkt() +")");
+					a.getId()+","+
+					a.getNutzerFK() + ""+
+					a.getPinnwandFK()+ ""+
+					a.getErstellZeitpunkt() +")");
 			
 				}			
 	
@@ -63,19 +64,19 @@ public Abonnement insertAbonnement (Abonnement abonnement) {
 		
 	}
 
-	return abonnement;
+	return a;
 	
 
 }
 	
 
-public void  deleteAbonnement(Abonnement abonnement) {
+public void  deleteAbonnement(Abonnement a) {
 	
 	Connection con=DBConnection.connection();
 	
 	try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + abonnement.getId());
+			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + a.getId());
 			
 	}
 	
@@ -87,7 +88,7 @@ public void  deleteAbonnement(Abonnement abonnement) {
 	}
 
 
-public Vector<Abonnement> getAllAbosByNutzer (Nutzer nutzer){
+public Vector<Abonnement> getAllAbosByNutzer (Nutzer n){
 	
 	Connection con=DBConnection.connection();
 	Vector <Abonnement> result =new Vector <Abonnement> ();
@@ -95,15 +96,16 @@ public Vector<Abonnement> getAllAbosByNutzer (Nutzer nutzer){
 try {
 	
 	Statement stmt=con.createStatement();
-	ResultSet rs= stmt.executeQuery("SELECT id FROM abonnement" + "WHERE bezugsprofilId=" + nutzer.getId());
+	ResultSet rs= stmt.executeQuery("SELECT (id, nutzerFK, pinnwandFK)  FROM abonnement" + "WHERE nutzerFK=" + n.getId());
 	
 	while(rs.next()) {
 		
-		Abonnement abo= new Abonnement ();
-		abo.setId(rs.getInt("id"));
-		abo.setBezugsProfilId(rs.getInt("bezugsprofilId"));
+		Abonnement a= new Abonnement ();
 		
-		result.addElement(abo);
+		a.setId(rs.getInt("id"));
+		a.setNutzerFK(rs.getInt("nutzerFK"));
+		a.setPinnwandFK(rs.getInt("pinnwandFK"));
+		result.addElement(a);
 		
 	}
 }
@@ -126,15 +128,15 @@ public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 try {
 	
 	Statement stmt = con.createStatement();
-	ResultSet rs =stmt.executeQuery("SELECT id FROM abonnement" + "WHERE FK_pinwannd =" + p.getId());
+	ResultSet rs =stmt.executeQuery("SELECT (id, nutzerFK,pinnwandFK) FROM abonnement" + "WHERE pinnwandFK =" + p.getId());
 	
 	while(rs.next()) {
 		
-		Abonnement abo = new Abonnement();
-		abo.setId(rs.getInt("id"));
-		abo.setBezugsProfilId(rs.getInt("bezugsprofilId"));
-		
-		result.addElement(abo);
+		Abonnement a = new Abonnement();
+		a.setId(rs.getInt("id"));
+		a.setNutzerFK(rs.getInt("nutzerFK"));
+		a.setPinnwandFK(rs.getInt("pinnwandFK"));
+		result.addElement(a);
 	
 	}
 	
