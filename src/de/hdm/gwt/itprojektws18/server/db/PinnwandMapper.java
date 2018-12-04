@@ -102,11 +102,11 @@ public class PinnwandMapper {
 	}
 
 	/**
-	 * Diese Mehtode dient dazu, eine Pinnwand anhand ihrer ID zu finden:
+	 * Diese Mehtode dient dazu, eine Pinnwand anhand der ID des zugehörigen Nutzers zu finden:
 	 * @param id
 	 * @return null
 	 */
-	public Pinnwand getPinnwandByID(int id) {
+	public Pinnwand getPinnwandByNutzer(int id) {
 
 		Connection con = DBConnection.connection();
 
@@ -116,7 +116,7 @@ public class PinnwandMapper {
 			Statement stmt = con.createStatement();
 
 			// Statement ausfüllen und Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT id, inhaberId FROM pinnwaende " + "WHERE Id=" + id + " ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, inhaberId FROM pinnwaende " + "WHERE inhaberId=" + id + " ORDER BY inhaberId");
 
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
@@ -134,10 +134,11 @@ public class PinnwandMapper {
 		return null;
 	}
 	
-	public Pinnwand getPinnwandByNutzer (Nutzer n) {
-		
+	public Pinnwand getPinnwandByNutzer(Nutzer n) {
+		return getPinnwandByNutzer(n.getId());
 	}
-
+	
+	
 	/**
 	 * Diese Mehtode dient dazu, alle vorhandenen Pinnwaende zu finden:
 	 * @return Vector<Pinnwand>
@@ -145,7 +146,7 @@ public class PinnwandMapper {
 	public Vector<Pinnwand> getAllPinnwaende() {
 		Connection con = DBConnection.connection();
 
-		// Ergebnisvektor vorbereiten
+		// Ergebnisvektor anlegen
 		Vector<Pinnwand> result = new Vector<Pinnwand>();
 
 		try {
@@ -153,7 +154,7 @@ public class PinnwandMapper {
 
 			ResultSet rs = stmt.executeQuery("SELECT id, inhaberId FROM pinnwaende " + " ORDER BY id");
 
-			// Für jeden Eintrag im Suchergebnis wird nun ein Account-Objekt erstellt.
+			// Für jeden Eintrag im Suchergebnis wird nun ein Pinnwand-Objekt erstellt.
 			while (rs.next()) {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
