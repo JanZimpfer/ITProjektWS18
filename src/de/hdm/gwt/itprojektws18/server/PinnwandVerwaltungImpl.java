@@ -196,7 +196,7 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Pinnwandobjekts
 		//Zuweisen der InhaberID
 		Pinnwand p = new Pinnwand();
-		p.setInhaberId(n.getId());
+		p.setNutzerFK(n.getId());
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -294,7 +294,7 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Beitrag b = new Beitrag();
-		b.setZielId(p.getId());
+		b.setPinnwandFK(p.getId());
 		
 		//Setzen des Inhalts des Beitrags (Text)
 		b.setText(text);
@@ -410,7 +410,7 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Kommentar k = new Kommentar();
-		k.setZielId(b.getId());
+		k.setBeitragFK(b.getId());
 		
 		
 		//Setzen des Inhalts des Beitrags (Text)
@@ -498,7 +498,7 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Like l = new Like();
-		l.setZielId(b.getId());
+		l.setBeitragFK(b.getId());
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -559,7 +559,7 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Abonnementobjekts
 		//Zuweisen der PinnwandID, die abonniert werden soll
 		Abonnement a = new Abonnement();
-		a.setBezugsProfilId(p.getId());
+		a.setNutzerFK(p.getId());
 		
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
