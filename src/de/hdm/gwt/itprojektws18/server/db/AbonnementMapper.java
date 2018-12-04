@@ -117,8 +117,38 @@ return result;
 	
 }
 
+
 public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 	
+	Connection con = DBConnection.connection() ;
+	Vector <Abonnement> result = new Vector <Abonnement> ();
+
+try {
+	
+	Statement stmt = con.createStatement();
+	ResultSet rs =stmt.executeQuery("SELECT id FROM abonnement" + "WHERE FK_pinwannd =" + p.getId());
+	
+	while(rs.next()) {
+		
+		Abonnement abo = new Abonnement();
+		abo.setId(rs.getInt("id"));
+		abo.setBezugsProfilId(rs.getInt("bezugsprofilId"));
+		
+		result.addElement(abo);
+	
+	}
+	
 }
+	
+catch(SQLException e2) {
+	
+	e2.printStackTrace();
+}
+
+return result;	
+
+}
+
+
 
 }
