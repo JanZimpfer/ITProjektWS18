@@ -135,7 +135,7 @@ try {
 		Abonnement a = new Abonnement();
 		a.setId(rs.getInt("id"));
 		a.setNutzerFK(rs.getInt("nutzerFK"));
-		a.setPiwanndFK(rs.getInt("pinnwandFK"));
+		a.setPinnwanndFK(rs.getInt("pinnwandFK"));
 		result.addElement(a);
 	
 	}
