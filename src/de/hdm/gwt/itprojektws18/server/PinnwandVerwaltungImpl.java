@@ -203,7 +203,7 @@ public PinnwandVerwaltungImpl() {
 		p.setId(1);
 		
 		//Speichern in der DB
-		return this.pMapper.insert(p);
+		return this.pMapper.insertPinnwand(p);
 	}
 	
 	/**
@@ -213,7 +213,7 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void speichern (Pinnwand p) {
 		
-		pMapper.update(p);
+		pMapper.updatePinnwand(p);
 		
 	}
 	
@@ -265,7 +265,7 @@ public PinnwandVerwaltungImpl() {
 		}
 		
 		//Loeschen der Pinnwand
-		this.pMapper.delete(p);
+		this.pMapper.deletePinnwand(p);
 	}
 	
 	/*
