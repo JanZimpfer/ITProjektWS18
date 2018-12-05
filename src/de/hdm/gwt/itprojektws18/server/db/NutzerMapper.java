@@ -67,7 +67,7 @@ public class NutzerMapper {
 		}
 		
 		
-	public Nutzer getNuterByName(String vorname, String nachname) {
+	public Nutzer getNutzerByName(String vorname, String nachname) {
 		
 		Connection con =DBConnection.connection();
 		
@@ -141,7 +141,7 @@ public class NutzerMapper {
 			n.setId(rs.getInt("MAX id") + 1 );
 			
 			 stmt=con.createStatement();
-			stmt.executeUpdate("INSERT INTO nutzer (id, erstellungszeipunkt, vorname, nachname, nickname)" + "VALUES ( "+
+			stmt.executeUpdate("INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, nickname)" + "VALUES ( "+
 			
 					n.getId()+ "," +
 					n.getErstellZeitpunkt() + ","+
