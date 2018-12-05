@@ -9,22 +9,22 @@ public class Kommentar extends Textbeitrag{
 	 * Fremdschluesselbeziehung zum Beitrag
 	 */
 	
-	private int zielId;
+	private int beitragFK;
 
 	/**
 	 * Auslesen des Fremdschluessels zum Beitrag
 	 * @return zielId
 	 */
-	public int getZielId() {
-		return zielId;
+	public int getBeitragFK() {
+		return beitragFK;
 	}
 
 	/**
 	 * Setzen des Fremdschluessels zum Beitrag
 	 * @param zielId
 	 */
-	public void setZielId(int zielId) {
-		this.zielId = zielId;
+	public void setBeitragFK(int beitragFK) {
+		this.beitragFK = beitragFK;
 	}
 	
 

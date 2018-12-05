@@ -41,7 +41,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt =con.createStatement() ;
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE id =" + id + " ORDERD BY nachname") ;
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE id =" + id) ;
 			
 			if (rs.next()){
 				Nutzer n = new Nutzer ();
@@ -67,14 +67,14 @@ public class NutzerMapper {
 		}
 		
 		
-	public Nutzer getNuterByName(String vorname, String nachname) {
+	public Nutzer getNutzerByName(String vorname, String nachname) {
 		
 		Connection con =DBConnection.connection();
 		
 		try {
 			
 			Statement stmt =con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachhame" + "WHERE vorname =" + vorname + "WHERE nachname=" + nachname + "ORDER BY nachname" );
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachhame" + "WHERE vorname =" + vorname + "WHERE nachname=" + nachname);
 			
 			if (rs.next()) {
 				
@@ -104,7 +104,7 @@ public class NutzerMapper {
 	try {
 		
 		Statement stmt=con.createStatement();
-		ResultSet rs =stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE nickname=" + nickname + "ORDER BY nachname");
+		ResultSet rs =stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE nickname=" + nickname);
 		
 		if (rs.next()) {
 			
@@ -128,7 +128,7 @@ public class NutzerMapper {
 	
 	}
 	
-	public Nutzer insertNutzer(Nutzer nutzer) {
+	public Nutzer insertNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 	try {
@@ -138,16 +138,16 @@ public class NutzerMapper {
 		
 		if(rs.next()) {
 			
-			nutzer.setId(rs.getInt("MAX id") + 1 );
+			n.setId(rs.getInt("MAX id") + 1 );
 			
 			 stmt=con.createStatement();
-			stmt.executeUpdate("INSERT INTO nutzer (id, erstellungszeipunkt, vorname, nachname, nickname)" + "VALUES ( "+
+			stmt.executeUpdate("INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, nickname)" + "VALUES ( "+
 			
-					nutzer.getId()+ "," +
-					nutzer.getErstellZeitpunkt() + ","+
-					nutzer.getVorname() + ","+
-					nutzer.getNachname() + ","+
-					nutzer.getNickname() + ")" );
+					n.getId()+ "," +
+					n.getErstellZeitpunkt() + ","+
+					n.getVorname() + ","+
+					n.getNachname() + ","+
+					n.getNickname() + ")" );
 					}
 		
 		}
@@ -157,19 +157,19 @@ public class NutzerMapper {
 			e2.printStackTrace();
 		}
 	
-	return nutzer;
+	return n;
 		
 	}
 	
-	public Nutzer updateNutzer(Nutzer nutzer) {
+	public Nutzer updateNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 		
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("UPDATE nutzer " + "set Vorname=\"" + nutzer.getVorname() + "\"" + "set Nachname=\""+ nutzer.getNachname() + 
-								"set Nickname=\"" + nutzer.getNickname() + "\"" +"WHERE id=" + nutzer.getId() );
+			stmt.executeUpdate("UPDATE nutzer " + "set Vorname=\"" + n.getVorname() + "\"" + "set Nachname=\""+ n.getNachname() + 
+								"set Nickname=\"" + n.getNickname() + "\"" +"WHERE id=" + n.getId() );
 			
 		}
 		catch(SQLException e2) {
@@ -177,18 +177,18 @@ public class NutzerMapper {
 			e2.printStackTrace();
 		}
 		
-		return nutzer;
+		return n;
 	}
 	
 	
-	public void deleteNutzer (Nutzer nutzer) {
+	public void deleteNutzer (Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 		
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM nutzer" + "WHERE id=" + nutzer.getId());
+			stmt.executeUpdate("DELETE FROM nutzer" + "WHERE id=" + n.getId());
 			
 		}
 		
