@@ -46,13 +46,13 @@ public class PinnwandMapper {
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM pinnwaende ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM pinnwand ");
 
 			if (rs.next()) {
 
 				p.setId(rs.getInt("maxid") + 1);
 				stmt = con.createStatement();
-				stmt.executeUpdate("INSERT INTO pinnwaende (id, nutzerFK, erstellzeitpunkt) " + "VALUES (" + p.getId()
+				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + "VALUES (" + p.getId()
 						+ "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
 			}
 		} catch (SQLException ep1) {
@@ -75,7 +75,7 @@ public class PinnwandMapper {
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate(
-					"UPDATE pinnwaende " + "SET nutzerFK=\" " + p.getNutzerFK() + "\" " + "WHERE id=" + p.getId());
+					"UPDATE pinnwand " + "SET nutzer_p_FK=\" " + p.getNutzerFK() + "\" " + "WHERE id=" + p.getId());
 
 		} catch (SQLException ep2) {
 			ep2.printStackTrace();
@@ -96,7 +96,7 @@ public class PinnwandMapper {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM pinnwaende " + "WHERE id=" + p.getId());
+			stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + p.getId());
 
 		} catch (SQLException ep3) {
 			ep3.printStackTrace();
@@ -119,14 +119,14 @@ public class PinnwandMapper {
 			Statement stmt = con.createStatement();
 			// Query ausführen
 			ResultSet rs = stmt
-					.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende " + "WHERE inhaberId=" + id);
+					.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + "WHERE inhaberId=" + id);
 
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
 				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
-				p.setNutzerFK(rs.getInt("nutzerFK"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
 				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
@@ -153,7 +153,7 @@ public class PinnwandMapper {
 		try {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende " 
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " 
 			+ "WHERE id=" + id);
 			
 			// Prüfen ob ein Ergebnis vorliegt
@@ -161,7 +161,7 @@ public class PinnwandMapper {
 				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
-				p.setNutzerFK(rs.getInt("nutzerFK"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
 				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
@@ -187,13 +187,13 @@ public class PinnwandMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende " + " ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + " ORDER BY id");
 
 			// Für jeden Eintrag im Suchergebnis wird nun ein Pinnwand-Objekt erstellt.
 			while (rs.next()) {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
-				p.setNutzerFK(rs.getInt("nutzerFK"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
 				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
