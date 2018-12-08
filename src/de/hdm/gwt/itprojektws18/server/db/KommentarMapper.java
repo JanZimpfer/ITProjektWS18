@@ -37,14 +37,14 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS maxid" 
+			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " 
 			+ "FROM kommentar");
 			
 			if (rs.next()) {
 				k.setId(rs.getInt("maxid")+1);
 				stmt = con.createStatement();
 				
-				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstellzeitpunkt, beitragFK, nutzerFK) "
+				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) "
 						+ "VALUES("
 						+ k.getId()
 						+ ","
@@ -102,7 +102,7 @@ private static KommentarMapper kommentarMapper = null;
 			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf 
 			 * die Tabelle beitag verweist.
 			 */
-			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE beitragFK=" 
+			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE beitrag_k_FK=" 
 			 + b.getId());
 		}
 		
@@ -193,7 +193,7 @@ private static KommentarMapper kommentarMapper = null;
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = beitragFK=" + beitragId + "ORDER BY id");
+			+"WHERE = beitrag_k_FK=" + beitragId + "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
@@ -229,7 +229,7 @@ private static KommentarMapper kommentarMapper = null;
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = nutzerFK=" + nutzerId + "ORDER BY id");
+			+"WHERE = nutzer_k_FK=" + nutzerId + "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
