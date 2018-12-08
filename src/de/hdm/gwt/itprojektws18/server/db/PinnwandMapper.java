@@ -34,10 +34,11 @@ public class PinnwandMapper {
 
 	/**
 	 * Einfügen eines Pinnwand-Objekts in die Datenbank:
+	 * 
 	 * @param p
 	 * @return Pinnwand p
 	 */
-	public Pinnwand insert(Pinnwand p) {
+	public Pinnwand insertPinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
@@ -51,8 +52,8 @@ public class PinnwandMapper {
 
 				p.setId(rs.getInt("maxid") + 1);
 				stmt = con.createStatement();
-				stmt.executeUpdate("INSERT INTO pinnwaende (id, nutzerFK, erstellzeitpunkt) " 
-				+ "VALUES (" + p.getId() + "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
+				stmt.executeUpdate("INSERT INTO pinnwaende (id, nutzerFK, erstellzeitpunkt) " + "VALUES (" + p.getId()
+						+ "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
 			}
 		} catch (SQLException ep1) {
 			ep1.printStackTrace();
@@ -61,12 +62,13 @@ public class PinnwandMapper {
 		return p;
 	}
 
-	/** 
+	/**
 	 * Ändern eines Objekts aus der Datenbank:
+	 * 
 	 * @param p
 	 * @return Pinnwand p
 	 */
-	public Pinnwand update(Pinnwand p) {
+	public Pinnwand updatePinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
@@ -83,13 +85,15 @@ public class PinnwandMapper {
 	}
 
 	/**
-	 *  Löschen der Daten eines Pinnwand-Objekts aus der Datenbank
+	 * Löschen der Daten eines Pinnwand-Objekts aus der Datenbank
+	 * 
 	 * @param p
 	 */
-	public void delete(Pinnwand p) {
+	public void deletePinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate("DELETE FROM pinnwaende " + "WHERE id=" + p.getId());
@@ -100,9 +104,10 @@ public class PinnwandMapper {
 	}
 
 	/**
-	 * Diese Mehtode dient dazu, eine Pinnwand anhand der ID des zugehörigen Nutzers zu finden:
+	 * Diese Mehtode dient dazu, eine Pinnwand anhand der ID des zugehörigen Nutzers
+	 * zu finden.
+	 * 
 	 * @param id
-	 * @return null
 	 */
 	public Pinnwand getPinnwandByNutzer(int id) {
 
@@ -112,12 +117,13 @@ public class PinnwandMapper {
 
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende" 
-			+ "WHERE inhaberId=" + id);
+			// Query ausführen
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende " + "WHERE inhaberId=" + id);
 
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
-				// Vorhandene Ergebnise in Objekte umwandeln
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzerFK"));
@@ -131,14 +137,46 @@ public class PinnwandMapper {
 
 		return null;
 	}
-	
+
 	public Pinnwand getPinnwandByNutzer(Nutzer n) {
 		return getPinnwandByNutzer(n.getId());
 	}
-	
-	
+
 	/**
-	 * Diese Mehtode dient dazu, alle vorhandenen Pinnwaende zu finden:
+	 * Diese Mehtode dient dazu, eine Pinnwand anhand der entsprechenden Pinnwand-ID zu finden.
+	 * 
+	 * @param id
+	 */
+	public Pinnwand getPinnwandByID(int id) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			// Statement ohne Inhalt anlegen
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzerFK, erstellzeitpunkt FROM pinnwaende " 
+			+ "WHERE id=" + id);
+			
+			// Prüfen ob ein Ergebnis vorliegt
+			if (rs.next()) {
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
+				Pinnwand p = new Pinnwand();
+				p.setId(rs.getInt("id"));
+				p.setNutzerFK(rs.getInt("nutzerFK"));
+				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				return p;
+			}
+		}catch(SQLException ep5) {
+			ep5.printStackTrace();
+			return null;
+			
+		}	
+		
+		return null;
+	}
+
+	/**
+	 * Diese Mehtode dient dazu, alle vorhandenen Pinnwaende zu finden.
+	 * 
 	 * @return Vector<Pinnwand>
 	 */
 	public Vector<Pinnwand> getAllPinnwaende() {
@@ -161,8 +199,8 @@ public class PinnwandMapper {
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(p);
 			}
-		} catch (SQLException ep5) {
-			ep5.printStackTrace();
+		} catch (SQLException ep6) {
+			ep6.printStackTrace();
 		}
 
 		// Ergebnisvektor zurückgeben

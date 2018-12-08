@@ -27,5 +27,26 @@ public class Kommentar extends Textbeitrag{
 		this.beitragFK = beitragFK;
 	}
 	
+	/**
+	 * Fremdschluesselbeziehung zum Nutzer
+	 */
+	private int nutzerFK;
+
+	/**
+	 * Auslesen des Fremdschluessels zum Nutzer
+	 * @return
+	 */
+	public int getNutzerFK() {
+		return nutzerFK;
+	}
+
+	/**
+	 * Setzen des Fremdschluessels zum Nutzer
+	 * @param nutzerFK
+	 */
+	public void setNutzerFK(int nutzerFK) {
+		this.nutzerFK = nutzerFK;
+	}
+	
 
 }

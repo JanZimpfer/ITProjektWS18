@@ -124,12 +124,15 @@ public class LikeMapper {
 		Vector<Like> nutzerlikeresult = new Vector<Like>();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
+			// Query ausführen
 			ResultSet rs = stmt.executeQuery("SELECT id, beitragFK, nutzerFK, erstellzeitpunkt FROM likes " 
 			+ "WHERE nutzerFK=" + nutzerId);
-			
+		
+		// Prüfen ob ein Ergebnis vorliegt
 		while(rs.next()){
-				
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Like l= new Like();
 				l.setId(rs.getInt("id"));
 				l.setBeitragFK(rs.getInt("beitragFK"));
@@ -162,7 +165,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			// Alle Likes für den übergebenen Beitrag abfragen und diese
+			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
 			ResultSet rs = stmt.executeQuery("SELECT id, betragFK, nutzerFK, erstellungszeitpunkt FROM likes " 
 			+ "WHERE beitragFK=" + beitragId + " ORDER BY erstellungszeitpunkt");
