@@ -44,13 +44,17 @@ private static KommentarMapper kommentarMapper = null;
 				k.setId(rs.getInt("maxid")+1);
 				stmt = con.createStatement();
 				
-				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstelldatum) "
+				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstellzeitpunkt, beitragFK, nutzerFK) "
 						+ "VALUES("
 						+ k.getId()
 						+ ","
 						+ k.getText()
 						+ ","
 						+ k.getErstellZeitpunkt()
+						+ ","
+						+ k.getBeitragFK()
+						+ ","
+						+ k.getNutzerFK()
 						+ ")");
 						
 			}
@@ -119,14 +123,14 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum" 
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
 			+ "WHERE id =" + id);
 			
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				return k;
 				
@@ -156,14 +160,14 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum "
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt "
 					+ "FROM kommentar" + "ORDER BY id");
 			
 			while (rs.next());{
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}
@@ -188,14 +192,14 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum" 
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
 			+"WHERE = beitragFK=" + beitragId + "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}			
@@ -224,14 +228,14 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum" 
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
 			+"WHERE = nutzerFK=" + nutzerId + "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}			

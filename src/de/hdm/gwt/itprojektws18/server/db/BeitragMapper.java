@@ -51,13 +51,15 @@ public class BeitragMapper {
 				b.setId(rs.getInt("maxid")+1);
 				stmt = con.createStatement();
 				
-				stmt.executeUpdate("INSERT INTO beitrag (id, text, erstellungsdatum) "
+				stmt.executeUpdate("INSERT INTO beitrag (id, text, erstellzeitpunkt, pinnwandFK) "
 						+ "VALUES("
 						+ b.getId()
 						+ ","
 						+ b.getText()
 						+ ","
 						+ b.getErstellZeitpunkt()
+						+","
+						+b.getPinnwandFK()
 						+ ")");
 						
 			}
@@ -141,13 +143,13 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum" + "WHERE id =" + id);
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" + "WHERE id =" + id);
 			
 			if (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				return b;
 				
@@ -176,14 +178,14 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum FROM beitrag"
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag"
 			+ "ORDER BY id");
 			
 			while (rs.next());{
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}
@@ -199,21 +201,21 @@ public class BeitragMapper {
 	 * @author Matthias
 	 */
 	
-	public Vector<Beitrag> getAllBeitraegeByPinnwand(int zielId) {
+	public Vector<Beitrag> getAllBeitraegeByPinnwand(int pinnwandFK) {
 		Connection con = DBConnection.connection();
 		Vector<Beitrag> result = new Vector<Beitrag>();
 		
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstelldatum" +"WHERE = pinnwandFK="
-			+ zielId + "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" +"WHERE = pinnwandFK="
+			+ pinnwandFK + "ORDER BY id");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstelldatum"));
+				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}			
