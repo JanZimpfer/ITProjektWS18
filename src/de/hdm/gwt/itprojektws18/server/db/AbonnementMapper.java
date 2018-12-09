@@ -48,7 +48,7 @@ public Abonnement insertAbonnement (Abonnement a) {
 				a.setId(rs.getInt("MAX id") + 1 );
 				
 				 stmt=con.createStatement();
-				stmt.executeUpdate("INSERT INTO abonnement (id, nutzerFK, pinnwandFK erstellzeitpunkt)"+ "Values ( "+
+				stmt.executeUpdate("INSERT INTO abonnement (id, nutzer_a_FK, pinnwand_a_FK erstellzeitpunkt)"+ "Values ( "+
 			
 					a.getId()+","+
 					a.getNutzerFK() + ""+
@@ -96,15 +96,15 @@ public Vector<Abonnement> getAllAbosByNutzer (Nutzer n){
 try {
 	
 	Statement stmt=con.createStatement();
-	ResultSet rs= stmt.executeQuery("SELECT (id, nutzerFK, pinnwandFK)  FROM abonnement" + "WHERE nutzerFK=" + n.getId());
+	ResultSet rs= stmt.executeQuery("SELECT (id, nutzer_a_FK, pinnwand_a_FK)  FROM abonnement" + "WHERE nutzer_a_FK=" + n.getId());
 	
 	while(rs.next()) {
 		
 		Abonnement a= new Abonnement ();
 		
 		a.setId(rs.getInt("id"));
-		a.setNutzerFK(rs.getInt("nutzerFK"));
-		a.setPinnwandFK(rs.getInt("pinnwandFK"));
+		a.setNutzerFK(rs.getInt("nutzer_a_FK"));
+		a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
 		result.addElement(a);
 		
 	}
@@ -128,14 +128,14 @@ public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 try {
 	
 	Statement stmt = con.createStatement();
-	ResultSet rs =stmt.executeQuery("SELECT (id, nutzerFK,pinnwandFK) FROM abonnement" + "WHERE pinnwandFK =" + p.getId());
+	ResultSet rs =stmt.executeQuery("SELECT (id, nutzer_a_FK,pinnwand_a_FK) FROM abonnement" + "WHERE pinnwand_a_FK =" + p.getId());
 	
 	while(rs.next()) {
 		
 		Abonnement a = new Abonnement();
 		a.setId(rs.getInt("id"));
-		a.setNutzerFK(rs.getInt("nutzerFK"));
-		a.setPinnwandFK(rs.getInt("pinnwandFK"));
+		a.setNutzerFK(rs.getInt("nutzer_a_FK"));
+		a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
 		result.addElement(a);
 	
 	}

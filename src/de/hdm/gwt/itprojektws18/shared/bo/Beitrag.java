@@ -12,7 +12,7 @@ public class Beitrag extends Textbeitrag{
 
 	/**
 	 * Auslesen des Fremdschluessels zur Pinnwand
-	 * @return zielId
+	 * @return 
 	 */
 	public int getPinnwandFK() {
 		return pinnwandFK;
@@ -20,10 +20,32 @@ public class Beitrag extends Textbeitrag{
 
 	/**
 	 * Setzen des Fremdschluessels zur Pinnwand
-	 * @param zielId
+	 * @param 
 	 */
 	public void setPinnwandFK(int pinnwandFK) {
 		this.pinnwandFK = pinnwandFK;
 	}
+	
+	/**
+	 * Fremdschluesselbeziehung zum Nutzer
+	 */
+	public int nutzerFK;
+
+	/**
+	 * Auslesen des Fremdschluessels zum Nutzer
+	 * @return
+	 */
+	public int getNutzerFK() {
+		return nutzerFK;
+	}
+
+	/**
+	 * Setzen des Fremdschlüssels zum Nutzer
+	 * @param nutzerFK
+	 */
+	public void setNutzerFK(int nutzerFK) {
+		this.nutzerFK = nutzerFK;
+	}
+	
 	
 }
