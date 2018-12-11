@@ -47,5 +47,13 @@ public class Beitrag extends Textbeitrag{
 		this.nutzerFK = nutzerFK;
 	}
 	
+	/**
+	 * String-Repräsentation einer Beitragsinstanz
+	 */
+	public String toString() {
+		
+		return super.toString() + "Pinnwand: " + this.getPinnwandFK() + "Nutzer: " + this.getNutzerFK();
+	}
+	
 	
 }

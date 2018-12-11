@@ -47,6 +47,12 @@ public class Abonnement extends BusinessObject{
 		this.pinnwandFK = pinnwandFK;
 	}
 	
+	/**
+	 * String-Repräsentation einer Aboinstanz
+	 */
+	public String toString() {
+		return super.toString() + "abonnierter Nutzer: " + this.getNutzerFK() + "abonnierte Pinnwand: " + this.getPinnwandFK();
+	}
 	
 
 }
