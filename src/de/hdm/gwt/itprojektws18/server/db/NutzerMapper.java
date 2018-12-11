@@ -32,7 +32,7 @@ public class NutzerMapper {
 		return nutzerMapper; 
 			
 		}
-	
+	 
 	
 	public Nutzer getNutzerbyid (int id) {
 		
@@ -41,8 +41,8 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt =con.createStatement() ;
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer" + 
-			"WHERE id = " + " ' " + id + " ' " ) ;
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer " + 
+			"WHERE id= " + "'" + id + "'") ;
 			
 			if (rs.next()){
 				Nutzer n = new Nutzer ();
@@ -75,7 +75,8 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt =con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname" + "FROM nutzer" + "WHERE 'vorname=" + vorname + "WHERE nachname=" + nachname);
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer "
+			+ "WHERE vorname= " + "'" + vorname + "'" + "AND " + "nachname= " + "'" + nachname + "'");
 			
 			if (rs.next()) {
 				
@@ -158,7 +159,7 @@ public class NutzerMapper {
 		}
 		}
 	
-	catch (SQLException e2) {
+	catch (SQLException e2) { 
 			
 			e2.printStackTrace();
 		}
@@ -174,8 +175,8 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("UPDATE nutzer " + "set Vorname=\"" + n.getVorname() + "\"" + "set Nachname=\""+ n.getNachname() + 
-								"set Nickname=\"" + n.getNickname() + "\"" +"WHERE id=" + n.getId() );
+			stmt.executeUpdate("UPDATE nutzer " + "set vorname= " + "'" + n.getVorname() + "'"+ "set nachname= " + "'"+ n.getNachname() + "'"+ 
+								" set nickname= " + "'" + n.getNickname() + "'" +"WHERE id= " + "'" + n.getId() + "'" );
 			
 		}
 		catch(SQLException e2) {
@@ -194,7 +195,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE * FROM nutzer" + "WHERE id=" + n.getId());
+			stmt.executeUpdate("DELETE id, erstellzeitpunkt,FROM nutzer WHERE id= " + "'" + n.getId() + "'");
 			
 		}
 		
