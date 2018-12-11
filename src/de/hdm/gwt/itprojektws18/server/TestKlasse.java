@@ -22,6 +22,12 @@ public class TestKlasse {
 		
 		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 		impl.init();
+		
+	
+		
+
+		
+		
 	}
 	
 }
