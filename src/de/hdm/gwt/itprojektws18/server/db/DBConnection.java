@@ -32,7 +32,7 @@ public class DBConnection {
 	                    url = googleUrl;
 	                } else {
 	                    // Local MySQL instance to use during development.
-	                    Class.forName("com.mysql.jdbc.Driver");
+	                    Class.forName("com.mysql.cj.jdbc.Driver");
 	                    url = localUrl;
 	                }
 	                

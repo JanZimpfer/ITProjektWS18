@@ -139,7 +139,7 @@ public PinnwandVerwaltungImpl() {
 	public Nutzer getNutzerByName(String vorname, String nachname) {
 		return this.nMapper.getNutzerByName(vorname, nachname);
 	}
-	
+	 
 	/**
 	 * Auslesen eines Nutzers anhand seines Nickname
 	 * @param nickname
