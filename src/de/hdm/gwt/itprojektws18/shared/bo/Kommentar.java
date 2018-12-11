@@ -48,5 +48,12 @@ public class Kommentar extends Textbeitrag{
 		this.nutzerFK = nutzerFK;
 	}
 	
+	/**
+	 * String-Repräsentation einer Kommentarinstanz
+	 */
+	public String toString() {
+		return super.toString() + "Beitrag: " + this.getBeitragFK() + "Nutzer: " + this.getNutzerFK();
+	}
+	
 
 }

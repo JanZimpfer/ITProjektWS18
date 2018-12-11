@@ -48,5 +48,12 @@ public class Like extends BusinessObject{
 	public void setNutzerFK(int nutzerFK) {
 		this.nutzerFK = nutzerFK;
 	}
+	
+	/**
+	 * String-Repräsentation einer Likeinstanz
+	 */
+	public String toString() {
+		return super.toString() + "Beitrag: " + this.getBeitragFK() + "Nutzer: " + this.getNutzerFK();
+	}
 
 }
