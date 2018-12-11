@@ -135,8 +135,12 @@ public class NutzerMapper {
 		
 		Statement stmt=con.createStatement();
 		
+		ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM nutzer");
+		
+		if (rs.next()) {
+			n.setId(rs.getInt("maxid")+1);
+			stmt = con.createStatement();
 			
-			 stmt=con.createStatement();
 			stmt.executeUpdate("INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, nickname)" + "VALUES ( "+
 			
 					n.getId()+ "," +
@@ -145,7 +149,7 @@ public class NutzerMapper {
 					n.getNachname() + ","+
 					n.getNickname() + ")" );
 					
-		
+		}
 		}
 	
 	catch (SQLException e2) {
