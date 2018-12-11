@@ -23,7 +23,6 @@ public class PinnwandMapper {
 
 	protected PinnwandMapper() {
 	}
-
 	public static PinnwandMapper pinnwandMapper() {
 		if (pinnwandMapper == null) {
 			pinnwandMapper = new PinnwandMapper();
@@ -46,7 +45,7 @@ public class PinnwandMapper {
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM pinnwand ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM pinnwand ");
 
 			if (rs.next()) {
 
@@ -57,7 +56,7 @@ public class PinnwandMapper {
 			}
 		} catch (SQLException ep1) {
 			ep1.printStackTrace();
-		}
+		} 
 
 		return p;
 	}
