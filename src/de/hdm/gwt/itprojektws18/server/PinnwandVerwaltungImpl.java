@@ -107,7 +107,14 @@ public PinnwandVerwaltungImpl() {
 
 	public Nutzer checkEmail(String mail) throws IllegalArgumentException{
 		Nutzer nutzer = new Nutzer();
-		nutzer = this.nMapper.findNutzerByEmail(email);
+		nutzer = this.nMapper.findNutzerByEmail(mail);
+		
+		if(nutzer.getId() == 0) {
+			return null;
+		}
+		else {
+			return nutzer;
+		}
 	}
 	/**
 	 * Speichern eines bearbeiteten Nutzers
@@ -368,13 +375,13 @@ public PinnwandVerwaltungImpl() {
 	public void loeschen(Beitrag b) {
 		
 		//Loeschen aller Kommentare eines Beitrags
-		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
-		
-		if (kommentare != null) {
-			for (Kommentar k : kommentare) {
-				this.loeschen(k);
-			}
-		}
+//		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
+//		
+//		if (kommentare != null) {
+//			for (Kommentar k : kommentare) {
+//				this.loeschen(k);
+//			}
+//		}
 		
 		//Loeschen aller Likes eines Beitrags
 		Vector<Like> likes = this.getAllLikesByBeitrag(b);
@@ -435,10 +442,10 @@ public PinnwandVerwaltungImpl() {
 	 * Loeschen eines Kommentars
 	 * @param Kommentar k
 	 */
-	@Override
-	public void loeschen (Kommentar k) {
-		this.kMapper.deleteKommentar(k);
-	}	
+//	@Override
+//	public void loeschen (Kommentar k) {
+//		this.kMapper.deleteKommentar(k);
+//	}	
 	
 	/**
 	 * Auslesen aller Kommentare
@@ -500,22 +507,22 @@ public PinnwandVerwaltungImpl() {
 	 * @param Ziel-Beitrag b
 	 * @return Like 
 	 */
-	@Override
-	public Like erstelleLike(Beitrag b, Date erstellzeitpunkt) {
-		
-		//Erstellen eines Beitragobjekts
-		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
-		Like l = new Like();
-		l.setBeitragFK(b.getId());
-		l.setErstellZeitpunkt(erstellzeitpunkt);
-		
-		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-		//auf den nächsthöchsten Wert gesetzt wird
-		l.setId(1);
-		
-		//Speichern in dr DB
-		return this.lMapper.insertLike(l);
-	}
+//	@Override
+//	public Like erstelleLike(Beitrag b, Date erstellzeitpunkt) {
+//		
+//		//Erstellen eines Beitragobjekts
+//		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
+//		Like l = new Like();
+//		l.setBeitragFK(b.getId());
+//		l.setErstellZeitpunkt(erstellzeitpunkt);
+//		
+//		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+//		//auf den nächsthöchsten Wert gesetzt wird
+//		l.setId(1);
+//		
+//		//Speichern in dr DB
+//		return this.lMapper.insertLike(l);
+//	}
 	
 	/**
 	 * Loeschen eines Likes
