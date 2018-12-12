@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
+import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.client.gui.report.NutzerStatistikReport;
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
 import de.hdm.gwt.itprojektws18.shared.report.*;
@@ -90,6 +91,19 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	
 	
 	public Vector<Like> getLikesFromUser(Nutzer nutzer){
+		return null;
+	}
+
+	@Override
+	public de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer)
+			throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
