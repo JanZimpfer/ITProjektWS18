@@ -6,6 +6,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.gwt.itprojektws18.shared.CommonSettings;
+import de.hdm.gwt.itprojektws18.shared.LoginService;
+import de.hdm.gwt.itprojektws18.shared.LoginServiceAsync;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.ReportGenerator;
@@ -35,6 +37,12 @@ public class ClientsideSettings extends CommonSettings{
 	 */
 	private static ReportGeneratorAsync reportGenerator = null;
 	
+	
+	/**
+	 * Remote Service Proxy zur Verbindungsaufnahme mit den serverseitigen Dienst
+	 * LoginService
+	 */
+	private static LoginServiceAsync loginService = null;
 	
 	/**
 	 * Name des client-seitigen Loggers
@@ -74,6 +82,16 @@ public class ClientsideSettings extends CommonSettings{
 	
 	
 	/**
+	 * Anlegen und Auslesen des Loginservice
+	 */
+	public static LoginServiceAsync getLoginService() {
+		if (loginService == null) {
+			loginService = GWT.create(LoginService.class);
+		}
+		return loginService;
+	}
+	
+	/**
 	 * Anlegen und Auslesen des ReportGenerators
 	 */
 	public static ReportGeneratorAsync getReportGenerator() {
@@ -108,3 +126,4 @@ public class ClientsideSettings extends CommonSettings{
 	}
 	
 }
+

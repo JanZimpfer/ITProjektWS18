@@ -9,22 +9,50 @@ public class Kommentar extends Textbeitrag{
 	 * Fremdschluesselbeziehung zum Beitrag
 	 */
 	
-	private int zielId;
+	private int beitragFK;
 
 	/**
 	 * Auslesen des Fremdschluessels zum Beitrag
 	 * @return zielId
 	 */
-	public int getZielId() {
-		return zielId;
+	public int getBeitragFK() {
+		return beitragFK;
 	}
 
 	/**
 	 * Setzen des Fremdschluessels zum Beitrag
 	 * @param zielId
 	 */
-	public void setZielId(int zielId) {
-		this.zielId = zielId;
+	public void setBeitragFK(int beitragFK) {
+		this.beitragFK = beitragFK;
+	}
+	
+	/**
+	 * Fremdschluesselbeziehung zum Nutzer
+	 */
+	private int nutzerFK;
+
+	/**
+	 * Auslesen des Fremdschluessels zum Nutzer
+	 * @return
+	 */
+	public int getNutzerFK() {
+		return nutzerFK;
+	}
+
+	/**
+	 * Setzen des Fremdschluessels zum Nutzer
+	 * @param nutzerFK
+	 */
+	public void setNutzerFK(int nutzerFK) {
+		this.nutzerFK = nutzerFK;
+	}
+	
+	/**
+	 * String-Repräsentation einer Kommentarinstanz
+	 */
+	public String toString() {
+		return super.toString() + "Beitrag: " + this.getBeitragFK() + "Nutzer: " + this.getNutzerFK();
 	}
 	
 

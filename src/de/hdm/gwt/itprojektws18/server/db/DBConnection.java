@@ -1,20 +1,22 @@
 package de.hdm.gwt.itprojektws18.server.db;
 
 import java.sql.Connection;
-
+import java.sql.DriverManager;
+import com.mysql.jdbc.Driver;
 import com.google.appengine.api.utils.SystemProperty;
 
 public class DBConnection {
 
-	
+
 	private static Connection con = null;
 	
-	/** Hier entsteht unsere neue DB Connection, welche mit Hilfe der URL die 
-	Datenbank ansprechen wird 
 	
-	 private static String googleUrl =
-	 private static String localUrl = 
-	 */
+	 private static String googleUrl = "XYZ";
+	 private static String localUrl = "jdbc:mysql://localhost:3306/sw1819?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	 private static String username = "root";
+	 private static String password ="sw1819";
+	 
+	 
 	
 	public static Connection connection() {
 		
@@ -30,7 +32,7 @@ public class DBConnection {
 	                    url = googleUrl;
 	                } else {
 	                    // Local MySQL instance to use during development.
-	                    Class.forName("com.mysql.jdbc.Driver");
+	                    Class.forName("com.mysql.cj.jdbc.Driver");
 	                    url = localUrl;
 	                }
 	                
@@ -39,7 +41,7 @@ public class DBConnection {
                  aufbauen.
                  */
                  
-                con = DriverManager.getConnection(url);
+                con = DriverManager.getConnection(url, username, password);
               } 
                 catch (Exception e) {
              	con = null;

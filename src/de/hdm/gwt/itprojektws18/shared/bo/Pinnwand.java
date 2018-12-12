@@ -7,25 +7,31 @@ public class Pinnwand extends BusinessObject{
 	/**
 	 * Fremdschlüsselbeziehung zum Inhaber des Pinnwand
 	 */
-	private int inhaberId;
+	private int nutzerFK;
 
 	/**
 	 * Der Fremdschlüssel zum Pinnwandinhaber wird ausgelesen
 	 * @return
 	 */
-	public int getInhaberId() {
-		return inhaberId;
+	public int getNutzerFK() {
+		return nutzerFK;
 	}
 
 	/**
 	 * Der Fremdschlüssel zum Pinnwandinhaber wird gesetzt.
 	 * @param nutzerId
 	 */
-	public void setInhaberId(int nutzerId) {
-		this.inhaberId = nutzerId;
+	public void setNutzerFK(int nutzerFK) {
+		this.nutzerFK = nutzerFK;
 	}
 	
 	// equals Methode implementieren?!
 	
+	/**
+	 * String-Repräsentation einer Pinnwandinstanz
+	 */
+	public String toString() {
+		return super.toString() + "Nutzer: " + this.getNutzerFK();
+	}
 
 }

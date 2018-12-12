@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.server;
 
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -85,7 +86,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname) {
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
 		Nutzer n = new Nutzer();
@@ -93,6 +94,7 @@ public PinnwandVerwaltungImpl() {
 		n.setVorname(vorname);
 		n.setNachname(nachname);
 		n.setNickname(nickname);
+		n.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -137,9 +139,9 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public Nutzer getNutzerByName(String vorname, String nachname) {
-		return this.nMapper.getNuterByName(vorname, nachname);
+		return this.nMapper.getNutzerByName(vorname, nachname);
 	}
-	
+	 
 	/**
 	 * Auslesen eines Nutzers anhand seines Nickname
 	 * @param nickname
@@ -191,19 +193,20 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwnad
 	 */
 	@Override
-	public Pinnwand erstellePinnwand (Nutzer n) {
+	public Pinnwand erstellePinnwand (Nutzer n, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Pinnwandobjekts
 		//Zuweisen der InhaberID
 		Pinnwand p = new Pinnwand();
-		p.setInhaberId(n.getId());
+		p.setNutzerFK(n.getId());
+		p.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
 		p.setId(1);
 		
 		//Speichern in der DB
-		return this.pMapper.insert(p);
+		return this.pMapper.insertPinnwand(p);
 	}
 	
 	/**
@@ -213,7 +216,7 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void speichern (Pinnwand p) {
 		
-		pMapper.update(p);
+		pMapper.updatePinnwand(p);
 		
 	}
 	
@@ -265,7 +268,7 @@ public PinnwandVerwaltungImpl() {
 		}
 		
 		//Loeschen der Pinnwand
-		this.pMapper.delete(p);
+		this.pMapper.deletePinnwand(p);
 	}
 	
 	/*
@@ -289,12 +292,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag erstelleBeitrag(Pinnwand p, String text) {
+	public Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Beitrag b = new Beitrag();
-		b.setZielId(p.getId());
+		b.setPinnwandFK(p.getId());
+		b.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen des Inhalts des Beitrags (Text)
 		b.setText(text);
@@ -405,13 +409,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Kommentar
 	 */
 	@Override
-	public Kommentar erstelleKommentar(Beitrag b, String text) {
+	public Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Kommentar k = new Kommentar();
-		k.setZielId(b.getId());
-		
+		k.setBeitragFK(b.getId());
+		k.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen des Inhalts des Beitrags (Text)
 		k.setText(text);
@@ -493,12 +497,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Like 
 	 */
 	@Override
-	public Like erstelleLike(Beitrag b) {
+	public Like erstelleLike(Beitrag b, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Like l = new Like();
-		l.setZielId(b.getId());
+		l.setBeitragFK(b.getId());
+		l.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -554,12 +559,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Abonnement
 	 */
 	@Override
-	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n) {
+	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Abonnementobjekts
 		//Zuweisen der PinnwandID, die abonniert werden soll
 		Abonnement a = new Abonnement();
-		a.setBezugsProfilId(p.getId());
+		a.setNutzerFK(p.getId());
+		a.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB

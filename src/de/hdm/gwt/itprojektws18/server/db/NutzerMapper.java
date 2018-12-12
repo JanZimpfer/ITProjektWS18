@@ -32,7 +32,7 @@ public class NutzerMapper {
 		return nutzerMapper; 
 			
 		}
-	
+	 
 	
 	public Nutzer getNutzerbyid (int id) {
 		
@@ -41,7 +41,8 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt =con.createStatement() ;
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE id =" + id + " ORDERD BY nachname") ;
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer " + 
+			"WHERE id= " + "'" + id + "'") ;
 			
 			if (rs.next()){
 				Nutzer n = new Nutzer ();
@@ -67,14 +68,15 @@ public class NutzerMapper {
 		}
 		
 		
-	public Nutzer getNuterByName(String vorname, String nachname) {
+	public Nutzer getNutzerByName(String vorname, String nachname) {
 		
 		Connection con =DBConnection.connection();
 		
 		try {
 			
 			Statement stmt =con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachhame" + "WHERE vorname =" + vorname + "WHERE nachname=" + nachname + "ORDER BY nachname" );
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer "
+			+ "WHERE vorname= " + "'" + vorname + "'" + "AND " + "nachname= " + "'" + nachname + "'");
 			
 			if (rs.next()) {
 				
@@ -82,7 +84,7 @@ public class NutzerMapper {
 				
 				n.setId(rs.getInt("id"));
 				n.setVorname(rs.getString("vorname"));
-				n.setNachname(rs.getString("Nachname"));
+				n.setNachname(rs.getString("nachname"));
 				
 				return n;
 			}
@@ -99,12 +101,14 @@ public class NutzerMapper {
 		}
 		
 	public Nutzer getNutzerByNickname(String nickname) {
-		
+			
 		Connection con =DBConnection.connection();
 	try {
 		
 		Statement stmt=con.createStatement();
-		ResultSet rs =stmt.executeQuery("SELECT id, vorname, nachname" + "WHERE nickname=" + nickname + "ORDER BY nachname");
+		ResultSet rs =stmt.executeQuery("SELECT id, vorname, nachname, "
+				+ "nickname FROM nutzer WHERE nickname= " 
+		+"'" + nickname +"'");
 		
 		if (rs.next()) {
 			
@@ -112,9 +116,10 @@ public class NutzerMapper {
 			n.setId(rs.getInt("id"));
 			n.setVorname(rs.getString("vorname"));
 			n.setNachname(rs.getString("nachname"));
+//			n.setNickname(rs.getString("nickname"));
 			
-			return n;
-					
+			
+			return n;		
 		}
 		
 	}
@@ -123,53 +128,55 @@ public class NutzerMapper {
 		return null;
 		
 		}
-		
+	
 	return null;
+		
 	
 	}
 	
-	public Nutzer insertNutzer(Nutzer nutzer) {
+	public Nutzer insertNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 	try {
 		
 		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery("SELECT MAX(id) as maxid " + "FROM Nutzer");
 		
-		if(rs.next()) {
-			
-			nutzer.setId(rs.getInt("MAX id") + 1 );
-			
-			 stmt=con.createStatement();
-			stmt.executeUpdate("INSERT INTO nutzer (id, erstellungszeipunkt, vorname, nachname, nickname)" + "VALUES ( "+
-			
-					nutzer.getId()+ "," +
-					nutzer.getErstellZeitpunkt() + ","+
-					nutzer.getVorname() + ","+
-					nutzer.getNachname() + ","+
-					nutzer.getNickname() + ")" );
-					}
+		ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM nutzer");
 		
+		if (rs.next()) {
+			n.setId(rs.getInt("maxid")+1);
+			stmt = con.createStatement();
+		
+			 
+			stmt.executeUpdate("INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, nickname)" + "VALUES ( "+
+			
+					n.getId()+ "," +
+					n.getErstellZeitpunkt() + ","+
+					n.getVorname() + ","+
+					n.getNachname() + ","+
+					n.getNickname() + ")" );
+					
+		}
 		}
 	
-	catch (SQLException e2) {
+	catch (SQLException e2) { 
 			
 			e2.printStackTrace();
 		}
 	
-	return nutzer;
+	return n;
 		
 	}
 	
-	public Nutzer updateNutzer(Nutzer nutzer) {
+	public Nutzer updateNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 		
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("UPDATE nutzer " + "set Vorname=\"" + nutzer.getVorname() + "\"" + "set Nachname=\""+ nutzer.getNachname() + 
-								"set Nickname=\"" + nutzer.getNickname() + "\"" +"WHERE id=" + nutzer.getId() );
+			stmt.executeUpdate("UPDATE nutzer " + "set vorname= " + "'" + n.getVorname() + "'"+ "set nachname= " + "'"+ n.getNachname() + "'"+ 
+								" set nickname= " + "'" + n.getNickname() + "'" +"WHERE id= " + "'" + n.getId() + "'" );
 			
 		}
 		catch(SQLException e2) {
@@ -177,18 +184,18 @@ public class NutzerMapper {
 			e2.printStackTrace();
 		}
 		
-		return nutzer;
+		return n;
 	}
 	
 	
-	public void deleteNutzer (Nutzer nutzer) {
+	public void deleteNutzer (Nutzer n) {
 		
 		Connection con=DBConnection.connection();
 		
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM nutzer" + "WHERE id=" + nutzer.getId());
+			stmt.executeUpdate("DELETE id, erstellzeitpunkt,FROM nutzer WHERE id= " + "'" + n.getId() + "'");
 			
 		}
 		

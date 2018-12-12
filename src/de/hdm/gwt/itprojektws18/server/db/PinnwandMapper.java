@@ -12,7 +12,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 /**
  * Dies ist eine Mapper-Klasse, die Pinnwand-Objekte auf eine relationale
  * Datenbank darstellt. Sie enthält Methoden zum erstellen, suchen, bearbeiten
- * und löschen.
+ * und löschen sowie zum ermitteln einer Pinnwand anhand des Nutzers.
  * 
  * @author Florian
  */
@@ -23,7 +23,6 @@ public class PinnwandMapper {
 
 	protected PinnwandMapper() {
 	}
-
 	public static PinnwandMapper pinnwandMapper() {
 		if (pinnwandMapper == null) {
 			pinnwandMapper = new PinnwandMapper();
@@ -34,10 +33,11 @@ public class PinnwandMapper {
 
 	/**
 	 * Einfügen eines Pinnwand-Objekts in die Datenbank:
+	 * 
 	 * @param p
 	 * @return Pinnwand p
 	 */
-	public Pinnwand insert(Pinnwand p) {
+	public Pinnwand insertPinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
@@ -45,68 +45,70 @@ public class PinnwandMapper {
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM pinnwaende ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM pinnwand ");
 
 			if (rs.next()) {
 
 				p.setId(rs.getInt("maxid") + 1);
-
 				stmt = con.createStatement();
-
-				stmt.executeUpdate("INSERT INTO pinnwaende (id, inhaberId) " + "VALUES (" + p.getId() + ","
-						+ p.getInhaberId() + ")");
+				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + "VALUES (" + p.getId()
+						+ "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
-		}
+		} catch (SQLException ep1) {
+			ep1.printStackTrace();
+		} 
 
 		return p;
 	}
 
-	/** 
+	/**
 	 * Ändern eines Objekts aus der Datenbank:
+	 * 
 	 * @param p
 	 * @return Pinnwand p
 	 */
-	public Pinnwand update(Pinnwand p) {
+	public Pinnwand updatePinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate(
-					"UPDATE pinnwaende " + "SET inhaberId=\"" + p.getInhaberId() + "\" " + "WHERE id=" + p.getId());
+					"UPDATE pinnwand " + "SET nutzer_p_FK=\" " + p.getNutzerFK() + "\" " + "WHERE id=" + p.getId());
 
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException ep2) {
+			ep2.printStackTrace();
 		}
 
 		return p;
 	}
 
 	/**
-	 *  Löschen der Daten eines Pinnwand-Objekts aus der Datenbank
+	 * Löschen der Daten eines Pinnwand-Objekts aus der Datenbank
+	 * 
 	 * @param p
 	 */
-	public void delete(Pinnwand p) {
+	public void deletePinnwand(Pinnwand p) {
 		Connection con = DBConnection.connection();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM pinnwaende " + "WHERE id=" + p.getId());
+			stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + p.getId());
 
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException ep3) {
+			ep3.printStackTrace();
 		}
 	}
 
 	/**
-	 * Diese Mehtode dient dazu, eine Pinnwand anhand ihrer ID zu finden:
+	 * Diese Mehtode dient dazu, eine Pinnwand anhand der ID des zugehörigen Nutzers
+	 * zu finden.
+	 * 
 	 * @param id
-	 * @return null
 	 */
-	public Pinnwand getPinnwandByID(int id) {
+	public Pinnwand getPinnwandByNutzer(int id) {
 
 		Connection con = DBConnection.connection();
 
@@ -114,56 +116,90 @@ public class PinnwandMapper {
 
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
-
-			// Statement ausfüllen und Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT id, inhaberId FROM pinnwaende " + "WHERE Id=" + id + " ORDER BY id");
+			// Query ausführen
+			ResultSet rs = stmt
+					.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + "WHERE inhaberId=" + id);
 
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
-				// Vorhandene Ergebnise in Objekte umwandeln
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
-				p.setInhaberId(rs.getInt("inhaberId"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
+				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ep4) {
+			ep4.printStackTrace();
 			return null;
 		}
 
 		return null;
 	}
-	
-	public Pinnwand getPinnwandByNutzer (Nutzer n) {
-		
+
+	public Pinnwand getPinnwandByNutzer(Nutzer n) {
+		return getPinnwandByNutzer(n.getId());
 	}
 
 	/**
-	 * Diese Mehtode dient dazu, alle vorhandenen Pinnwaende zu finden:
+	 * Diese Mehtode dient dazu, eine Pinnwand anhand der entsprechenden Pinnwand-ID zu finden.
+	 * 
+	 * @param id
+	 */
+	public Pinnwand getPinnwandByID(int id) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			// Statement ohne Inhalt anlegen
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " 
+			+ "WHERE id=" + id);
+			
+			// Prüfen ob ein Ergebnis vorliegt
+			if (rs.next()) {
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
+				Pinnwand p = new Pinnwand();
+				p.setId(rs.getInt("id"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
+				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				return p;
+			}
+		}catch(SQLException ep5) {
+			ep5.printStackTrace();
+			return null;
+			
+		}	
+		
+		return null;
+	}
+
+	/**
+	 * Diese Mehtode dient dazu, alle vorhandenen Pinnwaende zu finden.
+	 * 
 	 * @return Vector<Pinnwand>
 	 */
 	public Vector<Pinnwand> getAllPinnwaende() {
 		Connection con = DBConnection.connection();
 
-		// Ergebnisvektor vorbereiten
+		// Ergebnisvektor anlegen
 		Vector<Pinnwand> result = new Vector<Pinnwand>();
 
 		try {
 			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + " ORDER BY id");
 
-			ResultSet rs = stmt.executeQuery("SELECT id, inhaberId FROM pinnwaende " + " ORDER BY id");
-
-			// Für jeden Eintrag im Suchergebnis wird nun ein Account-Objekt erstellt.
+			// Für jeden Eintrag im Suchergebnis wird nun ein Pinnwand-Objekt erstellt.
 			while (rs.next()) {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
-				p.setInhaberId(rs.getInt("inhaberId"));
+				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
+				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(p);
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException ep6) {
+			ep6.printStackTrace();
 		}
 
 		// Ergebnisvektor zurückgeben

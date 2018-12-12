@@ -70,7 +70,12 @@ public class Nutzer extends BusinessObject{
 	
 	//equals Methode implementieren?!
 	
-	
-	
+	/**
+	 * String-Repräsentation einer Nutzerinstanz
+	 */
+	public String toString() {
+		
+		return super.toString() + "Vorname: " + this.getVorname() + "Nachname: " + this.getNachname() + "Nickname " + this.getNickname();
+	}
 
 }

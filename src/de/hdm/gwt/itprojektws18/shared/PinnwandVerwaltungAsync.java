@@ -1,5 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -16,7 +17,8 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
  */
 public interface PinnwandVerwaltungAsync {
 
-	void erstelleNutzer(String vorname, String nachname, String nickname, AsyncCallback<Nutzer> callback);
+	void erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt,
+			AsyncCallback<Nutzer> callback);
 
 	void speichern(Nutzer n, AsyncCallback<Void> callback);
 
@@ -28,7 +30,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Nutzer n, AsyncCallback<Void> callback);
 
-	void erstellePinnwand(Nutzer n, AsyncCallback<Pinnwand> callback);
+	void erstellePinnwand(Nutzer n, Date erstellzeitpunkt, AsyncCallback<Pinnwand> callback);
 
 	void speichern(Pinnwand p, AsyncCallback<Void> callback);
 
@@ -36,7 +38,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Pinnwand p, AsyncCallback<Void> callback);
 
-	void erstelleBeitrag(Pinnwand p, String text, AsyncCallback<Beitrag> callback);
+	void erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt, AsyncCallback<Beitrag> callback);
 
 	void speichern(Beitrag b, AsyncCallback<Void> callback);
 
@@ -48,7 +50,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Beitrag b, AsyncCallback<Void> callback);
 
-	void erstelleKommentar(Beitrag b, String text, AsyncCallback<Kommentar> callback);
+	void erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, AsyncCallback<Kommentar> callback);
 
 	void loeschen(Kommentar k, AsyncCallback<Void> callback);
 
@@ -56,13 +58,13 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllKommentareByBeitrag(Beitrag b, AsyncCallback<Vector<Kommentar>> callback);
 
-	void erstelleLike(Beitrag b, AsyncCallback<Like> callback);
+	void erstelleLike(Beitrag b, Date erstellzeitpunkt, AsyncCallback<Like> callback);
 
 	void loeschen(Like l, AsyncCallback<Void> callback);
 
 	void getAllLikesByNutzer(Nutzer n, AsyncCallback<Vector<Like>> callback);
 
-	void erstelleAbonnement(Pinnwand p, Nutzer n, AsyncCallback<Abonnement> callback);
+	void erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt, AsyncCallback<Abonnement> callback);
 
 	void getAllAbosFor(Nutzer n, AsyncCallback<Vector<Abonnement>> callback);
 

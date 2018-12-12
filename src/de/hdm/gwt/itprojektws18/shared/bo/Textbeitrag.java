@@ -25,5 +25,12 @@ public class Textbeitrag extends BusinessObject{
 		this.text = text;
 	}
 	
+	/**
+	 * String-Repräsentation einer Textbeitraginstanz
+	 */
+	public String toString() {
+		
+		return super.toString() + "Text: " + this.getText();
+	}
 
 }
