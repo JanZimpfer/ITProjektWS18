@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
@@ -14,5 +15,6 @@ public interface ReportGeneratorAsync {
 	void createNutzerStatistikReport(Nutzer nutzer, AsyncCallback<NutzerStatistikReport> callback);
 
 	void createBeitragStatistikReport(Beitrag beitrag, AsyncCallback<BeitragStatistikReport> callback);
-
+	
+	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
 }

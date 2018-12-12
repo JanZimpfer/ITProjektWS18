@@ -4,13 +4,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
-
+import de.hdm.gwt.itprojektws18.client.gui.report.NutzerStatistikReport;
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
 import de.hdm.gwt.itprojektws18.shared.report.*;
 import de.hdm.gwt.itprojektws18.shared.bo.*;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.ReportGenerator;
-
 
 @SuppressWarnings("serial")
 
@@ -19,6 +18,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	private PinnwandVerwaltung pinnwandAdmin = null;
 	
 	public ReportGeneratorImpl() throws IllegalArgumentException{
+		
+//	private Nutzer vorname = null;
+//	
+//	private Nutzer nachname = null;
 		
 	}
 	
@@ -40,12 +43,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 	else {
 		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
+		Nutzer name= getNutzerByName(name, name);
+		Nutzer nickname= getNutzerByNickname(nickname);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
+		
 		Vector <Nutzer> alleNutzer = new Vector <Nutzer>();
 		
-	
-		
+		NutzerStatistikReport result= new NutzerStatistikReport();
+		result.setTitle("Alle Nutzer auf der Pinnwand");
+		this.addImprint(result);
 		
 		
 	}
@@ -53,13 +60,41 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	
 	}
 	
+	private Nutzer getNutzerByName(Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		if(this.getPinnwandVerwaltung()==0) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().getNutzerByName(vorname.getVorname(), nachname.getNachname());
+	}
+
+	
+	public Nutzer getNutzerByNickname(Nutzer nickname) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+
+		if(this.getPinnwandVerwaltung()==0) {
+			
+		return null;
+		
+	}
+		return this.getPinnwandVerwaltung().getNutzerByNickname(nickname.getNickname());
+	}
+
+	
 	@Override
 	public BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException{
 		return null;
 	}
 	
 	
-
+	
+	
+	public Vector<Like> getLikesFromUser(Nutzer nutzer){
+		return null;
+	}
+	
+	
+	
 	
 	
 }
