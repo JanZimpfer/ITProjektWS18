@@ -20,6 +20,8 @@ public class Nutzer extends BusinessObject{
 	 */
 	private String nachname = "";
 
+	private String email = "";
+	
 	/**
 	 * Das Pseudoynm wird ausgelesen
 	 * @return
@@ -76,6 +78,14 @@ public class Nutzer extends BusinessObject{
 	public String toString() {
 		
 		return super.toString() + "Vorname: " + this.getVorname() + "Nachname: " + this.getNachname() + "Nickname " + this.getNickname();
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

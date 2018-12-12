@@ -105,6 +105,10 @@ public PinnwandVerwaltungImpl() {
 		
 	}
 
+	public Nutzer checkEmail(String mail) throws IllegalArgumentException{
+		Nutzer nutzer = new Nutzer();
+		nutzer = this.nMapper.findNutzerByEmail(email);
+	}
 	/**
 	 * Speichern eines bearbeiteten Nutzers
 	 * @param Nutzer n
@@ -225,7 +229,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param pinnwandID
 	 * @return Pinnwand
 	 */
-	@Override
+	
 	public Pinnwand getPinnwandByID(int pinnwandID) {
 		
 		return this.pMapper.getPinnwandByID(pinnwandID);
@@ -350,7 +354,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Pinnwand p
 	 * @return Vector<Beitrag>
 	 */
-	@Override
+	
 	public Vector<Beitrag> getAllBeitraegeByPinnwand (Pinnwand p) {
 		
 		return this.bMapper.getAllBeitraegeByPinnwand(p);

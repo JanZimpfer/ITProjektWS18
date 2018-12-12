@@ -1,6 +1,7 @@
 package de.hdm.gwt.itprojektws18.server.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -207,10 +208,51 @@ public class NutzerMapper {
 	
 	}
 	
+	public Nutzer findNutzerByEmail(String email){
+
+		/**
+		 * Verbindung zur DB Connection
+		 */
+		Connection con = DBConnection.connection();
+
+		Nutzer n = new Nutzer();
+
+		try {
+
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM nutzer WHERE mail = ?");
+
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+
+			/**
+			 * Für jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt
+			 * erstellt.
+			 */
+			if (rs.next()) {
+				Nutzer nutzer = new Nutzer();
+
+				nutzer.setId(rs.getInt("id"));
+				nutzer.setEmail(rs.getString("mail"));
+				
+				n = nutzer;
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+
+		/**
+		 * Ergebnisvektor zurückgeben
+		 */
+		finally {
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return n;
+		
+	}
+	
 }
-	
-
-
-
-	
-

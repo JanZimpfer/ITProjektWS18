@@ -19,6 +19,7 @@
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ITProjektWS18.html</welcome-file>
+    <welcome-file>ITProjektWS18Report.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
