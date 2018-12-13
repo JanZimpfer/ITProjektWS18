@@ -42,7 +42,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt =con.createStatement() ;
-			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname FROM nutzer " + 
+			ResultSet rs = stmt.executeQuery("SELECT id, vorname, nachname, nickname FROM nutzer " + 
 			"WHERE id= " + "'" + id + "'") ;
 			
 			if (rs.next()){
@@ -51,7 +51,7 @@ public class NutzerMapper {
 				n.setId(rs.getInt("id"));
 				n.setVorname(rs.getString("vorname"));
 				n.setNachname(rs.getString("nachname"));
-				
+				n.setNickname(rs.getString("nickname"));
 				return n ;
 			
 			}		
@@ -142,14 +142,17 @@ public class NutzerMapper {
 		
 		Statement stmt=con.createStatement();
 		
-		ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM nutzer");
+		ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' "
+		+ "FROM nutzer");
 		
 		if (rs.next()) {
 			n.setId(rs.getInt("maxid")+1);
 			stmt = con.createStatement();
 		
 			 
-			stmt.executeUpdate("INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, nickname)" + "VALUES ( "+
+			stmt.executeUpdate("INSERT INTO nutzer"
+					+ " (id, erstellzeitpunkt, vorname, nachname, nickname)" + 
+					"VALUES ( "+
 			
 					n.getId()+ "," +
 					n.getErstellZeitpunkt() + ","+
@@ -176,8 +179,11 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("UPDATE nutzer " + "set vorname= " + "'" + n.getVorname() + "'"+ "set nachname= " + "'"+ n.getNachname() + "'"+ 
-								" set nickname= " + "'" + n.getNickname() + "'" +"WHERE id= " + "'" + n.getId() + "'" );
+			stmt.executeUpdate("UPDATE nutzer set " + 
+			"vorname= " + "'" + n.getVorname() + "'"+","+
+			"nachname= " + "'"+ n.getNachname() + "'"+ ","+
+			"nickname= " + "'" + n.getNickname() + "'"
+			+"WHERE id= " + "'" + n.getId() + "'" );
 			
 		}
 		catch(SQLException e2) {
@@ -196,7 +202,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE id, erstellzeitpunkt,FROM nutzer WHERE id= " + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM nutzer WHERE id= " + "'" + n.getId() + "'");
 			
 		}
 		
