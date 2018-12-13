@@ -12,12 +12,18 @@ public abstract class BusinessObject implements Serializable{
 	 */
 	private int id = 0;
 	
-	
 	/**
 	 * Eindeutiger Erstellungszeitpunkt einer Instanz dieser Klasse
 	 */
 	private Date erstellZeitpunkt;
-
+	
+	/**
+	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
+	 * @param erstellZeitpunkt
+	 */
+	public BusinessObject(Date erstellZeitpunkt) {
+		this.erstellZeitpunkt = new Date();
+	}
 	
 	/**
 	 * Id wird ausgelesen
