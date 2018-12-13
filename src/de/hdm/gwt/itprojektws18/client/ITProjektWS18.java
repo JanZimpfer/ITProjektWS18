@@ -1,5 +1,6 @@
 package de.hdm.gwt.itprojektws18.client;
 
+import de.hdm.gwt.itprojektws18.client.gui.PinnwandBox;
 import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
@@ -36,6 +37,25 @@ public class ITProjektWS18 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		
+	
+		/*
+		 * Erstellung eines VerticalPanels welches fuer den Navigator genutzt wird.
+		 */
+		VerticalPanel navPanel = new VerticalPanel();
+		
+		/*
+		 * Zuweisung des VerticalPanels zum DIV-Element "Navigator"
+		 * in der entsprechenden HTML Datei.
+		 */
+		RootPanel.get("Navigator").add(navPanel);
+		
+		/**
+		 * Kommentar an's Team:
+		 * hier der fehlende Aufbau.
+		 * 
+		 * @Niklas
+		 * @Florian 
+		 */
 		
 	}
 }

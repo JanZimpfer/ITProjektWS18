@@ -23,9 +23,11 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void speichern(Nutzer n);
 
+	public Nutzer checkEmail(String mail) throws IllegalArgumentException;
+	
 	Nutzer getNutzerbyID(int nutzerID);
 
-	Nutzer getNutzerByName(String vorname, String nachname);
+	Nutzer getNutzerByName(String vorname, String nachname) throws IllegalArgumentException;
 
 	Nutzer getNutzerByNickname(String nickname);
 
@@ -35,7 +37,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void speichern(Pinnwand p);
 
-	Pinnwand getPinnwandByID(int pinnwandID);
+//	Pinnwand getPinnwandByID(int pinnwandID);
 
 	void loeschen(Pinnwand p);
 
@@ -47,19 +49,19 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Beitrag> getAllBeitraege();
 
-	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p);
+//	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p);
 
 	void loeschen(Beitrag b);
 
 	Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt);
 
-	void loeschen(Kommentar k);
+//	void loeschen(Kommentar k);
 
 	Vector<Kommentar> getAllKommentare();
 
 	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b);
 
-	Like erstelleLike(Beitrag b, Date erstellzeitpunkt);
+//	Like erstelleLike(Beitrag b, Date erstellzeitpunkt);
 
 	void loeschen(Like l);
 

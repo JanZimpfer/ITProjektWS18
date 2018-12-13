@@ -4,62 +4,114 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
-
+import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
 import de.hdm.gwt.itprojektws18.shared.report.*;
 import de.hdm.gwt.itprojektws18.shared.bo.*;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.ReportGenerator;
 
-
 @SuppressWarnings("serial")
 
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
-	
+
 	private PinnwandVerwaltung pinnwandAdmin = null;
-	
-	public ReportGeneratorImpl() throws IllegalArgumentException{
-		
+
+	public ReportGeneratorImpl() throws IllegalArgumentException {
+
 	}
-	
+
+	private Nutzer nutzer = new Nutzer();
+
 	@Override
-	public void init() throws IllegalArgumentException{
+	public void init() throws IllegalArgumentException {
 		PinnwandVerwaltungImpl pinnwandVerwaltung = new PinnwandVerwaltungImpl();
 		pinnwandVerwaltung.init();
 		this.pinnwandAdmin = pinnwandVerwaltung;
 	}
-	
+
 	protected PinnwandVerwaltung getPinnwandVerwaltung() {
 		return this.pinnwandAdmin;
 	}
+
+	protected void addImprint(Report r) {
+		CompositeParagraph imprint = new CompositeParagraph();
+
+		imprint.addSubParagraph(new SimpleParagraph("Social Media Pinnwand der HdM"));
+		imprint.addSubParagraph(new SimpleParagraph("Nobelstraﬂe 10"));
+		imprint.addSubParagraph(new SimpleParagraph("70569 Stuttgart"));
+
+		r.setImprint(imprint);
+	}
+
 	@Override
 	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer) throws IllegalArgumentException {
-		
-	if(this.getPinnwandVerwaltung() == null) {
-		return null;
-	}
-	else {
-		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
-		Vector <Nutzer> alleNutzer = new Vector <Nutzer>();
-		
-	
-		
-		
-		
+		if (this.getPinnwandVerwaltung() == null) {
+			return null;
+		} else {
+
+			Vector<Nutzer> name = getNutzerByName(nutzer.getVorname(), nutzer.getNachname());
+			Vector<Nutzer> nickname = getNutzerByNickname(nutzer.getNickname());
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
+
+			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
+
+			NutzerStatistikReport result = new NutzerStatistikReport();
+			result.setTitle("Alle Nutzer auf der Pinnwand");
+			this.addImprint(result);
+
+		}
+		return null;
+
 	}
-	return null;
-	
+
+	private Nutzer getNutzerByName(Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
+		if (this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().getNutzerByName(vorname.getVorname(), nachname.getNachname());
+	}
+
+	public Nutzer getNutzerByNickname(Nutzer nickname) throws IllegalArgumentException {
+		if (this.getPinnwandVerwaltung() == null) {
+
+			return null;
+
+		}
+		return this.getPinnwandVerwaltung().getNutzerByNickname(nickname.getNickname());
+	}
+
+	@Override
+	public BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException {
+		return this.createBeitragStatistikReport(beitrag);
+	}
+
+	public Vector<Like> getLikesFromUser(Nutzer nutzer) {
+		return this.getLikesFromUser(nutzer);
+	}
+
+	@Override
+	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
+		return this.createLikeStatistikReport(like);
+	}
+
+	@Override
+	public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws IllegalArgumentException {
+		return this.getNutzerByName(vorname, nachname);
+	}
+
+	@Override
+	public Vector<Nutzer> getNutzerByNickname(String nickname) throws IllegalArgumentException {
+		return this.getNutzerByNickname(nickname);
 	}
 	
 	@Override
-	public BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException{
-		return null;
+	public Nutzer findNutzerByEmail(String mail) throws IllegalArgumentException {
+		if(this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().checkEmail(mail);
 	}
-	
-	
 
-	
-	
 }

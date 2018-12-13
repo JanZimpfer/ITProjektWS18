@@ -92,7 +92,7 @@ public abstract class BusinessObject implements Serializable{
 	 */
 	public String toString() {
 		
-		return this.getClass().getName() + "Id. Nr: " + this.id;
+		return this.getClass().getName() + "Id. Nr:" + this.id;
 	}
 	
 	/**

@@ -34,7 +34,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void speichern(Pinnwand p, AsyncCallback<Void> callback);
 
-	void getPinnwandByID(int pinnwandID, AsyncCallback<Pinnwand> callback);
+//	void getPinnwandByID(int pinnwandID, AsyncCallback<Pinnwand> callback);
 
 	void loeschen(Pinnwand p, AsyncCallback<Void> callback);
 
@@ -46,19 +46,19 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllBeitraege(AsyncCallback<Vector<Beitrag>> callback);
 
-	void getAllBeitraegeByPinnwand(Pinnwand p, AsyncCallback<Vector<Beitrag>> callback);
+//	void getAllBeitraegeByPinnwand(Pinnwand p, AsyncCallback<Vector<Beitrag>> callback);
 
 	void loeschen(Beitrag b, AsyncCallback<Void> callback);
 
 	void erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, AsyncCallback<Kommentar> callback);
 
-	void loeschen(Kommentar k, AsyncCallback<Void> callback);
+//	void loeschen(Kommentar k, AsyncCallback<Void> callback);
 
 	void getAllKommentare(AsyncCallback<Vector<Kommentar>> callback);
 
 	void getAllKommentareByBeitrag(Beitrag b, AsyncCallback<Vector<Kommentar>> callback);
 
-	void erstelleLike(Beitrag b, Date erstellzeitpunkt, AsyncCallback<Like> callback);
+//	void erstelleLike(Beitrag b, Date erstellzeitpunkt, AsyncCallback<Like> callback);
 
 	void loeschen(Like l, AsyncCallback<Void> callback);
 
@@ -77,4 +77,6 @@ public interface PinnwandVerwaltungAsync {
 	void getPinnwandByNutzer(Nutzer n, AsyncCallback<Pinnwand> callback);
 
 	void getAllAbosFor(Pinnwand p, AsyncCallback<Vector<Abonnement>> callback);
+
+	void checkEmail(String mail, AsyncCallback<Nutzer> callback);
 }
