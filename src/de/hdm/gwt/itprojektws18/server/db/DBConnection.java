@@ -2,7 +2,6 @@ package de.hdm.gwt.itprojektws18.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import com.mysql.jdbc.Driver;
 import com.google.appengine.api.utils.SystemProperty;
 
 public class DBConnection {

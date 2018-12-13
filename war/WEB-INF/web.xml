@@ -7,18 +7,40 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
+    <servlet-name>pinnwandServlet</servlet-name>
     <servlet-class>de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl</servlet-class>
   </servlet>
   
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/itprojektws18/greet</url-pattern>
-  </servlet-mapping>
+  <servlet>
+    <servlet-name>reportgeneratorServlet</servlet-name>
+    <servlet-class>de.hdm.gwt.itprojektws18.server.report.ReportGeneratorImpl</servlet-class>
+  </servlet>
   
+   <servlet-mapping>
+    <servlet-name>loginService</servlet-name>
+    <url-pattern>/itprojektws18/login</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+    <servlet-name>loginService</servlet-name>
+    <servlet-class>de.hdm.gwt.itprojektws18.server.LoginServiceImpl</servlet-class>
+  </servlet>  
+  
+  <servlet-mapping>
+    <servlet-name>reportgeneratorServlet</servlet-name>
+    <url-pattern>/itprojektreport/reportgenerator</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet-mapping>
+    <servlet-name>loginService</servlet-name>
+    <url-pattern>/itprojektreport/login</url-pattern>
+  </servlet-mapping> 
+    
+ 
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ITProjektWS18.html</welcome-file>
+    <welcome-file>ITProjektWS18Report.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
