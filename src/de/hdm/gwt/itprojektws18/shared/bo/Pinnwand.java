@@ -31,7 +31,7 @@ public class Pinnwand extends BusinessObject{
 	 * String-Repräsentation einer Pinnwandinstanz
 	 */
 	public String toString() {
-		return super.toString() + "Nutzer: " + this.getNutzerFK();
+		return super.toString() + " Nutzer:" + this.getNutzerFK();
 	}
 
 }
