@@ -113,9 +113,9 @@ public PinnwandVerwaltungImpl() {
 	public void speichern(Nutzer n) {
 		
 		//Bearbeiten
-		n.setVorname(null);
-		n.setNachname(null);
-		n.setNickname(null);
+//		n.setVorname(null);
+//		n.setNachname(null);
+//		n.setNickname(null);
 		
 		nMapper.updateNutzer(n);
 				

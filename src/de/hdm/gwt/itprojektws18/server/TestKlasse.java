@@ -23,10 +23,18 @@ public class TestKlasse {
 		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 		impl.init();
 		
+	Nutzer n = new Nutzer ();
 	
-		
+	n = impl.erstelleNutzer("'Jan'", "'Zimpfer'", "'JZ'", n.getErstellZeitpunkt());
+	
+	
 
+	
+//	impl.loeschen(n);
+
+//	impl.speichern(n);
 		
+//	System.out.print(n);
 		
 	}
 	
