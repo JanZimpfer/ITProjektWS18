@@ -29,7 +29,7 @@ public abstract class BusinessObject implements Serializable{
 	 * @param erstellZeitpunkt
 	 */
 	public BusinessObject(Date erstellZeitpunkt) {
-		this.erstellZeitpunkt = new Date();
+		this.erstellZeitpunkt = erstellZeitpunkt;
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public abstract class BusinessObject implements Serializable{
 	 * @param erstellZeitpunkt
 	 */
 	public void setErstellZeitpunkt(Date erstellZeitpunkt) {
-		this.erstellZeitpunkt = erstellZeitpunkt;
+		this.erstellZeitpunkt = new Date ();
 	}
 	
 	/**

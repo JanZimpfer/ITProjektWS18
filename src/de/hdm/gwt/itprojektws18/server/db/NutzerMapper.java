@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Vector;
-
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**Dies ist eine Mapper-Klasse, die Nutzer-Objekte auf eine relationale
@@ -17,6 +17,8 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 **/
 
 public class NutzerMapper {
+	
+	
 
 	private static NutzerMapper nutzerMapper = null;
 	
@@ -138,6 +140,9 @@ public class NutzerMapper {
 	public Nutzer insertNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
+		
+	
+		
 	try {
 		
 		Statement stmt=con.createStatement();
@@ -155,7 +160,7 @@ public class NutzerMapper {
 					"VALUES ( "+
 			
 					n.getId()+ "," +
-					n.getErstellZeitpunkt() + ","+
+					 "'" +n.getErstellZeitpunkt() + "'" + ","+
 					n.getVorname() + ","+
 					n.getNachname() + ","+
 					n.getNickname() + ")" );

@@ -51,8 +51,12 @@ public class PinnwandMapper {
 
 				p.setId(rs.getInt("maxid") + 1);
 				stmt = con.createStatement();
-				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + "VALUES (" + p.getId()
-						+ "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
+				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + 
+				"VALUES (" + 
+				
+				p.getId()+ "," + 
+				p.getNutzerFK() + "," + 
+				p.getErstellZeitpunkt() + ")");
 			}
 		} catch (SQLException ep1) {
 			ep1.printStackTrace();
