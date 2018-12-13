@@ -1,6 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.Vector;
 
@@ -20,7 +20,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
 @RemoteServiceRelativePath("pinnwandverwaltung")
 public interface PinnwandVerwaltung extends RemoteService {
 
-	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt);
+	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt);
 
 	void speichern(Nutzer n);
 
@@ -34,7 +34,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Nutzer n);
 
-	Pinnwand erstellePinnwand(Nutzer n, Timestamp erstellzeitpunkt);
+	Pinnwand erstellePinnwand(Nutzer n, Date erstellzeitpunkt);
 
 	void speichern(Pinnwand p);
 
@@ -42,7 +42,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Pinnwand p);
 
-	Beitrag erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt);
+	Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt);
 
 	void speichern(Beitrag b);
 
@@ -54,7 +54,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Beitrag b);
 
-	Kommentar erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt);
+	Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt);
 
 //	void loeschen(Kommentar k);
 
@@ -68,7 +68,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Like> getAllLikesByNutzer(Nutzer n);
 
-	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt);
+	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt);
 
 	void loeschen(Abonnement a);
 

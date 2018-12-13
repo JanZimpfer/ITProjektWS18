@@ -2,7 +2,7 @@ package de.hdm.gwt.itprojektws18.server;
 
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import java.util.Vector;
 
@@ -87,7 +87,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt) {
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
 		Nutzer n = new Nutzer();
@@ -95,7 +95,7 @@ public PinnwandVerwaltungImpl() {
 		n.setVorname(vorname);
 		n.setNachname(nachname);
 		n.setNickname(nickname);
-//		n.setErstellZeitpunkt(erstellzeitpunkt);
+		n.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -205,7 +205,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwnad
 	 */
 	@Override
-	public Pinnwand erstellePinnwand (Nutzer n, Timestamp erstellzeitpunkt) {
+	public Pinnwand erstellePinnwand (Nutzer n, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Pinnwandobjekts
 		//Zuweisen der InhaberID
@@ -304,7 +304,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt) {
+	public Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
@@ -421,7 +421,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Kommentar
 	 */
 	@Override
-	public Kommentar erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt) {
+	public Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
@@ -571,7 +571,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Abonnement
 	 */
 	@Override
-	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt) {
+	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt) {
 		
 		//Erstellen eines Abonnementobjekts
 		//Zuweisen der PinnwandID, die abonniert werden soll

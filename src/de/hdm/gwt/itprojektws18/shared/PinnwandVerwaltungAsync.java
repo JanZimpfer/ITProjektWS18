@@ -1,6 +1,5 @@
 package de.hdm.gwt.itprojektws18.shared;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -18,7 +17,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
  */
 public interface PinnwandVerwaltungAsync {
 
-	void erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt,
+	void erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt,
 			AsyncCallback<Nutzer> callback);
 
 	void speichern(Nutzer n, AsyncCallback<Void> callback);
@@ -31,7 +30,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Nutzer n, AsyncCallback<Void> callback);
 
-	void erstellePinnwand(Nutzer n, Timestamp erstellzeitpunkt, AsyncCallback<Pinnwand> callback);
+	void erstellePinnwand(Nutzer n, Date erstellzeitpunkt, AsyncCallback<Pinnwand> callback);
 
 	void speichern(Pinnwand p, AsyncCallback<Void> callback);
 
@@ -39,7 +38,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Pinnwand p, AsyncCallback<Void> callback);
 
-	void erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt, AsyncCallback<Beitrag> callback);
+	void erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt, AsyncCallback<Beitrag> callback);
 
 	void speichern(Beitrag b, AsyncCallback<Void> callback);
 
@@ -51,7 +50,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Beitrag b, AsyncCallback<Void> callback);
 
-	void erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, AsyncCallback<Kommentar> callback);
+	void erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, AsyncCallback<Kommentar> callback);
 
 //	void loeschen(Kommentar k, AsyncCallback<Void> callback);
 
@@ -65,7 +64,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllLikesByNutzer(Nutzer n, AsyncCallback<Vector<Like>> callback);
 
-	void erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt, AsyncCallback<Abonnement> callback);
+	void erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt, AsyncCallback<Abonnement> callback);
 
 	void getAllAbosFor(Nutzer n, AsyncCallback<Vector<Abonnement>> callback);
 

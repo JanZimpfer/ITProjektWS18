@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import java.sql.Timestamp;
+
+import java.sql.Date;
 import java.util.Vector;
 
 import com.mysql.jdbc.Driver;
@@ -26,20 +27,9 @@ public class TestKlasse {
 		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 		impl.init();
 		
-	Nutzer n = new Nutzer ();
-//	n = impl.getNutzerbyID(1);
-//	Pinnwand p = new Pinnwand ();
-	
-	 n = impl.erstelleNutzer("'Flo'", "'Timmler'", "'FT'", n.getErstellZeitpunkt());
-	
-	
-
-	
-//	impl.loeschen(n);
-
-//	impl.speichern(n);
-
-//	System.out.print(n);
+  Nutzer n = new Nutzer ();
+  
+  n = impl.erstelleNutzer("'FLO'", "'Timmler'", "'FT'", n.getErstellZeitpunkt());
 		
 	}	
 }

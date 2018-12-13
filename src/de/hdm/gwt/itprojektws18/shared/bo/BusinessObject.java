@@ -84,7 +84,7 @@ public abstract class BusinessObject implements Serializable{
 
 	public void setErstellZeitpunkt(Date erstellZeitpunkt) {
 
-		this.erstellZeitpunkt = erstellZeitpunkt;
+		this.erstellZeitpunkt = new Date ();
 
 	}
 	
