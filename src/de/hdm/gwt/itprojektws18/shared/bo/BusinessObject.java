@@ -18,6 +18,13 @@ public abstract class BusinessObject implements Serializable{
 	private Date erstellZeitpunkt;
 	
 	/**
+	 * Default Konstruktor für BusinessObject
+	 */
+	public BusinessObject() {
+		
+	}
+	
+	/**
 	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
 	 * @param erstellZeitpunkt
 	 */
