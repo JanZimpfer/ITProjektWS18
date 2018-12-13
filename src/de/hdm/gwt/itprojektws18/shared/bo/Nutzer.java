@@ -75,7 +75,7 @@ public class Nutzer extends BusinessObject{
 	 */
 	public String toString() {
 		
-		return super.toString() + "Vorname: " + this.getVorname() + "Nachname: " + this.getNachname() + "Nickname " + this.getNickname();
+		return super.toString() + " Vorname: " + this.getVorname() + " Nachname:" + this.getNachname() + " Nickname:" + this.getNickname();
 	}
 
 }

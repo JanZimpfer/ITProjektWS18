@@ -30,7 +30,7 @@ public class Textbeitrag extends BusinessObject{
 	 */
 	public String toString() {
 		
-		return super.toString() + "Text: " + this.getText();
+		return super.toString() + " Text:" + this.getText();
 	}
 
 }
