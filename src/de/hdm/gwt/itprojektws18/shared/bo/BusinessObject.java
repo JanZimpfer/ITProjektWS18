@@ -1,7 +1,7 @@
 package de.hdm.gwt.itprojektws18.shared.bo;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public abstract class BusinessObject implements Serializable{
 	
@@ -15,22 +15,22 @@ public abstract class BusinessObject implements Serializable{
 	/**
 	 * Eindeutiger Erstellungszeitpunkt einer Instanz dieser Klasse
 	 */
-	private Timestamp erstellZeitpunkt;
+	private Date erstellZeitpunkt;
 	
-//	/**
-//	 * Default Konstruktor für BusinessObject
-//	 */
-//	public BusinessObject() {
-//		
-//	}
-//	
-//	/**
-//	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
-//	 * @param erstellZeitpunkt
-//	 */
-//	public BusinessObject(Timestamp erstellZeitpunkt) {
-//		this.erstellZeitpunkt = (Timestamp) new Date();
-//	}
+	/**
+	 * Default Konstruktor für BusinessObject
+	 */
+	public BusinessObject() {
+		
+	}
+	
+	/**
+	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
+	 * @param erstellZeitpunkt
+	 */
+	public BusinessObject(Date erstellZeitpunkt) {
+		this.erstellZeitpunkt = new Date();
+	}
 	
 	/**
 	 * Id wird ausgelesen
@@ -52,7 +52,7 @@ public abstract class BusinessObject implements Serializable{
 	 * Erstellungszeitpunkt wird ausgelesen
 	 * @return
 	 */
-	public Timestamp getErstellZeitpunkt() {
+	public Date getErstellZeitpunkt() {
 		return erstellZeitpunkt;
 	}
 
@@ -60,7 +60,7 @@ public abstract class BusinessObject implements Serializable{
 	 * Erstellungszeitpunkt wird gesetzt
 	 * @param erstellZeitpunkt
 	 */
-	public void setErstellZeitpunkt(Timestamp erstellZeitpunkt) {
+	public void setErstellZeitpunkt(Date erstellZeitpunkt) {
 		this.erstellZeitpunkt = erstellZeitpunkt;
 	}
 	
