@@ -52,7 +52,7 @@ public class Beitrag extends Textbeitrag{
 	 */
 	public String toString() {
 		
-		return super.toString() + "Pinnwand: " + this.getPinnwandFK() + "Nutzer: " + this.getNutzerFK();
+		return super.toString() + " Pinnwand:" + this.getPinnwandFK() + " Nutzer:" + this.getNutzerFK();
 	}
 	
 	

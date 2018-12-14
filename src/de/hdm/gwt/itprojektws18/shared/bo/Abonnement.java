@@ -51,7 +51,7 @@ public class Abonnement extends BusinessObject{
 	 * String-Repräsentation einer Aboinstanz
 	 */
 	public String toString() {
-		return super.toString() + "abonnierter Nutzer: " + this.getNutzerFK() + "abonnierte Pinnwand: " + this.getPinnwandFK();
+		return super.toString() + " abonnierter Nutzer:" + this.getNutzerFK() + " abonnierte Pinnwand:" + this.getPinnwandFK();
 	}
 	
 

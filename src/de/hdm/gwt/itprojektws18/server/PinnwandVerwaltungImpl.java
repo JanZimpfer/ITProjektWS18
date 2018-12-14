@@ -3,6 +3,7 @@ package de.hdm.gwt.itprojektws18.server;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
 import java.util.Date;
+
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -58,8 +59,8 @@ public PinnwandVerwaltungImpl() {
 		this.nMapper = NutzerMapper.nutzerMapper();
 		this.pMapper = PinnwandMapper.pinnwandMapper();
 		this.bMapper = BeitragMapper.beitragMapper();
-	//	this.kMapper = KommentarMapper.kommentarMapper();
-	//	this.lMapper = LikeMapper.likeMapper();
+		this.kMapper = KommentarMapper.kommentarMapper();
+		this.lMapper = LikeMapper.likeMapper();
 		this.aMapper = AbonnementMapper.abonnementMapper();
 	}
 	
@@ -124,9 +125,9 @@ public PinnwandVerwaltungImpl() {
 	public void speichern(Nutzer n) {
 		
 		//Bearbeiten
-		n.setVorname(null);
-		n.setNachname(null);
-		n.setNickname(null);
+//		n.setVorname(null);
+//		n.setNachname(null);
+//		n.setNickname(null);
 		
 		nMapper.updateNutzer(n);
 				

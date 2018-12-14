@@ -12,11 +12,45 @@ public abstract class BusinessObject implements Serializable{
 	 */
 	private int id = 0;
 	
-	
 	/**
 	 * Eindeutiger Erstellungszeitpunkt einer Instanz dieser Klasse
 	 */
 	private Date erstellZeitpunkt;
+	
+
+
+
+	
+//	/**
+//	 * Default Konstruktor für BusinessObject
+//	 */
+//	public BusinessObject() {
+//		
+//	}
+//	
+//	/**
+//	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
+//	 * @param erstellZeitpunkt
+//	 */
+//	public BusinessObject(Timestamp erstellZeitpunkt) {
+//		this.erstellZeitpunkt = (Timestamp) new Date();
+//	}
+
+
+	/**
+	 * Default Konstruktor für BusinessObject
+	 */
+	public BusinessObject() {
+		
+	}
+	
+	/**
+	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
+	 * @param erstellZeitpunkt
+	 */
+	public BusinessObject(Date erstellZeitpunkt) {
+		this.erstellZeitpunkt = new Date();
+	}
 
 	
 	/**
@@ -47,8 +81,11 @@ public abstract class BusinessObject implements Serializable{
 	 * Erstellungszeitpunkt wird gesetzt
 	 * @param erstellZeitpunkt
 	 */
+
 	public void setErstellZeitpunkt(Date erstellZeitpunkt) {
-		this.erstellZeitpunkt = erstellZeitpunkt;
+
+		this.erstellZeitpunkt = new Date ();
+
 	}
 	
 	/**
@@ -92,7 +129,7 @@ public abstract class BusinessObject implements Serializable{
 	 */
 	public String toString() {
 		
-		return this.getClass().getName() + "Id. Nr: " + this.id;
+		return this.getClass().getName() + "Id. Nr:" + this.id;
 	}
 	
 	/**

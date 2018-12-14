@@ -51,8 +51,12 @@ public class PinnwandMapper {
 
 				p.setId(rs.getInt("maxid") + 1);
 				stmt = con.createStatement();
-				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + "VALUES (" + p.getId()
-						+ "," + p.getNutzerFK() + "," + p.getErstellZeitpunkt() + ")");
+				stmt.executeUpdate("INSERT INTO pinnwand (id, nutzer_p_FK, erstellzeitpunkt) " + 
+				"VALUES (" + 
+				
+				p.getId()+ "," + 
+				p.getNutzerFK() + "," + 
+				p.getErstellZeitpunkt() + ")"); 
 			}
 		} catch (SQLException ep1) {
 			ep1.printStackTrace();
@@ -126,7 +130,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				return p;
 			}
 		} catch (SQLException ep4) {
@@ -161,7 +165,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				return p;
 			}
 		}catch(SQLException ep5) {
@@ -193,7 +197,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(p);
