@@ -41,19 +41,20 @@ public Abonnement insertAbonnement (Abonnement a) {
 	
 	try {
 			Statement stmt =con.createStatement();
-			ResultSet rs=stmt.executeQuery("SELECT MAX(id) as maxId"+"FROM abonnement");
+			ResultSet rs=stmt.executeQuery("SELECT MAX(id) as 'maxId' "+"FROM abonnement");
 			
 			if(rs.next()) {
 				
-				a.setId(rs.getInt("MAX id") + 1 );
+				a.setId(rs.getInt("maxId") + 1 );
 				
 				 stmt=con.createStatement();
-				stmt.executeUpdate("INSERT INTO abonnement (id, nutzer_a_FK, pinnwand_a_FK erstellzeitpunkt)"+ "Values ( "+
+				stmt.executeUpdate("INSERT INTO abonnement (id, nutzer_a_FK, pinnwand_a_FK, erstellzeitpunkt)"+
+				 "Values ( "+
 			
 					a.getId()+","+
-					a.getNutzerFK() + ""+
-					a.getPinnwandFK()+ ""+
-					a.getErstellZeitpunkt() +")");
+					a.getNutzerFK() + ","+
+					a.getPinnwandFK()+ ","+
+					 "'" + a.getErstellZeitpunkt() + "'" +")");
 			
 				}			
 	
@@ -76,7 +77,7 @@ public void  deleteAbonnement(Abonnement a) {
 	
 	try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + a.getId());
+			stmt.executeUpdate("DELETE FROM abonnement" + "WHERE abonnement=" + "'" + a.getId() + "'");
 			
 	}
 	
@@ -96,7 +97,7 @@ public Vector<Abonnement> getAllAbosByNutzer (Nutzer n){
 try {
 	
 	Statement stmt=con.createStatement();
-	ResultSet rs= stmt.executeQuery("SELECT (id, nutzer_a_FK, pinnwand_a_FK)  FROM abonnement" + "WHERE nutzer_a_FK=" + n.getId());
+	ResultSet rs= stmt.executeQuery("SELECT (id, nutzer_a_FK, pinnwand_a_FK)  FROM abonnement" + "WHERE nutzer_a_FK=" + "'" + n.getId() + "'");
 	
 	while(rs.next()) {
 		
@@ -128,7 +129,7 @@ public Vector<Abonnement> getAllAbosByPinnwand (Pinnwand p) {
 try {
 	
 	Statement stmt = con.createStatement();
-	ResultSet rs =stmt.executeQuery("SELECT (id, nutzer_a_FK,pinnwand_a_FK) FROM abonnement" + "WHERE pinnwand_a_FK =" + p.getId());
+	ResultSet rs =stmt.executeQuery("SELECT (id, nutzer_a_FK,pinnwand_a_FK) FROM abonnement" + "WHERE pinnwand_a_FK =" + "'" +p.getId() + "'");
 	
 	while(rs.next()) {
 		

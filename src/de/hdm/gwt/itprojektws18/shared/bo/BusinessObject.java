@@ -1,7 +1,9 @@
 package de.hdm.gwt.itprojektws18.shared.bo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public abstract class BusinessObject implements Serializable{
 	
@@ -15,10 +17,10 @@ public abstract class BusinessObject implements Serializable{
 	/**
 	 * Eindeutiger Erstellungszeitpunkt einer Instanz dieser Klasse
 	 */
-	private Date erstellZeitpunkt;
 	
+	private Date erstellZeitpunkt;
 
-
+//	private Date erstellzeitpunkt = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
 	
 //	/**
