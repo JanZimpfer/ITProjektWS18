@@ -56,7 +56,7 @@ public class PinnwandMapper {
 				
 				p.getId()+ "," + 
 				p.getNutzerFK() + "," + 
-				p.getErstellZeitpunkt() + ")"); 
+				"'" + p.getErstellZeitpunkt() + "'" + ")"); 
 			}
 		} catch (SQLException ep1) {
 			ep1.printStackTrace();
@@ -130,7 +130,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
 		} catch (SQLException ep4) {
@@ -156,8 +156,8 @@ public class PinnwandMapper {
 		try {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " 
-			+ "WHERE id=" + id);
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK FROM pinnwand " 
+			+ "WHERE id= " + "'" +id + "'");
 			
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
@@ -165,7 +165,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+//				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
 		}catch(SQLException ep5) {

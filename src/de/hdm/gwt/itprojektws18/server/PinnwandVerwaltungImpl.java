@@ -576,7 +576,8 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Abonnementobjekts
 		//Zuweisen der PinnwandID, die abonniert werden soll
 		Abonnement a = new Abonnement();
-		a.setNutzerFK(p.getId());
+		a.setNutzerFK(n.getId());
+		a.setPinnwandFK(p.getId());
 		a.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		

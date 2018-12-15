@@ -5,8 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.sql.Date;
+
 import java.util.Vector;
+
+import com.ibm.icu.util.Calendar;
+
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**Dies ist eine Mapper-Klasse, die Nutzer-Objekte auf eine relationale
@@ -17,7 +22,6 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 **/
 
 public class NutzerMapper {
-	
 	
 
 	private static NutzerMapper nutzerMapper = null;
@@ -159,10 +163,10 @@ public class NutzerMapper {
 					+ " (id, erstellzeitpunkt, vorname, nachname, nickname)" + 
 					"VALUES ( "+
 			
-					n.getId()+ "," +
-					 "'" +n.getErstellZeitpunkt() + "'" + ","+
-					n.getVorname() + ","+
-					n.getNachname() + ","+
+					n.getId()+ ", " +
+					"'" + n.getErstellZeitpunkt() + "'"  + ", "+
+					n.getVorname() + ", "+
+					n.getNachname() + ", "+
 					n.getNickname() + ")" );
 					
 		}
