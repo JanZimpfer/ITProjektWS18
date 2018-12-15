@@ -85,8 +85,8 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("UPDATE beitag" + "set text=\"" + b.getText() 
-			+ "\"" + "WHERE id=" + b.getId());
+			stmt.executeUpdate("UPDATE beitag" + "set text =" + "'" + b.getText() 
+			+ "'" + "WHERE id=" + "'" + b.getId() + "'");
 		}
 		catch(SQLException e2) {
 			e2.printStackTrace();
@@ -106,7 +106,7 @@ public class BeitragMapper {
 		try {
 			Statement stmt=con.createStatement();
 			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE id=" 
-			+ b.getId());
+			+ "'" + b.getId() +"'");
 		}
 		
 		catch(SQLException e2) {
@@ -127,7 +127,7 @@ public class BeitragMapper {
 			/**
 			 * nutzerId ist ein FK der Tabelle beitrag welcher auf die Tabelle nutzer verweist.
 			 */
-			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE nutzer_b_FK=" + n.getId());
+			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE nutzer_b_FK=" + "'" + n.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -145,7 +145,8 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" + "WHERE id =" + id);
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag " +
+			"WHERE id = " + "'" + id  +"'");
 			
 			if (rs.next()) {
 				Beitrag b = new Beitrag();
@@ -210,8 +211,8 @@ public class BeitragMapper {
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" +"WHERE = pinnwand_b_FK="
-			+ pinnwandFK + "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag"
+			+"WHERE = pinnwand_b_FK=" +"'"+ pinnwandFK + "'" + "ORDER BY id");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();

@@ -87,7 +87,7 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate("DELETE FROM likes " 
-			+ "WHERE id=" + l.getId());
+			+ "WHERE id=" + "'" + l.getId() + "'");
 
 		} catch (SQLException el2) {
 			el2.printStackTrace();
@@ -105,7 +105,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + n.getId());
+			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
 
 		} catch (SQLException el3) {
 			el3.printStackTrace();
@@ -117,7 +117,7 @@ public class LikeMapper {
 	 * 
 	 * @param nutzerId
 	 */
-	public Vector<Like> getAllLikesByNutzer(int nutzerId) {
+	public Vector<Like> getAllLikesByNutzer(int nutzerFK) {
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
@@ -128,7 +128,7 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 			// Query ausführen
 			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes " 
-			+ "WHERE nutzer_l_FK=" + nutzerId);
+			+ "WHERE nutzer_l_FK=" + "'" +nutzerFK + "'" );
 		
 		// Prüfen ob ein Ergebnis vorliegt
 		while(rs.next()){
@@ -156,7 +156,7 @@ public class LikeMapper {
 		return getAllLikesByNutzer(n.getId());
 	}
 
-	public Vector<Like> getAllLikesByBeitrag(int beitragId) {
+	public Vector<Like> getAllLikesByBeitrag(int beitragFK) {
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
@@ -168,7 +168,7 @@ public class LikeMapper {
 			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
 			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM likes " 
-			+ "WHERE beitrag_l_FK=" + beitragId + " ORDER BY erstellungszeitpunkt");
+			+ "WHERE beitrag_l_FK=" + "'"+  beitragFK + "'" + " ORDER BY erstellungszeitpunkt");
 
 			while (rs.next()) {
 
