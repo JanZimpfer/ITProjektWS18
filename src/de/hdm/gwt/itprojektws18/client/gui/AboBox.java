@@ -14,9 +14,11 @@ public class AboBox extends VerticalPanel{
 	
 	
 	private VerticalPanel pinnwandPanel = new VerticalPanel();
-	
 	private Vector<Pinnwand> nutzerAbos = new Vector<Pinnwand>();
 	
+	public AboBox() {
+		
+	}
 	
 	public void onLoad() {
 		
