@@ -12,22 +12,32 @@ import java.util.Vector;
 
 public class AboBox extends VerticalPanel{
 	
+	/**
+	 * Instanziierung der GUI Elemente
+	 */
 	
-	private VerticalPanel pinnwandPanel = new VerticalPanel();
-	private Vector<Pinnwand> nutzerAbos = new Vector<Pinnwand>();
+	private Vector<AboPinnwandBox> nutzerAbos = new Vector<AboPinnwandBox>();
 	
 	public AboBox() {
 		
 	}
 	
+
 	public void onLoad() {
 		
+		for(int i = 0; i < anzahlAbos; i++) {
+			AboPinnwandBox tempAboPinnwandBox = new AboPinnwandBox(i);
+			nutzerAbos.add(i, tempAboPinnwandBox);
+		}
 		
+		for(int i = 0; i < nutzerAbos.size(); i++) {
+			this.add(nutzerAbos.elementAt(i));
+		}
 		
 		
 	}
 	
-	private class PinnwandAnzeigen implements ClickHandler{
+	class PinnwandAnzeigen implements ClickHandler{
 
 		
 		public void onClick(ClickEvent event) {
