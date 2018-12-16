@@ -30,32 +30,13 @@ public class TestKlasse {
 		impl.init();
 		
 		
-		Abonnement a = new Abonnement ();
+
 		
-		Pinnwand p = new Pinnwand ();
- 
-		Nutzer n = new Nutzer ();
+		
+		
 	
-		p = impl.getPinnwandByID(3);
 		
-		n = impl.getNutzerByName("Jan", "Zimpfer");
 		
-		a = impl.erstelleAbonnement(p, n, a.getErstellZeitpunkt());
-  
-//	n = impl.getNutzerbyID(2);
-//	
-//	p = impl.getPinnwandByID(2);
-//	
-//	a = impl.erstelleAbonnement(p, n, a.getErstellZeitpunkt());
-	
-////  
-  
-//		p = impl.getPinnwandByID(1);
-//  
-//		System.out.println(p);
-  
-  
-//  
   
 		
 	}	
