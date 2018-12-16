@@ -5,7 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
+
 import java.util.Vector;
+
+import com.ibm.icu.util.Calendar;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
@@ -17,6 +22,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 **/
 
 public class NutzerMapper {
+	
 
 	private static NutzerMapper nutzerMapper = null;
 	
@@ -138,6 +144,9 @@ public class NutzerMapper {
 	public Nutzer insertNutzer(Nutzer n) {
 		
 		Connection con=DBConnection.connection();
+		
+	
+		
 	try {
 		
 		Statement stmt=con.createStatement();
@@ -154,10 +163,10 @@ public class NutzerMapper {
 					+ " (id, erstellzeitpunkt, vorname, nachname, nickname)" + 
 					"VALUES ( "+
 			
-					n.getId()+ "," +
-					n.getErstellZeitpunkt() + ","+
-					n.getVorname() + ","+
-					n.getNachname() + ","+
+					n.getId()+ ", " +
+					"'" + n.getErstellZeitpunkt() + "'"  + ", "+
+					n.getVorname() + ", "+
+					n.getNachname() + ", "+
 					n.getNickname() + ")" );
 					
 		}
@@ -202,7 +211,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM nutzer WHERE id= " + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM nutzer WHERE id=" + "'" + n.getId() + "'");
 			
 		}
 		

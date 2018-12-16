@@ -3,6 +3,7 @@ package de.hdm.gwt.itprojektws18.server;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
 import java.util.Date;
+
 import java.util.Vector;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -575,7 +576,8 @@ public PinnwandVerwaltungImpl() {
 		//Erstellen eines Abonnementobjekts
 		//Zuweisen der PinnwandID, die abonniert werden soll
 		Abonnement a = new Abonnement();
-		a.setNutzerFK(p.getId());
+		a.setNutzerFK(n.getId());
+		a.setPinnwandFK(p.getId());
 		a.setErstellZeitpunkt(erstellzeitpunkt);
 		
 		

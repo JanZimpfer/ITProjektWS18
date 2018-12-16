@@ -78,7 +78,7 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE id=" + k.getId());
+			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE id=" + "'" + k.getId()+"'");
 		}
 		
 		catch(SQLException e2) {
@@ -103,7 +103,7 @@ private static KommentarMapper kommentarMapper = null;
 			 * die Tabelle beitag verweist.
 			 */
 			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE beitrag_k_FK=" 
-			 + b.getId());
+			 + "'" + b.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -123,8 +123,8 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+ "WHERE id =" + id);
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar" 
+			+ "WHERE id =" + "'" + id +"'");
 			
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
@@ -160,8 +160,8 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt "
-					+ "FROM kommentar" + "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar "
+			+ "ORDER BY id");
 			
 			while (rs.next());{
 				Kommentar k = new Kommentar();
@@ -184,7 +184,7 @@ private static KommentarMapper kommentarMapper = null;
 	 * @author Matthias
 	 */
 	
-	public Vector<Kommentar> getAllKommentareByBeitrag(int beitragId) {
+	public Vector<Kommentar> getAllKommentareByBeitrag(int beitragFK) {
 		
 		Connection con = DBConnection.connection();
 		Vector<Kommentar> result = new Vector<Kommentar>();
@@ -193,7 +193,7 @@ private static KommentarMapper kommentarMapper = null;
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = beitrag_k_FK=" + beitragId + "ORDER BY id");
+			+"WHERE = beitrag_k_FK=" + "'" + beitragFK + "'" +"ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
@@ -220,7 +220,7 @@ private static KommentarMapper kommentarMapper = null;
 	}
 	
 	
-	public Vector<Kommentar> getAllKommentareByNutzer (int nutzerId) {
+	public Vector<Kommentar> getAllKommentareByNutzer (int nutzerFK) {
 		
 		Connection con = DBConnection.connection();
 		Vector<Kommentar> result = new Vector<Kommentar>();
@@ -229,7 +229,7 @@ private static KommentarMapper kommentarMapper = null;
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = nutzer_k_FK=" + nutzerId + "ORDER BY id");
+			+"WHERE = nutzer_k_FK=" + "'" + nutzerFK + "'"+  "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();

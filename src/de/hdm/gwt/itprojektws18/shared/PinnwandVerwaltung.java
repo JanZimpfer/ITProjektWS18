@@ -1,5 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
+
 import java.util.Date;
 import java.util.Vector;
 
