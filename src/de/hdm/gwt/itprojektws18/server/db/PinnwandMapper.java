@@ -78,7 +78,7 @@ public class PinnwandMapper {
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate(
-					"UPDATE pinnwand " + "SET nutzer_p_FK=\" " + p.getNutzerFK() + "\" " + "WHERE id=" + p.getId());
+					"UPDATE pinnwand set nutzer_p_FK= " + "'"  + p.getNutzerFK() + "'" + "WHERE id= " + "'" + p.getId() + "'");
 
 		} catch (SQLException ep2) {
 			ep2.printStackTrace();
@@ -99,10 +99,10 @@ public class PinnwandMapper {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM pinnwand " + "WHERE id=" + p.getId());
+			stmt.executeUpdate("DELETE FROM pinnwand WHERE id=" + "'" + p.getId() + "'");
 
-		} catch (SQLException ep3) {
-			ep3.printStackTrace();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
 		}
 	}
 
@@ -122,7 +122,8 @@ public class PinnwandMapper {
 			Statement stmt = con.createStatement();
 			// Query ausführen
 			ResultSet rs = stmt
-					.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + "WHERE inhaberId=" + id);
+					.executeQuery("SELECT id, nutzer_p_FK FROM pinnwand " + "WHERE nutzer_p_FK = " +
+			"'" + id + "'" );
 
 			// Prüfen ob ein Ergebnis vorliegt
 			if (rs.next()) {
@@ -130,7 +131,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+//				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
 		} catch (SQLException ep4) {
@@ -190,14 +191,14 @@ public class PinnwandMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, erstellzeitpunkt FROM pinnwand " + " ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_p_FK, FROM pinnwand " + " ORDER BY id");
 
 			// Für jeden Eintrag im Suchergebnis wird nun ein Pinnwand-Objekt erstellt.
 			while (rs.next()) {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+//				p.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(p);

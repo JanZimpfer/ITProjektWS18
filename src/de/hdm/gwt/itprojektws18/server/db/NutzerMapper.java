@@ -211,7 +211,7 @@ public class NutzerMapper {
 		try {
 			
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM nutzer WHERE id= " + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM nutzer WHERE id=" + "'" + n.getId() + "'");
 			
 		}
 		
