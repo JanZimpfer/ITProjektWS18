@@ -45,11 +45,4 @@ public class BeitragBox extends FlowPanel {
 
 	}
 
-	public BeitragBox() {
-		
-	}
-	
-	public void onLoad() {
-		
-	}
 }
