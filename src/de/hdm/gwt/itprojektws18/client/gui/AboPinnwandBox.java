@@ -37,6 +37,8 @@ public class AboPinnwandBox extends FlowPanel{
 	
 	public void onLoad() {
 		
+		nutzerName.addStyleName("nutzername");
+		nickName.addStyleName("nickname");
 		
 		
 		this.add(nutzerName);

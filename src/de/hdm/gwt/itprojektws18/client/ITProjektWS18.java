@@ -45,6 +45,7 @@ public class ITProjektWS18 implements EntryPoint {
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
 		HorizontalPanel ProfilBox = new HorizontalPanel ();
+		VerticalPanel AboBox = new VerticalPanel();
 		
 		/*
 		 * Zuweisung des VerticalPanels zum DIV-Element "Navigator"
@@ -52,6 +53,7 @@ public class ITProjektWS18 implements EntryPoint {
 		 */
 		RootPanel.get("Navigator").add(navPanel);
 		RootPanel.get("ProfilBox").add(ProfilBox);
+		RootPanel.get("Abobereich").add(AboBox);
 		
 		/**
 		 * Kommentar an's Team:
