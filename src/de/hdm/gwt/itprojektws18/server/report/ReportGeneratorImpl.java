@@ -1,6 +1,8 @@
 package de.hdm.gwt.itprojektws18.server.report;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
@@ -10,6 +12,7 @@ import de.hdm.gwt.itprojektws18.shared.report.*;
 import de.hdm.gwt.itprojektws18.shared.bo.*;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.ReportGenerator;
+import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 
 @SuppressWarnings("serial")
 
@@ -83,8 +86,40 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 
 	@Override
-	public BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException {
-		return this.createBeitragStatistikReport(beitrag);
+	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom) throws IllegalArgumentException {
+		
+		
+		BeitragStatistikReport result= new BeitragStatistikReport();
+		
+		int i = 0;
+		
+		Row headline= new Row();
+		
+		headline.addColumn(new Column( "Beitrag"));
+		headline.addColumn(new Column("Erstelldatum"));
+		headline.addColumn(new Column ("Änderungsdatum"));
+		headline.addColumn(new Column("Beitragsinhalt"));
+		
+		result.addRow(headline);
+		
+		//for (Beitrag b: beitrag) {
+			
+			Row postRow= new Row();
+			
+			
+//			if=(dateFrom null){
+				
+				i++;
+				
+				
+			
+				
+//			}
+			
+//		}
+		
+		
+				return result;		
 	}
 
 	public Vector<Like> getLikesFromUser(Nutzer nutzer) {
