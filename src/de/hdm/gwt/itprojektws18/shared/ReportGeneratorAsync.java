@@ -1,5 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
+import java.sql.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -16,7 +17,8 @@ public interface ReportGeneratorAsync {
 
 	void createNutzerStatistikReport(Nutzer nutzer, AsyncCallback<NutzerStatistikReport> callback);
 
-	void createBeitragStatistikReport(Beitrag beitrag, AsyncCallback<BeitragStatistikReport> callback);
+	void createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom,
+			AsyncCallback<BeitragStatistikReport> callback);
 	
 	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
 
