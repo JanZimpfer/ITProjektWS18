@@ -49,7 +49,7 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM likes ");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM like");
 
 			if (rs.next()) {
 
@@ -57,15 +57,15 @@ public class LikeMapper {
 
 				stmt = con.createStatement();
 
-				stmt.executeUpdate("INSERT INTO likes (id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt) " 
-				+ "VALUES ("
+				stmt.executeUpdate("INSERT INTO like (id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt) " 
+				+ "VALUES("
 				+ l.getId()
 				+ "," 
 				+ l.getBeitragFK() 
 				+ "," 
 				+ l.getNutzerFK()
 				+ ","
-				+ l.getErstellZeitpunkt() 
+				+ "'" + l.getErstellZeitpunkt() + "'" 
 				+ ")");
 			}
 
@@ -86,7 +86,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM likes " 
+			stmt.executeUpdate("DELETE FROM like" 
 			+ "WHERE id=" + "'" + l.getId() + "'");
 
 		} catch (SQLException el2) {
@@ -105,7 +105,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM like " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
 
 		} catch (SQLException el3) {
 			el3.printStackTrace();
@@ -127,7 +127,7 @@ public class LikeMapper {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 			// Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes " 
+			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM like " 
 			+ "WHERE nutzer_l_FK=" + "'" +nutzerFK + "'" );
 		
 		// Prüfen ob ein Ergebnis vorliegt
@@ -167,7 +167,7 @@ public class LikeMapper {
 
 			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
-			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM likes " 
+			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM like " 
 			+ "WHERE beitrag_l_FK=" + "'"+  beitragFK + "'" + " ORDER BY erstellungszeitpunkt");
 
 			while (rs.next()) {
