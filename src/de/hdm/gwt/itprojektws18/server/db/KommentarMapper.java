@@ -50,7 +50,7 @@ private static KommentarMapper kommentarMapper = null;
 						+ ","
 						+ k.getText()
 						+ ","
-						+ k.getErstellZeitpunkt()
+						+ "'" + k.getErstellZeitpunkt() + "'"
 						+ ","
 						+ k.getBeitragFK()
 						+ ","
@@ -67,6 +67,26 @@ private static KommentarMapper kommentarMapper = null;
 		
 	}
 	
+	/**
+	 * Diese Methode ermöglicht das editiern des übergebenen 
+	 * Kommentar-Objekts
+	 * @author Matthias
+	 */
+	
+	public Kommentar updateKommentar(Kommentar k) {
+		Connection con = DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("UPDATE kommentar" + "set text =" + "'" + k.getText() 
+			+ "'" + "WHERE id=" + "'" + k.getId() + "'");
+		}
+		catch(SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		return k;
+	}
 
 	/**
 	 * Löschen des übergebenen KOmmentar-Objekts

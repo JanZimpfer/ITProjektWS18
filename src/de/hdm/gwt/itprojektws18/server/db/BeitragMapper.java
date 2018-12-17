@@ -57,9 +57,9 @@ public class BeitragMapper {
 						+ ","
 						+ b.getText()
 						+ ","
-						+ b.getErstellZeitpunkt()
+						+ "'" + b.getErstellZeitpunkt() + "'"
 						+","
-						+b.getPinnwandFK()
+						+ b.getPinnwandFK()
 						+ ","
 						+ b.getNutzerFK()
 						+ ")");
@@ -106,7 +106,7 @@ public class BeitragMapper {
 		try {
 			Statement stmt=con.createStatement();
 			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE id=" 
-			+ "'" + b.getId() +"'");
+			+ "'" + b.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -142,17 +142,17 @@ public class BeitragMapper {
 	
 	public Beitrag getBeitragById(int id) {
 		Connection con = DBConnection.connection();
-		
+		// erstellzeitpunkt zum Testen der db aus methode entfernt
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag " +
+			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag " +
 			"WHERE id = " + "'" + id  +"'");
 			
 			if (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				return b;
 				
