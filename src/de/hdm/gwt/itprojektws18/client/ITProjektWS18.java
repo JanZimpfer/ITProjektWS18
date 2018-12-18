@@ -44,14 +44,23 @@ public class ITProjektWS18 implements EntryPoint {
 		 * Erstellung eines VerticalPanels welches fuer den Navigator genutzt wird.
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
+
 		HorizontalPanel profilBox = new HorizontalPanel ();
+		
+		VerticalPanel AboBox = new VerticalPanel();
+
 		
 		/*
 		 * Zuweisung des VerticalPanels zum DIV-Element "Navigator"
 		 * in der entsprechenden HTML Datei.
 		 */
 		RootPanel.get("Navigator").add(navPanel);
+
 		RootPanel.get("ProfilBox").add(profilBox);
+
+		
+		RootPanel.get("Abobereich").add(AboBox);
+
 		
 		/**
 		 * Kommentar an's Team:

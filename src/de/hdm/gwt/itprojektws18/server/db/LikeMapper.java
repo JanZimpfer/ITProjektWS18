@@ -49,11 +49,15 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
+
 			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxId' " + "FROM likes");
+
 
 			if (rs.next()) {
 
+
 				l.setId(rs.getInt("maxId") + 1);
+
 
 				stmt = con.createStatement();
 
@@ -62,11 +66,17 @@ public class LikeMapper {
 				l.getId()+ "," +
 				l.getBeitragFK() + "," + 
 				"'" + l.getErstellZeitpunkt() + "'" 
-				+ "," 
-				+ l.getNutzerFK() +" )");
+				+ ","
+				+ l.getNutzerFK()
+				+ ")");
+
 			}
 
-		} catch (SQLException e2) {
+
+
+		} 
+		catch (SQLException e2) {
+			
 			e2.printStackTrace();
 		}
 		return l;
@@ -83,8 +93,10 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
+
 			stmt.executeUpdate("DELETE FROM likes" 
 			+ "WHERE id=" + "'" + l.getId() + "'");
+
 
 		} catch (SQLException el2) {
 			el2.printStackTrace();
@@ -102,7 +114,9 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
+
 			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
+
 
 		} catch (SQLException el3) {
 			el3.printStackTrace();
