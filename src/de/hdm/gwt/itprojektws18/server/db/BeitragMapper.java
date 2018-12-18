@@ -85,7 +85,8 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("UPDATE beitag" + "set text =" + "'" + b.getText() 
+			stmt.executeUpdate("UPDATE beitag set " + "'" + 
+			"text= " + "'" +b.getText() + "'"
 			+ "'" + "WHERE id=" + "'" + b.getId() + "'");
 		}
 		catch(SQLException e2) {
@@ -105,7 +106,7 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE id=" 
+			stmt.executeUpdate("DELETE FROM beitrag WHERE id=" 
 			+ "'" + b.getId() + "'");
 		}
 		
@@ -127,7 +128,7 @@ public class BeitragMapper {
 			/**
 			 * nutzerId ist ein FK der Tabelle beitrag welcher auf die Tabelle nutzer verweist.
 			 */
-			stmt.executeUpdate("DELETE FROM beitrag" + "WHERE nutzer_b_FK=" + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM beitrag WHERE nutzer_b_FK=" + "'" + n.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -178,17 +179,17 @@ public class BeitragMapper {
 		Connection con = DBConnection.connection();
 		
 		Vector<Beitrag> result = new Vector<Beitrag>();
-		
+		//Erstellzeitpunkt removed
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag"
+			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag"
 			+ "ORDER BY id");
 			
 			while (rs.next());{
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}
@@ -210,15 +211,15 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag"
-			+"WHERE = pinnwand_b_FK=" +"'"+ pinnwandFK + "'" + "ORDER BY id");
+			//Erstellzeitpunkt removed
+			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag"
+			+"WHERE pinnwand_b_FK=" +"'"+ pinnwandFK + "'" + "ORDER BY id");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}			

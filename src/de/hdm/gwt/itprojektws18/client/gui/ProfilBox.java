@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 
 public class ProfilBox extends HorizontalPanel {
 	
-	private HorizontalPanel ProfilBox = new HorizontalPanel ();
+	private HorizontalPanel profilBox = new HorizontalPanel ();
 		
 	private Button  profilbildButton = new Button ("Mein Profilbild");
 	private Button 	profilButton = new Button ("Mein Profil");
@@ -24,14 +24,16 @@ public class ProfilBox extends HorizontalPanel {
 	
 	public void onLoad() {
 		
-	 this.add(ProfilBox);
+	 this.add(profilBox);
 	 
-	 ProfilBox.add(beitraege);
-	 ProfilBox.add(abonniert);
-	 ProfilBox.add(abonnenten);
+	 profilBox.add(beitraege);
+	 profilBox.add(abonniert);
+	 profilBox.add(abonnenten);
 	 
-	 ProfilBox.add(profilButton);
-	 ProfilBox.add(profilbildButton);
+	 
+	 
+	 profilBox.add(profilButton);
+	 profilBox.add(profilbildButton);
 	 
 	 profilButton.addClickHandler(new ClickHandler ()  {
 		 

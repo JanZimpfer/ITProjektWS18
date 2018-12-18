@@ -1,4 +1,4 @@
-/** Add css rules here for your application. */
+ /** Add css rules here for your application. */
 
 
 /** Example rules used by the template application (remove for your app) */
@@ -31,4 +31,118 @@ h1 {
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
+}
+
+.profilbildButton {
+	color: green;
+}
+
+.profilButton {
+	color: green;
+}
+
+.profilBox {
+	color: green;
+}
+
+.suchleiste {
+	color: green;
+}
+
+.suchButton {
+	color: green;
+}
+
+.einstellungenButton {
+	color: green;
+}
+
+.vornameAboBox {
+	color: green;
+}
+
+.nachnameAboBox {
+	color: green;
+}
+
+.nicknameAboBox {
+	color: green;
+}
+
+.aboPinnwandBox {
+	color: green;
+}
+
+
+
+.aboBox {
+	color: green;
+}
+
+.abonnierenButton {
+	color: green;
+}
+
+.beitragBox {
+	color: green;
+}
+
+.submitButton {
+	color: green;
+}
+
+.nicknameBeitragBox {
+	color: green;
+}
+
+.vornameBeitragBox {
+	color: green;
+}
+
+.nachnameBeitragBox {
+	color: green;
+}
+
+.beitragBearbeitenButton {
+	color: green;
+}
+
+.beitragStatistikButton {
+	color: green;
+}
+
+.likeButton {
+	color: green;
+}
+
+.kommentareAnzeigenButton {
+	color: green;
+}
+
+.likesAnzeigenButton {
+	color: green;
+}
+
+.kommentarBox {
+	color: green;
+}
+
+.nicknameKommentarBox {
+	color: green;
+}
+
+.vornameKommentarBox {
+	color: green;
+}
+
+.nachnameKommentarBox {
+	color: green;
+}
+
+.pinnwandBox {
+	color: green;
+}
+
+.erstelleBeitragBox {
+	color: green;
 }
