@@ -25,6 +25,8 @@ public class AboBox extends VerticalPanel{
 
 	public void onLoad() {
 		
+		this.addStyleName("abobox");
+		
 		for(int i = 0; i < anzahlAbos; i++) {
 			AboPinnwandBox tempAboPinnwandBox = new AboPinnwandBox(i);
 			nutzerAbos.add(i, tempAboPinnwandBox);
