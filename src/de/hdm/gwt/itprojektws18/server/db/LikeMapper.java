@@ -49,28 +49,25 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM like");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxId' " + "FROM likes");
 
 			if (rs.next()) {
 
-				l.setId(rs.getInt("maxid") + 1);
+				l.setId(rs.getInt("maxId") + 1);
 
 				stmt = con.createStatement();
 
-				stmt.executeUpdate("INSERT INTO like (id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt) " 
-				+ "VALUES("
-				+ l.getId()
+				stmt.executeUpdate("INSERT INTO likes (id, beitrag_l_FK, erstellzeitpunkt, nutzer_l_FK)" 
+				+ "VALUES ( "+
+				l.getId()+ "," +
+				l.getBeitragFK() + "," + 
+				"'" + l.getErstellZeitpunkt() + "'" 
 				+ "," 
-				+ l.getBeitragFK() 
-				+ "," 
-				+ l.getNutzerFK()
-				+ ","
-				+ "'" + l.getErstellZeitpunkt() + "'" 
-				+ ")");
+				+ l.getNutzerFK() +" )");
 			}
 
-		} catch (SQLException el1) {
-			el1.printStackTrace();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
 		}
 		return l;
 	}
@@ -86,7 +83,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM like" 
+			stmt.executeUpdate("DELETE FROM likes" 
 			+ "WHERE id=" + "'" + l.getId() + "'");
 
 		} catch (SQLException el2) {
@@ -105,7 +102,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM like " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
 
 		} catch (SQLException el3) {
 			el3.printStackTrace();
@@ -127,7 +124,7 @@ public class LikeMapper {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 			// Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM like " 
+			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes " 
 			+ "WHERE nutzer_l_FK=" + "'" +nutzerFK + "'" );
 		
 		// Prüfen ob ein Ergebnis vorliegt
@@ -167,7 +164,7 @@ public class LikeMapper {
 
 			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
-			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM like " 
+			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM likes " 
 			+ "WHERE beitrag_l_FK=" + "'"+  beitragFK + "'" + " ORDER BY erstellungszeitpunkt");
 
 			while (rs.next()) {

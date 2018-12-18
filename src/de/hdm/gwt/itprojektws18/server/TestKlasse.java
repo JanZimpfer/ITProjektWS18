@@ -13,6 +13,8 @@ import java.util.Vector;
 import com.mysql.jdbc.Driver;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.server.db.NutzerMapper;
 import de.hdm.gwt.itprojektws18.server.db.PinnwandMapper;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
@@ -29,8 +31,23 @@ public class TestKlasse {
 		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 		impl.init();
 		
+		Nutzer n = new Nutzer () ;
 		
-
+		Pinnwand p = new Pinnwand ();
+		
+		Beitrag b = new Beitrag ();
+		
+		Like l = new Like ();
+		
+		n = impl.getNutzerbyID(2);
+		
+		p = impl.getPinnwandByID(2);
+		
+		b = impl.getBeitragByID(1);
+		
+//		b = impl.erstelleBeitrag(p, "'Hallo'", b.getErstellZeitpunkt(), n);
+		
+		l = impl.erstelleLike(b, l.getErstellZeitpunkt(), n);
 		
 		
 		
