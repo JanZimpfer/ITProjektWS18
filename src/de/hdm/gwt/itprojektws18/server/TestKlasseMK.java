@@ -35,7 +35,7 @@ public class TestKlasseMK {
     //n = impl.getNutzerbyID(3);
     
   
-    // n = impl.erstelleNutzer("''", "'Krause'", "'Hausmeister123'", n.getErstellZeitpunkt());
+    // n = impl.erstelleNutzer("'Dieter'", "'Krause'", "'Hausmeister123'", n.getErstellZeitpunkt());
 		
     //Pinnwand p = new Pinnwand ();
 	
@@ -43,19 +43,25 @@ public class TestKlasseMK {
 	
 	//p = impl.erstellePinnwand(n, p.getErstellZeitpunkt());
 	
-	Beitrag b = new Beitrag ();
+	//Beitrag b = new Beitrag ();
 	
-	b = impl.getBeitragByID(2);
+	//b = impl.getBeitragByID(2);
 	
-	// b = impl.erstelleBeitrag(p, "'Bald ist Weihnachten..'", b.getErstellZeitpunkt(), n);
+	 //b = impl.erstelleBeitrag(p, "'Bald ist Weihnachten..'", b.getErstellZeitpunkt(), n);
 	
 	//Kommentar k = new Kommentar ();
+	
+	//k = impl.get
+	
+	
 	
 	//k = impl.erstelleKommentar(b, "' Das ist soooo LECKER!'", k.getErstellZeitpunkt(), n);
 	
 	//Like l = new Like();
 	
-	// l = impl.erstelleLike(b, l.getErstellZeitpunkt(), n);
+	//l = impl.erstelleLike(b, l.getErstellZeitpunkt(), n);
+	
+	//impl.loeschen(b);
 	
 	
 		

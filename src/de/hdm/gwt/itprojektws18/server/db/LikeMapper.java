@@ -49,28 +49,28 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM like");
+			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM like");
 
 			if (rs.next()) {
 
-				l.setId(rs.getInt("maxid") + 1);
+				l.setId(rs.getInt("maxid")+1);
 
 				stmt = con.createStatement();
 
-				stmt.executeUpdate("INSERT INTO like (id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt) " 
-				+ "VALUES("
+				stmt.executeUpdate("INSERT INTO like" + "(id, beitrag_l_FK, erstellzeitpunkt, nutzer_l_FK)" 
+				+ "VALUES ( "
 				+ l.getId()
 				+ "," 
 				+ l.getBeitragFK() 
 				+ "," 
-				+ l.getNutzerFK()
+				+ "'" +l.getErstellZeitpunkt() +"'"
 				+ ","
-				+ "'" + l.getErstellZeitpunkt() + "'" 
+				+ l.getNutzerFK()
 				+ ")");
 			}
-
-		} catch (SQLException el1) {
-			el1.printStackTrace();
+		} 
+		catch (SQLException e2) {
+			e2.printStackTrace();
 		}
 		return l;
 	}
@@ -86,8 +86,8 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM like" 
-			+ "WHERE id=" + "'" + l.getId() + "'");
+			stmt.executeUpdate("DELETE FROM like WHERE id=" 
+			+ "'" + l.getId() + "'");
 
 		} catch (SQLException el2) {
 			el2.printStackTrace();
@@ -105,7 +105,8 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 
-			stmt.executeUpdate("DELETE FROM like " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM like WHERE nutzer_l_FK=" 
+			+ "'" + n.getId() + "'");
 
 		} catch (SQLException el3) {
 			el3.printStackTrace();

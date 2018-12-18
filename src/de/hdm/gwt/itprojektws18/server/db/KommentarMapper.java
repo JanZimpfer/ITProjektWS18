@@ -98,7 +98,8 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE id=" + "'" + k.getId()+"'");
+			stmt.executeUpdate("DELETE FROM kommentar WHERE id=" 
+			+ "'" + k.getId()+"'");
 		}
 		
 		catch(SQLException e2) {
@@ -122,7 +123,7 @@ private static KommentarMapper kommentarMapper = null;
 			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf 
 			 * die Tabelle beitag verweist.
 			 */
-			stmt.executeUpdate("DELETE FROM kommentar" + "WHERE beitrag_k_FK=" 
+			stmt.executeUpdate("DELETE FROM kommentar WHERE beitrag_k_FK=" 
 			 + "'" + b.getId() + "'");
 		}
 		
@@ -140,17 +141,19 @@ private static KommentarMapper kommentarMapper = null;
 	public Kommentar getKommentarById (int id) {
 		
 		Connection con = DBConnection.connection();
-		
+		//erstellzeitpunkt removed
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar" 
+			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK FROM kommentar" 
 			+ "WHERE id =" + "'" + id +"'");
 			
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
+				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
+				//k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				
 				return k;
 				
@@ -248,8 +251,8 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = nutzer_k_FK=" + "'" + nutzerFK + "'"+  "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, nutzer_k_FK, beitrag_k_FK FROM kommentar WHERE nutzer_k_FK=" 
+			+ "'" + nutzerFK + "'"+  "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
