@@ -304,13 +304,14 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt) {
+	public Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt, Nutzer n) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Beitrag b = new Beitrag();
 		b.setPinnwandFK(p.getId());
 		b.setErstellZeitpunkt(erstellzeitpunkt);
+		b.setNutzerFK(n.getId());
 		
 		//Setzen des Inhalts des Beitrags (Text)
 		b.setText(text);
@@ -376,13 +377,13 @@ public PinnwandVerwaltungImpl() {
 	public void loeschen(Beitrag b) {
 		
 		//Loeschen aller Kommentare eines Beitrags
-//		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
-//		
-//		if (kommentare != null) {
-//			for (Kommentar k : kommentare) {
-//				this.loeschen(k);
-//			}
-//		}
+		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
+		
+		if (kommentare != null) {
+			for (Kommentar k : kommentare) {
+				this.loeschen(k);
+			}
+		}
 		
 		//Loeschen aller Likes eines Beitrags
 		Vector<Like> likes = this.getAllLikesByBeitrag(b);
@@ -421,13 +422,14 @@ public PinnwandVerwaltungImpl() {
 	 * @return Kommentar
 	 */
 	@Override
-	public Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt) {
+	public Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, Nutzer n) {
 		
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Kommentar k = new Kommentar();
 		k.setBeitragFK(b.getId());
 		k.setErstellZeitpunkt(erstellzeitpunkt);
+		k.setNutzerFK(n.getId());
 		
 		//Setzen des Inhalts des Beitrags (Text)
 		k.setText(text);
@@ -443,10 +445,10 @@ public PinnwandVerwaltungImpl() {
 	 * Loeschen eines Kommentars
 	 * @param Kommentar k
 	 */
-//	@Override
-//	public void loeschen (Kommentar k) {
-//		this.kMapper.deleteKommentar(k);
-//	}	
+	@Override
+	public void loeschen (Kommentar k) {
+		this.kMapper.deleteKommentar(k);
+	}	
 	
 	/**
 	 * Auslesen aller Kommentare
@@ -485,7 +487,7 @@ public PinnwandVerwaltungImpl() {
 	public void speichern (Kommentar k) {
 		
 		
-		//kMapper.update(k);
+		kMapper.updateKommentar(k);
 		
 	}
 	
@@ -508,22 +510,23 @@ public PinnwandVerwaltungImpl() {
 	 * @param Ziel-Beitrag b
 	 * @return Like 
 	 */
-//	@Override
-//	public Like erstelleLike(Beitrag b, Date erstellzeitpunkt) {
-//		
-//		//Erstellen eines Beitragobjekts
-//		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
-//		Like l = new Like();
-//		l.setBeitragFK(b.getId());
-//		l.setErstellZeitpunkt(erstellzeitpunkt);
-//		
-//		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-//		//auf den nächsthöchsten Wert gesetzt wird
-//		l.setId(1);
-//		
-//		//Speichern in dr DB
-//		return this.lMapper.insertLike(l);
-//	}
+	@Override
+	public Like erstelleLike(Beitrag b, Date erstellzeitpunkt, Nutzer n) {
+		
+		//Erstellen eines Beitragobjekts
+		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
+		Like l = new Like();
+		l.setBeitragFK(b.getId());
+		l.setErstellZeitpunkt(erstellzeitpunkt);
+		l.setNutzerFK(n.getId());
+		
+		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+		//auf den nächsthöchsten Wert gesetzt wird
+		l.setId(1);
+		
+		//Speichern in dr DB
+		return this.lMapper.insertLike(l);
+	}
 	
 	/**
 	 * Loeschen eines Likes

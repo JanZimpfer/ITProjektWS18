@@ -38,11 +38,11 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void speichern(Pinnwand p);
 
-//	Pinnwand getPinnwandByID(int pinnwandID);
+	Pinnwand getPinnwandByID(int pinnwandID);
 
 	void loeschen(Pinnwand p);
 
-	Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt);
+	Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt, Nutzer n);
 
 	void speichern(Beitrag b);
 
@@ -50,19 +50,19 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Beitrag> getAllBeitraege();
 
-//	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p);
+	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p);
 
 	void loeschen(Beitrag b);
 
-	Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt);
+	Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, Nutzer n);
 
-//	void loeschen(Kommentar k);
+	void loeschen(Kommentar k);
 
 	Vector<Kommentar> getAllKommentare();
 
 	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b);
 
-//	Like erstelleLike(Beitrag b, Date erstellzeitpunkt);
+	Like erstelleLike(Beitrag b, Date erstellzeitpunkt, Nutzer n);
 
 	void loeschen(Like l);
 

@@ -1,5 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
+import java.sql.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -18,7 +19,7 @@ public void init() throws IllegalArgumentException;
 
 public abstract NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer) throws IllegalArgumentException;
 
-public abstract BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException;
+//public abstract BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException;
 
 public abstract LikeStatistikReport createLikeStatistikReport (int like) throws IllegalArgumentException;
 
@@ -27,6 +28,9 @@ public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws Il
 public Vector<Nutzer> getNutzerByNickname(String nickname) throws IllegalArgumentException;
 
 Nutzer findNutzerByEmail(String mail) throws IllegalArgumentException;
+
+BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom)
+		throws IllegalArgumentException;
 
 }
 

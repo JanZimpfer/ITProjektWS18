@@ -4,6 +4,7 @@ import de.hdm.gwt.itprojektws18.client.gui.PinnwandBox;
 import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.client.gui.ProfilBox;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -16,6 +17,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -42,12 +44,23 @@ public class ITProjektWS18 implements EntryPoint {
 		 * Erstellung eines VerticalPanels welches fuer den Navigator genutzt wird.
 		 */
 		VerticalPanel navPanel = new VerticalPanel();
+
+		HorizontalPanel profilBox = new HorizontalPanel ();
+		
+		VerticalPanel AboBox = new VerticalPanel();
+
 		
 		/*
 		 * Zuweisung des VerticalPanels zum DIV-Element "Navigator"
 		 * in der entsprechenden HTML Datei.
 		 */
 		RootPanel.get("Navigator").add(navPanel);
+
+		RootPanel.get("ProfilBox").add(profilBox);
+
+		
+		RootPanel.get("Abobereich").add(AboBox);
+
 		
 		/**
 		 * Kommentar an's Team:

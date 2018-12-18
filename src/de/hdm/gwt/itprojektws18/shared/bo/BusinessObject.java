@@ -90,6 +90,8 @@ public abstract class BusinessObject implements Serializable{
 
 	}
 	
+	
+	
 	/**
 	   * <p>
 	   * Feststellen der <em>inhaltlichen</em> Gleichheit zweier
