@@ -4,6 +4,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 import java.util.Vector;
@@ -11,6 +13,12 @@ import java.util.Vector;
 
 
 public class AboBox extends VerticalPanel{
+	
+	/**
+	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
+	 */
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	/**
 	 * Instanziierung der GUI Elemente
@@ -25,7 +33,7 @@ public class AboBox extends VerticalPanel{
 
 	public void onLoad() {
 		
-		this.addStyleName("abobox");
+		this.addStyleName("aboBox");
 		
 		for(int i = 0; i < anzahlAbos; i++) {
 			AboPinnwandBox tempAboPinnwandBox = new AboPinnwandBox(i);
@@ -39,6 +47,7 @@ public class AboBox extends VerticalPanel{
 		
 	}
 	
+
 	class PinnwandAnzeigen implements ClickHandler{
 
 		

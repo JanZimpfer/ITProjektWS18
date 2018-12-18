@@ -4,12 +4,20 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 public class AboPinnwandBox extends FlowPanel{
 
+	
+	/**
+	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
+	 */
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	/**
 	 * Instanziierung der GUI Elemente
@@ -37,9 +45,9 @@ public class AboPinnwandBox extends FlowPanel{
 	
 	public void onLoad() {
 		
-		nutzerName.addStyleName("nutzername");
-		nickName.addStyleName("nickname");
-		
+		nutzerName.addStyleName("vornameAboBox");
+		nickName.addStyleName("nicknameAboBox");
+		this.addStyleName("aboPinnwandBox");
 		
 		this.add(nutzerName);
 		this.add(nickName);
