@@ -19,7 +19,7 @@ import de.hdm.gwt.itprojektws18.shared.LoginServiceAsync;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
-public class PinnwandReport implements EntryPoint{
+public class ITProjektWS18Report implements EntryPoint{
 	
 	private LoginInfo loginInfo = null;
 	private VerticalPanel loginPanel = new VerticalPanel();
@@ -37,7 +37,7 @@ public class PinnwandReport implements EntryPoint{
 	public void onModuleLoad() {
 		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
-		loginService.login(GWT.getHostPageBaseURL() + "PinnwandReport.html", new LoginCallback());
+		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18Report.html", new LoginCallback());
 
 
 	}

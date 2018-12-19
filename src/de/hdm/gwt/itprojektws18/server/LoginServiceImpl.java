@@ -12,7 +12,7 @@ import de.hdm.gwt.itprojektws18.shared.LoginService;
 /**
  * Implementierung des serverseitigen RPC-Services fuer den Login. 
  */
-public class LoginServiceImpl extends RemoteServiceServlet implements LoginService, IsSerializable{
+public class LoginServiceImpl extends RemoteServiceServlet implements LoginService{
 
 	/**
 	 * Von Eclipse automatisch generiert.
