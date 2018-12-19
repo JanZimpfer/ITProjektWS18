@@ -6,6 +6,7 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
+  
   <servlet>
     <servlet-name>pinnwandServlet</servlet-name>
     <servlet-class>de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl</servlet-class>
@@ -17,25 +18,36 @@
   </servlet>
   
    <servlet-mapping>
+    <servlet-name>pinnwandServlet</servlet-name>
+    <url-pattern>/itprojektws18/pinnwandverwaltung</url-pattern>
+  </servlet-mapping> 
+   
+  <servlet-mapping>
+    <servlet-name>reportgeneratorServlet</servlet-name>
+    <url-pattern>/itprojektws18/reportgenerator</url-pattern>
+  </servlet-mapping> 
+  
+   <servlet>
+    <servlet-name>loginService</servlet-name>
+    <servlet-class>de.hdm.gwt.itprojektws18.server.LoginServiceImpl</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
     <servlet-name>loginService</servlet-name>
     <url-pattern>/itprojektws18/login</url-pattern>
   </servlet-mapping> 
-  
-  <servlet>
-    <servlet-name>loginService</servlet-name>
-    <servlet-class>de.hdm.gwt.itprojektws18.server.LoginServiceImpl</servlet-class>
-  </servlet>  
-  
-  <servlet-mapping>
-    <servlet-name>reportgeneratorServlet</servlet-name>
-    <url-pattern>/itprojektreport/reportgenerator</url-pattern>
-  </servlet-mapping> 
-  
+    
   <servlet-mapping>
     <servlet-name>loginService</servlet-name>
-    <url-pattern>/itprojektreport/login</url-pattern>
+    <url-pattern>/itprojektws18report/login</url-pattern>
   </servlet-mapping> 
 
+
+
+    
+    
+    
+>>>>>>> refs/heads/master
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ITProjektWS18.html</welcome-file>

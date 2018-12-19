@@ -18,6 +18,7 @@ import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
+	
 	private PinnwandVerwaltung pinnwandAdmin = null;
 
 	public ReportGeneratorImpl() throws IllegalArgumentException {
@@ -46,7 +47,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		r.setImprint(imprint);
 	}
-
+	
+	/*
+	 * Diese Methode soll alle Abonnements, Likes, Beiträge und Kommentare von einem Nutzer anzeigen 
+	 * (non-Javadoc)
+	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
+	 */
 	@Override
 	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer) throws IllegalArgumentException {
 
