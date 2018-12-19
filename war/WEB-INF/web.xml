@@ -16,15 +16,16 @@
     <servlet-class>de.hdm.gwt.itprojektws18.server.report.ReportGeneratorImpl</servlet-class>
   </servlet>
   
+   <servlet>
+    <servlet-name>loginService</servlet-name>
+    <servlet-class>de.hdm.gwt.itprojektws18.server.LoginServiceImpl</servlet-class>
+  </servlet>
+  
    <servlet-mapping>
     <servlet-name>loginService</servlet-name>
     <url-pattern>/itprojektws18/login</url-pattern>
   </servlet-mapping> 
-  
-  <servlet>
-    <servlet-name>loginService</servlet-name>
-    <servlet-class>de.hdm.gwt.itprojektws18.server.LoginServiceImpl</servlet-class>
-  </servlet>  
+    
   
   <servlet-mapping>
     <servlet-name>reportgeneratorServlet</servlet-name>
