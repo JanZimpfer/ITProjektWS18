@@ -34,7 +34,7 @@
   
    <servlet-mapping>
     <servlet-name>loginService</servlet-name>
-    <url-pattern>/de.hdm.gwt.itprojektws18.server.LoginService</url-pattern>
+    <url-pattern>/itprojektws18/login</url-pattern>
   </servlet-mapping> 
     
   <servlet-mapping>
@@ -47,6 +47,7 @@
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>ITProjektWS18.html</welcome-file>
+    <welcome-file>ITProjektWS18Report.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
