@@ -24,6 +24,8 @@ public class ProfilBox extends HorizontalPanel {
 	
 	public void onLoad() {
 		
+	this.addStyleName("Profilbox");
+		
 	 this.add(profilBox);
 	 
 	 profilBox.add(beitraege);

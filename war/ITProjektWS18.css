@@ -19,12 +19,14 @@ div#AboBereich{
 	border: 2px solid black;
 	border-radius: 20px;
 	float: left;
+	
 }
 
 div#InhaltBereich{
 	border: 2px solid #3B17EB;
 	border-radius: 20px; 
 	float: right;
+	
 }
 
 div#trailer{
