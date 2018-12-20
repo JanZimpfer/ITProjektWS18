@@ -2,28 +2,29 @@
 
 /**Styling der Div-Elemente*/
 div#container{
-	max-width: 600px;
 	min-width: 300px;
 	color: #3B17EB;
+	background: #f4ef9b;
 }
 
 div#header{
-	margin: 5px;
 	background: #f5cae8;
 	border: 3px solid black;
 }
 
 div#AboBereich{
-	max-height: 300px;
 	overflow: scroll;
 	padding: 1em 1em;
-	background: #d5d5d5;
-	border: 3px solid black;
+	background: red;
+	border: 2px solid black;
+	border-radius: 20px;
+	float: left;
 }
 
 div#InhaltBereich{
-	border: 3px solid #3B17EB;
+	border: 2px solid #3B17EB;
 	border-radius: 20px; 
+	float: right;
 }
 
 div#trailer{
@@ -38,7 +39,7 @@ div#trailer{
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
   color: #777777;
   margin: 40px 0px 70px;
