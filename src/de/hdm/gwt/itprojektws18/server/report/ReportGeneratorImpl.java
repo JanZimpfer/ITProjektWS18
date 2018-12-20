@@ -134,10 +134,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return this.getLikesFromUser(nutzer);
 	}
 
-	@Override
-	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
-		return this.createLikeStatistikReport(like);
-	}
+//	@Override
+//	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
+//		return this.createLikeStatistikReport(like);
+//	}
 
 	@Override
 	public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws IllegalArgumentException {

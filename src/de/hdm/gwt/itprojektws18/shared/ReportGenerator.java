@@ -11,7 +11,7 @@ import de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport;
 import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 
-@RemoteServiceRelativePath("reportgenerator")
+@RemoteServiceRelativePath("reportGenerator")
 public interface ReportGenerator extends RemoteService{
 	
 	
@@ -21,7 +21,7 @@ public abstract NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer)
 
 //public abstract BeitragStatistikReport createBeitragStatistikReport(Beitrag beitrag) throws IllegalArgumentException;
 
-public abstract LikeStatistikReport createLikeStatistikReport (int like) throws IllegalArgumentException;
+//public abstract LikeStatistikReport createLikeStatistikReport (int like) throws IllegalArgumentException;
 
 public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws IllegalArgumentException;
 

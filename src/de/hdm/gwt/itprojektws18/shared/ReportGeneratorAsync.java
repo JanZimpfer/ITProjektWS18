@@ -20,7 +20,7 @@ public interface ReportGeneratorAsync {
 	void createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom,
 			AsyncCallback<BeitragStatistikReport> callback);
 	
-	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
+//	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
 
 	void getNutzerByName(String vorname, String nachname, AsyncCallback<Vector<Nutzer>> callback);
 
