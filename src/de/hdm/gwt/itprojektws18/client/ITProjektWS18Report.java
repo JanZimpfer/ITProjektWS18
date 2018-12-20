@@ -35,7 +35,7 @@ public class ITProjektWS18Report implements EntryPoint{
 	
 	@Override
 	public void onModuleLoad() {
-		
+		Window.alert("Hier her komme ich");
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18Report.html", new LoginCallback());
 
@@ -54,6 +54,8 @@ public class ITProjektWS18Report implements EntryPoint{
 
 		@Override
 		public void onSuccess(LoginInfo result) {
+			Window.alert("Hier her komme ich");
+
 			loginInfo = result;
 			if (loginInfo.isLoggedIn()) {
 				reportVerwaltung.findNutzerByEmail(loginInfo.getEmailAddress(), new FindNutzerCallback());
@@ -81,12 +83,13 @@ public class ITProjektWS18Report implements EntryPoint{
 	 * 
 	 */
 	private void loadLogin() {
+		Window.alert("Hier her komme ich");
 
 		loginButton.addClickHandler(new loginButtonClickHandler());
-		loginButton.setStylePrimaryName("loginButton");
-		welcomeMessage.setStylePrimaryName("landingPageWelcomeMessage");
-		loginPanel.setStylePrimaryName("loginPanel");
-		loginMessage.setStylePrimaryName("landingPageLoginMessage");
+//		loginButton.setStylePrimaryName("loginButton");
+//		welcomeMessage.setStylePrimaryName("landingPageWelcomeMessage");
+//		loginPanel.setStylePrimaryName("loginPanel");
+//		loginMessage.setStylePrimaryName("landingPageLoginMessage");
 		loginPanel.add(welcomeMessage);
 		loginPanel.add(loginMessage);
 		loginPanel.add(loginButton);
@@ -136,10 +139,8 @@ public class ITProjektWS18Report implements EntryPoint{
 //		RootPanel.get("logout").add(logoutButton);
 
 //		ReportSelectMenu reportMenu = new ReportSelectMenu();
-		RootPanel.get("menubar").clear();
-//		RootPanel.get("menubar").add(reportMenu);
-//		RootPanel.get("menubar").clear();
-//		RootPanel.get("menubar").add(hPanelBar);
+		RootPanel.get("contentReport").clear();
+
 		
 	
 		signOutLink.setHref(loginInfo.getLogoutUrl());
