@@ -6,6 +6,8 @@ import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 import java.util.Vector;
@@ -26,6 +28,10 @@ public class AboBox extends VerticalPanel{
 	
 	private Vector<AboPinnwandBox> nutzerAbos = new Vector<AboPinnwandBox>();
 	
+	private Vector<Abonnement> abocount = new Vector<Abonnement>();
+	
+	private Nutzer n = null;
+	
 	public AboBox() {
 		
 	}
@@ -35,10 +41,11 @@ public class AboBox extends VerticalPanel{
 		
 		this.addStyleName("aboBox");
 		
-		for(int i = 0; i < anzahlAbos; i++) {
-			AboPinnwandBox tempAboPinnwandBox = new AboPinnwandBox(i);
-			nutzerAbos.add(i, tempAboPinnwandBox);
-		}
+		
+//		//for(int i = 0; i < pinnwandVerwaltung.getAllAbosFor(n, null); i++) {
+//			AboPinnwandBox tempAboPinnwandBox = new AboPinnwandBox(i);
+//			nutzerAbos.add(i, tempAboPinnwandBox);
+//		}
 		
 		for(int i = 0; i < nutzerAbos.size(); i++) {
 			this.add(nutzerAbos.elementAt(i));
@@ -57,4 +64,6 @@ public class AboBox extends VerticalPanel{
 		}
 		
 	}
+	
+	
 }

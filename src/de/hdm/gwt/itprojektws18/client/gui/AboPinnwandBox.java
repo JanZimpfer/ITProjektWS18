@@ -22,9 +22,9 @@ public class AboPinnwandBox extends FlowPanel{
 	/**
 	 * Instanziierung der GUI Elemente
 	 */
-	private Widget nutzerName = new Widget();
+	private Widget nutzerNameWidget = new Widget();
 	
-	private Widget nickName = new Widget();
+	private Widget nickNameWidget = new Widget();
 	
 	
 	/**
@@ -45,11 +45,13 @@ public class AboPinnwandBox extends FlowPanel{
 	
 	public void onLoad() {
 		
-		nutzerName.addStyleName("vornameAboBox");
-		nickName.addStyleName("nicknameAboBox");
+		//nutzerNameWidget.equals()
+		
+		nutzerNameWidget.addStyleName("vornameAbobox");
+		nickNameWidget.addStyleName("nicknameAboBox");
 		this.addStyleName("aboPinnwandBox");
 		
-		this.add(nutzerName);
-		this.add(nickName);
+		this.add(nutzerNameWidget);
+		this.add(nickNameWidget);
 	}
 }
