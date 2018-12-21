@@ -18,7 +18,7 @@ import de.hdm.gwt.itprojektws18.client.gui.LikeBox;
 import de.hdm.gwt.itprojektws18.client.gui.Suchleiste;
 import de.hdm.gwt.itprojektws18.client.gui.LoginFormular;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -232,7 +232,7 @@ public class ITProjektWS18 implements EntryPoint {
 			 */
 			private Label abfrage = new Label(
 					"Sie sind noch nicht registriert."
-					+ "Wenn Sie einen Nutzer anlegen möchten, füllen Sie bitte folgendes Formular aus.");
+					+ "Wenn Sie einen Nutzer anlegen mï¿½chten, fï¿½llen Sie bitte folgendes Formular aus.");
 			private Button jaBtn = new Button("Registrieren");
 			private Button neinBtn = new Button("Abbrechen");
 			private VerticalPanel vPanel = new VerticalPanel();
@@ -271,8 +271,8 @@ public class ITProjektWS18 implements EntryPoint {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				java.sql.Date erstellzeitpunkt = null;
-				pinnwandVerwaltung.erstelleNutzer(vornameBox.getText(), nachnameBox.getText(), nicknameBox.getText(), erstellzeitpunkt, Cookies.getCookie("emaiL"), new NutzerAnlegenCallback());
+				Timestamp erstellzeitpunkt = null;
+				pinnwandVerwaltung.erstelleNutzer(vornameBox.getText(), nachnameBox.getText(), nicknameBox.getText(), erstellzeitpunkt, Cookies.getCookie("email"), new NutzerAnlegenCallback());
 				
 			}
 			
