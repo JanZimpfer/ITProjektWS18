@@ -18,6 +18,7 @@ import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
+	
 	private PinnwandVerwaltung pinnwandAdmin = null;
 
 	public ReportGeneratorImpl() throws IllegalArgumentException {
@@ -46,27 +47,69 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		r.setImprint(imprint);
 	}
-
+	
+	/*
+	 * Diese Methode soll alle Abonnements, Likes, Beiträge und Kommentare in einem Zeitraum von einem Nutzer anzeigen 
+	 * (non-Javadoc)
+	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
+	 */
 	@Override
 	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer) throws IllegalArgumentException {
 
 		if (this.getPinnwandVerwaltung() == null) {
 			return null;
-		} else {
+		} 
 
 			Vector<Nutzer> name = getNutzerByName(nutzer.getVorname(), nutzer.getNachname());
 			Vector<Nutzer> nickname = getNutzerByNickname(nutzer.getNickname());
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
 			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
-
 			NutzerStatistikReport result = new NutzerStatistikReport();
 			result.setTitle("Alle Nutzer auf der Pinnwand");
+			CompositeParagraph header = new CompositeParagraph();
+			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+			result.setHeaderData(header);
+			
+			
+			Row headline = new Row();
+			headline.addColumn(new Column("Nutzer"));
+			
+//			headline.addColumn(new Column("Status"));
+			headline.addColumn(new Column("Abonnementanzahl"));
+			headline.addColumn(new Column("Beiträge"));
+			headline.addColumn(new Column("Kommentare"));
+			headline.addColumn(new Column("Likes"));
+
+			result.addRow(headline);
+			
+			Row row = new Row();
+			row.addColumn(new Column(nutzer.getNickname()));
+			result.addRow(row);
+			
 			this.addImprint(result);
 
-		}
-		return null;
+		
+		return result;
 
+	}
+	
+	/*
+	 * Diese Methode soll alle  Kommentare und Likes für einen Zeitraum aller Beiträge anzeigen 
+	 * (non-Javadoc)
+	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
+	 */
+	
+	@Override
+	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom) throws IllegalArgumentException {
+		if(this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		else {
+		BeitragStatistikReport result= new BeitragStatistikReport();
+		return result;
+		
+		}
 	}
 
 	private Nutzer getNutzerByName(Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
@@ -85,51 +128,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return this.getPinnwandVerwaltung().getNutzerByNickname(nickname.getNickname());
 	}
 
-	@Override
-	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom) throws IllegalArgumentException {
-		
-		
-		BeitragStatistikReport result= new BeitragStatistikReport();
-		
-		int i = 0;
-		
-		Row headline= new Row();
-		
-		headline.addColumn(new Column( "Beitrag"));
-		headline.addColumn(new Column("Erstelldatum"));
-		headline.addColumn(new Column ("Änderungsdatum"));
-		headline.addColumn(new Column("Beitragsinhalt"));
-		
-		result.addRow(headline);
-		
-		//for (Beitrag b: beitrag) {
-			
-			Row postRow= new Row();
-			
-			
-//			if=(dateFrom null){
-				
-				i++;
-				
-				
-			
-				
-//			}
-			
-//		}
-		
-		
-				return result;		
-	}
+	
 
 	public Vector<Like> getLikesFromUser(Nutzer nutzer) {
 		return this.getLikesFromUser(nutzer);
 	}
 
-	@Override
-	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
-		return this.createLikeStatistikReport(like);
-	}
+//	@Override
+//	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
+//		return this.createLikeStatistikReport(like);
+//	}
 
 	@Override
 	public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws IllegalArgumentException {

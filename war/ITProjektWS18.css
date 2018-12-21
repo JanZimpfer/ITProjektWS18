@@ -1,9 +1,47 @@
  /** Add css rules here for your application. */
 
+/**Styling der Div-Elemente*/
+div#container{
+	min-width: 300px;
+	color: #3B17EB;
+	background: #f4ef9b;
+}
+
+div#header{
+	background: #f5cae8;
+	border: 3px solid black;
+}
+
+div#AboBereich{
+	overflow: scroll;
+	padding: 1em 1em;
+	background: red;
+	border: 2px solid black;
+	border-radius: 20px;
+	float: left;
+	
+}
+
+div#InhaltBereich{
+	border: 2px solid #3B17EB;
+	border-radius: 20px; 
+	float: right;
+	
+}
+
+div#trailer{
+	clear: both;
+	padding: 10px 0;
+	margin: 0 auto;
+	border-top: 1px white;
+	font-size: 80%;
+	text-align: center;
+	background: #d5d5d5;
+}
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
   color: #777777;
   margin: 40px 0px 70px;

@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -43,24 +44,27 @@ public class ITProjektWS18 implements EntryPoint {
 		/*
 		 * Erstellung eines VerticalPanels welches fuer den Navigator genutzt wird.
 		 */
-		VerticalPanel navPanel = new VerticalPanel();
+//		VerticalPanel navPanel = new VerticalPanel();
 
 		HorizontalPanel profilBox = new HorizontalPanel ();
 		
 		VerticalPanel AboBox = new VerticalPanel();
+		
+		FlowPanel BeitragBox = new FlowPanel();
 
 		
 		/*
 		 * Zuweisung des VerticalPanels zum DIV-Element "Navigator"
 		 * in der entsprechenden HTML Datei.
 		 */
-		RootPanel.get("Navigator").add(navPanel);
+//		RootPanel.get("Navigator").add(navPanel);
 
 		RootPanel.get("ProfilBox").add(profilBox);
 
 		
 		RootPanel.get("Abobereich").add(AboBox);
 
+		RootPanel.get("BeitragBox").add(BeitragBox);
 		
 		/**
 		 * Kommentar an's Team:
