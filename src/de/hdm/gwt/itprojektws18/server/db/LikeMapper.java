@@ -50,13 +50,13 @@ public class LikeMapper {
 
 			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxId' " + "FROM likes");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM likes");
 
 
 			if (rs.next()) {
 
 
-				l.setId(rs.getInt("maxId") + 1);
+				l.setId(rs.getInt("maxid") + 1);
 
 
 				stmt = con.createStatement();
@@ -94,8 +94,7 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 
-			stmt.executeUpdate("DELETE FROM likes" 
-			+ "WHERE id=" + "'" + l.getId() + "'");
+			stmt.executeUpdate("DELETE FROM likes WHERE id =" + "'" + l.getId() + "'");
 
 
 		} catch (SQLException el2) {
@@ -115,7 +114,7 @@ public class LikeMapper {
 			Statement stmt = con.createStatement();
 
 
-			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK=" + "'" + n.getId() + "'");
+			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK =" + "'" + n.getId() + "'");
 
 
 		} catch (SQLException el3) {
@@ -132,14 +131,14 @@ public class LikeMapper {
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
-		Vector<Like> nutzerlikeresult = new Vector<Like>();
+		Vector<Like> result = new Vector<Like>();
 
 		try {
 			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 			// Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes " 
-			+ "WHERE nutzer_l_FK=" + "'" +nutzerFK + "'" );
+			
+			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes WHERE nutzer_l_FK =" + "'" +nutzerFK + "'" );
 		
 		// Prüfen ob ein Ergebnis vorliegt
 		while(rs.next()){
@@ -148,14 +147,14 @@ public class LikeMapper {
 				l.setId(rs.getInt("id"));
 				l.setBeitragFK(rs.getInt("beitrag_l_FK"));
 				l.setNutzerFK(rs.getInt("nutzer_l_FK"));
-				l.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				l.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
-				nutzerlikeresult.addElement(l);
+				result.addElement(l);
 		}
 		}catch (SQLException el4) {
 			el4.printStackTrace();
 		}
-		return nutzerlikeresult;
+		return result;
 	}
 
 	public Vector<Like> getAllLikesByNutzer(Nutzer n) {
@@ -171,15 +170,15 @@ public class LikeMapper {
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
-		Vector<Like> likeresult = new Vector<Like>();
+		Vector<Like> result = new Vector<Like>();
 
 		try {
 			Statement stmt = con.createStatement();
 
 			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
-			ResultSet rs = stmt.executeQuery("SELECT id, betrag_l_FK, nutzer_l_FK, erstellungszeitpunkt FROM likes " 
-			+ "WHERE beitrag_l_FK=" + "'"+  beitragFK + "'" + " ORDER BY erstellungszeitpunkt");
+			// erstellungszeitpunkt removed
+			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes WHERE beitrag_l_FK =" + "'"+  beitragFK + "'"); //+ " ORDER BY erstellungszeitpunkt");
 
 			while (rs.next()) {
 
@@ -187,15 +186,15 @@ public class LikeMapper {
 				l.setId(rs.getInt("id"));
 				l.setBeitragFK(rs.getInt("beitrag_l_FK"));
 				l.setNutzerFK(rs.getInt("nutzer_l_FK"));
-				l.setErstellZeitpunkt(rs.getDate("erstellZeitpunkt"));
+				l.setErstellZeitpunkt(rs.getTimestamp("erstellZeitpunkt"));
 
-				likeresult.addElement(l);
+				result.addElement(l);
 			}
 
 		} catch (SQLException el5) {
 			el5.printStackTrace();
 		}
-		return likeresult;
+		return result;
 
 	}
 

@@ -247,7 +247,7 @@ public class NutzerMapper {
 				Nutzer nutzer = new Nutzer();
 
 				nutzer.setId(rs.getInt("id"));
-				nutzer.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				nutzer.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				nutzer.setVorname(rs.getString("vorname"));
 				nutzer.setNachname(rs.getString("nachname"));
 				nutzer.setNickname(rs.getString("nickname"));

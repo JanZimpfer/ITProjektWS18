@@ -1,6 +1,7 @@
 package de.hdm.gwt.itprojektws18.shared;
 
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -20,7 +21,8 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
 @RemoteServiceRelativePath("pinnwandverwaltung")
 public interface PinnwandVerwaltung extends RemoteService {
 
-	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt, String email);
+
+	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt, String email);
 
 	void speichern(Nutzer n);
 
@@ -34,7 +36,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Nutzer n);
 
-	Pinnwand erstellePinnwand(Nutzer n, Date erstellzeitpunkt);
+	Pinnwand erstellePinnwand(Nutzer n, Timestamp erstellzeitpunkt);
 
 	void speichern(Pinnwand p);
 
@@ -42,7 +44,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Pinnwand p);
 
-	Beitrag erstelleBeitrag(Pinnwand p, String text, Date erstellzeitpunkt, Nutzer n);
+	Beitrag erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt, Nutzer n);
 
 	void speichern(Beitrag b);
 
@@ -54,7 +56,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Beitrag b);
 
-	Kommentar erstelleKommentar(Beitrag b, String text, Date erstellzeitpunkt, Nutzer n);
+	Kommentar erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, Nutzer n);
 
 	void loeschen(Kommentar k);
 
@@ -62,13 +64,13 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b);
 
-	Like erstelleLike(Beitrag b, Date erstellzeitpunkt, Nutzer n);
+	Like erstelleLike(Beitrag b, Timestamp erstellzeitpunkt, Nutzer n);
 
 	void loeschen(Like l);
 
 	Vector<Like> getAllLikesByNutzer(Nutzer n);
 
-	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Date erstellzeitpunkt);
+	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt);
 
 	void loeschen(Abonnement a);
 
