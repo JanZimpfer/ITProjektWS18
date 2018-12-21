@@ -27,4 +27,8 @@ public interface ReportGeneratorAsync {
 	void getNutzerByNickname(String nickname, AsyncCallback<Vector<Nutzer>> callback);
 
 	void findNutzerByEmail(String mail, AsyncCallback<Nutzer> callback);
+
+	void getBeitrageByNutzer(Nutzer n, AsyncCallback<Vector<Beitrag>> callback);
+
+	void getNutzerById(int nutzerID, AsyncCallback<Nutzer> callback);
 }

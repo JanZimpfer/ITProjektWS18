@@ -125,7 +125,40 @@ public class HTMLReportWriter extends ReportWriter {
 	}
 
 	public void process(BeitragStatistikReport r) {
+		this.resetReportText();
+		StringBuffer result = new StringBuffer();
+		// result.append("<h3>" + p.getTitle() + "</h3>");
+		result.append("<table style=\"width:40%\"><tr>");
+		result.append("<td><b>" + r.getTitle() + "</b></td></tr><tr>");
 
+		result.append("<td><b>" + paragraph2HTML(r.getHeaderData()) + "</b></td>");
+
+		result.append("<td width=200>" + paragraph2HTML(r.getImprint()) + "</td>");
+		result.append("</tr><tr><td></td><td>" + r.getCreated().toString() + "</td></tr></table>");
+
+		Vector<Row> rows = r.getRows();
+		result.append("<br><br>");
+		result.append("<table style=\"width:100%\">");
+		for (int i = 0; i < rows.size(); i++) {
+			Row row = rows.elementAt(i);
+			result.append("<tr>");
+			for (int k = 0; k < row.getColumns().size(); k++) {
+				if (i == 0) {
+
+					result.append("<td style=\"background:silver;font-weight:bold\">" + row.getColumnAt(k) + "</td>");
+				} else {
+					if (i > 1) {
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnAt(k) + "</td>");
+					} else {
+						result.append("<td valign=\"top\">" + row.getColumnAt(k) + "</td>");
+					}
+				}
+			}
+			result.append("</tr>");
+		}
+
+		result.append("</table>");
+		this.reportText = result.toString();
 	}
 
 	/**

@@ -238,4 +238,42 @@ public class BeitragMapper {
 		return getAllBeitraegeByPinnwand(p.getId());
 	}
 
+
+	/**
+	 * ausgabe aller Beitrag-objekte eines Pinnwand-objekts
+	 * @author Ayse
+	 */
+	
+	public Vector<Beitrag> getAllBeitraegeByNutzer(int nutzerID) {
+		Connection con = DBConnection.connection();
+		Vector<Beitrag> result = new Vector<Beitrag>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			//Erstellzeitpunkt removed
+			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag"
+			+"WHERE nutzer_b_FK=" +"'"+ nutzerID + "'" + "ORDER BY id");
+			
+			while (rs.next()) {
+				Beitrag b = new Beitrag();
+				b.setId(rs.getInt("id"));
+				b.setText(rs.getString("text"));
+				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				
+				result.addElement(b);
+			}			
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return result;
+	}
+	public Vector <Beitrag> getAllBeitraegeByNutzer (Nutzer n) {
+		/*
+		 * Auslesen der Pinnwand-ID um diese dann an
+		 * getAllBeitraegeByPinnwand(int zielId) zu uebergeben.
+		 */
+		return getAllBeitraegeByNutzer(n.getId());
+	}
+	
 }

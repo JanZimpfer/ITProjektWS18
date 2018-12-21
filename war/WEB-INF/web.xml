@@ -24,7 +24,7 @@
    
   <servlet-mapping>
     <servlet-name>reportGeneratorServlet</servlet-name>
-    <url-pattern>/itprojektws18/reportgenerator</url-pattern>
+    <url-pattern>/itprojektws18report/reportGenerator</url-pattern>
   </servlet-mapping> 
   
    <servlet>
@@ -39,7 +39,7 @@
     
   <servlet-mapping>
     <servlet-name>loginService</servlet-name>
-    <url-pattern>/itprojektws18report/login</url-pattern>
+    <url-pattern>/itprojektreportws18/login</url-pattern>
   </servlet-mapping> 
     
     

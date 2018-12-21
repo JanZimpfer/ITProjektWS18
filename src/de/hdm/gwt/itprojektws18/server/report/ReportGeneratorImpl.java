@@ -41,7 +41,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	protected void addImprint(Report r) {
 		CompositeParagraph imprint = new CompositeParagraph();
 
-		imprint.addSubParagraph(new SimpleParagraph("Social Media Pinnwand der HdM"));
+		imprint.addSubParagraph(new SimpleParagraph("@Hdm Network"));
 		imprint.addSubParagraph(new SimpleParagraph("Nobelstraﬂe 10"));
 		imprint.addSubParagraph(new SimpleParagraph("70569 Stuttgart"));
 
@@ -60,8 +60,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			return null;
 		} 
 
-			Vector<Nutzer> name = getNutzerByName(nutzer.getVorname(), nutzer.getNachname());
-			Vector<Nutzer> nickname = getNutzerByNickname(nutzer.getNickname());
+			Nutzer n = getNutzerById(nutzer.getId());
+		
+		
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
 			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
@@ -71,11 +72,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 			result.setHeaderData(header);
 			
+			Vector<Beitrag> alleBeitraege = getBeitrageByNutzer(n);
 			
 			Row headline = new Row();
 			headline.addColumn(new Column("Nutzer"));
-			
-//			headline.addColumn(new Column("Status"));
 			headline.addColumn(new Column("Abonnementanzahl"));
 			headline.addColumn(new Column("Beitr‰ge"));
 			headline.addColumn(new Column("Kommentare"));
@@ -85,6 +85,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			
 			Row row = new Row();
 			row.addColumn(new Column(nutzer.getNickname()));
+			row.addColumn(new Column(""));
+			row.addColumn(new Column(alleBeitraege.size()+""));
 			result.addRow(row);
 			
 			this.addImprint(result);
@@ -155,6 +157,20 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			return null;
 		}
 		return this.getPinnwandVerwaltung().checkEmail(mail);
+	}
+	@Override
+	public Nutzer getNutzerById(int nutzerID) throws IllegalArgumentException {
+		if(this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().getNutzerbyID(nutzerID);
+	}
+	@Override
+	public Vector<Beitrag> getBeitrageByNutzer(Nutzer n) throws IllegalArgumentException {
+		if(this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().getAllBeitraegeByNutzer(n);
 	}
 
 }
