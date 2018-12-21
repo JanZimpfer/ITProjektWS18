@@ -113,7 +113,7 @@ public class ITProjektWS18Report implements EntryPoint{
 				Cookies.setCookie("id", result.getId() + "");
 				loadReportgenerator();
 			} else {
-				Window.alert("Bitte registrieren Sie sich zu erst über den Kontaktmanager.");
+				Window.alert("Bitte registrieren Sie sich im Pinnwand-System.");
 				signOutLink.setHref(loginInfo.getLogoutUrl());
 				Window.open(signOutLink.getHref(), "_self", "");
 			}

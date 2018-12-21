@@ -17,7 +17,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
  */
 public interface PinnwandVerwaltungAsync {
 
-	void erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt,
+	void erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt, String email,
 			AsyncCallback<Nutzer> callback);
 
 	void speichern(Nutzer n, AsyncCallback<Void> callback);

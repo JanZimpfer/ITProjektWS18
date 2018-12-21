@@ -20,7 +20,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
 @RemoteServiceRelativePath("pinnwandverwaltung")
 public interface PinnwandVerwaltung extends RemoteService {
 
-	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt);
+	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt, String email);
 
 	void speichern(Nutzer n);
 

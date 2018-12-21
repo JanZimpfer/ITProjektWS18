@@ -1,6 +1,8 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-public class PinnwandBox {
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+public class PinnwandBox extends VerticalPanel {
 	
 	public PinnwandBox() {
 		

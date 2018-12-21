@@ -87,7 +87,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt) {
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Date erstellzeitpunkt, String email) {
 		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
 		Nutzer n = new Nutzer();
@@ -96,6 +96,7 @@ public PinnwandVerwaltungImpl() {
 		n.setNachname(nachname);
 		n.setNickname(nickname);
 		n.setErstellZeitpunkt(erstellzeitpunkt);
+		n.setEmail(email);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
@@ -106,9 +107,15 @@ public PinnwandVerwaltungImpl() {
 		
 	}
 
+	/**
+	 * Auslesen eines Nutzers anhand seiner Email
+	 * @param email
+	 * @return nutzer
+	 */
+	@Override
 	public Nutzer checkEmail(String mail) throws IllegalArgumentException{
 		Nutzer nutzer = new Nutzer();
-		nutzer = this.nMapper.findNutzerByEmail(mail);
+		nutzer = this.nMapper.getNutzerByEmail(mail);
 		
 		if(nutzer.getId() == 0) {
 			return null;

@@ -29,6 +29,12 @@ div#InhaltBereich{
 	
 }
 
+div#LoginBereich{
+	border: 2px solid #3B17EB;
+	border-radius: 20px;
+	float: center;
+}
+
 div#trailer{
 	clear: both;
 	padding: 10px 0;
@@ -183,4 +189,16 @@ h1 {
 
 .erstelleBeitragBox {
 	color: green;
+}
+
+.loginGreet {
+	
+}
+
+.loginPanel {
+	
+}
+
+.loginAufforderung {
+	
 }
