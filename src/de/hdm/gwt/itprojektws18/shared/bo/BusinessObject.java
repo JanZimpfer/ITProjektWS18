@@ -1,8 +1,9 @@
 package de.hdm.gwt.itprojektws18.shared.bo;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Timestamp;
+
+
 
 
 public abstract class BusinessObject implements Serializable{
@@ -18,7 +19,7 @@ public abstract class BusinessObject implements Serializable{
 	 * Eindeutiger Erstellungszeitpunkt einer Instanz dieser Klasse
 	 */
 	
-	private Date erstellZeitpunkt;
+	//private Date erstellZeitpunkt;
 
 //	private Date erstellzeitpunkt = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
@@ -50,9 +51,9 @@ public abstract class BusinessObject implements Serializable{
 	 * Ermittlung des Erstellzeitupunkt für ein BusinessObject
 	 * @param erstellZeitpunkt
 	 */
-	public BusinessObject(Date erstellZeitpunkt) {
-		this.erstellZeitpunkt = new Date();
-	}
+//	public BusinessObject(Date erstellZeitpunkt) {
+//		this.erstellZeitpunkt = new Date();
+//	}
 
 	
 	/**
@@ -75,23 +76,34 @@ public abstract class BusinessObject implements Serializable{
 	 * Erstellungszeitpunkt wird ausgelesen
 	 * @return
 	 */
-	public Date getErstellZeitpunkt() {
-		return erstellZeitpunkt;
-	}
+	//public Date getErstellZeitpunkt() {
+	//	return erstellZeitpunkt;
+	//}
 
 	/**
 	 * Erstellungszeitpunkt wird gesetzt
 	 * @param erstellZeitpunkt
 	 */
 
-	public void setErstellZeitpunkt(Date erstellZeitpunkt) {
+	//public void setErstellZeitpunkt(Date erstellZeitpunkt) {
 
-		this.erstellZeitpunkt = new Date ();
+	//	this.erstellZeitpunkt = new Date ();
 
+	//}
+	
+	/**
+	 * ErstellZeitpunkt wird mithilfe des Datentyps java.sql.Timestamp erzeugt
+	 */
+	
+	private Timestamp erstellZeitpunkt;
+	
+	public Timestamp getErstellZeitpunkt(){
+		return erstellZeitpunkt;
 	}
 	
-	
-	
+	public void setErstellZeitpunkt(Timestamp erstellZeitpunkt) {
+		this.erstellZeitpunkt = new Timestamp(System.currentTimeMillis());
+	}
 	/**
 	   * <p>
 	   * Feststellen der <em>inhaltlichen</em> Gleichheit zweier
@@ -133,7 +145,7 @@ public abstract class BusinessObject implements Serializable{
 	 */
 	public String toString() {
 		
-		return this.getClass().getName() + "Id. Nr:" + this.id;
+		return this.getClass().getName()  + "Id. Nr:" + this.id + "Erstellzeitpunkt: "+ this.erstellZeitpunkt;
 	}
 	
 	/**

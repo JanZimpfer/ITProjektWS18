@@ -8,6 +8,7 @@ import java.sql.SQLException;
 //import java.sql.Date;
 import java.util.Date;
 import java.util.Vector;
+import java.sql.Timestamp;
 
 import com.mysql.jdbc.Driver;
 
@@ -32,7 +33,7 @@ public class TestKlasseMK {
 		
     //Nutzer n = new Nutzer ();
     
-    //n = impl.getNutzerbyID(3);
+    //n = impl.getNutzerbyID(5);
     
   
     // n = impl.erstelleNutzer("'Dieter'", "'Krause'", "'Hausmeister123'", n.getErstellZeitpunkt());
@@ -43,19 +44,43 @@ public class TestKlasseMK {
 	
 	//p = impl.erstellePinnwand(n, p.getErstellZeitpunkt());
 	
-	//Beitrag b = new Beitrag ();
+	Beitrag b = new Beitrag ();
 	
-	//b = impl.getBeitragByID(2);
 	
-	 //b = impl.erstelleBeitrag(p, "'Bald ist Weihnachten..'", b.getErstellZeitpunkt(), n);
+	b = impl.getBeitragByID(1);
+	
+	System.out.println(b);
+	
+	//b.setText("Ich bin mir unsicher");
+	
+	//impl.speichern(b);
+	
+	
+	
+	
+	
+	
+	 //b = impl.erstelleBeitrag(p, "'lululululululuul'", b.getErstellZeitpunktSQL(), n);
+	
+	//Vector <Beitrag> result = new Vector <Beitrag> ();
+	
+	//result = impl.getAllBeitraege();
+	
+	//System.out.print(result);
+	
+	
 	
 	//Kommentar k = new Kommentar ();
 	
-	//k = impl.get
+	//Vector <Kommentar> result = new Vector <Kommentar> ();
+	
+	//result =impl.getAllKommentareByBeitrag(b);
+	
+	//System.out.print(result);
 	
 	
 	
-	//k = impl.erstelleKommentar(b, "' Das ist soooo LECKER!'", k.getErstellZeitpunkt(), n);
+	//k = impl.erstelleKommentar(b, "'Wie bitte?'", k.getErstellZeitpunkt(), n);
 	
 	//Like l = new Like();
 	
