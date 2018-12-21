@@ -37,11 +37,10 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " 
-			+ "FROM kommentar");
+			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM kommentar");
 			
 			if (rs.next()) {
-				k.setId(rs.getInt("maxid")+1);
+				k.setId(rs.getInt("maxid") +1);
 				stmt = con.createStatement();
 				
 				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) "
@@ -98,8 +97,7 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM kommentar WHERE id=" 
-			+ "'" + k.getId()+"'");
+			stmt.executeUpdate("DELETE FROM kommentar WHERE id =" + "'" + k.getId()+"'");
 		}
 		
 		catch(SQLException e2) {
@@ -123,8 +121,7 @@ private static KommentarMapper kommentarMapper = null;
 			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf 
 			 * die Tabelle beitag verweist.
 			 */
-			stmt.executeUpdate("DELETE FROM kommentar WHERE beitrag_k_FK=" 
-			 + "'" + b.getId() + "'");
+			stmt.executeUpdate("DELETE FROM kommentar WHERE beitrag_k_FK =" + "'" + b.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -141,11 +138,10 @@ private static KommentarMapper kommentarMapper = null;
 	public Kommentar getKommentarById (int id) {
 		
 		Connection con = DBConnection.connection();
-		//erstellzeitpunkt removed
+		
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK FROM kommentar" 
-			+ "WHERE id =" + "'" + id +"'");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE id =" + "'" + id +"'");
 			
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
@@ -153,7 +149,7 @@ private static KommentarMapper kommentarMapper = null;
 				k.setText(rs.getString("text"));
 				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
 				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
-				//k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				return k;
 				
@@ -183,14 +179,13 @@ private static KommentarMapper kommentarMapper = null;
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar "
-			+ "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar");
 			
 			while (rs.next());{
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}
@@ -215,14 +210,16 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt" 
-			+"WHERE = beitrag_k_FK=" + "'" + beitragFK + "'" +"ORDER BY id");
+			
+			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE beitrag_k_FK =" + "'" + beitragFK + "'");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
+				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
+				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}			
@@ -251,14 +248,16 @@ private static KommentarMapper kommentarMapper = null;
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, nutzer_k_FK, beitrag_k_FK FROM kommentar WHERE nutzer_k_FK=" 
+			ResultSet rs = stmt.executeQuery("SELECT id, text, nutzer_k_FK, beitrag_k_FK, erstellzeitpunkt FROM kommentar WHERE nutzer_k_FK=" 
 			+ "'" + nutzerFK + "'"+  "ORDER BY id");
 			
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
-				k.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
+				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
+				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				result.addElement(k);
 			}			

@@ -85,9 +85,9 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("UPDATE beitag set " + "'" + 
-			"text= " + "'" +b.getText() + "'"
-			+ "'" + "WHERE id=" + "'" + b.getId() + "'");
+			stmt.executeUpdate("UPDATE beitrag set "+
+			"text = " + "'" + b.getText() + "'" 
+			+"WHERE id=" + "'" + b.getId() + "'");
 		}
 		catch(SQLException e2) {
 			e2.printStackTrace();
@@ -106,8 +106,7 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM beitrag WHERE id=" 
-			+ "'" + b.getId() + "'");
+			stmt.executeUpdate("DELETE FROM beitrag WHERE id =" + "'" + b.getId() + "'");
 		}
 		
 		catch(SQLException e2) {
@@ -143,17 +142,18 @@ public class BeitragMapper {
 	
 	public Beitrag getBeitragById(int id) {
 		Connection con = DBConnection.connection();
-		// erstellzeitpunkt zum Testen der db aus methode entfernt
+	
 		try {
 			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag " +
-			"WHERE id = " + "'" + id  +"'");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, pinnwand_b_FK, nutzer_b_FK, erstellzeitpunkt FROM beitrag WHERE id = " + "'" + id  +"'");
 			
 			if (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				b.setPinnwandFK(rs.getInt("pinnwand_b_FK"));
+				b.setNutzerFK(rs.getInt("nutzer_b_FK"));
+				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				return b;
 				
@@ -179,17 +179,17 @@ public class BeitragMapper {
 		Connection con = DBConnection.connection();
 		
 		Vector<Beitrag> result = new Vector<Beitrag>();
-		//Erstellzeitpunkt removed
+		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag"
-			+ "ORDER BY id");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag");
+			
 			
 			while (rs.next());{
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}
@@ -211,15 +211,14 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			//Erstellzeitpunkt removed
-			ResultSet rs = stmt.executeQuery("SELECT id, text FROM beitrag"
-			+"WHERE pinnwand_b_FK=" +"'"+ pinnwandFK + "'" + "ORDER BY id");
+			
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
-				//b.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				
 				result.addElement(b);
 			}			

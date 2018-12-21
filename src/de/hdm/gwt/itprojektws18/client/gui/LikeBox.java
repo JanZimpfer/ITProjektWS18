@@ -1,6 +1,8 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-public class LikeBox {
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+public class LikeBox extends VerticalPanel{
 
 	public LikeBox() {
 		

@@ -8,7 +8,13 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+
 public class KommentarBox extends ScrollPanel{
+	
+	
+	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	
 	/*
 	 * Elemente zur Darstellung der KommentarBox
@@ -24,6 +30,7 @@ public class KommentarBox extends ScrollPanel{
 	
 	private Button submitKommentarBtn = new Button("Kommentieren");
 	private Button deleteKommentarBtn = new Button("Kommentar löschen");
+	private Button editKommentarBtn = new Button("Kommentar bearbeiten");
 	
 	
 	
@@ -35,46 +42,85 @@ public class KommentarBox extends ScrollPanel{
 
 	public void onLoad() {
 		
-		//Stylename fuer alle KommentarBoxen
+		/**
+		 * Styling fuer alle KommentarBoxen
+		 */
 		this.addStyleName("kommentarBox");
 		
-		//Hinzufuegen der Widgets
+		/**
+		 * Hinzufuegen der Widgets
+		 */
 		kommentarPanel.add(kommentarInhalt);
 		kommentarPanel.add(nickname);
 		kommentarPanel.add(vorname);
 		kommentarPanel.add(nachname);
 		kommentarPanel.add(erstellZeitpunkt);
 
-		//Buttons hinzufuegen
-		kommentarPanel.add(submitKommentarBtn);
-		kommentarPanel.add(deleteKommentarBtn);
+		/**
+		 * Hinzufuegen der ClickHandler zu den Buttons
+		 */
+		submitKommentarBtn.addClickHandler(new submitBtnClickHandler());
+		editKommentarBtn.addClickHandler(new editBtnClickHandler());
+		deleteKommentarBtn.addClickHandler(new deleteBtnClickHandler());
 		
-		//Styling hinzufuegen
+		/**
+		 * Hinzufuegen des Stylings
+		 */
 		kommentarInhalt.addStyleName("gwt-TextArea");
 		submitKommentarBtn.addStyleName("submitButton");
 		deleteKommentarBtn.addStyleName("submitButton");
+		editKommentarBtn.addStyleName("submitButton");
 		
 		
-		submitKommentarBtn.addClickHandler(new ClickHandler() {
+		/**
+		 * Hinzufuegen der Buttons zum Panel
+		 */
+		kommentarPanel.add(submitKommentarBtn);
+		kommentarPanel.add(deleteKommentarBtn);
+		kommentarPanel.add(editKommentarBtn);
+		
+		
+		
+	}
+	
+	/**
+	 * <b>Nested Class zum submitKommentar-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 */
+	class submitBtnClickHandler implements ClickHandler {
 
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
+		@Override
+		public void onClick(ClickEvent event) {
+			// TODO Auto-generated method stub
 			
-		});
+		} 
 		
-		
-		deleteKommentarBtn.addClickHandler(new ClickHandler() {
+	}
+	
+	/**
+	 * <b>Nested Class zum deleteKommentar-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 */
+	class deleteBtnClickHandler implements ClickHandler {
 
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
+		@Override
+		public void onClick(ClickEvent event) {
+			// TODO Auto-generated method stub
 			
-		});
+		}
+	}
+	
+	/**
+	 * <b>Nested Class zum editKommentar-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 */
+	class editBtnClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 }

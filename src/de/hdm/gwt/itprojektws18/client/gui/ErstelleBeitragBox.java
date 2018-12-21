@@ -1,5 +1,7 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-public class ErstelleBeitragBox {
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+public class ErstelleBeitragBox extends VerticalPanel {
 
 }

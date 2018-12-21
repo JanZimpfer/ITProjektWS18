@@ -223,7 +223,7 @@ public class NutzerMapper {
 	
 	}
 	
-	public Nutzer findNutzerByEmail(String email){
+	public Nutzer getNutzerByEmail(String email){
 
 		/**
 		 * Verbindung zur DB Connection
@@ -247,6 +247,10 @@ public class NutzerMapper {
 				Nutzer nutzer = new Nutzer();
 
 				nutzer.setId(rs.getInt("id"));
+				nutzer.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				nutzer.setVorname(rs.getString("vorname"));
+				nutzer.setNachname(rs.getString("nachname"));
+				nutzer.setNickname(rs.getString("nickname"));
 				nutzer.setEmail(rs.getString("mail"));
 				
 				n = nutzer;
@@ -256,7 +260,7 @@ public class NutzerMapper {
 		}
 
 		/**
-		 * Ergebnisvektor zurückgeben
+		 * Nutzerobjekt wird zurückgegeben
 		 */
 		finally {
 			if (con != null)
