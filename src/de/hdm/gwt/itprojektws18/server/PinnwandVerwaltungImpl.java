@@ -380,6 +380,17 @@ public PinnwandVerwaltungImpl() {
 	}
 	
 	/**
+	 * Auslesen aller Beitraege eines Nutzers
+	 * @param Nutzer n
+	 * @return Vector<Beitrag>
+	 */
+	@Override
+	public Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n) {
+		return this.bMapper.getAllBeitraegeByNutzer(n);
+	}
+
+	
+	/**
 	 * Loeschen eines Beitrags
 	 * @param Beitrag b
 	 */

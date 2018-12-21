@@ -84,5 +84,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Abonnement> getAllAbosFor(Pinnwand p);
 
+	Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n);
+
 	
 }

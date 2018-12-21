@@ -49,6 +49,8 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllBeitraegeByPinnwand(Pinnwand p, AsyncCallback<Vector<Beitrag>> callback);
 
+	void getAllBeitraegeByNutzer(Nutzer n, AsyncCallback<Vector<Beitrag>> callback);
+	
 	void loeschen(Beitrag b, AsyncCallback<Void> callback);
 
 	void erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, Nutzer n, AsyncCallback<Kommentar> callback);
