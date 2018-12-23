@@ -87,6 +87,10 @@ h1 {
   text-align: center;
 }
 
+.headerBox{
+	
+}
+
 .sendButton {
   display: block;
   font-size: 16pt;
@@ -111,117 +115,126 @@ h1 {
 }
 
 .profilbildButton {
-	color: green;
+	color: black;
 }
 
 .profilButton {
-	color: green;
+	color: black;
 }
 
 .profilBox {
-	color: green;
+	color: black;
 }
 
 .suchleiste {
-	color: green;
+	color: black;
+	border-radius: 20px;
 }
 
 .suchButton {
-	color: green;
+	color: black;
+	
 }
 
 .einstellungenButton {
-	color: green;
+	color: black;
 }
 
 .vornameAboBox {
-	color: green;
+	color: black;
 }
 
 .nachnameAboBox {
-	color: green;
+	color: black;
 }
 
 .nicknameAboBox {
-	color: green;
+	color: black;
 }
 
 .aboPinnwandBox {
-	color: green;
+	color: black;
 }
 
 
 
 .aboBox {
-	color: green;
+	color: black;
 }
 
 .abonnierenButton {
-	color: green;
+	color: black;
 }
 
 .beitragBox {
-	color: green;
+	color: black;
 }
 
 .submitButton {
-	color: green;
+	color: black;
+	
 }
 
 .nicknameBeitragBox {
-	color: green;
+	color: black;
 }
 
 .vornameBeitragBox {
-	color: green;
+	color: black;
 }
 
 .nachnameBeitragBox {
-	color: green;
+	color: black;
 }
 
 .beitragBearbeitenButton {
-	color: green;
+	color: black;
 }
 
 .beitragStatistikButton {
-	color: green;
+	color: black;
 }
 
 .likeButton {
-	color: green;
+	color: black;
 }
 
 .kommentareAnzeigenButton {
-	color: green;
+	color: black;
 }
 
 .likesAnzeigenButton {
-	color: green;
+	color: black;
 }
 
 .kommentarBox {
-	color: green;
+	color: black;
 }
 
 .nicknameKommentarBox {
-	color: green;
+	color: black;
 }
 
 .vornameKommentarBox {
-	color: green;
+	color: black;
 }
 
 .nachnameKommentarBox {
-	color: green;
+	color: black;
 }
 
 .pinnwandBox {
-	color: green;
+	color: black;
 }
 
 .erstelleBeitragBox {
-	color: green;
+	color: black;
+}
+
+.erstelleBeitragFeld {
+	color: black;
+	width: 70%;
+	border-radius: 20px;
 }
 
 .loginGreet {

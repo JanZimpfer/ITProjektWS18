@@ -12,11 +12,13 @@ import java.util.Vector;
 public class BeitragBox extends FlowPanel {
 
 	// Panels fuer die Darstellung der BeitragBox
+	private HorizontalPanel BeitragPanel = new HorizontalPanel();
 	private VerticalPanel InhaltPanel = new VerticalPanel();
-	private VerticalPanel InfoPanel = new VerticalPanel();
+	private FlowPanel InfoPanel = new FlowPanel();
+	private HorizontalPanel ButtonPanel = new HorizontalPanel();
 
 	// benoetigte Label
-	private Label beitragInhalt = new Label("Dieser Text ist der Inhalt");
+	private Label beitragInhalt = new Label("Dieser Text ist der Inhalt des Test-Beitrags");
 	private Label nickname = new Label("@PeterPan");
 	private Label erstellZeitpunkt = new Label("Zeitpunkt");
 	private Label kommentarAnzahlText = new Label("30 Kommentare");
@@ -26,43 +28,55 @@ public class BeitragBox extends FlowPanel {
 //	private Button beitragStatistikButton = new Button("Beitragstatistik");
 	private Button beitragBearbeitenButton = new Button("Beitrag bearbeiten");
 	private Button likeButton = new Button("Gefällt mir!");
-	private Button kommentierButton = new Button("Kommentieren");
+	private Button kommentierButton = new Button("Sag etwas dazu!");
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	public BeitragBox() {
 
+		BeitragPanel.setSpacing(2);
+		InhaltPanel.setSpacing(3);
+		ButtonPanel.setSpacing(5);
+		
 	}
 
 	public void onLoad() {
 
+
+		
 		// StyleName für das Styling aller BeitragBoxen mit CSS
 		this.addStyleName("beitragBox");
+		
+		
+		this.add(BeitragPanel);
+		
+		// Panels hinzufügen 
+		BeitragPanel.add(InhaltPanel);
+		BeitragPanel.add(InfoPanel);
 
-		// Panels hinzufügen -> in RootPanel?
-		this.add(InhaltPanel);
-		this.add(InfoPanel);
-
-		// Widgets hinzufügen
+		// InhaltPanel gestalten
 		InhaltPanel.add(nickname);
-		InhaltPanel.add(beitragInhalt);
 		InhaltPanel.add(erstellZeitpunkt);
-		InhaltPanel.add(kommentarAnzahlText);
-		InhaltPanel.add(likeAnzahlText);
-
-		// Buttons hinzufügen
-		InhaltPanel.add(beitragBearbeitenButton);
-		InhaltPanel.add(likeButton);
-		InhaltPanel.add(kommentierButton);
+		InhaltPanel.add(beitragInhalt);
+		InhaltPanel.add(ButtonPanel);
+		
+		// ButtonPanel gestalten
+		ButtonPanel.add(beitragBearbeitenButton);
+		ButtonPanel.add(likeButton);
+		ButtonPanel.add(likeAnzahlText);
+		ButtonPanel.add(kommentierButton);
+		ButtonPanel.add(kommentarAnzahlText);
 
 		// StyleNames für das Styling mit CSS hinzufügen
 		beitragBearbeitenButton.addStyleName("beitragBearbeitenButton");
 		likeButton.addStyleName("likeButton");
 		kommentierButton.addStyleName("kommentierButton");
 
-		RootPanel.get("InhaltBereich").add(InfoPanel);
+		RootPanel.get("InhaltBereich").add(BeitragPanel);
 		RootPanel.get("InhaltBereich").add(InhaltPanel);
+		RootPanel.get("InhaltBereich").add(ButtonPanel);
+		RootPanel.get("InhaltBereich").add(InfoPanel);
 	}
 
 	/**

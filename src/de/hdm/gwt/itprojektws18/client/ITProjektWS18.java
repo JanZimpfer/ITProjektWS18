@@ -13,6 +13,7 @@ import de.hdm.gwt.itprojektws18.client.gui.AboPinnwandBox;
 import de.hdm.gwt.itprojektws18.client.gui.AboBox;
 import de.hdm.gwt.itprojektws18.client.gui.BeitragBox;
 import de.hdm.gwt.itprojektws18.client.gui.ErstelleBeitragBox;
+import de.hdm.gwt.itprojektws18.client.gui.HeaderBox;
 import de.hdm.gwt.itprojektws18.client.gui.KommentarBox;
 import de.hdm.gwt.itprojektws18.client.gui.LikeBox;
 import de.hdm.gwt.itprojektws18.client.gui.Suchleiste;
@@ -68,7 +69,9 @@ public class ITProjektWS18 implements EntryPoint {
 	private TextBox nicknameBox = new TextBox();
 
 	//Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt werden.
-	ProfilBox ProfilBox = new ProfilBox ();
+	HeaderBox HeaderBox = new HeaderBox();
+	ProfilBox ProfilBox = new ProfilBox();
+	ErstelleBeitragBox ErstelleBeitragBox = new ErstelleBeitragBox();
 	BeitragBox BeitragBox = new BeitragBox();
 	Suchleiste Suchleiste = new Suchleiste ();
 	/**
@@ -95,11 +98,9 @@ public class ITProjektWS18 implements EntryPoint {
 		 * Befuellen des RootPanels
 		 */
 	
-		
-		RootPanel.get("header").add(ProfilBox);
+		RootPanel.get("header").add(HeaderBox);
 		RootPanel.get("InhaltBereich").add(BeitragBox);
-		RootPanel.get("header").add(Suchleiste);
-		
+		RootPanel.get("BeitragEingabe").add(ErstelleBeitragBox);
 		
 		
 	}	
@@ -141,22 +142,22 @@ public class ITProjektWS18 implements EntryPoint {
 			RootPanel.get("LoginBereich").add(loginPanel);
 		
 			}
-//		
+		
 ////		/**
 ////		 * <b>Nested Class fuer den Login Button</b>
 ////		 * implementiert den entsprechenden ClickHandler
 ////		 */
 ////		
 		class loginButtonClickHandler implements ClickHandler {
-//
-//		@Override
+
+		@Override
 		public void onClick(ClickEvent event) {
 
 			signInLink.setHref(loginInfo.getLoginUrl());
 			Window.open(signInLink.getHref(), "_self", "");
 		}
 	}
-//	
+	
 ////	
 ////		/**
 ////		 * </b>Nested Class fuer den Login Callback</b>
@@ -176,7 +177,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////			@Override
 			public void onSuccess(LoginInfo result) {
 				loginInfo = result;
-//				
+				
 					if (loginInfo.isLoggedIn()) {
 						pinnwandVerwaltung.checkEmail(loginInfo.getEmailAddress(), new FindeNutzerCallback());
 					
@@ -199,13 +200,13 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 */
 ////		
 		class FindeNutzerCallback implements AsyncCallback<Nutzer> {
-//
-//			@Override
+
+			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler beim Login: " + caught.getMessage());
 			}
 
-//			@Override
+			@Override
 			public void onSuccess(Nutzer result) {
 				
 				if (result != null) {
@@ -240,7 +241,7 @@ public class ITProjektWS18 implements EntryPoint {
 			private Button neinBtn = new Button("Abbrechen");
 			private VerticalPanel vPanel = new VerticalPanel();
 			private HorizontalPanel btnPanel = new HorizontalPanel();
-//			
+			
 ////			/**
 ////			 * Ein String der die E-Mail Adresse speichert
 ////			 */
@@ -272,7 +273,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 */
 		class NutzerAnlegenClickHandler implements ClickHandler {
 
-//			@Override
+			@Override
 			public void onClick(ClickEvent event) {
 				Timestamp erstellzeitpunkt = null;
 				pinnwandVerwaltung.erstelleNutzer(vornameBox.getText(), nachnameBox.getText(), nicknameBox.getText(), erstellzeitpunkt, Cookies.getCookie("email"), new NutzerAnlegenCallback());
@@ -280,7 +281,7 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 			
 		}
-//		
+		
 ////		/**
 ////		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
 ////		 * 

@@ -14,6 +14,8 @@ public class Suchleiste extends HorizontalPanel {
 	
 	public Suchleiste () {
 		
+	suchleiste.setSpacing(2);
+		
 	}
 	
 	public void onLoad() {
@@ -23,6 +25,7 @@ public class Suchleiste extends HorizontalPanel {
 	
 	suchleiste.add(textfeld);
 	suchleiste.add(sucheButton);
+
 	
 	sucheButton.addStyleName("suchButton");
 	textfeld.addStyleName("suchleiste");
