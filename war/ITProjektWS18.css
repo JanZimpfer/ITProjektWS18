@@ -17,7 +17,7 @@ div{
 
 #header{
 	
-	background-color: grey;
+	background-color: white;
 	
 }
 
@@ -30,6 +30,7 @@ div{
 	border: 2px solid black;
 	border-radius: 20px;
 	margin-left: 0px;
+	
 }
 
 #InhaltBereich{
@@ -71,7 +72,8 @@ div{
 	border-top: 1px white;
 	font-size: 80%;
 	text-align: center;
-	background: #d5d5d5;
+	background: white;
+	color: #0000ff;
 }
 
 #profilButton{
@@ -83,8 +85,9 @@ div{
 /** Example rules used by the template application (remove for your app) */
 h1 {
 
-  color: black;
+  
   text-align: center;
+  color: #0000ff;
 }
 
 .headerBox{
