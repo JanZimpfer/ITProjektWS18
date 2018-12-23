@@ -70,6 +70,7 @@ public class ITProjektWS18 implements EntryPoint {
 	//Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt werden.
 	ProfilBox ProfilBox = new ProfilBox ();
 	BeitragBox BeitragBox = new BeitragBox();
+	Suchleiste Suchleiste = new Suchleiste ();
 	/**
     * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung
     ** zu initialisieren.
@@ -97,6 +98,7 @@ public class ITProjektWS18 implements EntryPoint {
 		
 		RootPanel.get("header").add(ProfilBox);
 		RootPanel.get("InhaltBereich").add(BeitragBox);
+		RootPanel.get("header").add(Suchleiste);
 		
 		
 		
@@ -139,22 +141,22 @@ public class ITProjektWS18 implements EntryPoint {
 			RootPanel.get("LoginBereich").add(loginPanel);
 		
 			}
-////		
+//		
 ////		/**
 ////		 * <b>Nested Class fuer den Login Button</b>
 ////		 * implementiert den entsprechenden ClickHandler
 ////		 */
 ////		
 		class loginButtonClickHandler implements ClickHandler {
-
-		@Override
+//
+//		@Override
 		public void onClick(ClickEvent event) {
 
 			signInLink.setHref(loginInfo.getLoginUrl());
 			Window.open(signInLink.getHref(), "_self", "");
 		}
 	}
-	
+//	
 ////	
 ////		/**
 ////		 * </b>Nested Class fuer den Login Callback</b>
@@ -174,7 +176,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////			@Override
 			public void onSuccess(LoginInfo result) {
 				loginInfo = result;
-				
+//				
 					if (loginInfo.isLoggedIn()) {
 						pinnwandVerwaltung.checkEmail(loginInfo.getEmailAddress(), new FindeNutzerCallback());
 					
@@ -197,13 +199,13 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 */
 ////		
 		class FindeNutzerCallback implements AsyncCallback<Nutzer> {
-
-			@Override
+//
+//			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler beim Login: " + caught.getMessage());
 			}
 
-			@Override
+//			@Override
 			public void onSuccess(Nutzer result) {
 				
 				if (result != null) {
@@ -238,7 +240,7 @@ public class ITProjektWS18 implements EntryPoint {
 			private Button neinBtn = new Button("Abbrechen");
 			private VerticalPanel vPanel = new VerticalPanel();
 			private HorizontalPanel btnPanel = new HorizontalPanel();
-////			
+//			
 ////			/**
 ////			 * Ein String der die E-Mail Adresse speichert
 ////			 */
@@ -270,7 +272,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 */
 		class NutzerAnlegenClickHandler implements ClickHandler {
 
-			@Override
+//			@Override
 			public void onClick(ClickEvent event) {
 				Timestamp erstellzeitpunkt = null;
 				pinnwandVerwaltung.erstelleNutzer(vornameBox.getText(), nachnameBox.getText(), nicknameBox.getText(), erstellzeitpunkt, Cookies.getCookie("email"), new NutzerAnlegenCallback());
@@ -278,7 +280,7 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 			
 		}
-////		
+//		
 ////		/**
 ////		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
 ////		 * 
@@ -286,7 +288,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 */
 		class NutzerNichtAnlegenClickHandler implements ClickHandler {
 
-			@Override
+//			@Override
 			public void onClick(ClickEvent event) {
 				//hide(); - funktioniert nicht
 				signOutLink.setHref(loginInfo.getLogoutUrl());
@@ -301,7 +303,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 * Callback Aufruf um einen Nutzer anzulegen
 ////		 */
 		class NutzerAnlegenCallback implements AsyncCallback<Nutzer> {
-//
+
 ////			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Ihr User konnte nicht erstellt werden" + caught.getMessage());

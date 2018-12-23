@@ -7,12 +7,19 @@ import com.google.gwt.user.client.ui.*;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 
-public class ProfilBox extends HorizontalPanel {
+public class ProfilBox extends VerticalPanel {
 	
-	private HorizontalPanel profilBox = new HorizontalPanel ();
-		
-	private Button  profilbildButton = new Button ("Mein Profilbild");
-	private Button 	profilButton = new Button ("Mein Profil");
+	
+	private VerticalPanel profilbox = new VerticalPanel ();
+	private HorizontalPanel buttonPanel  = new HorizontalPanel ();	
+	
+	
+	private HorizontalPanel labelPanel  = new HorizontalPanel ();
+	
+	
+	private Button  profilbildButton = new Button ("Profilbild");
+	private Button 	profilButton = new Button ("Profil");
+	
 	private Label 	beitraege = new Label ("Beitraege: ");
 	private Label 	abonniert = new Label ("Abonniert: ");
 	private Label 	abonnenten = new Label ("Abonnenten: ");
@@ -21,25 +28,30 @@ public class ProfilBox extends HorizontalPanel {
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	public ProfilBox () {
-		
+		buttonPanel.setSpacing(2);
+		labelPanel.setSpacing(3);
 	}
 	
 	public void onLoad() {
 	
 		this.addStyleName("profilBox");
-		this.add(profilBox);
+		this.add(profilbox);
 		
-		profilBox.add(profilButton);
-		profilBox.add(profilbildButton);
-		profilBox.add(profilButton);
-		profilBox.add(beitraege);
-		profilBox.add(abonniert);
-		profilBox.add(abonnenten);
+		profilbox.add(buttonPanel);
+		profilbox.add(labelPanel);
+		
+		buttonPanel.add(profilbildButton);
+		buttonPanel.add(profilButton);
+		
+		
+		labelPanel.add(beitraege);
+		labelPanel.add(abonniert);
+		labelPanel.add(abonnenten);
 		
 		profilbildButton.addStyleName("profilbildButton");
 		profilButton.addStyleName("profilButton");
 		
-		RootPanel.get("header").add(profilBox);
+		RootPanel.get("header").add(profilbox);
 		
 		
 		
