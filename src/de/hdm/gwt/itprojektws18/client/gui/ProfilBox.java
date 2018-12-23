@@ -4,7 +4,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
-import com.google.gwt.user.client.ui.HorizontalPanel;
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 
 public class ProfilBox extends HorizontalPanel {
 	
@@ -12,50 +13,51 @@ public class ProfilBox extends HorizontalPanel {
 		
 	private Button  profilbildButton = new Button ("Mein Profilbild");
 	private Button 	profilButton = new Button ("Mein Profil");
-	private Label 	beitraege = new Label ();
-	private Label 	abonniert = new Label ();
-	private Label 	abonnenten = new Label ();
+	private Label 	beitraege = new Label ("Beitraege: ");
+	private Label 	abonniert = new Label ("Abonniert: ");
+	private Label 	abonnenten = new Label ("Abonnenten: ");
 	
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	ClientsideSettings clientSettings = new ClientsideSettings();
 	
-	public ProfilBox() {
+	public ProfilBox () {
+		
 	}
 	
-	
-	
 	public void onLoad() {
+	
+		this.addStyleName("profilBox");
+		this.add(profilBox);
 		
-	this.addStyleName("Profilbox");
+		profilBox.add(profilButton);
+		profilBox.add(profilbildButton);
+		profilBox.add(profilButton);
+		profilBox.add(beitraege);
+		profilBox.add(abonniert);
+		profilBox.add(abonnenten);
 		
-	 this.add(profilBox);
+		profilbildButton.addStyleName("profilbildButton");
+		profilButton.addStyleName("profilButton");
+		
+		RootPanel.get("header").add(profilBox);
+		
+		
+		
+	
+	
+	
+	
 	 
-	 profilBox.add(beitraege);
-	 profilBox.add(abonniert);
-	 profilBox.add(abonnenten);
+	 profilButton.addStyleName("profilButton");
 	 
-	 
-	 
-	 profilBox.add(profilButton);
-	 profilBox.add(profilbildButton);
-	 
-	 profilButton.addClickHandler(new ClickHandler ()  {
-		 
-		 public void onClick(ClickEvent event) {
-			 
-		 }
-	 }	 
-			 );
-	 
-	 profilbildButton.addClickHandler(new ClickHandler() {
-		 
-		 public void onClick(ClickEvent event) {
-			 
-			 
-		 		}
-	 	}
-			 
-	);
-	 
-	 
+		class eigenesProfilAnzeigen implements ClickHandler {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+
+			}
+		}
 	 
 	
 		

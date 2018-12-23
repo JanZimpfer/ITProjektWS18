@@ -34,6 +34,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -66,39 +67,37 @@ public class ITProjektWS18 implements EntryPoint {
 	private TextBox nachnameBox = new TextBox();
 	private TextBox nicknameBox = new TextBox();
 	
+	ProfilBox ProfilBox = new ProfilBox ();
+	
 	/**
     * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung
     ** zu initialisieren.
 	*/
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
+
+	
 		
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
 		
-		LoginServiceAsync loginService = GWT.create(LoginService.class);
-		loginService.login(GWT.getHostPageBaseURL()+
-				"ITProjektWS18.html", new LoginCallback());
-	
-		/*
-		 * Erstellung der Panels fuer die verschiedenen Bereiche
-		 */
+//		LoginServiceAsync loginService = GWT.create(LoginService.class);
+//		loginService.login(GWT.getHostPageBaseURL()+
+//				"ITProjektWS18.html", new LoginCallback());
+//	
 
-		HorizontalPanel profilBox = new HorizontalPanel ();
 		
-		VerticalPanel AboBox = new VerticalPanel();
-		
-		FlowPanel BeitragBox = new FlowPanel();
-
 		/*
 		 * Befuellen des RootPanels
 		 */
+	
 		
-		RootPanel.get("ProfilBox").add(profilBox);
-		RootPanel.get("Abobereich").add(AboBox);
-		RootPanel.get("BeitragBox").add(BeitragBox);
+		RootPanel.get("header").add(ProfilBox);
+
+		
+		
 		
 	}	
 	
@@ -110,7 +109,7 @@ public class ITProjektWS18 implements EntryPoint {
 			PinnwandBox pinnwandbox = new PinnwandBox();
 			AboBox abobox = new AboBox();
 			AboPinnwandBox abopwbox = new AboPinnwandBox();
-			
+//			Button 	profilButton = new Button ("Mein Profil");
 			
 			RootPanel.get("header").add(profilbox);
 			RootPanel.get("header").add(suchleiste);
@@ -119,14 +118,15 @@ public class ITProjektWS18 implements EntryPoint {
 			RootPanel.get("AboBereich").add(abopwbox);
 			
 			
+			
 		}
 		
+
+////		/**
+////		 * Methode zum Anzeigen der API
+////		 */
+			private void loadLogin() {
 	
-		/**
-		 * Methode zum Anzeigen der API
-		 */
-		private void loadLogin() {
-			
 			loginBtn.addClickHandler(new loginButtonClickHandler());
 			loginBtn.addStyleName("submitButton");
 			loginGreet.setStylePrimaryName("loginGreet");
@@ -136,32 +136,32 @@ public class ITProjektWS18 implements EntryPoint {
 			loginPanel.add(loginAufforderung);
 			loginPanel.add(loginBtn);
 			RootPanel.get("LoginBereich").add(loginPanel);
-			
-		}
 		
-		/**
-		 * <b>Nested Class fuer den Login Button</b>
-		 * implementiert den entsprechenden ClickHandler
-		 */
-		
+			}
+////		
+////		/**
+////		 * <b>Nested Class fuer den Login Button</b>
+////		 * implementiert den entsprechenden ClickHandler
+////		 */
+////		
 		class loginButtonClickHandler implements ClickHandler {
 
-			@Override
-			public void onClick(ClickEvent event) {
-			
-				signInLink.setHref(loginInfo.getLoginUrl());
-				Window.open(signInLink.getHref(), "_self", "");
-			}
+		@Override
+		public void onClick(ClickEvent event) {
+
+			signInLink.setHref(loginInfo.getLoginUrl());
+			Window.open(signInLink.getHref(), "_self", "");
 		}
+	}
 	
-	
-		/**
-		 * </b>Nested Class fuer den Login Callback</b>
-		 * Zunaechst wird ueberprueft ob der User bereits eingeloggt ist.
-		 * 
-		 * Anschliessend wird ueberprueft ob die E-Mail Adresse bereits in
-		 * der Datenbank vorhanden ist.
-		 */
+////	
+////		/**
+////		 * </b>Nested Class fuer den Login Callback</b>
+////		 * Zunaechst wird ueberprueft ob der User bereits eingeloggt ist.
+////		 * 
+////		 * Anschliessend wird ueberprueft ob die E-Mail Adresse bereits in
+////		 * der Datenbank vorhanden ist.
+////		 */
 		class LoginCallback implements AsyncCallback<LoginInfo> {
 
 			@Override
@@ -169,8 +169,8 @@ public class ITProjektWS18 implements EntryPoint {
 				Window.alert("Fehler beim Login: " + caught.getMessage());
 				
 			}
-
-			@Override
+////
+////			@Override
 			public void onSuccess(LoginInfo result) {
 				loginInfo = result;
 				
@@ -186,15 +186,15 @@ public class ITProjektWS18 implements EntryPoint {
 				
 			}
 			
-		
-		/**
-		 * <b>Nested Class fuer den AsyncCallback checkEmail</b>
-		 * Ist der Nutzer bereits vorhanden werden zwei Cookies erstellt
-		 * und das Pinnwandsystem wird geladen.
-		 * 
-		 * Ist der User nicht vorhanden startet eine Registrierungsabfrage
-		 */
-		
+////		
+////		/**
+////		 * <b>Nested Class fuer den AsyncCallback checkEmail</b>
+////		 * Ist der Nutzer bereits vorhanden werden zwei Cookies erstellt
+////		 * und das Pinnwandsystem wird geladen.
+////		 * 
+////		 * Ist der User nicht vorhanden startet eine Registrierungsabfrage
+////		 */
+////		
 		class FindeNutzerCallback implements AsyncCallback<Nutzer> {
 
 			@Override
@@ -219,17 +219,17 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 			
 		}
-		
-		/**
-		 * <b>Nested Class einer Registrierungsform</b>
-		 * 
-		 * Abfrage ob der User sich registrieren moechte
-		 */
+////		
+////		/**
+////		 * <b>Nested Class einer Registrierungsform</b>
+////		 * 
+////		 * Abfrage ob der User sich registrieren moechte
+////		 */
 		class RegistrierungsformDialogBox extends DialogBox {
 			
-			/**
-			 * Instantiierung der notwendigen GUI Objekte
-			 */
+////			/**
+////			 * Instantiierung der notwendigen GUI Objekte
+////			 */
 			private Label abfrage = new Label(
 					"Sie sind noch nicht registriert."
 					+ "Wenn Sie einen Nutzer anlegen m�chten, f�llen Sie bitte folgendes Formular aus.");
@@ -237,16 +237,16 @@ public class ITProjektWS18 implements EntryPoint {
 			private Button neinBtn = new Button("Abbrechen");
 			private VerticalPanel vPanel = new VerticalPanel();
 			private HorizontalPanel btnPanel = new HorizontalPanel();
-			
-			/**
-			 * Ein String der die E-Mail Adresse speichert
-			 */
+////			
+////			/**
+////			 * Ein String der die E-Mail Adresse speichert
+////			 */
 			private String googleMail = "";
-			
-			/**
-			 * Aufruf des Konstruktors
-			 * @param mail
-			 */
+////			
+////			/**
+////			 * Aufruf des Konstruktors
+////			 * @param mail
+////			 */
 			public RegistrierungsformDialogBox (String mail) {
 				googleMail = mail;
 				jaBtn.addClickHandler(new NutzerAnlegenClickHandler());
@@ -261,12 +261,12 @@ public class ITProjektWS18 implements EntryPoint {
 				this.add(vPanel);
 			}
 		}
-		
-		/**
-		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
-		 * 
-		 * implementiert den entsprechenden ClickHandler
-		 */
+////		
+////		/**
+////		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
+////		 * 
+////		 * implementiert den entsprechenden ClickHandler
+////		 */
 		class NutzerAnlegenClickHandler implements ClickHandler {
 
 			@Override
@@ -277,12 +277,12 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 			
 		}
-		
-		/**
-		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
-		 * 
-		 * implementiert den entsprechenden ClickHandler
-		 */
+////		
+////		/**
+////		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
+////		 * 
+////		 * implementiert den entsprechenden ClickHandler
+////		 */
 		class NutzerNichtAnlegenClickHandler implements ClickHandler {
 
 			@Override
@@ -293,20 +293,20 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 			
 		}
-		
-		/**
-		 * <b>Nested Class fuer die Registrierungsform</b>
-		 * 
-		 * Callback Aufruf um einen Nutzer anzulegen
-		 */
+////		
+////		/**
+////		 * <b>Nested Class fuer die Registrierungsform</b>
+////		 * 
+////		 * Callback Aufruf um einen Nutzer anzulegen
+////		 */
 		class NutzerAnlegenCallback implements AsyncCallback<Nutzer> {
-
-			@Override
+////
+////			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Ihr User konnte nicht erstellt werden" + caught.getMessage());
 			}
-
-			@Override
+////
+////			@Override
 			public void onSuccess(Nutzer result) {
 				Window.alert("Ihr Nutzer wurde angelegt");
 				Cookies.setCookie("ausloggen", loginInfo.getLogoutUrl());
