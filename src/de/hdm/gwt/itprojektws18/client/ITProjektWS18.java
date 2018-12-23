@@ -66,9 +66,10 @@ public class ITProjektWS18 implements EntryPoint {
 	private TextBox vornameBox = new TextBox();
 	private TextBox nachnameBox = new TextBox();
 	private TextBox nicknameBox = new TextBox();
-	
+
+	//Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt werden.
 	ProfilBox ProfilBox = new ProfilBox ();
-	
+	BeitragBox BeitragBox = new BeitragBox();
 	/**
     * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung
     ** zu initialisieren.
@@ -95,7 +96,7 @@ public class ITProjektWS18 implements EntryPoint {
 	
 		
 		RootPanel.get("header").add(ProfilBox);
-
+		RootPanel.get("InhaltBereich").add(BeitragBox);
 		
 		
 		
@@ -300,7 +301,7 @@ public class ITProjektWS18 implements EntryPoint {
 ////		 * Callback Aufruf um einen Nutzer anzulegen
 ////		 */
 		class NutzerAnlegenCallback implements AsyncCallback<Nutzer> {
-////
+//
 ////			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Ihr User konnte nicht erstellt werden" + caught.getMessage());

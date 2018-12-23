@@ -4,6 +4,9 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.*;
 
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+
 import java.util.Vector;
 
 public class BeitragBox extends FlowPanel {
@@ -13,11 +16,11 @@ public class BeitragBox extends FlowPanel {
 	private VerticalPanel InfoPanel = new VerticalPanel();
 
 	// benoetigte Label
-	private Widget beitragInhalt = new Widget();
-	private Widget nickname = new Widget();
-	private Widget erstellZeitpunkt = new Widget();
-	private Widget kommentarAnzahlText = new Widget();
-	private Widget likeAnzahlText = new Widget();
+	private Label beitragInhalt = new Label("Dieser Text ist der Inhalt");
+	private Label nickname = new Label("@PeterPan");
+	private Label erstellZeitpunkt = new Label("Zeitpunkt");
+	private Label kommentarAnzahlText = new Label("30 Kommentare");
+	private Label likeAnzahlText = new Label("85 Likes");
 
 	// benoetigte Buttons
 //	private Button beitragStatistikButton = new Button("Beitragstatistik");
@@ -25,6 +28,9 @@ public class BeitragBox extends FlowPanel {
 	private Button likeButton = new Button("Gefällt mir!");
 	private Button kommentierButton = new Button("Kommentieren");
 
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	ClientsideSettings clientSettings = new ClientsideSettings();
+	
 	public BeitragBox() {
 
 	}
@@ -35,8 +41,8 @@ public class BeitragBox extends FlowPanel {
 		this.addStyleName("beitragBox");
 
 		// Panels hinzufügen -> in RootPanel?
-//		this.add(InhaltPanel);
-//		this.add(InfoPanel);
+		this.add(InhaltPanel);
+		this.add(InfoPanel);
 
 		// Widgets hinzufügen
 		InhaltPanel.add(nickname);
@@ -55,6 +61,8 @@ public class BeitragBox extends FlowPanel {
 		likeButton.addStyleName("likeButton");
 		kommentierButton.addStyleName("kommentierButton");
 
+		RootPanel.get("InhaltBereich").add(InfoPanel);
+		RootPanel.get("InhaltBereich").add(InhaltPanel);
 	}
 
 	/**
