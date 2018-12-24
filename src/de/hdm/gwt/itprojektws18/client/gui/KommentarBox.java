@@ -250,7 +250,7 @@ public class KommentarBox extends VerticalPanel{
 			
 			Kommentar k = new Kommentar();
 			
-			//pinnwandVerwaltung.speichern(Kommentar k, Callback);
+			pinnwandVerwaltung.speichern (k, new KommentarBearbeitenCallback());
 			
 		}
 		
@@ -258,7 +258,7 @@ public class KommentarBox extends VerticalPanel{
 	 * </b>Nested Class fuer den edit-Button</b>
 	 * Callback Aufruf um Kommentar zu bearbeiten
 	 */
-	public class KommentarBearbeitenCallback implements AsyncCallback<Kommentar> {
+	public class KommentarBearbeitenCallback implements AsyncCallback<Void> {
 
 		@Override
 		public void onFailure(Throwable caught) {
@@ -266,7 +266,7 @@ public class KommentarBox extends VerticalPanel{
 		}
 
 		@Override
-		public void onSuccess(Kommentar result) {
+		public void onSuccess(Void result) {
 			Window.alert("Kommentar erfolgreich bearbeitet.");
 			//Neu laden?
 			
