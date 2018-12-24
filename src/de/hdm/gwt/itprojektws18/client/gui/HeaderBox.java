@@ -18,6 +18,8 @@ public class HeaderBox extends HorizontalPanel{
 	
 	public HeaderBox() {
 		headerBox.setSpacing(2);
+		headerBox.setCellHorizontalAlignment(profilBox, ALIGN_LEFT);
+		headerBox.setCellHorizontalAlignment(suchLeiste, ALIGN_RIGHT);
 	}
 	
 	public void onLoad() {

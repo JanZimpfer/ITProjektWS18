@@ -2,7 +2,7 @@
 
 /**Styling der Div-Elemente*/
 
-body {background-color: white;}
+body {background-color: #dfdfdf;}
 
 div{
 	padding: 10px;
@@ -11,13 +11,18 @@ div{
 }
 
 #container{
-	
-	padding: 0px;
+	float: none;
+	height: 100%;
+	margin: 5 px;
+	min-width: 1000px;
+	background-color: #dfdfdf;
 }
 
 #header{
 	
-	background-color: white;
+	background-color: #ff7d78;
+	border-radius: 20px;
+
 	
 }
 
@@ -30,7 +35,7 @@ div{
 	border: 2px solid black;
 	border-radius: 20px;
 	margin-left: 0px;
-	
+
 }
 
 #InhaltBereich{
@@ -39,6 +44,7 @@ div{
 	font-size:10pt;
 	border-radius: 20px;
 	border: 2px solid black;
+
 	
 	
 	
@@ -72,8 +78,9 @@ div{
 	border-top: 1px white;
 	font-size: 80%;
 	text-align: center;
-	background: white;
-	color: #0000ff;
+	background: #ff7d78;
+	color: #424242;
+	border-radius: 20px;
 }
 
 #profilButton{
@@ -85,9 +92,9 @@ div{
 /** Example rules used by the template application (remove for your app) */
 h1 {
 
-  
-  text-align: center;
-  color: #0000ff;
+  	font-size: 18pt;
+  	text-align: center;
+  	color: #424242;
 }
 
 .headerBox{
@@ -132,11 +139,12 @@ h1 {
 .suchleiste {
 	color: black;
 	border-radius: 20px;
+	float: right;
 }
 
 .suchButton {
 	color: black;
-	
+	float:right;
 }
 
 .einstellungenButton {
@@ -159,8 +167,6 @@ h1 {
 	color: black;
 }
 
-
-
 .aboBox {
 	color: black;
 }
@@ -171,6 +177,15 @@ h1 {
 
 .beitragBox {
 	color: black;
+	
+}
+
+.infoPanel {
+
+}
+
+.inhaltPanel {
+
 }
 
 .submitButton {
@@ -212,6 +227,7 @@ h1 {
 
 .kommentarBox {
 	color: black;
+	
 }
 
 .nicknameKommentarBox {
@@ -238,6 +254,7 @@ h1 {
 	color: black;
 	width: 70%;
 	border-radius: 20px;
+	
 }
 
 .loginGreet {

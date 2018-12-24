@@ -15,7 +15,9 @@ public class Suchleiste extends HorizontalPanel {
 	public Suchleiste () {
 		
 	suchleiste.setSpacing(2);
-		
+	suchleiste.setCellHorizontalAlignment(suchleiste, ALIGN_LEFT);
+	suchleiste.setCellHorizontalAlignment(sucheButton, ALIGN_RIGHT);
+	
 	}
 	
 	public void onLoad() {
@@ -25,6 +27,7 @@ public class Suchleiste extends HorizontalPanel {
 	
 	suchleiste.add(textfeld);
 	suchleiste.add(sucheButton);
+
 
 	
 	sucheButton.addStyleName("suchButton");

@@ -36,9 +36,9 @@ public class BeitragBox extends FlowPanel {
 	public BeitragBox() {
 
 		BeitragPanel.setSpacing(2);
-		InhaltPanel.setSpacing(3);
+		InhaltPanel.setSpacing(4);
 		ButtonPanel.setSpacing(5);
-		
+	
 	}
 
 	public void onLoad() {
@@ -72,7 +72,10 @@ public class BeitragBox extends FlowPanel {
 		beitragBearbeitenButton.addStyleName("beitragBearbeitenButton");
 		likeButton.addStyleName("likeButton");
 		kommentierButton.addStyleName("kommentierButton");
-
+		InfoPanel.addStyleName("infoPanel");
+		InhaltPanel.addStyleName("inhaltPanel");
+		
+		
 		RootPanel.get("InhaltBereich").add(BeitragPanel);
 		RootPanel.get("InhaltBereich").add(InhaltPanel);
 		RootPanel.get("InhaltBereich").add(ButtonPanel);
