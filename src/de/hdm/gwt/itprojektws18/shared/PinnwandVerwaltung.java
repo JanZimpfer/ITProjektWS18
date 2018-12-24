@@ -86,5 +86,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n);
 
+	void speichern(Kommentar k);
+
 	
 }

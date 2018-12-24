@@ -82,4 +82,6 @@ public interface PinnwandVerwaltungAsync {
 	void getAllAbosFor(Pinnwand p, AsyncCallback<Vector<Abonnement>> callback);
 
 	void checkEmail(String mail, AsyncCallback<Nutzer> callback);
+
+	void speichern(Kommentar k, AsyncCallback<Void> callback);
 }
