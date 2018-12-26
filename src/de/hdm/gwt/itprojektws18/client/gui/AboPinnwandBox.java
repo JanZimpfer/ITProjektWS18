@@ -22,9 +22,9 @@ public class AboPinnwandBox extends FlowPanel{
 	/**
 	 * Instanziierung der GUI Elemente
 	 */
-	private Widget nutzerNameWidget = new Widget();
+	private Label nutzerNameLabel = new Label();
 	
-	private Widget nickNameWidget = new Widget();
+	private Label nickNameLabel = new Label();
 	
 	
 	/**
@@ -38,20 +38,46 @@ public class AboPinnwandBox extends FlowPanel{
 		
 	}
 	
-	public AboPinnwandBox(int anzahlAbos) {
-		//Anzahl der Abos aus Datenbank auslesen!
-	}
-	
 	
 	public void onLoad() {
 		
-		//nutzerNameWidget.equals()
 		
-		nutzerNameWidget.addStyleName("vornameAbobox");
-		nickNameWidget.addStyleName("nicknameAboBox");
+		
+		nutzerNameLabel.addStyleName("vornameAbobox");
+		nickNameLabel.addStyleName("nicknameAboBox");
 		this.addStyleName("aboPinnwandBox");
 		
-		this.add(nutzerNameWidget);
-		this.add(nickNameWidget);
+		
+		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
+		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
+		
+		this.add(nutzerNameLabel);
+		this.add(nickNameLabel);
 	}
+	
+	public void updateNutzerNameLabel() {
+		Nutzer n = new Nutzer();
+		this.nutzerNameLabel.setText(n.getVorname());
+		
+		//methode bis jetzt falsch, implementierung einer methode getVornameByID() in pinnwandverwaltungimpl 
+	}
+	
+	public void updateNickNameLabel() {
+		
+	}
+	
+	
+	
+	class PinnwandAnzeigen implements ClickHandler{
+	
+			
+			public void onClick(ClickEvent event) {
+				
+				
+			}
+			
+		}
+	
+	//Hinzufügen von Methoden, die Methoden der Impl verwenden, um Nick- und Nutzername den jeweilgien Labels hinzuzufügen
+	//Id Abgleich in Konstruktor, ob ID(bzw Pinnwand)bereits verwendet wurde bzw. ob Abonnementbeziehung bereits in Abobox angezeigt wird
 }

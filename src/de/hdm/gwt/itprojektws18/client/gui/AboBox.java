@@ -54,16 +54,9 @@ public class AboBox extends VerticalPanel{
 		
 	}
 	
-
-	class PinnwandAnzeigen implements ClickHandler{
-
-		
-		public void onClick(ClickEvent event) {
-			
-			
-		}
-		
-	}
+	//Implementierung: findAllAbosBy, die eine Liste an Abonnementbeziehungen des angemeldetenNutzers liefern,
+	// Id Abgleich dieser Liste, ob jeweilige Pinnwand ID bereits dem VP geaddet wurde (if-Abfrage) 
+	//Nutzen der Methode: getAllAbosByNutzer
 	
 	
 }
