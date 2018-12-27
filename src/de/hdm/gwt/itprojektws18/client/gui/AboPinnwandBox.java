@@ -79,5 +79,6 @@ public class AboPinnwandBox extends FlowPanel{
 		}
 	
 	//Hinzufügen von Methoden, die Methoden der Impl verwenden, um Nick- und Nutzername den jeweilgien Labels hinzuzufügen
-	//Id Abgleich in Konstruktor, ob ID(bzw Pinnwand)bereits verwendet wurde bzw. ob Abonnementbeziehung bereits in Abobox angezeigt wird
+	//(Id Abgleich in Konstruktor, ob ID(bzw Pinnwand)bereits verwendet wurde bzw. ob Abonnementbeziehung bereits in Abobox angezeigt wird)
+	// Verknüpfung mit Suchleiste: Neue Abo Beziehung wird erstellt -> beide update Methoden in AboPWBox werden ausgeführt und ein AboPWBox Objekt in AboBox erstellt
 }
