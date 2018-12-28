@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
@@ -62,17 +63,24 @@ public class ProfilBox extends VerticalPanel {
 	 
 	 profilButton.addStyleName("profilButton");
 	 
-		class eigenesProfilAnzeigen implements ClickHandler {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
-
-			}
-		}
+	 
+	profilbildButton.addClickHandler(new eigenesProfilAnzeigen());
+	profilButton.addClickHandler(new eigenesProfilAnzeigen ());
 	 
 	
 		
 	}
+	
+	class eigenesProfilAnzeigen implements ClickHandler {
+
+		
+		public void onClick(ClickEvent event) {
+			
+		Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+		
+
+		}
+	}
+ 
 
 }
