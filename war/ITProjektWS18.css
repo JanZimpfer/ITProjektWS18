@@ -2,12 +2,16 @@
 
 /**Styling der Div-Elemente*/
 
-body {background-color: #dfdfdf;}
+body {
+	background-color: #dfdfdf;
+	
+}
 
 div{
 	padding: 10px;
 	margin: 0px;
 	background-color: white;
+	
 }
 
 #container{
@@ -16,6 +20,7 @@ div{
 	margin: 5 px;
 	min-width: 1000px;
 	background-color: #dfdfdf;
+	
 }
 
 #header{
@@ -98,6 +103,7 @@ h1 {
 }
 
 .headerBox{
+	
 	
 }
 

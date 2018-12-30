@@ -115,11 +115,11 @@ public class ITProjektWS18 implements EntryPoint {
 			AboPinnwandBox abopwbox = new AboPinnwandBox();
 //			Button 	profilButton = new Button ("Mein Profil");
 			
-			RootPanel.get("header").add(profilbox);
-			RootPanel.get("header").add(suchleiste);
-			RootPanel.get("InhaltBereich").add(pinnwandbox);
-			RootPanel.get("AboBereich").add(abobox);
-			RootPanel.get("AboBereich").add(abopwbox);
+//			RootPanel.get("header").add(profilbox);
+//			RootPanel.get("header").add(suchleiste);
+//			RootPanel.get("InhaltBereich").add(pinnwandbox);
+//			RootPanel.get("AboBereich").add(abobox);
+//			RootPanel.get("AboBereich").add(abopwbox);
 			
 			
 			
