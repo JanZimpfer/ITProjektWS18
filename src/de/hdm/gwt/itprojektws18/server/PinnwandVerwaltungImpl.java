@@ -463,14 +463,7 @@ public PinnwandVerwaltungImpl() {
 		return this.kMapper.insertKommentar(k);
 	}
 	
-	/**
-	 * Speichern eines bearbeiteten Kommentars
-	 * @param k
-	 */
-	@Override
-	public void speichern (Kommentar k) {
-		kMapper.updateKommentar(k);
-	}
+	
 	/**
 	 * Loeschen eines Kommentars
 	 * @param Kommentar k

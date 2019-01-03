@@ -72,22 +72,27 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 			result.setHeaderData(header);
 			
+			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosFor(n);
+			Vector<Kommentar> kommentar = this.getPinnwandVerwaltung().getAllKommentareByNutzer(n);
+			Vector<Like> likes = this.getPinnwandVerwaltung().getAllLikesByNutzer(n);
 			Vector<Beitrag> alleBeitraege = getBeitrageByNutzer(n);
 			
 			Row headline = new Row();
 			headline.addColumn(new Column("Nutzer"));
 			headline.addColumn(new Column("Abonnementanzahl"));
-			headline.addColumn(new Column("Beiträge"));
-			headline.addColumn(new Column("Kommentare"));
-			headline.addColumn(new Column("Likes"));
+			headline.addColumn(new Column("Beiträgeanzahl"));
+			headline.addColumn(new Column("Kommentaranzahl"));
+			headline.addColumn(new Column("Likeanzahl")); 
 
 			result.addRow(headline);
 			
 			Row row = new Row();
 			row.addColumn(new Column(nutzer.getNickname()));
-			row.addColumn(new Column(""));
+			row.addColumn(new Column(abos.size()+""));
 			row.addColumn(new Column(alleBeitraege.size()+""));
-		
+			row.addColumn(new Column(kommentar.size()+""));
+			row.addColumn(new Column(likes.size()+""));
+			
 			result.addRow(row);
 			
 			this.addImprint(result);
@@ -131,12 +136,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 			result.addRow(headline);
 			
-			Row row = new Row();
-			row.addColumn(new Column(nutzer.getNickname()));
-			row.addColumn(new Column(""));
-			row.addColumn(new Column(alleBeitraege.size()+""));
-			result.addRow(row);
-			
+			for (Beitrag beitrag2 : alleBeitraege) {
+				
+				Row row = new Row();
+				row.addColumn(new Column(nutzer.getNickname()));
+				row.addColumn(new Column(beitrag2.getText()));
+				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllKommentareByBeitrag(beitrag2).size()+""));
+				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllLikesByBeitrag(beitrag2).size()+""));
+				result.addRow(row);
+				
+			}
 			this.addImprint(result);
 
 		
