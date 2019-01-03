@@ -11,7 +11,7 @@ public class DBConnection {
 	
 	
 	 private static String googleUrl = "XYZ";
-	 private static String localUrl = "jdbc:mysql://localhost:3306/sw1819?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	 private static String localUrl = "jdbc:mysql://localhost:3306/sw1819?user=root&password=";
 	 private static String username = "root";
 	 private static String password ="sw1819";
 	 

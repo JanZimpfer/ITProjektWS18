@@ -67,7 +67,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
 			NutzerStatistikReport result = new NutzerStatistikReport();
-			result.setTitle("Alle Nutzer auf der Pinnwand");
+			result.setTitle("Nutzerstatistik:");
 			CompositeParagraph header = new CompositeParagraph();
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 			result.setHeaderData(header);
@@ -87,6 +87,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			row.addColumn(new Column(nutzer.getNickname()));
 			row.addColumn(new Column(""));
 			row.addColumn(new Column(alleBeitraege.size()+""));
+		
 			result.addRow(row);
 			
 			this.addImprint(result);
@@ -104,14 +105,43 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	
 	@Override
 	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom) throws IllegalArgumentException {
-		if(this.getPinnwandVerwaltung() == null) {
+		if (this.getPinnwandVerwaltung() == null) {
 			return null;
-		}
-		else {
-		BeitragStatistikReport result= new BeitragStatistikReport();
-		return result;
+		} 
+
+			Nutzer n = getNutzerById(nutzer.getId());
 		
-		}
+		
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
+
+			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
+			BeitragStatistikReport result = new BeitragStatistikReport();
+			result.setTitle("Beitragstatistik:");
+			CompositeParagraph header = new CompositeParagraph();
+			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+			result.setHeaderData(header);
+			
+			Vector<Beitrag> alleBeitraege = getBeitrageByNutzer(n);
+			
+			Row headline = new Row();
+			headline.addColumn(new Column("Nutzer"));
+			headline.addColumn(new Column("Beiträge"));
+			headline.addColumn(new Column("Kommentare"));
+			headline.addColumn(new Column("Likes"));
+
+			result.addRow(headline);
+			
+			Row row = new Row();
+			row.addColumn(new Column(nutzer.getNickname()));
+			row.addColumn(new Column(""));
+			row.addColumn(new Column(alleBeitraege.size()+""));
+			result.addRow(row);
+			
+			this.addImprint(result);
+
+		
+		return result;
+
 	}
 
 	private Nutzer getNutzerByName(Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
@@ -136,10 +166,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return this.getLikesFromUser(nutzer);
 	}
 
-//	@Override
-//	public LikeStatistikReport createLikeStatistikReport(int like) throws IllegalArgumentException {
-//		return this.createLikeStatistikReport(like);
-//	}
 
 	@Override
 	public Vector<Nutzer> getNutzerByName(String vorname, String nachname) throws IllegalArgumentException {

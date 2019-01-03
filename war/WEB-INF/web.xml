@@ -39,7 +39,7 @@
     
   <servlet-mapping>
     <servlet-name>loginService</servlet-name>
-    <url-pattern>/itprojektreportws18/login</url-pattern>
+    <url-pattern>/itprojektws18report/login</url-pattern>
   </servlet-mapping> 
     
     

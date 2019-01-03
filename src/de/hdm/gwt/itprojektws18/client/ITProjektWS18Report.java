@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.gwt.itprojektws18.client.gui.report.ReportSelectMenu;
 import de.hdm.gwt.itprojektws18.shared.LoginService;
 import de.hdm.gwt.itprojektws18.shared.LoginServiceAsync;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
@@ -35,9 +36,9 @@ public class ITProjektWS18Report implements EntryPoint{
 	
 	@Override
 	public void onModuleLoad() {
-		Window.alert("Hier her komme ich");
-		LoginServiceAsync loginService = GWT.create(LoginService.class);
-		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18Report.html", new LoginCallback());
+		loadReportgenerator();
+//		LoginServiceAsync loginService = GWT.create(LoginService.class);
+//		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18Report.html", new LoginCallback());
 
 
 	}
@@ -45,27 +46,27 @@ public class ITProjektWS18Report implements EntryPoint{
 	 * Erstellen eines LoginCallbacks 
 	 *
 	 */
-	class LoginCallback implements AsyncCallback<LoginInfo> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Login: " + caught.getMessage());
-		}
-
-		@Override
-		public void onSuccess(LoginInfo result) {
-			Window.alert("Hier her komme ich");
-
-			loginInfo = result;
-			if (loginInfo.isLoggedIn()) {
-				reportVerwaltung.findNutzerByEmail(loginInfo.getEmailAddress(), new FindNutzerCallback());
-
-			} else {
-				loadLogin();
-			}
-		}
-
-	}
+//	class LoginCallback implements AsyncCallback<LoginInfo> {
+//
+//		@Override
+//		public void onFailure(Throwable caught) {
+//			Window.alert("Fehler beim Login: " + caught.getMessage());
+//		}
+//
+//		@Override
+//		public void onSuccess(LoginInfo result) {
+//			Window.alert("Hier her komme ich");
+//
+//			loginInfo = result;
+//			if (loginInfo.isLoggedIn()) {
+//				reportVerwaltung.findNutzerByEmail(loginInfo.getEmailAddress(), new FindNutzerCallback());
+//
+//			} else {
+//				loadLogin();
+//			}
+//		}
+//
+//	}
 	/**
 	 * CLickHandler für den LoginButton
 	 *
@@ -138,12 +139,12 @@ public class ITProjektWS18Report implements EntryPoint{
 //		Cookies.setCookie("logout", loginInfo.getLogoutUrl());
 //		RootPanel.get("logout").add(logoutButton);
 
-//		ReportSelectMenu reportMenu = new ReportSelectMenu();
-		RootPanel.get("contentReport").clear();
-
+		ReportSelectMenu reportMenu = new ReportSelectMenu();
 		
+
+		RootPanel.get("header").add(reportMenu);
 	
-		signOutLink.setHref(loginInfo.getLogoutUrl());
+//		signOutLink.setHref(loginInfo.getLogoutUrl());
 	}
 	
 }
