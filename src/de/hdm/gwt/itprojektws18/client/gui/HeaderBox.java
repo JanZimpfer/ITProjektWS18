@@ -12,14 +12,16 @@ public class HeaderBox extends HorizontalPanel{
 	private HorizontalPanel headerBox = new HorizontalPanel();
 	private ProfilBox profilBox = new ProfilBox();
 	private Suchleiste suchLeiste = new Suchleiste();
+	private VerticalPanel LogoutEditPanel = new VerticalPanel();
+	
+	private Button LogoutButton = new Button("Logout");
+	private Button ProfilEditButton = new Button("Profil bearbeiten");
 	
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	public HeaderBox() {
 		headerBox.setSpacing(2);
-		headerBox.setCellHorizontalAlignment(profilBox, ALIGN_LEFT);
-		headerBox.setCellHorizontalAlignment(suchLeiste, ALIGN_RIGHT);
 	}
 	
 	public void onLoad() {
@@ -29,6 +31,14 @@ public class HeaderBox extends HorizontalPanel{
 		
 		headerBox.add(profilBox);
 		headerBox.add(suchLeiste);
+		headerBox.add(LogoutEditPanel);
+		
+		LogoutEditPanel.add(LogoutButton);
+		LogoutEditPanel.add(ProfilEditButton);
+		
+		LogoutEditPanel.addStyleName("logoutEditPanel");
+		LogoutButton.addStyleName("logoutButton");
+		ProfilEditButton.addStyleName("profilEditButton");
 		
 		RootPanel.get("header").add(headerBox);
 		

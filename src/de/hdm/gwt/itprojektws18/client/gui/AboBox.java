@@ -34,7 +34,9 @@ public class AboBox extends VerticalPanel{
 	
 	private HorizontalPanel aboPinnwandInfos = new HorizontalPanel();
 	
-	private Label profil = new Label("Profil: ");
+	private HorizontalPanel ReportButtonPanel = new HorizontalPanel();
+	
+	private Label profil = new Label("Profil: PeterPan");
 	
 	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
 	
@@ -44,7 +46,11 @@ public class AboBox extends VerticalPanel{
 	
 	private Label nutzerNameLabel = new Label("Jan");
 	
-	private Label nickNameLabel = new Label("flizzy");
+	private Label nickNameLabel = new Label("@flizzy");
+	
+	private Button beitragStatistikButton = new Button("BeitragStatistik");
+	
+	private Button nutzerStatistikButton = new Button("NutzerStatistik");
 
 	
 	private Nutzer n = null;
@@ -53,7 +59,6 @@ public class AboBox extends VerticalPanel{
 		
 		profilbereich.setSpacing(2);
 		aboniertePW.setSpacing(2);
-		aboPinnwandInfos.setSpacing(2);
 		
 	}
 	
@@ -65,6 +70,7 @@ public class AboBox extends VerticalPanel{
 		
 		abobox.add(profilbereich);
 		abobox.add(aboniertePW);
+		abobox.add(ReportButtonPanel);
 		
 		profilbereich.add(profil);
 		profilbereich.add(aboErstellBtn);
@@ -76,6 +82,9 @@ public class AboBox extends VerticalPanel{
 		aboPinnwandInfos.add(nutzerNameLabel);
 		aboPinnwandInfos.add(nickNameLabel);
 		
+		ReportButtonPanel.add(beitragStatistikButton);
+		ReportButtonPanel.add(nutzerStatistikButton);
+		
 		profil.addStyleName("profil");
 		anzeigePW.addStyleName("anzeigePW");
 		aboErstellBtn.addStyleName("aboErstellBtn");
@@ -84,6 +93,9 @@ public class AboBox extends VerticalPanel{
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
 		nutzerNameLabel.addStyleName("nutzerNameLabel");
 		nickNameLabel.addStyleName("nickNameLabel");
+		ReportButtonPanel.addStyleName("ReportButtonPanel");
+		beitragStatistikButton.addStyleName("beitragStatistikButton");
+		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
 		
 		RootPanel.get("AboBereich").add(abobox);
 		

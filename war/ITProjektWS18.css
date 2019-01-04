@@ -143,16 +143,26 @@ h1 {
 	float:right;
 }
 
-.einstellungenButton {
+.profilEditButton {
 	color: black;
+	float: left;
+}
+
+.logoutButton {
+	color: black;
+	float: left;	
 }
 
 .nutzerNameLabel {
 	color: black;
+	background-color: #dfdfdf;
+	border-radius: 20px;
 }
 
 .nickNameLabel {
 	color: black;
+	background-color: #c0c0c0;
+	border-radius: 20px;
 }
 
 .abobox {
@@ -165,8 +175,6 @@ h1 {
 
 .aboniertePW{
 	color: black;
-	border-radius: 20px;
-	border: 2px solid black;
 }
 
 .profil{
@@ -176,7 +184,6 @@ h1 {
 .anzeigePW{
 	color: black;
 	border-radius: 20px;
-	border: 2px solid black;
 }
 
 .deAboBtn{
@@ -184,14 +191,31 @@ h1 {
 }
 
 .aboPinnwandInfos{
-	color: black;
-	background: grey;
+	margin-left: auto;
+	margin-right: auto;
 }
 
+.ReportButtonPanel{
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.beitragStatistikButton {
+	color: black;
+}
+
+.nutzerStatistikButton{
+	color: black;
+}
 
 .beitragBox {
 	color: black;
 	
+}
+
+.beitragInhalt {
+	border-bottom: 0.5px solid black;
 }
 
 .infoPanel {
@@ -199,7 +223,17 @@ h1 {
 }
 
 .inhaltPanel {
+	border-right: 0.5px solid black;
+}
 
+.nickname {
+	color: #424242;
+	font-weight: bold;
+}
+
+.erstellZeitpunkt {
+	color: #424242;
+	font-weight: bold;
 }
 
 .submitButton {
@@ -223,9 +257,6 @@ h1 {
 	color: black;
 }
 
-.beitragStatistikButton {
-	color: black;
-}
 
 .likeButton {
 	color: black;
