@@ -74,6 +74,7 @@ public class ITProjektWS18 implements EntryPoint {
 	ErstelleBeitragBox ErstelleBeitragBox = new ErstelleBeitragBox();
 	BeitragBox BeitragBox = new BeitragBox();
 	Suchleiste Suchleiste = new Suchleiste ();
+	AboBox AboBox = new AboBox();
 	/**
     * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung
     ** zu initialisieren.
@@ -101,6 +102,7 @@ public class ITProjektWS18 implements EntryPoint {
 		RootPanel.get("header").add(HeaderBox);
 		RootPanel.get("InhaltBereich").add(BeitragBox);
 		RootPanel.get("BeitragEingabe").add(ErstelleBeitragBox);
+		RootPanel.get("AboBereich").add(AboBox);
 		
 		
 	}	

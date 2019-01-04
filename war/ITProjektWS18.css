@@ -66,16 +66,6 @@ div{
   	
 }
 
-#Profilbereich{
-	clear: both;
-	border: 2px solid black;
-	border-radius: 20px;
-	float: left;
-	width: 20%;
-	font-size:10pt;
-	margin-left: 0px;
-}
-
 #trailer{
 	clear: both;
 	padding: 10px 0;
@@ -157,29 +147,47 @@ h1 {
 	color: black;
 }
 
-.vornameAboBox {
+.nutzerNameLabel {
 	color: black;
 }
 
-.nachnameAboBox {
+.nickNameLabel {
 	color: black;
 }
 
-.nicknameAboBox {
+.abobox {
 	color: black;
 }
 
-.aboPinnwandBox {
+.aboErstellBtn {
 	color: black;
 }
 
-.aboBox {
+.aboniertePW{
+	color: black;
+	border-radius: 20px;
+	border: 2px solid black;
+}
+
+.profil{
 	color: black;
 }
 
-.abonnierenButton {
+.anzeigePW{
+	color: black;
+	border-radius: 20px;
+	border: 2px solid black;
+}
+
+.deAboBtn{
 	color: black;
 }
+
+.aboPinnwandInfos{
+	color: black;
+	background: grey;
+}
+
 
 .beitragBox {
 	color: black;
