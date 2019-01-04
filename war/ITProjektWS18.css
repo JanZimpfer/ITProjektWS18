@@ -24,6 +24,7 @@ div{
 	
 }
 
+
 #header{
 	
 	background-color: #ff7d78;
@@ -48,16 +49,16 @@ div{
 
 }
 
+
 #BeitragDiv{
 	float: right;
 	width: 74%;
 	font-size:10pt;
 	border-radius: 20px;
 	border: 2px solid black;
-	color: black;
-  	text-align: start;
-  	
+	
 }
+
 
 #InhaltDiv{
 	float: right;
