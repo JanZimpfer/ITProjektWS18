@@ -9,7 +9,7 @@ import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 
 import java.util.Vector;
 
-public class BeitragBox extends FlowPanel {
+public class BeitragBox extends HorizontalPanel {
 
 	// Panels fuer die Darstellung der BeitragBox
 	private HorizontalPanel BeitragPanel = new HorizontalPanel();
@@ -86,7 +86,7 @@ public class BeitragBox extends FlowPanel {
 		erstellZeitpunkt.addStyleName("erstellZeitpunkt");
 		
 		
-		RootPanel.get("InhaltBereich").add(BeitragPanel);
+		RootPanel.get("InhaltDiv").add(BeitragPanel);
 	}
 
 	/**

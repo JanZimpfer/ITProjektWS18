@@ -64,7 +64,7 @@ class ProfilAnzeigen implements ClickHandler {
 	sucheButton.addStyleName("suchButton");
 	textfeld.addStyleName("suchleiste");
 	
-	RootPanel.get("header").add(suchleiste);
+	RootPanel.get("SuchProfilLogout").add(suchleiste);
 		
 	}
 

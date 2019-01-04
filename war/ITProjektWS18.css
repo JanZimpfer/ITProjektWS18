@@ -20,6 +20,7 @@ div{
 	margin: 5 px;
 	min-width: 1000px;
 	background-color: #dfdfdf;
+	border-radius: 20px;
 	
 }
 
@@ -31,7 +32,11 @@ div{
 	
 }
 
-#AboBereich{
+#SuchProfilLogout{
+	background-color: #dfdfdf;
+}
+
+#AboDiv{
 	clear: both;
 	float: left;
 	width: 20%;
@@ -43,19 +48,7 @@ div{
 
 }
 
-#InhaltBereich{
-	float: right;
-	width: 74%;
-	font-size:10pt;
-	border-radius: 20px;
-	border: 2px solid black;
-
-	
-	
-	
-}
-
-#BeitragEingabe{
+#BeitragDiv{
 	float: right;
 	width: 74%;
 	font-size:10pt;
@@ -65,6 +58,16 @@ div{
   	text-align: start;
   	
 }
+
+#InhaltDiv{
+	float: right;
+	width: 74%;
+	font-size:10pt;
+	border-radius: 20px;
+	border: 2px solid black;
+
+}
+
 
 #trailer{
 	clear: both;
@@ -78,11 +81,6 @@ div{
 	border-radius: 20px;
 }
 
-#profilButton{
-	
-	color: black;
-	
-}
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -96,6 +94,7 @@ h1 {
 	
 	
 }
+
 
 .sendButton {
   display: block;
@@ -130,17 +129,19 @@ h1 {
 
 .profilBox {
 	color: black;
+	float: left;
+	left: 100%;
 }
 
 .suchleiste {
 	color: black;
 	border-radius: 20px;
-	float: right;
+
 }
 
 .suchButton {
 	color: black;
-	float:right;
+	float: right;
 }
 
 .profilEditButton {
@@ -151,6 +152,10 @@ h1 {
 .logoutButton {
 	color: black;
 	float: left;	
+}
+
+.logoutEditPanel{
+
 }
 
 .nutzerNameLabel {

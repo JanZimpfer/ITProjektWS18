@@ -97,7 +97,7 @@ public class AboBox extends VerticalPanel{
 		beitragStatistikButton.addStyleName("beitragStatistikButton");
 		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
 		
-		RootPanel.get("AboBereich").add(abobox);
+		RootPanel.get("AboDiv").add(abobox);
 		
 		
 //		//for(int i = 0; i < pinnwandVerwaltung.getAllAbosFor(n, null); i++) {

@@ -99,10 +99,10 @@ public class ITProjektWS18 implements EntryPoint {
 		 * Befuellen des RootPanels
 		 */
 	
-		RootPanel.get("header").add(HeaderBox);
-		RootPanel.get("InhaltBereich").add(BeitragBox);
-		RootPanel.get("BeitragEingabe").add(ErstelleBeitragBox);
-		RootPanel.get("AboBereich").add(AboBox);
+		RootPanel.get("SuchProfilLogout").add(HeaderBox);
+		RootPanel.get("InhaltDiv").add(BeitragBox);
+		RootPanel.get("BeitragDiv").add(ErstelleBeitragBox);
+		RootPanel.get("AboDiv").add(AboBox);
 		
 		
 	}	

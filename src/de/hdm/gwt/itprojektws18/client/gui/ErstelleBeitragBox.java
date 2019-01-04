@@ -34,7 +34,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
 		postingButton.addStyleName("submitButton");
 		
-		RootPanel.get("BeitragEingabe").add(PostingPanel);
+		RootPanel.get("BeitragDiv").add(PostingPanel);
 	}
 }
 

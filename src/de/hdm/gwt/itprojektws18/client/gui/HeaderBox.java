@@ -10,7 +10,7 @@ import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 public class HeaderBox extends HorizontalPanel{
 
 	private HorizontalPanel headerBox = new HorizontalPanel();
-	private ProfilBox profilBox = new ProfilBox();
+	private ProfilBox ProfilBox = new ProfilBox();
 	private Suchleiste suchLeiste = new Suchleiste();
 	private VerticalPanel LogoutEditPanel = new VerticalPanel();
 	
@@ -21,15 +21,16 @@ public class HeaderBox extends HorizontalPanel{
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	public HeaderBox() {
-		headerBox.setSpacing(2);
+
 	}
 	
 	public void onLoad() {
 		
-		this.addStyleName("headerBox");
 		this.add(headerBox);
+		this.addStyleName("headerBox");
+
 		
-		headerBox.add(profilBox);
+		headerBox.add(ProfilBox);
 		headerBox.add(suchLeiste);
 		headerBox.add(LogoutEditPanel);
 		
@@ -40,7 +41,7 @@ public class HeaderBox extends HorizontalPanel{
 		LogoutButton.addStyleName("logoutButton");
 		ProfilEditButton.addStyleName("profilEditButton");
 		
-		RootPanel.get("header").add(headerBox);
+		RootPanel.get("SuchProfilLogout").add(headerBox);
 		
 	}
 }

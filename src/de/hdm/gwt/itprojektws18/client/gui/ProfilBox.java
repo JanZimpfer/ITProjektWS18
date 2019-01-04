@@ -52,7 +52,7 @@ public class ProfilBox extends VerticalPanel {
 		profilbildButton.addStyleName("profilbildButton");
 		profilButton.addStyleName("profilButton");
 		
-		RootPanel.get("header").add(profilbox);
+		RootPanel.get("SuchProfilLogout").add(profilbox);
 		
 		
 		
