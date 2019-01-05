@@ -20,8 +20,10 @@ div{
 	margin: 5 px;
 	min-width: 1000px;
 	background-color: #dfdfdf;
+	border-radius: 20px;
 	
 }
+
 
 #header{
 	
@@ -31,7 +33,11 @@ div{
 	
 }
 
-#AboBereich{
+#SuchProfilLogout{
+	background-color: #dfdfdf;
+}
+
+#AboDiv{
 	clear: both;
 	float: left;
 	width: 20%;
@@ -43,38 +49,26 @@ div{
 
 }
 
-#InhaltBereich{
+
+#BeitragDiv{
+	float: right;
+	width: 74%;
+	font-size:10pt;
+	border-radius: 20px;
+	border: 2px solid black;
+	
+}
+
+
+#InhaltDiv{
 	float: right;
 	width: 74%;
 	font-size:10pt;
 	border-radius: 20px;
 	border: 2px solid black;
 
-	
-	
-	
 }
 
-#BeitragEingabe{
-	float: right;
-	width: 74%;
-	font-size:10pt;
-	border-radius: 20px;
-	border: 2px solid black;
-	color: black;
-  	text-align: start;
-  	
-}
-
-#LoginBereich{
-	clear: both;
-	border: 2px solid black;
-	border-radius: 20px;
-	float: left;
-	width: 20%;
-	font-size:10pt;
-	margin-left: 0px;
-}
 
 #trailer{
 	clear: both;
@@ -88,11 +82,6 @@ div{
 	border-radius: 20px;
 }
 
-#profilButton{
-	
-	color: black;
-	
-}
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -106,6 +95,7 @@ h1 {
 	
 	
 }
+
 
 .sendButton {
   display: block;
@@ -140,44 +130,88 @@ h1 {
 
 .profilBox {
 	color: black;
+	float: left;
+	left: 100%;
 }
 
 .suchleiste {
 	color: black;
 	border-radius: 20px;
-	float: right;
+
 }
 
 .suchButton {
 	color: black;
-	float:right;
+	float: right;
 }
 
-.einstellungenButton {
+.profilEditButton {
+	color: black;
+	float: left;
+}
+
+.logoutButton {
+	color: black;
+	float: left;	
+}
+
+.logoutEditPanel{
+
+}
+
+.nutzerNameLabel {
+	color: black;
+	background-color: #dfdfdf;
+	border-radius: 20px;
+}
+
+.nickNameLabel {
+	color: black;
+	background-color: #c0c0c0;
+	border-radius: 20px;
+}
+
+.abobox {
 	color: black;
 }
 
-.vornameAboBox {
+.aboErstellBtn {
 	color: black;
 }
 
-.nachnameAboBox {
+.aboniertePW{
 	color: black;
 }
 
-.nicknameAboBox {
+.profil{
 	color: black;
 }
 
-.aboPinnwandBox {
+.anzeigePW{
+	color: black;
+	border-radius: 20px;
+}
+
+.deAboBtn{
 	color: black;
 }
 
-.aboBox {
+.aboPinnwandInfos{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ReportButtonPanel{
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.beitragStatistikButton {
 	color: black;
 }
 
-.abonnierenButton {
+.nutzerStatistikButton{
 	color: black;
 }
 
@@ -186,12 +220,26 @@ h1 {
 	
 }
 
+.beitragInhalt {
+	border-bottom: 0.5px solid black;
+}
+
 .infoPanel {
 
 }
 
 .inhaltPanel {
+	border-right: 0.5px solid black;
+}
 
+.nickname {
+	color: #424242;
+	font-weight: bold;
+}
+
+.erstellZeitpunkt {
+	color: #424242;
+	font-weight: bold;
 }
 
 .submitButton {
@@ -215,9 +263,6 @@ h1 {
 	color: black;
 }
 
-.beitragStatistikButton {
-	color: black;
-}
 
 .likeButton {
 	color: black;

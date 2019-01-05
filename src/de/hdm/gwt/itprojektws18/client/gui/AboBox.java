@@ -26,20 +26,78 @@ public class AboBox extends VerticalPanel{
 	 * Instanziierung der GUI Elemente
 	 */
 	
-	private Vector<AboPinnwandBox> nutzerAbos = new Vector<AboPinnwandBox>();
+	private VerticalPanel abobox = new VerticalPanel();
 	
-	private Vector<Abonnement> abocount = new Vector<Abonnement>();
+	private VerticalPanel aboniertePW = new VerticalPanel();
+	
+	private HorizontalPanel profilbereich = new HorizontalPanel();
+	
+	private HorizontalPanel aboPinnwandInfos = new HorizontalPanel();
+	
+	private HorizontalPanel ReportButtonPanel = new HorizontalPanel();
+	
+	private Label profil = new Label("Profil: PeterPan");
+	
+	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
+	
+	private Button aboErstellBtn = new Button("Abo hinzufuegen");
+	
+	private Button deAboBtn = new Button("Abo entfernen");
+	
+	private Label nutzerNameLabel = new Label("Jan");
+	
+	private Label nickNameLabel = new Label("@flizzy");
+	
+	private Button beitragStatistikButton = new Button("BeitragStatistik");
+	
+	private Button nutzerStatistikButton = new Button("NutzerStatistik");
+
 	
 	private Nutzer n = null;
 	
 	public AboBox() {
+		
+		profilbereich.setSpacing(2);
+		aboniertePW.setSpacing(2);
 		
 	}
 	
 
 	public void onLoad() {
 		
-		this.addStyleName("aboBox");
+		this.addStyleName("abobox");
+		this.add(abobox);
+		
+		abobox.add(profilbereich);
+		abobox.add(aboniertePW);
+		abobox.add(ReportButtonPanel);
+		
+		profilbereich.add(profil);
+		profilbereich.add(aboErstellBtn);
+		profilbereich.add(deAboBtn);
+		
+		aboniertePW.add(anzeigePW);
+		aboniertePW.add(aboPinnwandInfos);
+		
+		aboPinnwandInfos.add(nutzerNameLabel);
+		aboPinnwandInfos.add(nickNameLabel);
+		
+		ReportButtonPanel.add(beitragStatistikButton);
+		ReportButtonPanel.add(nutzerStatistikButton);
+		
+		profil.addStyleName("profil");
+		anzeigePW.addStyleName("anzeigePW");
+		aboErstellBtn.addStyleName("aboErstellBtn");
+		deAboBtn.addStyleName("deAboBtn");
+		aboniertePW.addStyleName("aboniertePW");
+		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
+		nutzerNameLabel.addStyleName("nutzerNameLabel");
+		nickNameLabel.addStyleName("nickNameLabel");
+		ReportButtonPanel.addStyleName("ReportButtonPanel");
+		beitragStatistikButton.addStyleName("beitragStatistikButton");
+		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
+		
+		RootPanel.get("AboDiv").add(abobox);
 		
 		
 //		//for(int i = 0; i < pinnwandVerwaltung.getAllAbosFor(n, null); i++) {
@@ -47,9 +105,9 @@ public class AboBox extends VerticalPanel{
 //			nutzerAbos.add(i, tempAboPinnwandBox);
 //		}
 		
-		for(int i = 0; i < nutzerAbos.size(); i++) {
-			this.add(nutzerAbos.elementAt(i));
-		}
+//		for(int i = 0; i < nutzerAbos.size(); i++) {
+//			this.add(nutzerAbos.elementAt(i));
+//		}
 		
 		
 	}

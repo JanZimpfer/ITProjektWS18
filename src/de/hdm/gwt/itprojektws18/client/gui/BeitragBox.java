@@ -2,17 +2,22 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 import java.util.Vector;
 
-public class BeitragBox extends FlowPanel {
+public class BeitragBox extends HorizontalPanel {
 
 	// Panels fuer die Darstellung der BeitragBox
 	private HorizontalPanel BeitragPanel = new HorizontalPanel();
+	private HorizontalPanel NickTimePanel = new HorizontalPanel();
 	private VerticalPanel InhaltPanel = new VerticalPanel();
 	private FlowPanel InfoPanel = new FlowPanel();
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
@@ -20,7 +25,7 @@ public class BeitragBox extends FlowPanel {
 	// benoetigte Label
 	private Label beitragInhalt = new Label("Dieser Text ist der Inhalt des Test-Beitrags");
 	private Label nickname = new Label("@PeterPan");
-	private Label erstellZeitpunkt = new Label("Zeitpunkt");
+	private Label erstellZeitpunkt = new Label("04.01.2018");
 	private Label kommentarAnzahlText = new Label("30 Kommentare");
 	private Label likeAnzahlText = new Label("85 Likes");
 
@@ -33,12 +38,18 @@ public class BeitragBox extends FlowPanel {
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
-	public BeitragBox() {
+	Pinnwand pinnwand = new Pinnwand();
+	
+	public BeitragBox(Pinnwand p) {
 
+		this.pinnwand = p;
+		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new AllBeitraegeByPinnwandCallback());
+		
 		BeitragPanel.setSpacing(2);
 		InhaltPanel.setSpacing(4);
 		ButtonPanel.setSpacing(5);
-	
+		NickTimePanel.setSpacing(2);
+		
 	}
 
 	public void onLoad() {
@@ -54,10 +65,15 @@ public class BeitragBox extends FlowPanel {
 		// Panels hinzufügen 
 		BeitragPanel.add(InhaltPanel);
 		BeitragPanel.add(InfoPanel);
+		BeitragPanel.add(ButtonPanel);
 
+		
+		//NickTimePanel gestalten
+		NickTimePanel.add(nickname);
+		NickTimePanel.add(erstellZeitpunkt);
+		
 		// InhaltPanel gestalten
-		InhaltPanel.add(nickname);
-		InhaltPanel.add(erstellZeitpunkt);
+		InhaltPanel.add(NickTimePanel);
 		InhaltPanel.add(beitragInhalt);
 		InhaltPanel.add(ButtonPanel);
 		
@@ -69,17 +85,18 @@ public class BeitragBox extends FlowPanel {
 		ButtonPanel.add(kommentarAnzahlText);
 
 		// StyleNames für das Styling mit CSS hinzufügen
+		BeitragPanel.addStyleName("beitragBox");
 		beitragBearbeitenButton.addStyleName("beitragBearbeitenButton");
 		likeButton.addStyleName("likeButton");
 		kommentierButton.addStyleName("kommentierButton");
 		InfoPanel.addStyleName("infoPanel");
 		InhaltPanel.addStyleName("inhaltPanel");
+		beitragInhalt.addStyleName("beitragInhalt");
+		nickname.addStyleName("nickname");
+		erstellZeitpunkt.addStyleName("erstellZeitpunkt");
 		
 		
-		RootPanel.get("InhaltBereich").add(BeitragPanel);
-		RootPanel.get("InhaltBereich").add(InhaltPanel);
-		RootPanel.get("InhaltBereich").add(ButtonPanel);
-		RootPanel.get("InhaltBereich").add(InfoPanel);
+		RootPanel.get("InhaltDiv").add(BeitragPanel);
 	}
 
 	/**
@@ -122,4 +139,18 @@ public class BeitragBox extends FlowPanel {
 
 	}
 
+	public class AllBeitraegeByPinnwandCallback implements AsyncCallback<Vector<Beitrag>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen der Beitraege: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Vector<Beitrag> result) {
+			
+			
+		}
+	}
 }

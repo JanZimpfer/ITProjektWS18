@@ -146,6 +146,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				result.addRow(row);
 				
 			}
+			
 			this.addImprint(result);
 
 		
