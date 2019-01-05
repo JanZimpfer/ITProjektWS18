@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -43,7 +44,7 @@ public class BeitragBox extends HorizontalPanel {
 	public BeitragBox(Pinnwand p) {
 
 		this.pinnwand = p;
-		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new AllBeitraegeByPinnwandCallback());
+		
 		
 		BeitragPanel.setSpacing(2);
 		InhaltPanel.setSpacing(4);
@@ -138,19 +139,8 @@ public class BeitragBox extends HorizontalPanel {
 		}
 
 	}
-
-	public class AllBeitraegeByPinnwandCallback implements AsyncCallback<Vector<Beitrag>> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Auslesen der Beitraege: " + caught.getMessage());
+				
 			
-		}
-
-		@Override
-		public void onSuccess(Vector<Beitrag> result) {
-			
-			
-		}
+		
 	}
-}
+
