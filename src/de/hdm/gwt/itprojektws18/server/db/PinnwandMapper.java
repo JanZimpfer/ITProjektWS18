@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import java.sql.Timestamp;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
