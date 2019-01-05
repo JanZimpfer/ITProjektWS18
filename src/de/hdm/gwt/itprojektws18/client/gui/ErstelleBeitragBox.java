@@ -1,6 +1,7 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.sql.Timestamp;
+import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -30,6 +31,16 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	private Pinnwand pinnwand = new Pinnwand();
+	
+	Nutzer nutzer = new Nutzer();
+	
+	BeitragBox bBox = new BeitragBox(pinnwand);
+	
+	PinnwandBox pBox = new PinnwandBox(nutzer);
+	
+	public ErstelleBeitragBox() {
+		
+	}
 
 	public ErstelleBeitragBox(Pinnwand p) {
 
@@ -46,8 +57,11 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
 		postingButton.addStyleName("submitButton");
+		
+		postingButton.addClickHandler(new postingButtonClickHandler());
 
 		RootPanel.get("BeitragDiv").add(PostingPanel);
+		
 	}
 
 	class postingButtonClickHandler implements ClickHandler {
@@ -56,13 +70,17 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer nutzer = new Nutzer();
-			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+//			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+			
+			nutzer.setId(1);
 
 			Pinnwand pinnwand = new Pinnwand();
-			pinnwand.setNutzerFK(nutzer.getId());
+			pinnwand.setId(nutzer.getId());
+			
 			Timestamp erstellzeitpunkt = null;
 
-			String text = erstelleBeitragFeld.getText();
+			String text = "'" + erstelleBeitragFeld.getText() + "'" ;
+			
 
 			pinnwandVerwaltung.erstelleBeitrag(pinnwand, text, erstellzeitpunkt, nutzer, new BeitragAnlegenCallback());
 		}
@@ -78,10 +96,76 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			@Override
 			public void onSuccess(Beitrag result) {
 				Window.alert("Der Beitrag wurde erfolgreich angelegt.");
-				BeitragBox bBox = new BeitragBox(pinnwand);
+				
+				
+				Pinnwand p = new Pinnwand ();
+				
+				pinnwandVerwaltung.getNutzerbyID(1, new NutzerInfosCallBack());
+				
+				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
+				
+				erstellZPString.substring(0,17);
+				
+				bBox.befuelleErstellzeitpunkt(erstellZPString);
+				
+				String textString = result.getText();
+				
+				bBox.befuelleInhalt(textString);
+				
+				pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new BeitragAuslesenCallBack());
+				
+				pBox.add(bBox);
+				
+				RootPanel.get("BeitragDiv").add(pBox);
+				
+			
+				
 			}
 
 		}
+		
+		public class NutzerInfosCallBack implements AsyncCallback<Nutzer> {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler beim Auslesen der Nutzer Informationen: " + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Nutzer result) {
+				
+				
+				
+				String nicknameString = "@ "+result.getNickname();	
+				
+				bBox.befuelleNicklabel(nicknameString);
+				
+				
+			
+				
+				
+			}
+			
+			public class BeitragAuslesenCallBack implements AsyncCallback<Vector<Beitrag>> {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Fehler beim Auslesen aller Beiträge : " + caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Vector<Beitrag> result) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			}
+			
+		}
+		
+		
 
 	}
 	

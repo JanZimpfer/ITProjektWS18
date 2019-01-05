@@ -222,6 +222,7 @@ h1 {
 .beitragBox {
 	color: black;
 	
+	
 }
 
 .beitragInhalt {
@@ -233,7 +234,7 @@ h1 {
 }
 
 .inhaltPanel {
-	border-right: 0.5px solid black;
+	
 }
 
 .nickname {
@@ -263,6 +264,11 @@ h1 {
 	color: black;
 }
 
+.ButtonPanel{
+	
+	border-bottom: 0.5px solid black;
+}
+
 .beitragBearbeitenButton {
 	color: black;
 }
@@ -270,6 +276,7 @@ h1 {
 
 .likeButton {
 	color: black;
+	
 }
 
 .kommentareAnzeigenButton {

@@ -6,6 +6,7 @@ import de.hdm.gwt.itprojektws18.shared.LoginService;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 import de.hdm.gwt.itprojektws18.shared.LoginServiceAsync;
 import de.hdm.gwt.itprojektws18.client.gui.ProfilBox;
 import de.hdm.gwt.itprojektws18.client.gui.PinnwandBox;
@@ -71,8 +72,9 @@ public class ITProjektWS18 implements EntryPoint {
 	//Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt werden.
 	HeaderBox HeaderBox = new HeaderBox();
 	ProfilBox ProfilBox = new ProfilBox();
-	ErstelleBeitragBox ErstelleBeitragBox = new ErstelleBeitragBox();
-	BeitragBox BeitragBox = new BeitragBox();
+	Pinnwand Pinnwand = new Pinnwand ();
+	ErstelleBeitragBox ErstelleBeitragBox = new ErstelleBeitragBox(Pinnwand);
+	BeitragBox BeitragBox = new BeitragBox(Pinnwand);
 	Suchleiste Suchleiste = new Suchleiste ();
 	AboBox AboBox = new AboBox();
 	/**
@@ -100,7 +102,7 @@ public class ITProjektWS18 implements EntryPoint {
 		 */
 	
 		RootPanel.get("SuchProfilLogout").add(HeaderBox);
-		RootPanel.get("InhaltDiv").add(BeitragBox);
+//		RootPanel.get("InhaltDiv").add(BeitragBox);
 		RootPanel.get("BeitragDiv").add(ErstelleBeitragBox);
 		RootPanel.get("AboDiv").add(AboBox);
 		

@@ -33,26 +33,32 @@ public class TestKlasse {
 		
 		Nutzer n = new Nutzer () ;
 		
+//		n = impl.erstelleNutzer ("'flo'", "'timmler'", "'ft'", n.getErstellZeitpunkt(), "'hllo@world.de'");
+		
+		n = impl.getNutzerbyID(1);
+		
 		Pinnwand p = new Pinnwand ();
 		
-		Beitrag b = new Beitrag ();
-		
-		Like l = new Like ();
-		
-		n = impl.getNutzerbyID(2);
-		
-		p = impl.getPinnwandByID(2);
-		
-		b = impl.getBeitragByID(1);
-		
-//		b = impl.erstelleBeitrag(p, "'Hallo'", b.getErstellZeitpunkt(), n);
-		
-		l = impl.erstelleLike(b, l.getErstellZeitpunkt(), n);
+		p = impl.erstellePinnwand(n, p.getErstellZeitpunkt());
+//		
+//		
+//		Like l = new Like ();
+//		
+//		n = impl.getNutzerbyID(2);
+//		
+//		p = impl.getPinnwandByID(2);
+//		
+//		b = impl.getBeitragByID(1);
 		
 		
-		
+////		
+////		l = impl.erstelleLike(b, l.getErstellZeitpunkt(), n);
+////		
+//	n = impl.getNutzerbyID(1);
 	
-		
+//	b = impl.erstelleBeitrag(p, "'Hallo'", b.getErstellZeitpunkt(), n);
+	
+	
 		
   
 		

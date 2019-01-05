@@ -10,8 +10,10 @@ import com.google.gwt.user.client.ui.*;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
+import java.sql.Timestamp;
 import java.util.Vector;
 
 public class BeitragBox extends HorizontalPanel {
@@ -24,9 +26,9 @@ public class BeitragBox extends HorizontalPanel {
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
 
 	// benoetigte Label
-	private Label beitragInhalt = new Label("Dieser Text ist der Inhalt des Test-Beitrags");
-	private Label nickname = new Label("@PeterPan");
-	private Label erstellZeitpunkt = new Label("04.01.2018");
+	private Label beitragInhalt = new Label();
+	private Label nickname = new Label();
+	private Label erstellZeitpunkt = new Label();
 	private Label kommentarAnzahlText = new Label("30 Kommentare");
 	private Label likeAnzahlText = new Label("85 Likes");
 
@@ -41,9 +43,18 @@ public class BeitragBox extends HorizontalPanel {
 	
 	Pinnwand pinnwand = new Pinnwand();
 	
+	String Text;
+	
+	public BeitragBox() {
+		
+	}
+	
+	
 	public BeitragBox(Pinnwand p) {
 
 		this.pinnwand = p;
+		
+		
 		
 		
 		BeitragPanel.setSpacing(2);
@@ -51,6 +62,23 @@ public class BeitragBox extends HorizontalPanel {
 		ButtonPanel.setSpacing(5);
 		NickTimePanel.setSpacing(2);
 		
+	}
+	
+	public void befuelleNicklabel (String nicknameString) {
+		
+		this.nickname.setText(nicknameString);
+		
+	}
+	
+	public void befuelleErstellzeitpunkt (String erstellzeitpunkt) {
+		
+		this.erstellZeitpunkt.setText(erstellzeitpunkt);
+		
+	}
+	
+	public void befuelleInhalt (String inhalt) {
+		
+		this.beitragInhalt.setText(inhalt);
 	}
 
 	public void onLoad() {
@@ -95,7 +123,7 @@ public class BeitragBox extends HorizontalPanel {
 		beitragInhalt.addStyleName("beitragInhalt");
 		nickname.addStyleName("nickname");
 		erstellZeitpunkt.addStyleName("erstellZeitpunkt");
-		
+		ButtonPanel.addStyleName("ButtonPanel");
 		
 		RootPanel.get("InhaltDiv").add(BeitragPanel);
 	}
