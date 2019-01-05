@@ -31,12 +31,12 @@ public class TestKlasseMK {
 		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 		impl.init();
 		
-    //Nutzer n = new Nutzer ();
+    Nutzer n = new Nutzer ();
     
-    //n = impl.getNutzerbyID(5);
+    n = impl.getNutzerbyID(2);
     
   
-    // n = impl.erstelleNutzer("'Dieter'", "'Krause'", "'Hausmeister123'", n.getErstellZeitpunkt());
+    // n = impl.erstelleNutzer("'Mo'", "'MoMo'", "'DasMo'", n.getErstellZeitpunkt(), "'mo.mustermann@m.com'");
 		
     //Pinnwand p = new Pinnwand ();
 	
@@ -49,7 +49,7 @@ public class TestKlasseMK {
 	
 	b = impl.getBeitragByID(1);
 	
-	System.out.println(b);
+	//System.out.println(b);
 	
 	//b.setText("Ich bin mir unsicher");
 	
@@ -60,7 +60,7 @@ public class TestKlasseMK {
 	
 	
 	
-	 //b = impl.erstelleBeitrag(p, "'lululululululuul'", b.getErstellZeitpunktSQL(), n);
+	 //b = impl.erstelleBeitrag(p, "'dritter Beitrag'", b.getErstellZeitpunkt(), n);
 	
 	//Vector <Beitrag> result = new Vector <Beitrag> ();
 	
@@ -70,7 +70,7 @@ public class TestKlasseMK {
 	
 	
 	
-	//Kommentar k = new Kommentar ();
+	Kommentar k = new Kommentar ();
 	
 	//Vector <Kommentar> result = new Vector <Kommentar> ();
 	
@@ -80,7 +80,7 @@ public class TestKlasseMK {
 	
 	
 	
-	//k = impl.erstelleKommentar(b, "'Wie bitte?'", k.getErstellZeitpunkt(), n);
+	k = impl.erstelleKommentar(b, "'toll'", k.getErstellZeitpunkt(), n);
 	
 	//Like l = new Like();
 	

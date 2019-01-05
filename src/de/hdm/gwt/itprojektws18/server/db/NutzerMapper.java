@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import java.util.Vector;
 
@@ -160,13 +160,14 @@ public class NutzerMapper {
 		
 			 
 			stmt.executeUpdate("INSERT INTO nutzer"
-					+ " (id, erstellzeitpunkt, vorname, nachname, nickname)" + 
+					+ " (id, erstellzeitpunkt, vorname, nachname, mail, nickname)" + 
 					"VALUES ( "+
 			
 					n.getId()+ ", " +
 					"'" + n.getErstellZeitpunkt() + "'"  + ", "+
 					n.getVorname() + ", "+
 					n.getNachname() + ", "+
+					n.getEmail() + ", "+
 					n.getNickname() + ")" );
 					
 		}
