@@ -2,10 +2,14 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 import java.util.Vector;
 
@@ -34,12 +38,18 @@ public class BeitragBox extends HorizontalPanel {
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
 	
-	public BeitragBox() {
+	Pinnwand pinnwand = new Pinnwand();
+	
+	public BeitragBox(Pinnwand p) {
 
+		this.pinnwand = p;
+		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new AllBeitraegeByPinnwandCallback());
+		
 		BeitragPanel.setSpacing(2);
 		InhaltPanel.setSpacing(4);
 		ButtonPanel.setSpacing(5);
 		NickTimePanel.setSpacing(2);
+		
 	}
 
 	public void onLoad() {
@@ -129,4 +139,18 @@ public class BeitragBox extends HorizontalPanel {
 
 	}
 
+	public class AllBeitraegeByPinnwandCallback implements AsyncCallback<Vector<Beitrag>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen der Beitraege: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Vector<Beitrag> result) {
+			
+			
+		}
+	}
 }
