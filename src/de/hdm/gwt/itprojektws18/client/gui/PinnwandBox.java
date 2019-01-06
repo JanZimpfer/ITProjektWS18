@@ -49,8 +49,9 @@ public class PinnwandBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 			
-			for(Beitrag b : result) {
+			for(int i=0; i<result.size(); i++) {
 				
+				Beitrag b = new Beitrag();
 				Nutzer nutzer = new Nutzer();
 				nutzer.setId(1);
 				
@@ -59,8 +60,12 @@ public class PinnwandBox extends VerticalPanel {
 				BeitragBox bBox = new BeitragBox();
 				
 				String nicknameString = "@ "+ b.getNutzerFK();
+				String erstellZP = "" + b.getErstellZeitpunkt() + "";
+				String inhalt = b.getText();
 				
 				bBox.befuelleNicklabel(nicknameString);
+				bBox.befuelleErstellzeitpunkt(erstellZP);
+				bBox.befuelleInhalt(inhalt);
 				
 				PinnwandPanel.add(bBox);
 				
