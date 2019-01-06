@@ -121,7 +121,7 @@ public void  befuelleAbonnierte (String anzahlAbonnierte) {
 		
 		n.setId(1);
 		
-		b.setNutzerFK(1);
+		
 		
 			
 		pinnwandVerwaltung.getAllAbosFor(n, new anzahlAbosCallback ());
