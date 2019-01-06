@@ -212,13 +212,15 @@ public class BeitragMapper {
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
 				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				b.setPinnwandFK(rs.getInt("pinnwand_b_FK"));
+				b.setNutzerFK(rs.getInt("nutzer_b_FK"));
 				
 				result.addElement(b);
 			}			
@@ -249,15 +251,16 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			//Erstellzeitpunkt removed
-			ResultSet rs = stmt.executeQuery("SELECT id, text, pinnwand_b_FK, nutzer_b_FK, erstellzeitpunkt FROM beitrag"
-			+"WHERE nutzer_b_FK=" + "'"+ nutzerID + "'");
+			
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE nutzer_b_FK =" + "'" + nutzerID + "'");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
 				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				b.setPinnwandFK(rs.getInt("pinnwand_b_FK"));
+				b.setNutzerFK(rs.getInt("nutzer_b_FK"));
 				
 				result.addElement(b);
 			}			

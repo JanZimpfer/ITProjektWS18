@@ -12,137 +12,123 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class KommentarMapper {
 
-private static KommentarMapper kommentarMapper = null;
-	
+	private static KommentarMapper kommentarMapper = null;
+
 	protected KommentarMapper() {
-		
+
 	}
-	
+
 	public static KommentarMapper kommentarMapper() {
-		if (kommentarMapper == null) {		
+		if (kommentarMapper == null) {
 			kommentarMapper = new KommentarMapper();
 		}
 		return kommentarMapper;
 	}
-	
+
 	/**
-	 *Einfügen eines Kommentar-Objekts in die DB
+	 * Einfügen eines Kommentar-Objekts in die DB
+	 * 
 	 * @author Matthias
 	 */
-	
+
 	public Kommentar insertKommentar(Kommentar k) {
-		
+
 		Connection con = DBConnection.connection();
-		
+
 		try {
 			Statement stmt = con.createStatement();
-			
-			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM kommentar");
-			
-			if (rs.next()) {
-				k.setId(rs.getInt("maxid") +1);
-				stmt = con.createStatement();
-				
-				stmt.executeUpdate("INSERT INTO kommentar (id, text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) "
-						+ "VALUES("
-						+ k.getId()
-						+ ","
-						+ k.getText()
-						+ ","
-						+ "'" + k.getErstellZeitpunkt() + "'"
-						+ ","
-						+ k.getBeitragFK()
-						+ ","
-						+ k.getNutzerFK()
-						+ ")");
-						
-			}
-		}
-		catch (SQLException e2) {
+			String sqlStmt = "INSERT INTO kommentar ( text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) " + "VALUES("
+					+ k.getText() + "," + "'" + k.getErstellZeitpunkt() + "'" + "," + k.getBeitragFK() + ","
+					+ k.getNutzerFK() + ")";
+			stmt.executeUpdate(sqlStmt);
+		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		
+
 		return k;
-		
+
 	}
-	
+
 	/**
-	 * Diese Methode ermöglicht das editiern des übergebenen 
-	 * Kommentar-Objekts
+	 * Diese Methode ermöglicht das editiern des übergebenen Kommentar-Objekts
+	 * 
 	 * @author Matthias
 	 */
-	
+
 	public Kommentar updateKommentar(Kommentar k) {
 		Connection con = DBConnection.connection();
-		
+
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("UPDATE kommentar" + "set text =" + "'" + k.getText() 
-			+ "'" + "WHERE id=" + "'" + k.getId() + "'");
-		}
-		catch(SQLException e2) {
+			stmt.executeUpdate(
+					"UPDATE kommentar" + "set text =" + "'" + k.getText() + "'" + "WHERE id=" + "'" + k.getId() + "'");
+		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		
+
 		return k;
 	}
 
 	/**
 	 * Löschen des übergebenen KOmmentar-Objekts
+	 * 
 	 * @author Matthias
 	 */
-	
+
 	public void deleteKommentar(Kommentar k) {
-		Connection con= DBConnection.connection();
-		
+		Connection con = DBConnection.connection();
+
 		try {
-			Statement stmt=con.createStatement();
-			stmt.executeUpdate("DELETE FROM kommentar WHERE id =" + "'" + k.getId()+"'");
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("DELETE FROM kommentar WHERE id =" + "'" + k.getId() + "'");
 		}
-		
-		catch(SQLException e2) {
+
+		catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
-	 * Löschen aller zugehörigen KOmmentar-Objekte des übergebenen
-	 * Beitrag-Objektes
+	 * Löschen aller zugehörigen KOmmentar-Objekte des übergebenen Beitrag-Objektes
+	 * 
 	 * @param b
 	 */
-	
+
 	public void deleteKommentareOf(Beitrag b) {
-		Connection con =DBConnection.connection();
-		
+		Connection con = DBConnection.connection();
+
 		try {
 			Statement stmt = con.createStatement();
 			/**
-			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf 
-			 * die Tabelle beitag verweist.
+			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf die Tabelle beitag
+			 * verweist.
 			 */
 			stmt.executeUpdate("DELETE FROM kommentar WHERE beitrag_k_FK =" + "'" + b.getId() + "'");
 		}
-		
-		catch(SQLException e2) {
+
+		catch (SQLException e2) {
 			e2.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Aufrufen eines KOmmentar Objekts by id
+	 * 
 	 * @author Matthias
 	 */
-	
-	public Kommentar getKommentarById (int id) {
-		
+
+	public Kommentar getKommentarById(int id) {
+
 		Connection con = DBConnection.connection();
-		
+
 		try {
-			Statement stmt= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE id =" + "'" + id +"'");
-			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE id =" + "'" + id
+							+ "'");
+
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
@@ -150,69 +136,72 @@ private static KommentarMapper kommentarMapper = null;
 				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
 				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
 				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
-				
+
 				return k;
-				
+
 			}
-		
-		}	
-		catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 			return null;
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
 	/**
 	 * Aufrufen aller Kommentar-Objekte
+	 * 
 	 * @author Matthias
 	 */
-	
+
 	public Vector<Kommentar> getAllKommentare() {
-		
+
 		Connection con = DBConnection.connection();
-		
+
 		Vector<Kommentar> result = new Vector<Kommentar>();
-		
+
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar");
-			
-			while (rs.next());{
+
+			while (rs.next())
+				;
+			{
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
 				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
-				
+
 				result.addElement(k);
 			}
-		}
-		catch (SQLException e2) {
+		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 		return result;
-		
+
 	}
-	
+
 	/**
 	 * Aufrufen aller Kommentar-Objekte eines Beitrag-Objekts
+	 * 
 	 * @author Matthias
 	 */
-	
+
 	public Vector<Kommentar> getAllKommentareByBeitrag(int beitragFK) {
-		
+
 		Connection con = DBConnection.connection();
 		Vector<Kommentar> result = new Vector<Kommentar>();
-		
+
 		try {
 			Statement stmt = con.createStatement();
-			
-			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE beitrag_k_FK =" + "'" + beitragFK + "'");
-			
+
+			ResultSet rs = stmt.executeQuery(
+					"SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE beitrag_k_FK ="
+							+ "'" + beitragFK + "'");
+
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
@@ -220,37 +209,35 @@ private static KommentarMapper kommentarMapper = null;
 				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
 				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
 				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
-				
+
 				result.addElement(k);
-			}			
-		}
-		catch (SQLException e2) {
+			}
+		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 		return result;
-		
+
 	}
-	
-	public Vector<Kommentar> getAllKommentareByBeitrag (Beitrag b) {
+
+	public Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b) {
 		/*
-		 * Auslesen der Beitrag-ID um diese dann an
-		 * getAllKommentareByPinnwand(int beitragId) zu uebergeben
+		 * Auslesen der Beitrag-ID um diese dann an getAllKommentareByPinnwand(int
+		 * beitragId) zu uebergeben
 		 */
 		return getAllKommentareByBeitrag(b.getId());
 	}
-	
-	
-	public Vector<Kommentar> getAllKommentareByNutzer (int nutzerFK) {
-		
+
+	public Vector<Kommentar> getAllKommentareByNutzer(int nutzerFK) {
+
 		Connection con = DBConnection.connection();
 		Vector<Kommentar> result = new Vector<Kommentar>();
-		
+
 		try {
 			Statement stmt = con.createStatement();
-			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, nutzer_k_FK, beitrag_k_FK, erstellzeitpunkt FROM kommentar WHERE nutzer_k_FK=" 
-			+ "'" + nutzerFK + "'"+  "ORDER BY id");
-			
+
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, nutzer_k_FK, beitrag_k_FK FROM kommentar WHERE nutzer_k_FK =" + "'" + nutzerFK + "'");
+					
+
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
@@ -258,24 +245,22 @@ private static KommentarMapper kommentarMapper = null;
 				k.setNutzerFK(rs.getInt("nutzer_k_FK"));
 				k.setBeitragFK(rs.getInt("beitrag_k_FK"));
 				k.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
-				
+
 				result.addElement(k);
-			}			
-		}
-		catch (SQLException e2) {
+			}
+		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 		return result;
-		
+
 	}
-	
-	public Vector<Kommentar> getAllKommentareByNutzer (Nutzer n) {
+
+	public Vector<Kommentar> getAllKommentareByNutzer(Nutzer n) {
 		/*
 		 * Auslesen der Nutzer-ID(entspricht dem Autor) um diese dann an
 		 * getAllKommentareByNutzer (int nutzerId) zu uebergeben
 		 */
 		return getAllKommentareByNutzer(n.getId());
 	}
-	
-	
+
 }
