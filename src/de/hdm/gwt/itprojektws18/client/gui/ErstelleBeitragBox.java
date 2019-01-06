@@ -100,20 +100,20 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 				Window.alert("Der Beitrag wurde erfolgreich angelegt.");
 				
 				
-				Pinnwand p = new Pinnwand ();
-				
-				pinnwandVerwaltung.getNutzerbyID(1 , new NutzerInfosCallBack());
-				
-				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
-				
-				bBox.befuelleErstellzeitpunkt(erstellZPString);
-				
-				String textString = result.getText();
-				
-				bBox.befuelleInhalt(textString);
-				
-				
-				befuellteBBoxen.add(bBox);
+//				Pinnwand p = new Pinnwand ();
+//				
+//				pinnwandVerwaltung.getNutzerbyID(1 , new NutzerInfosCallBack());
+//				
+//				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
+//				
+//				bBox.befuelleErstellzeitpunkt(erstellZPString);
+//				
+//				String textString = result.getText();
+//				
+//				bBox.befuelleInhalt(textString);
+//				
+//				
+//				befuellteBBoxen.add(bBox);
 				
 				PinnwandBox  pBox = new PinnwandBox (1);
 				
