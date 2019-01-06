@@ -23,19 +23,19 @@ public class PinnwandBox extends VerticalPanel {
 		
 	}
 	
-	public PinnwandBox(Nutzer n) {
-		Nutzer nutzer = new Nutzer();
-		nutzer = n;
+	public PinnwandBox(int nutzerId) {
 		
-		nutzer.setId(1);
+		Nutzer n = new Nutzer();
+		n.setId(nutzerId);
 		
-		pinnwandVerwaltung.getAllBeitraegeByNutzer(nutzer, new BeitraegeAnzeigenCallback()); 
+		
+		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback()); 
 		
 	}
 	
 	public void onLoad() {
 		this.add(PinnwandPanel);
-		RootPanel.get("InhaltDiv").add(PinnwandPanel);
+//		RootPanel.get("InhaltDiv").add(PinnwandPanel);
 	}
 	
 	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
@@ -49,19 +49,25 @@ public class PinnwandBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 			
-			for(Beitrag b : result) {
-				
-				BeitragBox bBox = new BeitragBox();
-				
-				String nicknameString = "@ "+ b.getNutzerFK();
-				
-				bBox.befuelleNicklabel(nicknameString);
-				
-				PinnwandPanel.add(bBox);
+//			for(Beitrag b : result) {
+//				
+//				Nutzer nutzer = new Nutzer();
+//				nutzer.setId(1);
+//				
+//				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
+//				
+//				BeitragBox bBox = new BeitragBox();
+//				
+//				String nicknameString = "@ "+ b.getNutzerFK();
+//				
+//				bBox.befuelleNicklabel(nicknameString);
+//				
+//				PinnwandPanel.add(bBox);
+//				
+//				RootPanel.get("InhaltDiv").add(PinnwandPanel);
 			}
 			
 		}
 		
-	}
 
 }

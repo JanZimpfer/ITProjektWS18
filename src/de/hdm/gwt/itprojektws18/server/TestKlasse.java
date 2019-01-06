@@ -35,11 +35,15 @@ public class TestKlasse {
 		
 //		n = impl.erstelleNutzer ("'flo'", "'timmler'", "'ft'", n.getErstellZeitpunkt(), "'hllo@world.de'");
 		
+		
 		n = impl.getNutzerbyID(1);
 		
-		Pinnwand p = new Pinnwand ();
+		Vector <Beitrag> result = new Vector <Beitrag> ();
 		
-		p = impl.erstellePinnwand(n, p.getErstellZeitpunkt());
+		result = impl.getAllBeitraegeByNutzer(n);
+		
+		System.out.println(result);
+	
 //		
 //		
 //		Like l = new Like ();
