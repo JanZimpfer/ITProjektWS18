@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.client.gui.PinnwandBox.BeitraegeAnzeigenCallback;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
@@ -36,7 +37,8 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	
 	BeitragBox bBox = new BeitragBox(pinnwand);
 	
-	PinnwandBox pBox = new PinnwandBox(nutzer);
+	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
+	
 	
 	public ErstelleBeitragBox() {
 		
@@ -98,27 +100,21 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 				Window.alert("Der Beitrag wurde erfolgreich angelegt.");
 				
 				
-				Pinnwand p = new Pinnwand ();
+//				Pinnwand p = new Pinnwand ();
+//				
+//				pinnwandVerwaltung.getNutzerbyID(1 , new NutzerInfosCallBack());
+//				
+//				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
+//				
+//				bBox.befuelleErstellzeitpunkt(erstellZPString);
+//				
+//				String textString = result.getText();
+//				
+//				bBox.befuelleInhalt(textString);
+//				
+//				befuellteBBoxen.add(bBox);
 				
-				pinnwandVerwaltung.getNutzerbyID(1, new NutzerInfosCallBack());
 				
-				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
-				
-				erstellZPString.substring(0,17);
-				
-				bBox.befuelleErstellzeitpunkt(erstellZPString);
-				
-				String textString = result.getText();
-				
-				bBox.befuelleInhalt(textString);
-				
-				pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new BeitragAuslesenCallBack());
-				
-				pBox.add(bBox);
-				
-				RootPanel.get("BeitragDiv").add(pBox);
-				
-			
 				
 			}
 
@@ -136,37 +132,17 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			public void onSuccess(Nutzer result) {
 				
 				
-				
 				String nicknameString = "@ "+result.getNickname();	
 				
 				bBox.befuelleNicklabel(nicknameString);
 				
 				
-			
 				
 				
-			}
-			
-			public class BeitragAuslesenCallBack implements AsyncCallback<Vector<Beitrag>> {
-
-				@Override
-				public void onFailure(Throwable caught) {
-					Window.alert("Fehler beim Auslesen aller Beiträge : " + caught.getMessage());
-					
-				}
-
-				@Override
-				public void onSuccess(Vector<Beitrag> result) {
-					// TODO Auto-generated method stub
-					
-				}
 				
-			}
-			
 		}
-		
-		
+
 
 	}
 	
-}
+}}
