@@ -49,25 +49,32 @@ public class PinnwandBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 			
-//			for(Beitrag b : result) {
-//				
-//				Nutzer nutzer = new Nutzer();
-//				nutzer.setId(1);
-//				
-//				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
-//				
-//				BeitragBox bBox = new BeitragBox();
-//				
-//				String nicknameString = "@ "+ b.getNutzerFK();
-//				
-//				bBox.befuelleNicklabel(nicknameString);
-//				
-//				PinnwandPanel.add(bBox);
-//				
-//				RootPanel.get("InhaltDiv").add(PinnwandPanel);
+			for(int i=0; i<result.size(); i++) {
+				
+				Beitrag b = new Beitrag();
+				Nutzer nutzer = new Nutzer();
+				nutzer.setId(1);
+				
+				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
+				
+				BeitragBox bBox = new BeitragBox();
+				
+				String nicknameString = "@ "+ b.getNutzerFK();
+				String erstellZP = "" + b.getErstellZeitpunkt() + "";
+				String inhalt = b.getText();
+				
+				bBox.befuelleNicklabel(nicknameString);
+				bBox.befuelleErstellzeitpunkt(erstellZP);
+				bBox.befuelleInhalt(inhalt);
+				
+				PinnwandPanel.add(bBox);
+				
+				RootPanel.get("InhaltDiv").add(PinnwandPanel);
 			}
 			
 		}
 		
 
+	}
+	
 }
