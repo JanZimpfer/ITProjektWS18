@@ -14,10 +14,10 @@ import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
-public class ProfilBox extends VerticalPanel {
+public class ProfilBox extends HorizontalPanel {
 	
 	
-	private VerticalPanel profilbox = new VerticalPanel ();
+	private HorizontalPanel profilbox = new HorizontalPanel ();
 	private HorizontalPanel buttonPanel  = new HorizontalPanel ();	
 	
 	
@@ -134,7 +134,7 @@ public void  befuelleAbonnierte (String anzahlAbonnierte) {
 			@Override
 			public void onFailure(Throwable caught) {
 				
-				Window.alert("Fehler beim zählen der Abos: " + caught.getMessage());
+				Window.alert("Fehler beim zï¿½hlen der Abos: " + caught.getMessage());
 			}
 
 
@@ -156,7 +156,7 @@ public void  befuelleAbonnierte (String anzahlAbonnierte) {
 
 			
 			public void onFailure(Throwable caught) {
-				Window.alert("Fehler beim zählen der Beitraege: " + caught.getMessage());
+				Window.alert("Fehler beim zï¿½hlen der Beitraege: " + caught.getMessage());
 				
 			}
 

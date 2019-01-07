@@ -20,9 +20,7 @@ public class Suchleiste extends HorizontalPanel {
 	
 	public Suchleiste () {
 		
-	suchleiste.setSpacing(2);
-	suchleiste.setCellHorizontalAlignment(suchleiste, ALIGN_LEFT);
-	suchleiste.setCellHorizontalAlignment(sucheButton, ALIGN_RIGHT);
+	
 	
 	
 		oracle.add(" Flo ");
@@ -60,11 +58,12 @@ class ProfilAnzeigen implements ClickHandler {
 	
 	
 	
-	
 	sucheButton.addStyleName("suchButton");
 	textfeld.addStyleName("suchleiste");
+//	suchleiste.addStyleName("suchleiste");
 	
-	RootPanel.get("SuchProfilLogout").add(suchleiste);
+//	
+//	RootPanel.get("SuchProfilLogout").add(suchleiste);
 		
 	}
 
