@@ -36,14 +36,17 @@ public class TestKlasse {
 //		n = impl.erstelleNutzer ("'flo'", "'timmler'", "'ft'", n.getErstellZeitpunkt(), "'hllo@world.de'");
 		
 		
-		n = impl.getNutzerbyID(1);
-		
-		Vector <Beitrag> result = new Vector <Beitrag> ();
-		
-		result = impl.getAllBeitraegeByNutzer(n);
-		
-		System.out.println(result);
+//		n = impl.getNutzerbyID(1);
+//		
+//		Vector <Beitrag> result = new Vector <Beitrag> ();
+//		
+//		result = impl.getAllBeitraegeByNutzer(n);
+//		
+//		System.out.println(result);
 	
+		n.setNickname("'Ahmed'");
+		impl.speichern(n);
+
 //		
 //		
 //		Like l = new Like ();
