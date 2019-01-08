@@ -9,8 +9,8 @@ public class DBConnection {
 	private static Connection con = null;
 
 	private static String googleUrl = "jdbc:mysql://35.195.132.125:3306/sw1819";
-//	private static String localUrl = "jdbc:mysql://35.195.132.125:3306/sw1819";
-	private static String localUrl = "jdbc:mysql://localhost:3306/sw1819?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static String localUrl = "jdbc:mysql://35.195.132.125:3306/sw1819";
+//	private static String localUrl = "jdbc:mysql://localhost:3306/sw1819?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static String username = "root";
 	private static String password = "sw1819";
 
@@ -25,11 +25,11 @@ public class DBConnection {
 					// Load the class that provides the new
 					// "jdbc:google:mysql://" prefix.
 					// Class.forName("com.mysql.cj.jdbc.Driver");
-					Class.forName("com.mysql.cj.jdbc.Driver");
+					Class.forName("com.mysql.jdbc.Driver");
 					url = googleUrl;
 				} else {
 					// Local MySQL instance to use during development.
-					Class.forName("com.mysql.cj.jdbc.Driver");
+					Class.forName("com.mysql.jdbc.Driver");
 					url = localUrl;
 				}
 
