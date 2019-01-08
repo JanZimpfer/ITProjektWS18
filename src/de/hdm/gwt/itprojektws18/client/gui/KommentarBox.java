@@ -31,15 +31,19 @@ public class KommentarBox extends VerticalPanel{
 	
 	private VerticalPanel kommentarPanel = new VerticalPanel();
 	
-	private TextArea kommentarInhalt = new TextArea();
+	private TextArea kommentarEingabe = new TextArea();
+	private Label kommentarText = new Label();
 	private Label nickname = new Label();
 	private Label vorname = new Label();
 	private Label nachname = new Label();
 	private	Label erstellZeitpunkt = new Label();
+	private Label aufforderung = new Label("Sag etwas dazu!");
 	
 	private Button submitKommentarBtn = new Button("Kommentieren");
 	private Button deleteKommentarBtn = new Button("Kommentar l�schen");
 	private Button editKommentarBtn = new Button("Kommentar bearbeiten");
+	
+	BeitragBox bBox = new BeitragBox();
 	
 	/**
 	 * Instantiierung der BusinessObjects die verwendet werden
@@ -54,6 +58,10 @@ public class KommentarBox extends VerticalPanel{
 	public KommentarBox() {
 		
 		}
+	
+	public KommentarBox(Kommentar k) {
+		
+	}
 
 	public void onLoad() {
 		
@@ -65,7 +73,8 @@ public class KommentarBox extends VerticalPanel{
 		/**
 		 * Hinzufuegen der Widgets
 		 */
-		kommentarPanel.add(kommentarInhalt);
+		kommentarPanel.add(kommentarEingabe);
+		kommentarPanel.add(kommentarText);
 		kommentarPanel.add(nickname);
 		kommentarPanel.add(vorname);
 		kommentarPanel.add(nachname);
@@ -81,7 +90,8 @@ public class KommentarBox extends VerticalPanel{
 		/**
 		 * Hinzufuegen des Stylings
 		 */
-		kommentarInhalt.addStyleName("gwt-TextArea");
+		kommentarEingabe.addStyleName("gwt-TextArea");
+		kommentarText.addStyleName("kommentarTextLabel");
 		submitKommentarBtn.addStyleName("submitButton");
 		deleteKommentarBtn.addStyleName("submitButton");
 		editKommentarBtn.addStyleName("submitButton");
@@ -108,13 +118,13 @@ public class KommentarBox extends VerticalPanel{
 		public void onClick(ClickEvent event) {
 			
 			Nutzer nutzer = new Nutzer();
-			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+			//nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+			nutzer.setId(1);
 			
 			Beitrag beitrag = new Beitrag();
-			
 			Timestamp erstellzeitpunkt = null;
 			//Wie kommt der Beitrag hier rein? 
-			pinnwandVerwaltung.erstelleKommentar(beitrag, kommentarInhalt.getText(), erstellzeitpunkt, nutzer, new KommentarAnlegenCallback());
+			pinnwandVerwaltung.erstelleKommentar(beitrag, kommentarEingabe.getText(), erstellzeitpunkt, nutzer, new KommentarAnlegenCallback());
 			
 		} 
 		
@@ -135,8 +145,48 @@ public class KommentarBox extends VerticalPanel{
 		@Override
 		public void onSuccess(Kommentar result) {
 			Window.alert("Kommentar erfolgreich hinzugefügt!");
-			//Neu Laden des Widgets damit der Kommentar angezeigt wird?
-			onLoad();
+			
+			Nutzer n = new Nutzer();
+			n.setId(result.getNutzerFK());
+			
+			pinnwandVerwaltung.getNutzerbyID(result.getNutzerFK(), new NutzerInfosCallback());
+			kommentarText.setText(result.getText());
+			String erstellZPString = ""+result.getErstellZeitpunkt()+"";
+			erstellZeitpunkt.setText(erstellZPString);
+			/*
+			 * TO-DO: Kommentar result wird dann wo hinzugefügt?
+			 */
+			//TextArea leeren
+			kommentarEingabe.setText("");
+			
+		}
+		
+	}
+	/**
+	 * <b>Nested Class fuer den KommentarAnlegenCallback</b>
+	 * 
+	 * Callback Aufruf um Nutzerinfos abzurufen
+	 *
+	 */
+	class NutzerInfosCallback implements AsyncCallback<Nutzer> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Nutzer result) {
+			String nicknameString = "@"+result.getNickname();
+			String vornameString = result.getVorname();
+			String nachnameString = result.getNachname();
+			
+			nickname.setText(nicknameString);
+			vorname.setText(vornameString);
+			nachname.setText(nachnameString);
+			
+			
 		}
 		
 	}
@@ -184,6 +234,7 @@ public class KommentarBox extends VerticalPanel{
 			neinBtn.addClickHandler(new KommentarNichtLoeschenClickHandler());
 			btnPanel.add(jaBtn);
 			btnPanel.add(neinBtn);
+			this.add(abfrage);
 			this.add(btnPanel);
 		}
 	}
@@ -214,7 +265,7 @@ public class KommentarBox extends VerticalPanel{
 
 		@Override
 		public void onClick(ClickEvent event) {
-			hide();
+			Window.alert("Kommentar nicht gelöscht.");
 		}
 		 
 	 }
@@ -233,7 +284,6 @@ public class KommentarBox extends VerticalPanel{
 		@Override
 		public void onSuccess(Void result) {
 			Window.alert("Kommentar erfolgreich gelöscht");
-			hide();
 			
 		}
 		
