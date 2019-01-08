@@ -33,6 +33,8 @@ public class TestKlasse {
 		
 		Nutzer n = new Nutzer () ;
 		
+		n = impl.getNutzerbyID(1);
+		
 //		n = impl.erstelleNutzer ("'flo'", "'timmler'", "'ft'", n.getErstellZeitpunkt(), "'hllo@world.de'");
 		
 		
@@ -44,7 +46,7 @@ public class TestKlasse {
 //		
 //		System.out.println(result);
 	
-		n.setNickname("'Ahmed'");
+		n.setNickname("Ahmed");
 		impl.speichern(n);
 
 //		
