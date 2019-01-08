@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.sql.Timestamp;
 
-import com.mysql.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 
 import de.hdm.gwt.itprojektws18.server.db.NutzerMapper;
 import de.hdm.gwt.itprojektws18.server.db.PinnwandMapper;
@@ -33,11 +33,11 @@ public class TestKlasseMK {
 		
     Nutzer n = new Nutzer ();
     
-    n = impl.getNutzerbyID(1);
+//    n = impl.getNutzerbyID(1);
     
-    System.out.println(n);
+//    System.out.println(n);
   
-    //n = impl.erstelleNutzer("'To'", "'ToTo'", "'DerTo'", n.getErstellZeitpunkt(), "'to.mustermann@m.com'");
+    n = impl.erstelleNutzer("'To'", "'ToTo'", "'DerTo'", n.getErstellZeitpunkt(), "'to.mustermann@m.com'");
 		
     //Pinnwand p = new Pinnwand ();
 	
