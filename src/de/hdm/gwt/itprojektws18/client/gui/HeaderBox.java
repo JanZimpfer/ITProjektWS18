@@ -27,7 +27,7 @@ public class HeaderBox extends HorizontalPanel {
 	Label vornameLbl = new Label("Neuer Vorname: ");
 	Label nachnameLbl = new Label("Neuer Nachname: ");
 
-	TextBox nicknameTextbox = new TextBox();
+	TextArea nicknameTextbox = new TextArea();
 	TextBox vornameTextbox = new TextBox();
 	TextBox nachnameTextbox = new TextBox();
 
@@ -41,6 +41,8 @@ public class HeaderBox extends HorizontalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
+	
+	
 
 	public HeaderBox() {
 
@@ -97,7 +99,6 @@ public class HeaderBox extends HorizontalPanel {
 
 		public EditForm() {
 
-			changeButton.addClickHandler(new ProfilEditClickHandler());
 //			closeButton.addClickHandler(new CloseClickHandler());
 			EditPanel.add(nicknameLbl);
 			EditPanel.add(nicknameTextbox);
@@ -109,7 +110,7 @@ public class HeaderBox extends HorizontalPanel {
 			EditPanel.add(changeButton);
 			EditPanel.add(closeButton);
 			this.add(EditPanel);
-
+			changeButton.addClickHandler(new ProfilEditClickHandler());
 		}
 
 	}
@@ -119,10 +120,8 @@ public class HeaderBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer n = new Nutzer();
-			n.setId(1);
-			n.setNickname( "'" + nicknameTextbox.getText() + "'");
-			n.setVorname( "'" + vornameTextbox.getText() + "'");
-			n.setNachname( "'" + nachnameTextbox.getText() + "'");
+			n.setId(2);
+
 			pinnwandVerwaltung.speichern(n, new NutzerEditCallback());
 
 		}
@@ -138,8 +137,15 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
-			Window.alert("LULULU");
+			Window.alert("Nutzer wurde erfolgreich geändert");
 
+			Nutzer n = new Nutzer();
+
+			String Text1 = "" + nicknameTextbox.getText() + "";
+
+			n.setNickname(Text1);
+			n.setVorname(vornameTextbox.getText());
+			n.setNachname(nachnameTextbox.getText());
 
 		}
 
