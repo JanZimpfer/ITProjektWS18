@@ -30,18 +30,17 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
-	
+
 	private Pinnwand pinnwand = new Pinnwand();
-	
+
 	Nutzer nutzer = new Nutzer();
-	
+
 	BeitragBox bBox = new BeitragBox(pinnwand);
-	
+
 	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
-	
-	
+
 	public ErstelleBeitragBox() {
-		
+
 	}
 
 	public ErstelleBeitragBox(Pinnwand p) {
@@ -59,11 +58,11 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
 		postingButton.addStyleName("submitButton");
-		
+
 		postingButton.addClickHandler(new postingButtonClickHandler());
 
 		RootPanel.get("BeitragDiv").add(PostingPanel);
-		
+
 	}
 
 	class postingButtonClickHandler implements ClickHandler {
@@ -73,16 +72,15 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 			Nutzer nutzer = new Nutzer();
 //			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-			
+
 			nutzer.setId(1);
 
 			Pinnwand pinnwand = new Pinnwand();
 			pinnwand.setId(nutzer.getId());
-			
+
 			Timestamp erstellzeitpunkt = null;
 
-			String text = "'" + erstelleBeitragFeld.getText() + "'" ;
-			
+			String text = "'" + erstelleBeitragFeld.getText() + "'";
 
 			pinnwandVerwaltung.erstelleBeitrag(pinnwand, text, erstellzeitpunkt, nutzer, new BeitragAnlegenCallback());
 		}
@@ -98,53 +96,46 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			@Override
 			public void onSuccess(Beitrag result) {
 				Window.alert("Der Beitrag wurde erfolgreich angelegt.");
-				
-				
-				Pinnwand p = new Pinnwand ();
-				
-				pinnwandVerwaltung.getNutzerbyID(1 , new NutzerInfosCallBack());
-				
-				String erstellZPString = ""+ result.getErstellZeitpunkt() + "";
-				
+
+				Pinnwand p = new Pinnwand();
+
+				pinnwandVerwaltung.getNutzerbyID(1, new NutzerInfosCallBack());
+
+				String erstellZPString = "" + result.getErstellZeitpunkt() + "";
+
 				bBox.befuelleErstellzeitpunkt(erstellZPString);
-				
+
 				String textString = result.getText();
-				
+
 				bBox.befuelleInhalt(textString);
-				
-				
+
 				befuellteBBoxen.add(bBox);
-				
-				PinnwandBox  pBox = new PinnwandBox (1);
+
+				PinnwandBox pBox = new PinnwandBox(1);
 				pBox.add(bBox);
-				
+
 			}
 
 		}
-		
+
 		public class NutzerInfosCallBack implements AsyncCallback<Nutzer> {
 
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler beim Auslesen der Nutzer Informationen: " + caught.getMessage());
-				
+
 			}
 
 			@Override
 			public void onSuccess(Nutzer result) {
-				
-				
-				String nicknameString = "@ "+result.getNickname();	
-				
+
+				String nicknameString = "@ " + result.getNickname();
+
 				bBox.befuelleNicklabel(nicknameString);
-				
-				
-				
-				
-				
+
+			}
+
 		}
 
-
 	}
-	
-}}
+}
