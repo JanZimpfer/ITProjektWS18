@@ -320,9 +320,29 @@ public class ITProjektWS18 implements EntryPoint {
 				Cookies.setCookie("ausloggen", loginInfo.getLogoutUrl());
 				Cookies.setCookie("email", result.getEmail());
 				Cookies.setCookie("id", result.getId() +"");
-				//hide(); - funktioniert nicht 
-				loadPinnwandVerwaltung();
+				//hide(); - funktioniert nicht
 				
+				Timestamp erstellzeitpunkt = null;
+				
+				pinnwandVerwaltung.erstellePinnwand(result, erstellzeitpunkt, new PinnwandAnlegenCallback());
+				
+			}
+			
+		}
+		
+		class PinnwandAnlegenCallback implements AsyncCallback<Pinnwand> {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Ihre Pinnwand konnte nicht erstellt werden" + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Pinnwand result) {
+				Window.alert("Ihre Pinnwand wurde angelegt");
+				
+				loadPinnwandVerwaltung();
 			}
 			
 		}
