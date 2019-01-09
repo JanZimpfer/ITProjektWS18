@@ -26,6 +26,7 @@ public class PinnwandBox extends VerticalPanel {
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
 
+//		PinnwandPanel.clear();
 
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
 
@@ -47,7 +48,7 @@ public class PinnwandBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 
-			PinnwandPanel.clear();
+			
 			
 			for (int i = 0; i < result.size(); i++) {
 
@@ -68,6 +69,7 @@ public class PinnwandBox extends VerticalPanel {
 				bBox.befuelleInhalt(inhalt);
 
 				PinnwandPanel.add(bBox);
+				result.clear();
 
 				
 			}

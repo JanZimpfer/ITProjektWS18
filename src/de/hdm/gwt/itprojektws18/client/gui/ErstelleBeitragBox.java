@@ -123,7 +123,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 //				befuellteBBoxen.add(bBox);
 
 				PinnwandBox pBox = new PinnwandBox(n.getId());
-
+				
 //				for(int i =0; i <befuellteBBoxen.size(); i++) {
 //					pBox.add(befuellteBBoxen.elementAt(i));
 //				}
