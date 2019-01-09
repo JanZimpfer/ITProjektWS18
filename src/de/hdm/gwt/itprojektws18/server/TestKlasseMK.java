@@ -37,7 +37,7 @@ public class TestKlasseMK {
     
 //    System.out.println(n);
   
-    n = impl.erstelleNutzer("'To'", "'ToTo'", "'DerTo'", n.getErstellZeitpunkt(), "'to.mustermann@m.com'");
+    n = impl.erstelleNutzer("'Bobi'", "'Bobo'", "'DerBaumeister'", n.getErstellZeitpunkt(), "'to.mustermann@m.com'");
 		
     //Pinnwand p = new Pinnwand ();
 	
