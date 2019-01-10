@@ -19,6 +19,7 @@ import java.util.Vector;
 public class BeitragBox extends VerticalPanel {
 
 	// Panels fuer die Darstellung der BeitragBox
+	private VerticalPanel beitragPanel = new VerticalPanel();
 	private HorizontalPanel NickTimePanel = new HorizontalPanel();
 	private VerticalPanel InhaltPanel = new VerticalPanel();
 	private FlowPanel InfoPanel = new FlowPanel();
@@ -87,14 +88,15 @@ public class BeitragBox extends VerticalPanel {
 		// StyleName für das Styling aller BeitragBoxen mit CSS
 		this.addStyleName("beitragBox");
 		
+		this.add(beitragPanel);
 		
 		
 		// Panels hinzufügen 
-		this.add(InhaltPanel);
-		this.add(InfoPanel);
-		this.add(ButtonPanel);
+		beitragPanel.add(InhaltPanel);
+		beitragPanel.add(InfoPanel);
+		beitragPanel.add(ButtonPanel);
 		// hier Ek einf�gen
-		this.add(KBox);
+		beitragPanel.add(KBox);
 
 		
 		//NickTimePanel gestalten
@@ -128,7 +130,7 @@ public class BeitragBox extends VerticalPanel {
 		loeschenBtn.addStyleName("loeschenBtn");
 		
 		
-		RootPanel.get("InhaltDiv").add(this);
+		RootPanel.get("InhaltDiv").add(beitragPanel);
 	}
 
 	/**
