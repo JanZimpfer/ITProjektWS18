@@ -16,14 +16,15 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-public class BeitragBox extends HorizontalPanel {
+public class BeitragBox extends VerticalPanel {
 
 	// Panels fuer die Darstellung der BeitragBox
-	private HorizontalPanel BeitragPanel = new HorizontalPanel();
 	private HorizontalPanel NickTimePanel = new HorizontalPanel();
 	private VerticalPanel InhaltPanel = new VerticalPanel();
 	private FlowPanel InfoPanel = new FlowPanel();
 	private HorizontalPanel ButtonPanel = new HorizontalPanel();
+	// hier EK Panel hinzuf�gen
+	private KommentarBox KBox = new KommentarBox();
 
 	// benoetigte Label
 	private Label beitragInhalt = new Label();
@@ -33,13 +34,14 @@ public class BeitragBox extends HorizontalPanel {
 	private Label likeAnzahlText = new Label("85 Likes");
 
 	// benoetigte Buttons
-//	private Button beitragStatistikButton = new Button("Beitragstatistik");
 	private Button beitragBearbeitenButton = new Button("Beitrag bearbeiten");
-	private Button likeButton = new Button("Gefällt mir!");
-	private Button kommentierButton = new Button("Sag etwas dazu!");
+	private Button likeButton = new Button("Gefaellt mir!");
+	private Button likesAnzeigenBtn= new Button("Likes anzeigen");
+	private Button loeschenBtn = new Button("Loeschen");
+	
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	ClientsideSettings clientSettings = new ClientsideSettings();
+	
 	
 	Pinnwand pinnwand = new Pinnwand();
 	
@@ -55,9 +57,6 @@ public class BeitragBox extends HorizontalPanel {
 		this.pinnwand = p;
 		
 		
-		
-		
-		BeitragPanel.setSpacing(2);
 		InhaltPanel.setSpacing(4);
 		ButtonPanel.setSpacing(5);
 		NickTimePanel.setSpacing(2);
@@ -89,12 +88,13 @@ public class BeitragBox extends HorizontalPanel {
 		this.addStyleName("beitragBox");
 		
 		
-		this.add(BeitragPanel);
 		
 		// Panels hinzufügen 
-		BeitragPanel.add(InhaltPanel);
-		BeitragPanel.add(InfoPanel);
-		BeitragPanel.add(ButtonPanel);
+		this.add(InhaltPanel);
+		this.add(InfoPanel);
+		this.add(ButtonPanel);
+		// hier Ek einf�gen
+		this.add(KBox);
 
 		
 		//NickTimePanel gestalten
@@ -107,25 +107,28 @@ public class BeitragBox extends HorizontalPanel {
 		InhaltPanel.add(ButtonPanel);
 		
 		// ButtonPanel gestalten
-		ButtonPanel.add(beitragBearbeitenButton);
 		ButtonPanel.add(likeButton);
 		ButtonPanel.add(likeAnzahlText);
-		ButtonPanel.add(kommentierButton);
+		ButtonPanel.add(likesAnzeigenBtn);
+		ButtonPanel.add(beitragBearbeitenButton);
+		ButtonPanel.add(loeschenBtn);
 		ButtonPanel.add(kommentarAnzahlText);
+		
 
 		// StyleNames für das Styling mit CSS hinzufügen
-		BeitragPanel.addStyleName("beitragBox");
+		
 		beitragBearbeitenButton.addStyleName("beitragBearbeitenButton");
 		likeButton.addStyleName("likeButton");
-		kommentierButton.addStyleName("kommentierButton");
 		InfoPanel.addStyleName("infoPanel");
 		InhaltPanel.addStyleName("inhaltPanel");
 		beitragInhalt.addStyleName("beitragInhalt");
 		nickname.addStyleName("nickname");
 		erstellZeitpunkt.addStyleName("erstellZeitpunkt");
 		ButtonPanel.addStyleName("ButtonPanel");
+		loeschenBtn.addStyleName("loeschenBtn");
 		
-		RootPanel.get("InhaltDiv").add(BeitragPanel);
+		
+		RootPanel.get("InhaltDiv").add(this);
 	}
 
 	/**

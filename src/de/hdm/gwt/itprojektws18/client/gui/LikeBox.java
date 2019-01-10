@@ -5,7 +5,7 @@ import java.util.Vector;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
@@ -13,7 +13,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 import de.hdm.gwt.itprojektws18.shared.bo.Like;
 
-public class LikeBox extends VerticalPanel{
+public class LikeBox extends ScrollPanel{
 	
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
@@ -24,9 +24,7 @@ public class LikeBox extends VerticalPanel{
 	 * Instanziierung der GUI Elemente
 	 */
 	private Label nickname = new Label();
-	private Label vorname = new Label();
-	private Label nachname = new Label();
-	private	Label erstellZeitpunkt = new Label();
+	
 	
 	/**
 	 * Deklarierung der BO, die verwendet werden
@@ -49,14 +47,8 @@ public class LikeBox extends VerticalPanel{
 		this.addStyleName("likebox");
 		
 		nickname.addStyleName("nicknameLikeBox");
-		vorname.addStyleName("vornameLikeBox");
-		nachname.addStyleName("nachnameLikeBox");
-		erstellZeitpunkt.addStyleName("erstellZeitpunktLikeBox");
 		
 		this.add(nickname);
-		this.add(vorname);
-		this.add(nachname);
-		this.add(erstellZeitpunkt);
 	}
 	
 	public class LikeAnzeigeCallBack implements AsyncCallback<Vector<Like>> {
@@ -69,7 +61,7 @@ public class LikeBox extends VerticalPanel{
 
 		@Override
 		public void onSuccess(Vector<Like> result) {
-			// Like Vector auslesen und jeweils dem Vertical Panel adden -> for Schleife
+			// Like Vector auslesen und jeweils dem ScrollPanel adden -> for Schleife
 			
 		}
 		
