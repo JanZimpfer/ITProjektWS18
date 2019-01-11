@@ -16,7 +16,7 @@ public class PinnwandBox extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
-	private VerticalPanel pinnwandPanel = new VerticalPanel();
+	private UebersichtBox uebersichtbox = new UebersichtBox(3);
 	
 	public PinnwandBox() {
 
@@ -26,55 +26,53 @@ public class PinnwandBox extends VerticalPanel {
 
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
-		this.add(pinnwandPanel);
-		
-		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
 
-		RootPanel.get("InhaltDiv").add(pinnwandPanel);
+		this.add(uebersichtbox);
+		
 		super.onLoad();
 
 	}
-
-	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onSuccess(Vector<Beitrag> result) {
-
-			
-			
-			for (int i = 0; i < result.size(); i++) {
-
-				
-				Nutzer nutzer = new Nutzer();
-				nutzer.setId(result.elementAt(result.size()-1-i).getNutzerFK());
-
-//				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
-
-				BeitragBox bBox = new BeitragBox();
-
-				String nicknameString = "@ " + nutzer.getNickname();
-				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
-				String inhalt = result.elementAt(result.size()-1-i).getText();
-
-				bBox.befuelleNicklabel(nicknameString);
-				bBox.befuelleErstellzeitpunkt(erstellZP);
-				bBox.befuelleInhalt(inhalt);
-
-				pinnwandPanel.add(bBox);
-//				result.clear();
-
-				
-			}
-
-
-		}
-
-	}
+//
+//	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
+//
+//		@Override
+//		public void onFailure(Throwable caught) {
+//			// TODO Auto-generated method stub
+//
+//		}
+//
+//		@Override
+//		public void onSuccess(Vector<Beitrag> result) {
+//
+//			
+//			
+//			for (int i = 0; i < result.size(); i++) {
+//
+//				
+//				Nutzer nutzer = new Nutzer();
+//				nutzer.setId(result.elementAt(result.size()-1-i).getNutzerFK());
+//
+////				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
+//
+//				BeitragBox bBox = new BeitragBox();
+//
+//				String nicknameString = "@ " + nutzer.getNickname();
+//				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
+//				String inhalt = result.elementAt(result.size()-1-i).getText();
+//
+//				bBox.befuelleNicklabel(nicknameString);
+//				bBox.befuelleErstellzeitpunkt(erstellZP);
+//				bBox.befuelleInhalt(inhalt);
+//
+//				pinnwandPanel.add(bBox);
+////				result.clear();
+//
+//				
+//			}
+//
+//
+//		}
+//
+//	}
 
 }

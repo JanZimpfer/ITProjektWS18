@@ -74,7 +74,7 @@ public class ITProjektWS18 implements EntryPoint {
 	Pinnwand p = new Pinnwand();
 	Beitrag b = new Beitrag();
 	HeaderBox headerBox = new HeaderBox();
-	PinnwandBox pinnwandBox = new PinnwandBox();
+	
 	ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox(p);
 	BeitragBox beitragBox = new BeitragBox(b);
 	AboBox aboBox = new AboBox();
@@ -96,14 +96,14 @@ public class ITProjektWS18 implements EntryPoint {
 //		loginService.login(GWT.getHostPageBaseURL()+
 //				"ITProjektWS18.html", new LoginCallback());
 //	
-
+		PinnwandBox pinnwandBox = new PinnwandBox(3);
 		
 		/*
 		 * Befuellen des RootPanels
 		 */
 	
 		RootPanel.get("SuchProfilLogout").add(headerBox);
-		RootPanel.get("BeitragDiv").add(erstelleBeitragBox);
+//		RootPanel.get("BeitragDiv").add(erstelleBeitragBox);
 		RootPanel.get("InhaltDiv").add(pinnwandBox);
 //		RootPanel.get("InhaltDiv").add(beitragBox);
 		RootPanel.get("AboDiv").add(aboBox);
