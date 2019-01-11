@@ -4,6 +4,7 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -14,105 +15,105 @@ import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
-
-//import com.google.gwt.event.dom.client.ClickEvent;
-//import com.google.gwt.event.dom.client.ClickHandler;
-//import com.google.gwt.user.client.Cookies;
-//import com.google.gwt.user.client.Window;
-//import com.google.gwt.user.client.rpc.AsyncCallback;
-//import com.google.gwt.user.client.ui.*;
-//
-//import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-//import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
-//import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
-//import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
-//import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
-//
-//import java.sql.Timestamp;
-//import java.util.Vector;
-
 public class BeitragBox extends VerticalPanel {
-	
+
 	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	
+
 	/**
 	 * Erstellung verschiedener Panels
 	 */
 	private VerticalPanel inhaltPanel = new VerticalPanel();
-	private VerticalPanel buttonPanel = new VerticalPanel();
+	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel erstelleKommentarPanel = new VerticalPanel();
 	private VerticalPanel kommentarPanel = new VerticalPanel();
-	
+
 	/**
 	 * Erstellung benötigter GUI-Elemente
 	 */
-	private TextArea beitragInhalt = new TextArea();
-	
-	private Label vorname = new Label();
-	private Label nachname = new Label();
+	private Label beitragInhalt = new Label();
+
 	private Label nickname = new Label();
 	private Label erstellzeitpunkt = new Label();
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
-	
+
 	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
 	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
-	private Button kommentierBtn = new Button("Kommentieren");
 	private Button likeBtn = new Button("Gefällt mir!");
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
-	
-	
+
 	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox();
 	private KommentarBox kommentarBox = new KommentarBox();
+
+	public BeitragBox() {
+		
+	}
 	
 	public BeitragBox(final Beitrag b) {
-		
-		/**
-		 * T1
+
+		// Hinzufügen der StyleNames
+		this.addStyleName("beitragBox");
+		beitragInhalt.addStyleName("beitragInhalt");
+		nickname.addStyleName("nickname");
+		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
+		kommentarAnzahl.addStyleName("kommentarAnzahl");
+		likeAnzahl.addStyleName("likeAnzahl");
+		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
+		beitragLoeschenBtn.addStyleName("loeschenBtn");
+		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
+		likeBtn.addStyleName("likeButton");
+
+		inhaltPanel.addStyleName("inhaltPanel");
+		buttonPanel.addStyleName("ButtonPanel");
+		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
+		kommentarPanel.addStyleName("kommentarPanel");
+
+		/**Die TextArea soll nur den Text des Beitrags anzeigen 
+		 * und keine Texteingabe ermöglichen.
+		 * Zusätzlich: Festlegung der Größe der TextArea.
 		 */
+//		beitragInhalt.setReadOnly(true);
+//		beitragInhalt.setSize("470px", "30px");
+
 		inhaltPanel.add(nickname);
-		inhaltPanel.add(vorname);
-		inhaltPanel.add(nachname);
 		inhaltPanel.add(erstellzeitpunkt);
 		inhaltPanel.add(beitragInhalt);
-		
+
+		buttonPanel.add(likeBtn);
 		buttonPanel.add(likeAnzahl);
+		buttonPanel.add(likesAnzeigenBtn);
 		buttonPanel.add(kommentarAnzahl);
 		buttonPanel.add(beitragBearbeitenBtn);
 		buttonPanel.add(beitragLoeschenBtn);
-		buttonPanel.add(kommentierBtn);
-		buttonPanel.add(likeBtn);
-		buttonPanel.add(likesAnzeigenBtn);
-		
+
 		erstelleKommentarPanel.add(erstelleKommentarBox);
-		
+
 		kommentarPanel.add(kommentarBox);
-		
+
 		this.add(inhaltPanel);
 		this.add(buttonPanel);
 		this.add(erstelleKommentarPanel);
 		this.add(kommentarPanel);
-		
+
 		super.onLoad();
-		
-		
+
 		/**
 		 * T2
 		 */
-		
+
 		Nutzer n = new Nutzer();
 		n.setId(3);
-		 
+//		 
 		pinnwandVerwaltung.getNutzerbyID(n.getId(), new NutzerInfosCallback());
-		
-		this.add(kommentierBtn);
-		this.add(beitragInhalt);
-		
-		super.onLoad();
-		
-		RootPanel.get("InhaltDiv").add(kommentierBtn);
+//		
+//		this.add(kommentierBtn);
+//		this.add(beitragInhalt);
+//		
+//		super.onLoad();
+//		
+//		RootPanel.get("InhaltDiv").add(kommentierBtn);
 	}
-	
+
 	/**
 	 * Nested Class fuer den Callback Aufruf um Nutzerinformationen zu erhalten
 	 */
@@ -120,16 +121,33 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Auslesen der Nutzerinformationen: "+caught.getMessage());
-			
+			Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
+
 		}
 
 		@Override
 		public void onSuccess(Nutzer result) {
-			
+
 		}
+
+	}
+	public void befuelleNicklabel (String nicknameString) {
+		
+		this.nickname.setText(nicknameString);
 		
 	}
+	
+	public void befuelleErstellzeitpunkt (String erstellzeitpunkt) {
+		
+		this.erstellzeitpunkt.setText(erstellzeitpunkt);
+		
+	}
+	
+	public void befuelleInhalt (String inhalt) {
+		
+		this.beitragInhalt.setText(inhalt);
+	}
+//
 }
 
 //
@@ -179,23 +197,7 @@ public class BeitragBox extends VerticalPanel {
 //		
 //	}
 //	
-//	public void befuelleNicklabel (String nicknameString) {
-//		
-//		this.nickname.setText(nicknameString);
-//		
-//	}
-//	
-//	public void befuelleErstellzeitpunkt (String erstellzeitpunkt) {
-//		
-//		this.erstellZeitpunkt.setText(erstellzeitpunkt);
-//		
-//	}
-//	
-//	public void befuelleInhalt (String inhalt) {
-//		
-//		this.beitragInhalt.setText(inhalt);
-//	}
-//
+
 //	public void onLoad() {
 //
 //

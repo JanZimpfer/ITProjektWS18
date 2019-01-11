@@ -23,17 +23,16 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 public class ErstelleBeitragBox extends HorizontalPanel {
 
-	private HorizontalPanel postingPanel = new HorizontalPanel();
+	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	
+	/**
+	 * Erstellung der GUI-Elemente
+	 */
+//	private HorizontalPanel postingPanel = new HorizontalPanel();
 	private TextArea erstelleBeitragFeld = new TextArea();
 	private Button postingButton = new Button("Posten");
 
-	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	ClientsideSettings clientSettings = new ClientsideSettings();
-
-	private Pinnwand pinnwand = new Pinnwand();
-
-	Nutzer nutzer = new Nutzer();
-
+	
 //	BeitragBox bBox = new BeitragBox(pinnwand);
 
 //	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
@@ -42,27 +41,38 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 	}
 
-	public ErstelleBeitragBox(Pinnwand p) {
-
-		this.pinnwand = p;
-		postingPanel.setSpacing(2);
-	}
-
-	public void onLoad() {
+	public ErstelleBeitragBox(final Pinnwand p) {
+		
+		// Hinzufügen der StyleNames
 		this.addStyleName("erstelleBeitragBox");
-		this.add(postingPanel);
-
-		postingPanel.add(erstelleBeitragFeld);
-		postingPanel.add(postingButton);
-
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
-		postingButton.addStyleName("submitButton");
-
+		postingButton.addStyleName("postingButton");
+		
+		erstelleBeitragFeld.setSize("470px", "40px");
+		
+		this.add(erstelleBeitragFeld);
+		this.add(postingButton);
+				
 		postingButton.addClickHandler(new postingButtonClickHandler());
-
-		RootPanel.get("BeitragDiv").add(postingPanel);
-
+		
+		super.onLoad();
+//		
+//		this.pinnwand = p;
 	}
+
+//		this.addStyleName("erstelleBeitragBox");
+//		this.add(postingPanel);
+//
+//		postingPanel.add(erstelleBeitragFeld);
+//		postingPanel.add(postingButton);
+//
+//		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
+//		postingButton.addStyleName("submitButton");
+//
+//		postingButton.addClickHandler(new postingButtonClickHandler());
+//
+//		RootPanel.get("BeitragDiv").add(postingPanel);
+
 
 	class postingButtonClickHandler implements ClickHandler {
 

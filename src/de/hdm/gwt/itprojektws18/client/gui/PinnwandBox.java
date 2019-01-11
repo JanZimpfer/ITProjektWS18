@@ -10,13 +10,14 @@ import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 public class PinnwandBox extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	private VerticalPanel pinnwandPanel = new VerticalPanel();
-
+	
 	public PinnwandBox() {
 
 	}
@@ -25,16 +26,13 @@ public class PinnwandBox extends VerticalPanel {
 
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
-
-//		PinnwandPanel.clear();
-
+		this.add(pinnwandPanel);
+		
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
 
-	}
+		RootPanel.get("InhaltDiv").add(pinnwandPanel);
+		super.onLoad();
 
-	public void onLoad() {
-		this.add(pinnwandPanel);
-//		RootPanel.get("InhaltDiv").add(PinnwandPanel);
 	}
 
 	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
@@ -58,23 +56,23 @@ public class PinnwandBox extends VerticalPanel {
 
 //				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
 
-//				BeitragBox bBox = new BeitragBox();
+				BeitragBox bBox = new BeitragBox();
 
 				String nicknameString = "@ " + nutzer.getNickname();
 				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
 				String inhalt = result.elementAt(result.size()-1-i).getText();
 
-//				bBox.befuelleNicklabel(nicknameString);
-//				bBox.befuelleErstellzeitpunkt(erstellZP);
-//				bBox.befuelleInhalt(inhalt);
+				bBox.befuelleNicklabel(nicknameString);
+				bBox.befuelleErstellzeitpunkt(erstellZP);
+				bBox.befuelleInhalt(inhalt);
 
-//				PinnwandPanel.add(bBox);
-				result.clear();
+				pinnwandPanel.add(bBox);
+//				result.clear();
 
 				
 			}
 
-			RootPanel.get("InhaltDiv").add(pinnwandPanel);
+
 		}
 
 	}
