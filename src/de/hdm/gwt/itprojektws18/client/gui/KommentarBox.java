@@ -43,8 +43,6 @@ public class KommentarBox extends VerticalPanel{
 	private Button deleteKommentarBtn = new Button("Kommentar l�schen");
 	private Button editKommentarBtn = new Button("Kommentar bearbeiten");
 	
-	BeitragBox bBox = new BeitragBox();
-	
 	/**
 	 * Instantiierung der BusinessObjects die verwendet werden
 	 */

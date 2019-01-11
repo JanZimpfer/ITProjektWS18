@@ -38,7 +38,7 @@ public class AboBox extends VerticalPanel{
 	
 	private HorizontalPanel aboPinnwandInfos = new HorizontalPanel();
 	
-	private HorizontalPanel ReportButtonPanel = new HorizontalPanel();
+	private HorizontalPanel reportButtonPanel = new HorizontalPanel();
 	
 	private Label profil = new Label("Profil: PeterPan");
 	
@@ -77,7 +77,7 @@ public class AboBox extends VerticalPanel{
 		
 		abobox.add(profilbereich);
 		abobox.add(aboniertePW);
-		abobox.add(ReportButtonPanel);
+		abobox.add(reportButtonPanel);
 		
 		profilbereich.add(profil);
 		profilbereich.add(aboErstellBtn);
@@ -89,8 +89,8 @@ public class AboBox extends VerticalPanel{
 //		aboPinnwandInfos.add(nutzerNameLabel);
 //		aboPinnwandInfos.add(nickNameLabel);
 		
-		ReportButtonPanel.add(beitragStatistikButton);
-		ReportButtonPanel.add(nutzerStatistikButton);
+		reportButtonPanel.add(beitragStatistikButton);
+		reportButtonPanel.add(nutzerStatistikButton);
 		
 		/**
 		 * 
@@ -103,7 +103,7 @@ public class AboBox extends VerticalPanel{
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
 		nutzerNameLabel.addStyleName("nutzerNameLabel");
 		nickNameLabel.addStyleName("nickNameLabel");
-		ReportButtonPanel.addStyleName("ReportButtonPanel");
+		reportButtonPanel.addStyleName("ReportButtonPanel");
 		beitragStatistikButton.addStyleName("beitragStatistikButton");
 		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
 		
@@ -128,7 +128,7 @@ public class AboBox extends VerticalPanel{
 		@Override
 		public void onClick(ClickEvent event) {
 			
-			// zunächst if Abfrage: if nutzer == cookie nutzer -> button hide oder keine event, else -> abo erstellen
+			// zunï¿½chst if Abfrage: if nutzer == cookie nutzer -> button hide oder keine event, else -> abo erstellen
 			
 			Nutzer n = new Nutzer();
 			

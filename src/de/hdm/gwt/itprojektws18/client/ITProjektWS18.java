@@ -5,6 +5,7 @@ import de.hdm.gwt.itprojektws18.shared.FieldVerifier;
 import de.hdm.gwt.itprojektws18.shared.LoginService;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 import de.hdm.gwt.itprojektws18.shared.LoginServiceAsync;
@@ -70,13 +71,12 @@ public class ITProjektWS18 implements EntryPoint {
 	private TextBox nicknameBox = new TextBox();
 
 	//Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt werden.
-	HeaderBox HeaderBox = new HeaderBox();
-	ProfilBox ProfilBox = new ProfilBox();
-	Pinnwand Pinnwand = new Pinnwand ();
-	ErstelleBeitragBox ErstelleBeitragBox = new ErstelleBeitragBox(Pinnwand);
-	BeitragBox BeitragBox = new BeitragBox(Pinnwand);
-	Suchleiste Suchleiste = new Suchleiste ();
-	AboBox AboBox = new AboBox();
+	Pinnwand p = new Pinnwand();
+	Beitrag b = new Beitrag();
+	HeaderBox headerBox = new HeaderBox();
+	ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox(p);
+	BeitragBox beitragBox = new BeitragBox(b);
+	AboBox aboBox = new AboBox();
 	/**
     * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung
     ** zu initialisieren.
@@ -101,10 +101,10 @@ public class ITProjektWS18 implements EntryPoint {
 		 * Befuellen des RootPanels
 		 */
 	
-		RootPanel.get("SuchProfilLogout").add(HeaderBox);
-//		RootPanel.get("InhaltDiv").add(BeitragBox);
-		RootPanel.get("BeitragDiv").add(ErstelleBeitragBox);
-		RootPanel.get("AboDiv").add(AboBox);
+		RootPanel.get("SuchProfilLogout").add(headerBox);
+		RootPanel.get("InhaltDiv").add(beitragBox);
+		RootPanel.get("BeitragDiv").add(erstelleBeitragBox);
+		RootPanel.get("AboDiv").add(aboBox);
 		
 		
 	}	

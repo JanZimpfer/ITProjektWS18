@@ -23,7 +23,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 public class ErstelleBeitragBox extends HorizontalPanel {
 
-	private HorizontalPanel PostingPanel = new HorizontalPanel();
+	private HorizontalPanel postingPanel = new HorizontalPanel();
 	private TextArea erstelleBeitragFeld = new TextArea();
 	private Button postingButton = new Button("Posten");
 
@@ -36,7 +36,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 //	BeitragBox bBox = new BeitragBox(pinnwand);
 
-	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
+//	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
 
 	public ErstelleBeitragBox() {
 
@@ -45,22 +45,22 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	public ErstelleBeitragBox(Pinnwand p) {
 
 		this.pinnwand = p;
-		PostingPanel.setSpacing(2);
+		postingPanel.setSpacing(2);
 	}
 
 	public void onLoad() {
 		this.addStyleName("erstelleBeitragBox");
-		this.add(PostingPanel);
+		this.add(postingPanel);
 
-		PostingPanel.add(erstelleBeitragFeld);
-		PostingPanel.add(postingButton);
+		postingPanel.add(erstelleBeitragFeld);
+		postingPanel.add(postingButton);
 
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
 		postingButton.addStyleName("submitButton");
 
 		postingButton.addClickHandler(new postingButtonClickHandler());
 
-		RootPanel.get("BeitragDiv").add(PostingPanel);
+		RootPanel.get("BeitragDiv").add(postingPanel);
 
 	}
 

@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.client.ITProjektWS18;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
@@ -16,23 +17,23 @@ public class HeaderBox extends HorizontalPanel {
 
 	private HorizontalPanel headerBox = new HorizontalPanel();
 	private HorizontalPanel inhalte = new HorizontalPanel();
-	private ProfilBox ProfilBox = new ProfilBox();
+	private ProfilBox profilBox = new ProfilBox();
 	private Suchleiste suchLeiste = new Suchleiste();
-	private VerticalPanel LogoutEditPanel = new VerticalPanel();
+	private VerticalPanel logoutEditPanel = new VerticalPanel();
 
-	private Button LogoutButton = new Button("Logout");
-	private Button ProfilEditButton = new Button("Profil bearbeiten");
+	private Button logoutButton = new Button("Logout");
+	private Button profilEditButton = new Button("Profil bearbeiten");
 
-	Label nicknameLbl = new Label("Neuer Nickname: ");
-	Label vornameLbl = new Label("Neuer Vorname: ");
-	Label nachnameLbl = new Label("Neuer Nachname: ");
+	private Label nicknameLbl = new Label("Neuer Nickname: ");
+	private Label vornameLbl = new Label("Neuer Vorname: ");
+	private Label nachnameLbl = new Label("Neuer Nachname: ");
 
-	TextArea nicknameTextbox = new TextArea();
-	TextBox vornameTextbox = new TextBox();
-	TextBox nachnameTextbox = new TextBox();
+	private TextArea nicknameTextbox = new TextArea();
+	private TextBox vornameTextbox = new TextBox();
+	private TextBox nachnameTextbox = new TextBox();
 
-	Button changeButton = new Button("Aenderungen speichern");
-	Button closeButton = new Button("Schließen");
+	private Button changeButton = new Button("Aenderungen speichern");
+	private Button closeButton = new Button("Schließen");
 
 	// Panels hinzufügen
 //	HorizontalPanel EditPanel = new HorizontalPanel();
@@ -56,9 +57,9 @@ public class HeaderBox extends HorizontalPanel {
 //		headerBox.add(EditPanel);
 		headerBox.add(inhalte);
 
-		inhalte.add(ProfilBox);
+		inhalte.add(profilBox);
 		inhalte.add(suchLeiste);
-		inhalte.add(LogoutEditPanel);
+		inhalte.add(logoutEditPanel);
 
 //		EditPanel.add(nicknameLbl);
 //		EditPanel.add(nicknameEdit);
@@ -68,14 +69,14 @@ public class HeaderBox extends HorizontalPanel {
 //		EditPanel.add(nachnameEdit);
 //		EditPanel.add(changeButton);
 
-		LogoutEditPanel.add(LogoutButton);
-		LogoutEditPanel.add(ProfilEditButton);
+		logoutEditPanel.add(logoutButton);
+		logoutEditPanel.add(profilEditButton);
 
-		LogoutEditPanel.addStyleName("logoutEditPanel");
-		LogoutButton.addStyleName("logoutButton");
+		logoutEditPanel.addStyleName("logoutEditPanel");
+		logoutButton.addStyleName("logoutButton");
 //		ProfilEditButton.addStyleName("profilEditButton");
 
-		ProfilEditButton.addClickHandler(new ChangeClickHandler());
+		profilEditButton.addClickHandler(new ChangeClickHandler());
 
 		RootPanel.get("SuchProfilLogout").add(headerBox);
 
@@ -95,21 +96,21 @@ public class HeaderBox extends HorizontalPanel {
 	}
 
 	private class EditForm extends DialogBox {
-		private VerticalPanel EditPanel = new VerticalPanel();
+		private VerticalPanel editPanel = new VerticalPanel();
 
 		public EditForm() {
 
-//			closeButton.addClickHandler(new CloseClickHandler());
-			EditPanel.add(nicknameLbl);
-			EditPanel.add(nicknameTextbox);
-			EditPanel.add(vornameLbl);
-			EditPanel.add(vornameTextbox);
-			EditPanel.add(nachnameLbl);
-			EditPanel.add(nachnameTextbox);
+			closeButton.addClickHandler(new CloseClickHandler());
+			editPanel.add(nicknameLbl);
+			editPanel.add(nicknameTextbox);
+			editPanel.add(vornameLbl);
+			editPanel.add(vornameTextbox);
+			editPanel.add(nachnameLbl);
+			editPanel.add(nachnameTextbox);
 
-			EditPanel.add(changeButton);
-			EditPanel.add(closeButton);
-			this.add(EditPanel);
+			editPanel.add(changeButton);
+			editPanel.add(closeButton);
+			this.add(editPanel);
 			changeButton.addClickHandler(new ProfilEditClickHandler());
 		}
 
@@ -137,13 +138,13 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
-			Window.alert("Nutzer wurde erfolgreich ge�ndert");
+			Window.alert("Nutzer wurde erfolgreich ge�ndert");
 
 			Nutzer n = new Nutzer();
 
-			String Text1 = "" + nicknameTextbox.getText() + "";
+			String text1 = "" + nicknameTextbox.getText() + "";
 
-			n.setNickname(Text1);
+			n.setNickname(text1);
 			n.setVorname(vornameTextbox.getText());
 			n.setNachname(nachnameTextbox.getText());
 
@@ -151,13 +152,13 @@ public class HeaderBox extends HorizontalPanel {
 
 	}
 
-//	class CloseClickHandler implements ClickHandler {
-//
-//
-//		public void onClick(ClickEvent event) {
-//			EditForm.this.hide();
-//			
-//		}
-//		
-//	}
+	class CloseClickHandler implements ClickHandler {
+
+
+		public void onClick(ClickEvent event) {
+			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+			
+		}
+		
+	}
 }

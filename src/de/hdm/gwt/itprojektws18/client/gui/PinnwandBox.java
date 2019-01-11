@@ -15,7 +15,7 @@ public class PinnwandBox extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
-	private VerticalPanel PinnwandPanel = new VerticalPanel();
+	private VerticalPanel pinnwandPanel = new VerticalPanel();
 
 	public PinnwandBox() {
 
@@ -33,7 +33,7 @@ public class PinnwandBox extends VerticalPanel {
 	}
 
 	public void onLoad() {
-		this.add(PinnwandPanel);
+		this.add(pinnwandPanel);
 //		RootPanel.get("InhaltDiv").add(PinnwandPanel);
 	}
 
@@ -58,23 +58,23 @@ public class PinnwandBox extends VerticalPanel {
 
 //				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
 
-				BeitragBox bBox = new BeitragBox();
+//				BeitragBox bBox = new BeitragBox();
 
 				String nicknameString = "@ " + nutzer.getNickname();
 				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
 				String inhalt = result.elementAt(result.size()-1-i).getText();
 
-				bBox.befuelleNicklabel(nicknameString);
-				bBox.befuelleErstellzeitpunkt(erstellZP);
-				bBox.befuelleInhalt(inhalt);
+//				bBox.befuelleNicklabel(nicknameString);
+//				bBox.befuelleErstellzeitpunkt(erstellZP);
+//				bBox.befuelleInhalt(inhalt);
 
-				PinnwandPanel.add(bBox);
+//				PinnwandPanel.add(bBox);
 				result.clear();
 
 				
 			}
 
-			RootPanel.get("InhaltDiv").add(PinnwandPanel);
+			RootPanel.get("InhaltDiv").add(pinnwandPanel);
 		}
 
 	}

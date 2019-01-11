@@ -16,7 +16,7 @@ public class BeitragStatistikCallback extends HTMLResultPanel{
 	
 	public BeitragStatistikCallback() {
 		Nutzer nutzer = new Nutzer();
-		reportverwaltung.createBeitragStatistikReport(nutzer, new Date(), new BeitragStatistik());
+		//reportverwaltung.createBeitragStatistikReport(nutzer, new Date(), new BeitragStatistik());
 		
 }
 
