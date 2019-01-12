@@ -1,44 +1,34 @@
- /** Add css rules here for your application. */
-
+/** Add css rules here for your application. */
 /**Styling der Div-Elemente*/
-
 body {
 	background-color: #dfdfdf;
-	
 }
 
-div{
+div {
 	padding: 10px;
 	margin: 0px;
 	background-color: white;
-	
 }
 
-#container{
+#container {
 	float: none;
 	height: 100%;
 	margin: 5 px;
 	min-width: 1000px;
 	background-color: #dfdfdf;
 	border-radius: 20px;
-	
 }
 
-
-#header{
-	
+#header {
 	background-color: #ff7d78;
 	border-radius: 20px;
-
-	
 }
 
-#SuchProfilLogout{
+#SuchProfilLogout {
 	background-color: #dfdfdf;
-
 }
 
-#AboDiv{
+#AboDiv {
 	clear: both;
 	float: left;
 	width: 20%;
@@ -47,31 +37,17 @@ div{
 	border: 2px solid black;
 	border-radius: 20px;
 	margin-left: 0px;
-
 }
 
-
-#BeitragDiv{
+#InhaltDiv {
 	float: right;
 	width: 74%;
-	font-size:10pt;
+	font-size: 10pt;
 	border-radius: 20px;
 	border: 2px solid black;
-	
 }
 
-
-#InhaltDiv{
-	float: right;
-	width: 74%;
-	font-size:10pt;
-	border-radius: 20px;
-	border: 2px solid black;
-
-}
-
-
-#trailer{
+#trailer {
 	clear: both;
 	padding: 10px 0;
 	margin: 0 auto;
@@ -83,42 +59,38 @@ div{
 	border-radius: 20px;
 }
 
-
 /** Example rules used by the template application (remove for your app) */
 h1 {
-
-  	font-size: 18pt;
-  	text-align: center;
-  	color: #424242;
+	font-size: 18pt;
+	text-align: center;
+	color: #424242;
 }
 
-.headerBox{
-	
+.headerBox {
 	
 }
-
 
 .sendButton {
-  display: block;
-  font-size: 16pt;
+	display: block;
+	font-size: 16pt;
 }
 
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
-  width: 400px;
+	width: 400px;
 }
 
 .dialogVPanel {
-  margin: 5px;
+	margin: 5px;
 }
 
 .serverResponseLabelError {
-  color: red;
+	color: red;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
-  margin: 15px 6px 6px;
+	margin: 15px 6px 6px;
 }
 
 .profilbildButton {
@@ -138,7 +110,6 @@ h1 {
 .suchleiste {
 	color: black;
 	float: right;
-
 }
 
 .suchButton {
@@ -153,11 +124,11 @@ h1 {
 
 .logoutButton {
 	color: black;
-	float: left;	
+	float: left;
 }
 
-.logoutEditPanel{
-
+.logoutEditPanel {
+	
 }
 
 .nutzerNameLabel {
@@ -180,29 +151,29 @@ h1 {
 	color: black;
 }
 
-.aboniertePW{
+.aboniertePW {
 	color: black;
 }
 
-.profil{
+.profil {
 	color: black;
 }
 
-.anzeigePW{
+.anzeigePW {
 	color: black;
 	border-radius: 20px;
 }
 
-.deAboBtn{
+.deAboBtn {
 	color: black;
 }
 
-.aboPinnwandInfos{
+.aboPinnwandInfos {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.ReportButtonPanel{
+.ReportButtonPanel {
 	color: black;
 	margin-left: auto;
 	margin-right: auto;
@@ -212,22 +183,22 @@ h1 {
 	color: black;
 }
 
-.nutzerStatistikButton{
+.nutzerStatistikButton {
 	color: black;
 }
 
 .beitragBox {
 	color: black;
-	
-	
+	border-radius: 20px;
 }
 
 .beitragInhalt {
 	border-bottom: 0.5px solid black;
+	border-radius: 20px;
 }
 
 .infoPanel {
-
+	
 }
 
 .inhaltPanel {
@@ -246,7 +217,6 @@ h1 {
 
 .submitButton {
 	color: black;
-	
 }
 
 .nicknameBeitragBox {
@@ -261,8 +231,7 @@ h1 {
 	color: black;
 }
 
-.ButtonPanel{
-	
+.ButtonPanel {
 	border-bottom: 0.5px solid black;
 }
 
@@ -270,10 +239,8 @@ h1 {
 	color: black;
 }
 
-
 .likeButton {
 	color: black;
-	
 }
 
 .kommentareAnzeigenButton {
@@ -286,7 +253,6 @@ h1 {
 
 .kommentarBox {
 	color: black;
-	
 }
 
 .nicknameKommentarBox {
@@ -313,11 +279,14 @@ h1 {
 	color: black;
 }
 
+.erstelleKommentarBox {
+	border-radius: 20px;
+}
+
 .erstelleBeitragFeld {
 	color: black;
 	width: 70%;
 	border-radius: 20px;
-	
 }
 
 .loginGreet {

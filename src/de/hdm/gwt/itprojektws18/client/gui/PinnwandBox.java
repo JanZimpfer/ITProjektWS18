@@ -16,9 +16,16 @@ public class PinnwandBox extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
-	private UebersichtBox uebersichtbox = new UebersichtBox(3);
-	
+	private UebersichtBox uebersichtbox = new UebersichtBox();
+
 	public PinnwandBox() {
+
+		Nutzer n = new Nutzer();
+		n.setId(3);
+
+		this.add(uebersichtbox);
+
+		super.onLoad();
 
 	}
 
@@ -28,51 +35,8 @@ public class PinnwandBox extends VerticalPanel {
 		n.setId(nutzerId);
 
 		this.add(uebersichtbox);
-		
+
 		super.onLoad();
 
 	}
-//
-//	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
-//
-//		@Override
-//		public void onFailure(Throwable caught) {
-//			// TODO Auto-generated method stub
-//
-//		}
-//
-//		@Override
-//		public void onSuccess(Vector<Beitrag> result) {
-//
-//			
-//			
-//			for (int i = 0; i < result.size(); i++) {
-//
-//				
-//				Nutzer nutzer = new Nutzer();
-//				nutzer.setId(result.elementAt(result.size()-1-i).getNutzerFK());
-//
-////				PinnwandBox pBox = new PinnwandBox(nutzer.getId());
-//
-//				BeitragBox bBox = new BeitragBox();
-//
-//				String nicknameString = "@ " + nutzer.getNickname();
-//				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
-//				String inhalt = result.elementAt(result.size()-1-i).getText();
-//
-//				bBox.befuelleNicklabel(nicknameString);
-//				bBox.befuelleErstellzeitpunkt(erstellZP);
-//				bBox.befuelleInhalt(inhalt);
-//
-//				pinnwandPanel.add(bBox);
-////				result.clear();
-//
-//				
-//			}
-//
-//
-//		}
-//
-//	}
-
 }

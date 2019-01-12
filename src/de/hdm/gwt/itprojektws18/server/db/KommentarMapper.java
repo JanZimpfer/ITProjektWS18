@@ -26,7 +26,7 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Einfügen eines Kommentar-Objekts in die DB
+	 * Einfï¿½gen eines Kommentar-Objekts in die DB
 	 * 
 	 * @author Matthias
 	 */
@@ -50,7 +50,7 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Diese Methode ermöglicht das editiern des übergebenen Kommentar-Objekts
+	 * Diese Methode ermï¿½glicht das editiern des ï¿½bergebenen Kommentar-Objekts
 	 * 
 	 * @author Matthias
 	 */
@@ -60,8 +60,9 @@ public class KommentarMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate(
-					"UPDATE kommentar" + "set text =" + "'" + k.getText() + "'" + "WHERE id=" + "'" + k.getId() + "'");
+			stmt.executeUpdate("UPDATE kommentar set "+
+					"text = " + "'" + k.getText() + "'" 
+					+"WHERE id=" + "'" + k.getId() + "'");
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Löschen des übergebenen KOmmentar-Objekts
+	 * Lï¿½schen des ï¿½bergebenen KOmmentar-Objekts
 	 * 
 	 * @author Matthias
 	 */
@@ -90,7 +91,7 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Löschen aller zugehörigen KOmmentar-Objekte des übergebenen Beitrag-Objektes
+	 * Lï¿½schen aller zugehï¿½rigen KOmmentar-Objekte des ï¿½bergebenen Beitrag-Objektes
 	 * 
 	 * @param b
 	 */

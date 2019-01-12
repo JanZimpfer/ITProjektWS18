@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 
@@ -13,7 +14,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 import de.hdm.gwt.itprojektws18.shared.bo.Like;
 
-public class LikeBox extends ScrollPanel{
+public class LikeBox extends DialogBox{
 	
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
@@ -25,30 +26,13 @@ public class LikeBox extends ScrollPanel{
 	 */
 	private Label nickname = new Label();
 	
-	
-	/**
-	 * Deklarierung der BO, die verwendet werden
-	 */
-	private Kommentar kommentar = null;
-	private Beitrag beitrag = null;
-	
-	
 
 	public LikeBox(Beitrag b) {
 		
-		//überarbeitung, da beitrag global deklariert wurde = kein direkter zusammenhang
-		this.beitrag = b;
+		//ï¿½berarbeitung, da beitrag global deklariert wurde = kein direkter zusammenhang
+//		this.beitrag = b;
 		pinnwandVerwaltung.getAllLikesByBeitrag(b, new LikeAnzeigeCallBack());
 		
-	}
-	
-	public void onLoad() {
-		
-		this.addStyleName("likebox");
-		
-		nickname.addStyleName("nicknameLikeBox");
-		
-		this.add(nickname);
 	}
 	
 	public class LikeAnzeigeCallBack implements AsyncCallback<Vector<Like>> {

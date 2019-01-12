@@ -1,18 +1,29 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
+import java.util.Vector;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.thirdparty.javascript.jscomp.Result;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.client.gui.BeitragBox.AlleLikesCallback;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
+import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class BeitragBox extends VerticalPanel {
@@ -30,50 +41,62 @@ public class BeitragBox extends VerticalPanel {
 	/**
 	 * Erstellung benötigter GUI-Elemente
 	 */
-	private Label beitragInhalt = new Label();
+	private TextBox beitragInhalt = new TextBox();
 
 	private Label nickname = new Label();
 	private Label erstellzeitpunkt = new Label();
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
 
+	private String nicknameFiller = new String();
+
 	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
 	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
 	private Button likeBtn = new Button("Gefällt mir!");
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
-	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox();
+	private TextBox beitragBearbeitenInhalt = new TextBox();
+	private Button speichernBtn = new Button("Speichern");
+	private Button schliessenBtn = new Button("Schließen");
+
+	// Test-Vektor - OBACHT!
+	private Vector<Like> alleLikesVonBeitrag = new Vector<Like>();
+
+//	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 	private KommentarBox kommentarBox = new KommentarBox();
 
 	public BeitragBox() {
-		
+
 	}
-	
+
 	public BeitragBox(final Beitrag b) {
 
-		// Hinzufügen der StyleNames
+//		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
 		beitragInhalt.addStyleName("beitragInhalt");
-		nickname.addStyleName("nickname");
-		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
-		kommentarAnzahl.addStyleName("kommentarAnzahl");
-		likeAnzahl.addStyleName("likeAnzahl");
-		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
-		beitragLoeschenBtn.addStyleName("loeschenBtn");
-		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
-		likeBtn.addStyleName("likeButton");
+//		nickname.addStyleName("nickname");
+//		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
+//		kommentarAnzahl.addStyleName("kommentarAnzahl");
+//		likeAnzahl.addStyleName("likeAnzahl");
+//		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
+//		beitragLoeschenBtn.addStyleName("loeschenBtn");
+//		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
+//		likeBtn.addStyleName("likeButton");
+//
+//		inhaltPanel.addStyleName("inhaltPanel");
+//		buttonPanel.addStyleName("ButtonPanel");
+//		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
+//		kommentarPanel.addStyleName("kommentarPanel");
 
-		inhaltPanel.addStyleName("inhaltPanel");
-		buttonPanel.addStyleName("ButtonPanel");
-		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
-		kommentarPanel.addStyleName("kommentarPanel");
+		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
-		/**Die TextArea soll nur den Text des Beitrags anzeigen 
-		 * und keine Texteingabe ermöglichen.
-		 * Zusätzlich: Festlegung der Größe der TextArea.
+		/**
+		 * Die TextArea soll nur den Text des Beitrags anzeigen und keine Texteingabe
+		 * ermöglichen. Zusätzlich: Festlegung der Größe der TextArea.
 		 */
-//		beitragInhalt.setReadOnly(true);
-//		beitragInhalt.setSize("470px", "30px");
+		beitragInhalt.setReadOnly(true);
+		beitragInhalt.setSize("470px", "30px");
+		beitragInhalt.addStyleName("beitragInhalt");
 
 		inhaltPanel.add(nickname);
 		inhaltPanel.add(erstellzeitpunkt);
@@ -86,9 +109,15 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.add(beitragBearbeitenBtn);
 		buttonPanel.add(beitragLoeschenBtn);
 
+		likesAnzeigenBtn.addClickHandler(new LikesAnzeigenClickHandler());
+		beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
+
 		erstelleKommentarPanel.add(erstelleKommentarBox);
 
 		kommentarPanel.add(kommentarBox);
+
+		pinnwandVerwaltung.getAllKommentareByBeitrag(b, new KommentareAnzeigenCallback());
+		pinnwandVerwaltung.getAllLikesByBeitrag(b, new AlleLikesCallback());
 
 		this.add(inhaltPanel);
 		this.add(buttonPanel);
@@ -97,21 +126,154 @@ public class BeitragBox extends VerticalPanel {
 
 		super.onLoad();
 
-		/**
-		 * T2
-		 */
+	}
 
-		Nutzer n = new Nutzer();
-		n.setId(3);
-//		 
-		pinnwandVerwaltung.getNutzerbyID(n.getId(), new NutzerInfosCallback());
-//		
-//		this.add(kommentierBtn);
-//		this.add(beitragInhalt);
-//		
-//		super.onLoad();
-//		
-//		RootPanel.get("InhaltDiv").add(kommentierBtn);
+	class BeitragBearbeitenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			BeitragBearbeitenForm beitragBearbeitenForm = new BeitragBearbeitenForm();
+			beitragBearbeitenForm.center();
+			beitragBearbeitenForm.show();
+
+		}
+
+	}
+
+	class BeitragBearbeitenForm extends DialogBox {
+
+		private VerticalPanel editPanel = new VerticalPanel();
+
+		public BeitragBearbeitenForm() {
+
+			speichernBtn.addClickHandler(new BeitragSpeichernClickHandler());
+			schliessenBtn.addClickHandler(new SchliessenClickHandler());
+
+			editPanel.add(beitragBearbeitenInhalt);
+			editPanel.add(speichernBtn);
+			editPanel.add(schliessenBtn);
+
+			this.add(editPanel);
+
+		}
+
+	}
+
+	class BeitragAbrufCallback implements AsyncCallback<Beitrag> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abrufen des Beitraginhalts: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Beitrag result) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
+	class BeitragSpeichernClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			Beitrag b = new Beitrag();
+
+			b.setId(1);
+			b.setText(beitragBearbeitenInhalt.getText());
+
+			pinnwandVerwaltung.speichern(b, new BeitragSpeichernCallback());
+
+		}
+
+	}
+
+	class BeitragSpeichernCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Bearbeiten des Beitrags: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+			Window.alert("Beitrag erfolgreich bearbeitet.");
+
+		}
+
+	}
+
+	class SchliessenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+
+		}
+
+	}
+
+	class AlleLikesCallback implements AsyncCallback<Vector<Like>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen aller Likes: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Vector<Like> result) {
+
+			for (int i = 0; i < result.size(); i++) {
+
+				alleLikesVonBeitrag.add(result.elementAt(i));
+			}
+
+		}
+	}
+
+	class KommentareAnzeigenCallback implements AsyncCallback<Vector<Kommentar>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen der Kommentare: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Vector<Kommentar> result) {
+
+			for (int i = 0; i < result.size(); i++) {
+
+				KommentarBox kBox = new KommentarBox(result.elementAt(i));
+
+				Nutzer n = new Nutzer();
+				n.setId(result.elementAt(i).getNutzerFK());
+
+				pinnwandVerwaltung.getNutzerbyID(n.getId(), new NutzerInfosCallback());
+
+				n.setNickname(nicknameFiller);
+
+				Beitrag b = new Beitrag();
+				b.setId(result.elementAt(i).getBeitragFK());
+
+				String nicknameString = "@ " + n.getNickname();
+				String erstellZP = result.elementAt(result.size() - 1 - i).getErstellZeitpunkt().toString();
+				String inhalt = result.elementAt(result.size() - 1 - i).getText();
+
+				kBox.befuelleNicklabel(nicknameString);
+				kBox.befuelleErstellzeitpunkt(erstellZP);
+				kBox.befuelleInhalt(inhalt);
+
+				kommentarPanel.add(kBox);
+
+			}
+
+		}
+
 	}
 
 	/**
@@ -128,169 +290,65 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Nutzer result) {
 
+			Window.alert("Nutzer erfolgreich bekommen" + result.getNickname());
+
 		}
 
 	}
-	public void befuelleNicklabel (String nicknameString) {
-		
+
+	class LikesAnzeigenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+
+			LikeDialogBox likeBox = new LikeDialogBox();
+			likeBox.center();
+
+		}
+
+	}
+
+	class LikeDialogBox extends DialogBox {
+
+		VerticalPanel likeElemente = new VerticalPanel();
+		ScrollPanel likeListe = new ScrollPanel();
+
+		public LikeDialogBox() {
+
+			for (int i = 0; i < alleLikesVonBeitrag.size(); i++) {
+
+				Label nutzerInfo = new Label();
+
+				String text = "" + alleLikesVonBeitrag.elementAt(i).getNutzerFK() + "";
+
+				nutzerInfo.setText(text);
+
+				likeElemente.add(nutzerInfo);
+
+			}
+
+			likeListe.add(likeElemente);
+			this.add(likeListe);
+
+		}
+	}
+
+	public void befuelleNicklabel(String nicknameString) {
+
 		this.nickname.setText(nicknameString);
-		
+
 	}
-	
-	public void befuelleErstellzeitpunkt (String erstellzeitpunkt) {
-		
+
+	public void befuelleErstellzeitpunkt(String erstellzeitpunkt) {
+
 		this.erstellzeitpunkt.setText(erstellzeitpunkt);
-		
+
 	}
-	
-	public void befuelleInhalt (String inhalt) {
-		
+
+	public void befuelleInhalt(String inhalt) {
+
 		this.beitragInhalt.setText(inhalt);
+
 	}
-//
+
 }
-
-//
-//	// Panels fuer die Darstellung der BeitragBox
-//	private VerticalPanel beitragPanel = new VerticalPanel();
-//	private HorizontalPanel nickTimePanel = new HorizontalPanel();
-//	private VerticalPanel inhaltPanel = new VerticalPanel();
-//	private FlowPanel infoPanel = new FlowPanel();
-//	private HorizontalPanel buttonPanel = new HorizontalPanel();
-//	// hier EK Panel hinzuf�gen
-//	private KommentarBox kBox = new KommentarBox();
-//
-//	// benoetigte Label
-//	private TextArea beitragInhalt = new TextArea();
-//	private Label nickname = new Label();
-//	private Label erstellZeitpunkt = new Label();
-//	private Label kommentarAnzahlText = new Label("30 Kommentare");
-//	private Label likeAnzahlText = new Label("85 Likes");
-//
-//	// benoetigte Buttons
-//	private Button beitragBearbeitenButton = new Button("Beitrag bearbeiten");
-//	private Button likeButton = new Button("Gefaellt mir!");
-//	private Button likesAnzeigenBtn= new Button("Likes anzeigen");
-//	private Button loeschenBtn = new Button("Loeschen");
-//	
-//
-//	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-//	
-//	
-//	Pinnwand pinnwand = new Pinnwand();
-//	
-//	String Text;
-//	
-//	public BeitragBox() {
-//		
-//	}
-//	
-//	
-//	public BeitragBox(Pinnwand p) {
-//
-//		this.pinnwand = p;
-//		
-//		
-//		inhaltPanel.setSpacing(4);
-//		buttonPanel.setSpacing(5);
-//		nickTimePanel.setSpacing(2);
-//		
-//	}
-//	
-
-//	public void onLoad() {
-//
-//
-//		
-//		// StyleName für das Styling aller BeitragBoxen mit CSS
-//		this.addStyleName("beitragBox");
-//		
-//		
-//	
-//
-//		
-//		//NickTimePanel gestalten
-//		nickTimePanel.add(nickname);
-//		nickTimePanel.add(erstellZeitpunkt);
-//		
-//		// InhaltPanel gestalten
-//		inhaltPanel.add(nickTimePanel);
-//		inhaltPanel.add(beitragInhalt);
-//		inhaltPanel.add(buttonPanel);
-//		
-//		// ButtonPanel gestalten
-//		buttonPanel.add(likeButton);
-//		buttonPanel.add(likeAnzahlText);
-//		buttonPanel.add(likesAnzeigenBtn);
-//		buttonPanel.add(beitragBearbeitenButton);
-//		buttonPanel.add(loeschenBtn);
-//		buttonPanel.add(kommentarAnzahlText);
-//		
-//
-//		// StyleNames für das Styling mit CSS hinzufügen
-//		
-//		beitragBearbeitenButton.addStyleName("beitragBearbeitenButton");
-//		likeButton.addStyleName("likeButton");
-//		//infoPanel.addStyleName("infoPanel");
-//		inhaltPanel.addStyleName("inhaltPanel");
-//		beitragInhalt.addStyleName("beitragInhalt");
-//		nickname.addStyleName("nickname");
-//		erstellZeitpunkt.addStyleName("erstellZeitpunkt");
-//		buttonPanel.addStyleName("ButtonPanel");
-//		loeschenBtn.addStyleName("loeschenBtn");
-//		
-//		// Panels hinzufügen 
-//		beitragPanel.add(inhaltPanel);
-//		//beitragPanel.add(infoPanel);
-//		beitragPanel.add(buttonPanel);
-//		// hier Ek einf�gen
-//		beitragPanel.add(kBox);
-//		
-//		this.add(beitragPanel);
-//		RootPanel.get("InhaltDiv").add(beitragPanel);
-//	}
-//
-//	/**
-//	 * Hier werden im Folgenden die inneren Klassen implementiert, die das Interface
-//	 * Clickhandler implementieren, um entsprechenden erstellten Buttons
-//	 * <code>ClickEvents</code> zuzuweisen.
-//	 * 
-//	 * @author florian
-//	 */
-//
-//	class LikesAnzeigen implements ClickHandler {
-//
-//		public void onClick(ClickEvent event) {
-//
-//		}
-//
-//	}
-//
-//	class LikeErstellen implements ClickHandler {
-//
-//		public void onClick(ClickEvent event) {
-//
-//		}
-//
-//	}
-//
-//	class KommentareAnzeigen implements ClickHandler {
-//
-//		public void onClick(ClickEvent event) {
-//
-//		}
-//
-//	}
-//
-//	class KommentarErstellen implements ClickHandler {
-//
-//		public void onClick(ClickEvent event) {
-//
-//		}
-//
-//	}
-//				
-//			
-//		
-//	}
-//

@@ -4,6 +4,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -35,15 +36,10 @@ public class HeaderBox extends HorizontalPanel {
 	private Button changeButton = new Button("Aenderungen speichern");
 	private Button closeButton = new Button("Schließen");
 
-	// Panels hinzufügen
-//	HorizontalPanel EditPanel = new HorizontalPanel();
-
 	EditForm edtForm = new EditForm();
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	ClientsideSettings clientSettings = new ClientsideSettings();
-	
-	
 
 	public HeaderBox() {
 
@@ -61,14 +57,6 @@ public class HeaderBox extends HorizontalPanel {
 		inhalte.add(suchLeiste);
 		inhalte.add(logoutEditPanel);
 
-//		EditPanel.add(nicknameLbl);
-//		EditPanel.add(nicknameEdit);
-//		EditPanel.add(vornameLbl);
-//		EditPanel.add(vornameEdit);
-//		EditPanel.add(nachnameLbl);
-//		EditPanel.add(nachnameEdit);
-//		EditPanel.add(changeButton);
-
 		logoutEditPanel.add(logoutButton);
 		logoutEditPanel.add(profilEditButton);
 
@@ -77,8 +65,6 @@ public class HeaderBox extends HorizontalPanel {
 //		ProfilEditButton.addStyleName("profilEditButton");
 
 		profilEditButton.addClickHandler(new ChangeClickHandler());
-
-		RootPanel.get("SuchProfilLogout").add(headerBox);
 
 	}
 
@@ -89,7 +75,6 @@ public class HeaderBox extends HorizontalPanel {
 			EditForm dlgBox = new EditForm();
 			dlgBox.center();
 			dlgBox.show();
-//			dlgBox.hide();
 
 		}
 
@@ -101,6 +86,14 @@ public class HeaderBox extends HorizontalPanel {
 		public EditForm() {
 
 			closeButton.addClickHandler(new CloseClickHandler());
+
+//			/**
+//			 * Einfügen der in der Datenbank bereits vorhandenen Informationen
+//			 */
+//			vornameTextbox.setText("");
+//			nachnameTextbox.setText("");
+//			nicknameTextbox.setText("");
+
 			editPanel.add(nicknameLbl);
 			editPanel.add(nicknameTextbox);
 			editPanel.add(vornameLbl);
@@ -121,7 +114,12 @@ public class HeaderBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer n = new Nutzer();
-			n.setId(2);
+
+			// n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			n.setId(3);
+			n.setVorname(vornameTextbox.getText());
+			n.setNachname(nachnameTextbox.getText());
+			n.setNickname(nicknameTextbox.getText());
 
 			pinnwandVerwaltung.speichern(n, new NutzerEditCallback());
 
@@ -132,33 +130,23 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
+			Window.alert("Fehler beim Bearbeiten des Nutzers: " + caught.getMessage());
 
 		}
 
 		@Override
 		public void onSuccess(Void result) {
 			Window.alert("Nutzer wurde erfolgreich ge�ndert");
-
-			Nutzer n = new Nutzer();
-
-			String text1 = "" + nicknameTextbox.getText() + "";
-
-			n.setNickname(text1);
-			n.setVorname(vornameTextbox.getText());
-			n.setNachname(nachnameTextbox.getText());
-
 		}
 
 	}
 
 	class CloseClickHandler implements ClickHandler {
 
-
 		public void onClick(ClickEvent event) {
 			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
-			
+
 		}
-		
+
 	}
 }

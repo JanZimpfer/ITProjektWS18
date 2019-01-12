@@ -24,55 +24,42 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 public class ErstelleBeitragBox extends HorizontalPanel {
 
 	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	
+
 	/**
 	 * Erstellung der GUI-Elemente
 	 */
-//	private HorizontalPanel postingPanel = new HorizontalPanel();
+
 	private TextArea erstelleBeitragFeld = new TextArea();
 	private Button postingButton = new Button("Posten");
 
-	
-//	BeitragBox bBox = new BeitragBox(pinnwand);
-
-//	public Vector<BeitragBox> befuellteBBoxen = new Vector<BeitragBox>();
-
 	public ErstelleBeitragBox() {
+
+		this.add(erstelleBeitragFeld);
+		this.add(postingButton);
+
+		postingButton.addClickHandler(new postingButtonClickHandler());
+
+		super.onLoad();
 
 	}
 
 	public ErstelleBeitragBox(final Pinnwand p) {
-		
+
 		// Hinzufügen der StyleNames
 		this.addStyleName("erstelleBeitragBox");
 		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
 		postingButton.addStyleName("postingButton");
-		
+
 		erstelleBeitragFeld.setSize("470px", "40px");
-		
+
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
-				
+
 		postingButton.addClickHandler(new postingButtonClickHandler());
-		
+
 		super.onLoad();
-//		
-//		this.pinnwand = p;
+
 	}
-
-//		this.addStyleName("erstelleBeitragBox");
-//		this.add(postingPanel);
-//
-//		postingPanel.add(erstelleBeitragFeld);
-//		postingPanel.add(postingButton);
-//
-//		erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
-//		postingButton.addStyleName("submitButton");
-//
-//		postingButton.addClickHandler(new postingButtonClickHandler());
-//
-//		RootPanel.get("BeitragDiv").add(postingPanel);
-
 
 	class postingButtonClickHandler implements ClickHandler {
 
@@ -106,59 +93,13 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			public void onSuccess(Beitrag result) {
 				Window.alert("Der Beitrag wurde erfolgreich angelegt.");
 
-//				Pinnwand p = new Pinnwand();
-//				
-//				p.setId(result.getPinnwandFK());
-//				
-//				BeitragBox bBox = new BeitragBox(p);
-//				
-				Nutzer n = new Nutzer();
-				
-				n.setId(result.getNutzerFK());
-//				
-//				String nicknameString = "@ " + n.getNickname();
-//				
-//				bBox.befuelleNicklabel(nicknameString);
-//				
-////				pinnwandVerwaltung.getNutzerbyID(1, new NutzerInfosCallBack());
-//
-//				String erstellZPString = "" + result.getErstellZeitpunkt() + "";
-//
-//				bBox.befuelleErstellzeitpunkt(erstellZPString);
-//
-//				String textString = result.getText();
-//
-//				bBox.befuelleInhalt(textString);
+				PinnwandBox pBox = new PinnwandBox();
 
-//				befuellteBBoxen.add(bBox);
+				RootPanel.get("InhaltDiv").clear();
+				RootPanel.get("InhaltDiv").add(pBox);
 
-				PinnwandBox pBox = new PinnwandBox(n.getId());
-				
-//				for(int i =0; i <befuellteBBoxen.size(); i++) {
-//					pBox.add(befuellteBBoxen.elementAt(i));
-//				}
 			}
 
 		}
-
-//		public class NutzerInfosCallBack implements AsyncCallback<Nutzer> {
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert("Fehler beim Auslesen der Nutzer Informationen: " + caught.getMessage());
-//
-//			}
-//
-//			@Override
-//			public void onSuccess(Nutzer result) {
-//
-//				String nicknameString = "@ " + result.getNickname();
-//
-//				bBox.befuelleNicklabel(nicknameString);
-//
-//			}
-//
-//		}
-
 	}
 }

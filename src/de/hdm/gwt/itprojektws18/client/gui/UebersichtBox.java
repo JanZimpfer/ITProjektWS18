@@ -11,26 +11,38 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class UebersichtBox extends VerticalPanel {
-	
-	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	
-	private ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox();
-	private VerticalPanel beitragPanel = new VerticalPanel(); 
 
-	public UebersichtBox(int nutzerId) {
-		
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+
+	private ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox();
+	private VerticalPanel beitragPanel = new VerticalPanel();
+
+	public UebersichtBox() {
+
 		this.add(erstelleBeitragBox);
-		
+
 		Nutzer n = new Nutzer();
-		n.setId(nutzerId);
-		
+		n.setId(3);
+
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
-		
+
+		this.add(beitragPanel);
+
 		super.onLoad();
 	}
-	
-	
-	
+
+	public UebersichtBox(int nutzerId) {
+
+		this.add(erstelleBeitragBox);
+
+		Nutzer n = new Nutzer();
+		n.setId(nutzerId);
+
+		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
+
+		super.onLoad();
+	}
+
 	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
 
 		@Override
@@ -42,30 +54,24 @@ public class UebersichtBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 
-			
-			
 			for (int i = 0; i < result.size(); i++) {
 
-				
 				Nutzer nutzer = new Nutzer();
-				nutzer.setId(result.elementAt(result.size()-1-i).getNutzerFK());
+				nutzer.setId(result.elementAt(i).getNutzerFK());
 
-				BeitragBox bBox = new BeitragBox(result.get(i));
+				BeitragBox bBox = new BeitragBox(result.elementAt(result.size() - 1 - i));
 
 				String nicknameString = "@ " + nutzer.getNickname();
-				String erstellZP = "" + result.elementAt(result.size()-1-i).getErstellZeitpunkt() + "";
-				String inhalt = result.elementAt(result.size()-1-i).getText();
+				String erstellZP = result.elementAt(result.size() - 1 - i).getErstellZeitpunkt().toString();
+				String inhalt = result.elementAt(result.size() - 1 - i).getText();
 
 				bBox.befuelleNicklabel(nicknameString);
 				bBox.befuelleErstellzeitpunkt(erstellZP);
 				bBox.befuelleInhalt(inhalt);
 
 				beitragPanel.add(bBox);
-//				result.clear();
 
-				
 			}
-
 
 		}
 
