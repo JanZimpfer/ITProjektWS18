@@ -37,7 +37,7 @@ public class KommentarBox extends VerticalPanel {
 	private Label nickname = new Label();
 	private Label erstellZeitpunkt = new Label();
 
-	private Button kommentarLoeschenBtn = new Button("Kommentar l�schen");
+	private Button kommentarLoeschenBtn = new Button("Kommentar löschen");
 
 	private Button kommentarBearbeitenBtn = new Button("Kommentar bearbeiten");
 
@@ -51,7 +51,7 @@ public class KommentarBox extends VerticalPanel {
 
 	public KommentarBox(final Kommentar k) {
 
-//		this.addStyleName("kommentarBox");
+		this.addStyleName("kommentarBox");
 //		kommentarText.addStyleName("kommentarText");
 
 		kommentarText.setReadOnly(true);

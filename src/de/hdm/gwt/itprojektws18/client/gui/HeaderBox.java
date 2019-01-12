@@ -16,7 +16,9 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class HeaderBox extends HorizontalPanel {
 
-	private HorizontalPanel headerBox = new HorizontalPanel();
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	
+	
 	private HorizontalPanel inhalte = new HorizontalPanel();
 	private ProfilBox profilBox = new ProfilBox();
 	private Suchleiste suchLeiste = new Suchleiste();
@@ -38,20 +40,16 @@ public class HeaderBox extends HorizontalPanel {
 
 	EditForm edtForm = new EditForm();
 
-	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	ClientsideSettings clientSettings = new ClientsideSettings();
+	
+
 
 	public HeaderBox() {
 
-	}
-
-	public void onLoad() {
-
-		this.add(headerBox);
+	
 		this.addStyleName("headerBox");
 
 //		headerBox.add(EditPanel);
-		headerBox.add(inhalte);
+//		headerBox.add(inhalte);
 
 		inhalte.add(profilBox);
 		inhalte.add(suchLeiste);
@@ -65,7 +63,10 @@ public class HeaderBox extends HorizontalPanel {
 //		ProfilEditButton.addStyleName("profilEditButton");
 
 		profilEditButton.addClickHandler(new ChangeClickHandler());
+		
+		this.add(inhalte);
 
+		super.onLoad();
 	}
 
 	public class ChangeClickHandler implements ClickHandler {
@@ -136,7 +137,7 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
-			Window.alert("Nutzer wurde erfolgreich ge�ndert");
+			Window.alert("Nutzer wurde erfolgreich geändert");
 		}
 
 	}

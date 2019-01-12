@@ -102,16 +102,20 @@ public class BeitragBox extends VerticalPanel {
 		inhaltPanel.add(erstellzeitpunkt);
 		inhaltPanel.add(beitragInhalt);
 
-		buttonPanel.add(likeBtn);
 		buttonPanel.add(likeAnzahl);
-		buttonPanel.add(likesAnzeigenBtn);
 		buttonPanel.add(kommentarAnzahl);
+		buttonPanel.add(likeBtn);
+		buttonPanel.add(likesAnzeigenBtn);
 		buttonPanel.add(beitragBearbeitenBtn);
 		buttonPanel.add(beitragLoeschenBtn);
-
+		
+		
+		likeBtn.addClickHandler(new LikesErstellenClickHandler ());
 		likesAnzeigenBtn.addClickHandler(new LikesAnzeigenClickHandler());
 		beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
 
+		
+		
 		erstelleKommentarPanel.add(erstelleKommentarBox);
 
 		kommentarPanel.add(kommentarBox);
@@ -230,10 +234,18 @@ public class BeitragBox extends VerticalPanel {
 			for (int i = 0; i < result.size(); i++) {
 
 				alleLikesVonBeitrag.add(result.elementAt(i));
+				
+				String lA = "Likes: "+ result.size() + "";
+				
+				likeAnzahl.setText(lA);
+				
 			}
 
 		}
 	}
+	
+	
+	
 
 	class KommentareAnzeigenCallback implements AsyncCallback<Vector<Kommentar>> {
 
@@ -269,6 +281,10 @@ public class BeitragBox extends VerticalPanel {
 				kBox.befuelleInhalt(inhalt);
 
 				kommentarPanel.add(kBox);
+				
+				String kA = "Kommentare: " + result.size() + "";
+				
+				kommentarAnzahl.setText(kA);
 
 			}
 
@@ -290,11 +306,53 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Nutzer result) {
 
-			Window.alert("Nutzer erfolgreich bekommen" + result.getNickname());
+//			Window.alert("Nutzer erfolgreich bekommen" + result.getNickname());
 
 		}
 
 	}
+	
+	class LikesErstellenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			
+			Like l = new Like ();
+			
+			
+			Beitrag b = new Beitrag ();
+			b.setId(1);
+			
+//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
+			Nutzer n = new Nutzer ();
+			n.setId(3);
+			
+			
+			pinnwandVerwaltung.erstelleLike(b, l.getErstellZeitpunkt(), n, new LikeErstelleCallback());
+			
+		}
+		
+		class LikeErstelleCallback implements AsyncCallback<Like> {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Fehler beim Like erstellen : " + caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Like result) {
+					Window.alert("Like erstellt!");
+					Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+				
+			}
+			
+			
+		}
+		
+	}
+	
+	
 
 	class LikesAnzeigenClickHandler implements ClickHandler {
 
@@ -303,7 +361,7 @@ public class BeitragBox extends VerticalPanel {
 
 			LikeDialogBox likeBox = new LikeDialogBox();
 			likeBox.center();
-
+			
 		}
 
 	}

@@ -40,8 +40,11 @@ div {
 }
 
 #InhaltDiv {
-	float: right;
-	width: 74%;
+	
+	float: left;
+	margin-left: 10px;
+	padding: 10px;
+	width: 42%;
 	font-size: 10pt;
 	border-radius: 20px;
 	border: 2px solid black;
@@ -189,12 +192,13 @@ h1 {
 
 .beitragBox {
 	color: black;
-	border-radius: 20px;
+	border: 1px solid black;
+	
 }
 
 .beitragInhalt {
 	border-bottom: 0.5px solid black;
-	border-radius: 20px;
+
 }
 
 .infoPanel {
@@ -253,6 +257,8 @@ h1 {
 
 .kommentarBox {
 	color: black;
+	border: 0.5px solid black;
+
 }
 
 .nicknameKommentarBox {
@@ -285,8 +291,8 @@ h1 {
 
 .erstelleBeitragFeld {
 	color: black;
-	width: 70%;
-	border-radius: 20px;
+	
+
 }
 
 .loginGreet {
