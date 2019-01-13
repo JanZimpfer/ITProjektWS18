@@ -39,7 +39,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Pinnwand p, AsyncCallback<Void> callback);
 
-	void erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt, Nutzer n, AsyncCallback<Beitrag> callback);
+	void erstelleBeitrag(Pinnwand p, String text, Nutzer n, AsyncCallback<Beitrag> callback);
 
 	void speichern(Beitrag b, AsyncCallback<Void> callback);
 
@@ -53,7 +53,7 @@ public interface PinnwandVerwaltungAsync {
 	
 	void loeschen(Beitrag b, AsyncCallback<Void> callback);
 
-	void erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, Nutzer n, AsyncCallback<Kommentar> callback);
+	void erstelleKommentar(Beitrag b, String text, Nutzer n, AsyncCallback<Kommentar> callback);
 
 	void loeschen(Kommentar k, AsyncCallback<Void> callback);
 

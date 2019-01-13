@@ -314,13 +314,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt, Nutzer n) {
+	public Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Beitrag b = new Beitrag();
 		b.setPinnwandFK(p.getId());
-		b.setErstellZeitpunkt(erstellzeitpunkt);
+		b.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		b.setNutzerFK(n.getId());
 		
 		//Setzen des Inhalts des Beitrags (Text)
@@ -443,13 +443,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Kommentar
 	 */
 	@Override
-	public Kommentar erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, Nutzer n) {
+	public Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n) {
 		
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Kommentar k = new Kommentar();
 		k.setBeitragFK(b.getId());
-		k.setErstellZeitpunkt(erstellzeitpunkt);
+		k.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		k.setNutzerFK(n.getId());
 		
 		//Setzen des Inhalts des Beitrags (Text)

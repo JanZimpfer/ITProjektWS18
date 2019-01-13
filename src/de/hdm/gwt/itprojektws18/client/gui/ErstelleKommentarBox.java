@@ -64,9 +64,8 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 			
 			beitrag.getId();
 			String kText = "'" +eingabeFeld.getText() + "'";
-			Timestamp erstellZP = null;
 			
-			pinnwandVerwaltung.erstelleKommentar(beitrag, kText, erstellZP, n, new KommentarAnlegenCallback());
+			pinnwandVerwaltung.erstelleKommentar(beitrag, kText, n, new KommentarAnlegenCallback());
 			
 			
 			

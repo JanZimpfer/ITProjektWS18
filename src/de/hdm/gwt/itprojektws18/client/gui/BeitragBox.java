@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.thirdparty.javascript.jscomp.Result;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
@@ -48,8 +49,6 @@ public class BeitragBox extends VerticalPanel {
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
 
-	private String nicknameFiller = new String();
-
 	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
 	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
 	private Button likeBtn = new Button("Gefällt mir!");
@@ -58,6 +57,8 @@ public class BeitragBox extends VerticalPanel {
 	private TextBox beitragBearbeitenInhalt = new TextBox();
 	private Button speichernBtn = new Button("Speichern");
 	private Button schliessenBtn = new Button("Schließen");
+	
+	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
 	// Test-Vektor - OBACHT!
 	private Vector<Like> alleLikesVonBeitrag = new Vector<Like>();
@@ -122,10 +123,12 @@ public class BeitragBox extends VerticalPanel {
 		
 		erstelleKommentarPanel.add(erstelleKommentarBox);
 
-		kommentarPanel.add(kommentarBox);
+		
 
 		pinnwandVerwaltung.getAllKommentareByBeitrag(b, new KommentareAnzeigenCallback());
 		pinnwandVerwaltung.getAllLikesByBeitrag(b, new AlleLikesCallback());
+		
+		kommentarPanel.add(kommentarBox);
 
 		this.add(inhaltPanel);
 		this.add(buttonPanel);
@@ -277,7 +280,7 @@ public class BeitragBox extends VerticalPanel {
 					@Override
 					public void onSuccess(Nutzer result) {
 						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " " +  result.getNachname();
-						final String erstellZP = kommentar.getErstellZeitpunkt().toString();
+						final String erstellZP = dtf.format(kommentar.getErstellZeitpunkt());
 						final String inhalt = kommentar.getText();
 						kBox.befuelleNicklabel(nameString);
 						kBox.befuelleErstellzeitpunkt(erstellZP);

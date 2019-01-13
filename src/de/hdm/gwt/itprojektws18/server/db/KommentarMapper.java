@@ -201,7 +201,7 @@ public class KommentarMapper {
 
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE beitrag_k_FK ="
-							+ "'" + beitragFK + "'");
+							+ "'" + beitragFK + "'" + "ORDER BY erstellzeitpunkt ASC");
 
 			while (rs.next()) {
 				Kommentar k = new Kommentar();

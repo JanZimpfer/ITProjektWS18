@@ -59,6 +59,7 @@ public class KommentarBox extends VerticalPanel {
 		kommentarText.setReadOnly(true);
 
 		kommentarPanel.add(nickname);
+		kommentarPanel.add(erstellZeitpunkt);
 		kommentarPanel.add(kommentarText);
 
 		kommentarBearbeitenBtn.addClickHandler(new KommentarBearbeitenClickHandler());

@@ -44,7 +44,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Pinnwand p);
 
-	Beitrag erstelleBeitrag(Pinnwand p, String text, Timestamp erstellzeitpunkt, Nutzer n);
+	Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n);
 
 	void speichern(Beitrag b);
 
@@ -56,7 +56,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Beitrag b);
 
-	Kommentar erstelleKommentar(Beitrag b, String text, Timestamp erstellzeitpunkt, Nutzer n);
+	Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n);
 
 	void loeschen(Kommentar k);
 

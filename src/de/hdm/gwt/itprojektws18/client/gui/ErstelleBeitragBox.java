@@ -74,11 +74,9 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			Pinnwand pinnwand = new Pinnwand();
 			pinnwand.setId(nutzer.getId());
 
-			Timestamp erstellzeitpunkt = null;
-
 			String text = "'" + erstelleBeitragFeld.getText() + "'";
 
-			pinnwandVerwaltung.erstelleBeitrag(pinnwand, text, erstellzeitpunkt, nutzer, new BeitragAnlegenCallback());
+			pinnwandVerwaltung.erstelleBeitrag(pinnwand, text, nutzer, new BeitragAnlegenCallback());
 		}
 
 		public class BeitragAnlegenCallback implements AsyncCallback<Beitrag> {
