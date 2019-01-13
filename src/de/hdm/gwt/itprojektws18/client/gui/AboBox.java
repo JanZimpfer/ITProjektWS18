@@ -8,7 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-import de.hdm.gwt.itprojektws18.client.gui.AboPinnwandBox.PinnwandAnzeigen;
+//import de.hdm.gwt.itprojektws18.client.gui.AboPinnwandBox.PinnwandAnzeigen;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
@@ -48,9 +48,9 @@ public class AboBox extends VerticalPanel{
 	
 	private Button deAboBtn = new Button("Abo entfernen");
 	
-	private Label nutzerNameLabel = new Label("Jan");
-	
-	private Label nickNameLabel = new Label("@flizzy");
+//	private Label nutzerNameLabel = new Label("Jan");
+//	
+//	private Label nickNameLabel = new Label("@flizzy");
 	
 	private Button beitragStatistikButton = new Button("BeitragStatistik");
 	
@@ -83,8 +83,8 @@ public class AboBox extends VerticalPanel{
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
 		
-		aboPinnwandInfos.add(nutzerNameLabel);
-		aboPinnwandInfos.add(nickNameLabel);
+//		aboPinnwandInfos.add(nutzerNameLabel);
+//		aboPinnwandInfos.add(nickNameLabel);
 		
 		reportButtonPanel.add(beitragStatistikButton);
 		reportButtonPanel.add(nutzerStatistikButton);
@@ -98,8 +98,8 @@ public class AboBox extends VerticalPanel{
 		deAboBtn.addStyleName("deAboBtn");
 		aboniertePW.addStyleName("aboniertePW");
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
-		nutzerNameLabel.addStyleName("nutzerNameLabel");
-		nickNameLabel.addStyleName("nickNameLabel");
+//		nutzerNameLabel.addStyleName("nutzerNameLabel");
+//		nickNameLabel.addStyleName("nickNameLabel");
 		reportButtonPanel.addStyleName("ReportButtonPanel");
 		beitragStatistikButton.addStyleName("beitragStatistikButton");
 		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
@@ -116,8 +116,6 @@ public class AboBox extends VerticalPanel{
 		aboErstellBtn.addClickHandler(new aboErstellBtnClickHandler());
 		deAboBtn.addClickHandler(new deAboBtnClickHandler());
 		
-		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
-		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
 		
 		beitragStatistikButton.addClickHandler(new BeitragStatistikClickHandler());
 		nutzerStatistikButton.addClickHandler(new NutzerStatistikClickHandler());
@@ -149,8 +147,8 @@ public class AboBox extends VerticalPanel{
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
 		
-		aboPinnwandInfos.add(nutzerNameLabel);
-		aboPinnwandInfos.add(nickNameLabel);
+//		aboPinnwandInfos.add(nutzerNameLabel);
+//		aboPinnwandInfos.add(nickNameLabel);
 		
 		reportButtonPanel.add(beitragStatistikButton);
 		reportButtonPanel.add(nutzerStatistikButton);
@@ -164,8 +162,8 @@ public class AboBox extends VerticalPanel{
 		deAboBtn.addStyleName("deAboBtn");
 		aboniertePW.addStyleName("aboniertePW");
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
-		nutzerNameLabel.addStyleName("nutzerNameLabel");
-		nickNameLabel.addStyleName("nickNameLabel");
+//		nutzerNameLabel.addStyleName("nutzerNameLabel");
+//		nickNameLabel.addStyleName("nickNameLabel");
 		reportButtonPanel.addStyleName("ReportButtonPanel");
 		beitragStatistikButton.addStyleName("beitragStatistikButton");
 		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
@@ -174,15 +172,15 @@ public class AboBox extends VerticalPanel{
 		 * 
 		 */
 		pinnwandVerwaltung.getNutzerbyID(3, new ProfilNameCallBack());
-		
+//		pinnwandVerwaltung.getAllAbosFor(n, new AbosAuslesenCallback());
 		/**
 		 * 
 		 */
 		aboErstellBtn.addClickHandler(new aboErstellBtnClickHandler());
 		deAboBtn.addClickHandler(new deAboBtnClickHandler());
 		
-		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
-		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
+//		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
+//		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
 		
 		beitragStatistikButton.addClickHandler(new BeitragStatistikClickHandler());
 		nutzerStatistikButton.addClickHandler(new NutzerStatistikClickHandler());
@@ -243,22 +241,68 @@ public class AboBox extends VerticalPanel{
 		@Override
 		public void onSuccess(Abonnement result) {
 			Window.alert("Das Abonnement wurde erfolgreich angelegt.");
-			Nutzer n = new Nutzer();
-			
-			n.setId(result.getNutzerFK());
-			
-			String nutzerNameString = n.getVorname();
-			nutzerNameLabel.setText(nutzerNameString);
-			
-			String nickNameString = n.getNickname();
-			nickNameLabel.setText(nickNameString);
-			
-			aboPinnwandInfos.add(nutzerNameLabel);
-			aboPinnwandInfos.add(nickNameLabel);
-			
-			aboniertePW.add(aboPinnwandInfos);
+//			Nutzer n = new Nutzer();
+//			
+//			n.setId(result.getNutzerFK());
+//			
+//			String nutzerNameString = n.getVorname();
+//			nutzerNameLabel.setText(nutzerNameString);
+//			
+//			String nickNameString = n.getNickname();
+//			nickNameLabel.setText(nickNameString);
+//			
+//			aboPinnwandInfos.add(nutzerNameLabel);
+//			aboPinnwandInfos.add(nickNameLabel);
+//			
+//			aboniertePW.add(aboPinnwandInfos);
 			
 		}
+		
+	}
+	
+//	class AbosAuslesenCallback implements AsyncCallback<Vector<Abonnement>>{
+//
+//		@Override
+//		public void onFailure(Throwable caught) {
+//			Window.alert("Fehler beim Auslesen der Abonnements" + caught.getMessage());
+//			
+//		}
+
+//		@Override
+//		public void onSuccess(Vector<Abonnement> result) {
+//			
+//			for(Abonnement abo : result) {
+//				AboPinnwandBox apBox = new AboPinnwandBox(abo);
+//				
+//				pinnwandVerwaltung.getPinnwandByID(abo.getPinnwandFK(), new AsyncCallback<Pinnwand>());
+//				
+//				@Override
+//				public void onFailure(Throwable caught) {
+//					Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
+//
+//				}
+//				
+//				@Override
+//				public void onSuccess(Nutzer result) {
+//					String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
+//							+ result.getNachname();
+//					final String erstellZP = beitrag.getErstellZeitpunkt().toString();
+//					final String inhalt = beitrag.getText();
+//
+//					bBox.befuelleName(nameString);
+//					bBox.befuelleErstellzeitpunkt(erstellZP);
+//					bBox.befuelleInhalt(inhalt);
+//
+//					beitragPanel.add(bBox);
+//
+//				}
+//			}
+//			
+//		}
+
+
+
+		
 		
 	}
 	
@@ -273,15 +317,6 @@ public class AboBox extends VerticalPanel{
 		
 	}
 	
-	class PinnwandAnzeigen implements ClickHandler {
-		
-		
-		public void onClick(ClickEvent event) {
-			
-			
-		}
-		
-	}
 	
 	class BeitragStatistikClickHandler implements ClickHandler {
 
@@ -303,4 +338,4 @@ public class AboBox extends VerticalPanel{
 		
 	}
 	
-}
+

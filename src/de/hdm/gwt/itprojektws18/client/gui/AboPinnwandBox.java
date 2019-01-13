@@ -10,15 +10,14 @@ import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
-public class AboPinnwandBox extends FlowPanel{
+public class AboPinnwandBox extends HorizontalPanel{
 
 	
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	ClientsideSettings clientSettings = new ClientsideSettings();
-	
+
 	/**
 	 * Instanziierung der GUI Elemente
 	 */
@@ -26,59 +25,58 @@ public class AboPinnwandBox extends FlowPanel{
 	
 	private Label nickNameLabel = new Label();
 	
-	
-	/**
-	 * Deklarierung der BO, die verwendet werden
-	 */
-	private Nutzer nutzer = null;
-	private Abonnement abo = null;
-	private Pinnwand pinnwand = null;
+//	 Nutzer nutzer = new Nutzer();
+	Abonnement abo = new Abonnement();
 	
 	public AboPinnwandBox() {
 		
 	}
 	
-	
-	public void onLoad() {
+	public AboPinnwandBox(Abonnement a) {
 		
-		
+		this.abo = a;
+//		this.nutzer = n;
 		
 		nutzerNameLabel.addStyleName("vornameAbobox");
 		nickNameLabel.addStyleName("nicknameAboBox");
 		this.addStyleName("aboPinnwandBox");
 		
 		
-		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
-		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
+		nutzerNameLabel.addClickHandler(new PinnwandAnzeigenClickhandler());
+		nickNameLabel.addClickHandler(new PinnwandAnzeigenClickhandler());
 		
 		this.add(nutzerNameLabel);
 		this.add(nickNameLabel);
-	}
-	
-	public void updateNutzerNameLabel() {
-		Nutzer n = new Nutzer();
-		this.nutzerNameLabel.setText(n.getVorname());
 		
-		//methode bis jetzt falsch, implementierung einer methode getVornameByID() in pinnwandverwaltungimpl 
+		super.onLoad();
 	}
 	
-	public void updateNickNameLabel() {
+	public void updateNutzerNameLabel(String nutzernameString) {
+		
+		this.nutzerNameLabel.setText(nutzernameString);
 		
 	}
 	
+	public void updateNickNameLabel(String nicknameString) {
+		
+		this.nickNameLabel.setText(nicknameString);
+	}
 	
 	
-	class PinnwandAnzeigen implements ClickHandler{
+	
+	class PinnwandAnzeigenClickhandler implements ClickHandler{
 	
 			
 			public void onClick(ClickEvent event) {
+				PinnwandBox pBox = new PinnwandBox(abo.getNutzerFK());
 				
-				
+				RootPanel.get("InhaltDiv").clear();
+				RootPanel.get("InhaltDiv").add(pBox);
 			}
 			
 		}
 	
-	//Hinzufügen von Methoden, die Methoden der Impl verwenden, um Nick- und Nutzername den jeweilgien Labels hinzuzufügen
+	//Hinzufï¿½gen von Methoden, die Methoden der Impl verwenden, um Nick- und Nutzername den jeweilgien Labels hinzuzufï¿½gen
 	//(Id Abgleich in Konstruktor, ob ID(bzw Pinnwand)bereits verwendet wurde bzw. ob Abonnementbeziehung bereits in Abobox angezeigt wird)
-	// Verknüpfung mit Suchleiste: Neue Abo Beziehung wird erstellt -> beide update Methoden in AboPWBox werden ausgeführt und ein AboPWBox Objekt in AboBox erstellt
+	// Verknï¿½pfung mit Suchleiste: Neue Abo Beziehung wird erstellt -> beide update Methoden in AboPWBox werden ausgefï¿½hrt und ein AboPWBox Objekt in AboBox erstellt
 }
