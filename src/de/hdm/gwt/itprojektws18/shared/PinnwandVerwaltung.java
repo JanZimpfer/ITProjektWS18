@@ -88,5 +88,13 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void speichern(Kommentar k);
 
+	Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate);
+
+	Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+
+	Vector<Kommentar> getAllKommentareByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+
+	Vector<Like> getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+
 	
 }

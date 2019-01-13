@@ -1,5 +1,7 @@
 package de.hdm.gwt.itprojektws18.client;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -12,9 +14,10 @@ import de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport;
 public class NutzerStatistikCallback extends HTMLResultPanel {
 	ReportGeneratorAsync reportverwaltung = ClientsideSettings.getReportGenerator();
 	
-	public NutzerStatistikCallback() {
+	public NutzerStatistikCallback(Date firstDate, Date lastDate) {
 		Nutzer nutzer = new Nutzer();
-		reportverwaltung.createNutzerStatistikReport(nutzer, new NutzerStatistik());
+		nutzer.setId(3);
+		reportverwaltung.createNutzerStatistikReport(nutzer, firstDate, lastDate, new NutzerStatistik());
 	}
 
 	

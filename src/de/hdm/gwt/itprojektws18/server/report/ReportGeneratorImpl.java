@@ -2,7 +2,7 @@ package de.hdm.gwt.itprojektws18.server.report;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
@@ -54,7 +54,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
 	 */
 	@Override
-	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer) throws IllegalArgumentException {
+	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer, Date firstDate, Date lastDate) throws IllegalArgumentException {
 
 		if (this.getPinnwandVerwaltung() == null) {
 			return null;
@@ -72,13 +72,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 			result.setHeaderData(header);
 			
-			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosFor(n);
-			Vector<Kommentar> kommentar = this.getPinnwandVerwaltung().getAllKommentareByNutzer(n);
-			Vector<Like> likes = this.getPinnwandVerwaltung().getAllLikesByNutzer(n);
-			Vector<Beitrag> alleBeitraege = getBeitrageByNutzer(n);
+			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosForWithTime(n, firstDate, lastDate);
+			Vector<Kommentar> kommentar = this.getPinnwandVerwaltung().getAllKommentareByNutzerWithTime(n, firstDate, lastDate);
+			Vector<Like> likes = this.getPinnwandVerwaltung().getAllLikesByNutzerWithTime(n, firstDate, lastDate);
+			Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeByNutzerWithTime(n, firstDate, lastDate);
 			
 			Row headline = new Row();
-			headline.addColumn(new Column("Nutzer"));
 			headline.addColumn(new Column("Abonnementanzahl"));
 			headline.addColumn(new Column("Beiträgeanzahl"));
 			headline.addColumn(new Column("Kommentaranzahl"));
@@ -87,7 +86,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			result.addRow(headline);
 			
 			Row row = new Row();
-			row.addColumn(new Column(nutzer.getNickname()));
 			row.addColumn(new Column(abos.size()+""));
 			row.addColumn(new Column(alleBeitraege.size()+""));
 			row.addColumn(new Column(kommentar.size()+""));
