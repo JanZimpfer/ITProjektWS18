@@ -28,8 +28,6 @@ public interface PinnwandVerwaltungAsync {
 	void getNutzerByName(String vorname, String nachname, AsyncCallback<Nutzer> callback);
 
 	void getNutzerByNickname(String nickname, AsyncCallback<Nutzer> callback);
-	
-	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
 
 	void loeschen(Nutzer n, AsyncCallback<Void> callback);
 
@@ -86,4 +84,6 @@ public interface PinnwandVerwaltungAsync {
 	void checkEmail(String mail, AsyncCallback<Nutzer> callback);
 
 	void speichern(Kommentar k, AsyncCallback<Void> callback);
+
+	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
 }
