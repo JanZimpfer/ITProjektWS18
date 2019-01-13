@@ -102,7 +102,7 @@ public abstract class BusinessObject implements Serializable{
 	}
 	
 	public void setErstellZeitpunkt(Timestamp erstellZeitpunkt) {
-		this.erstellZeitpunkt = new Timestamp(System.currentTimeMillis());
+		this.erstellZeitpunkt = erstellZeitpunkt;
 	}
 	/**
 	   * <p>

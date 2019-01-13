@@ -92,7 +92,7 @@ public class AbonnementMapper {
 		try {
 
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK  FROM abonnement WHERE nutzer_a_FK="
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK, erstellzeitpunkt  FROM abonnement WHERE nutzer_a_FK="
 					+ "'" + n.getId() + "'");
 
 			while (rs.next()) {
@@ -102,6 +102,7 @@ public class AbonnementMapper {
 				a.setId(rs.getInt("id"));
 				a.setNutzerFK(rs.getInt("nutzer_a_FK"));
 				a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
+				a.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
 				result.addElement(a);
 
 			}

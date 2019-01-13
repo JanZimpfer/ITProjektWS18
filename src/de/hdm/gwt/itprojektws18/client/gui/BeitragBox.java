@@ -68,6 +68,8 @@ public class BeitragBox extends VerticalPanel {
 	private Vector<Kommentar> kommentarVector = null;
 	private Nutzer kommentarNutzer = null;
 	public BeitragBox() {
+		
+		
 
 	}
 
