@@ -78,7 +78,7 @@ public class ProfilBox extends VerticalPanel {
 	}
  
 		
-		public class anzahlAbosCallback implements AsyncCallback <Vector<Abonnement>>{
+		class anzahlAbosCallback implements AsyncCallback <Vector<Abonnement>>{
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -101,7 +101,7 @@ public class ProfilBox extends VerticalPanel {
 		}
 		
 		
-		public class anzahlBeitragCallback implements AsyncCallback <Vector<Beitrag>> {
+		class anzahlBeitragCallback implements AsyncCallback <Vector<Beitrag>> {
 
 			
 			public void onFailure(Throwable caught) {

@@ -75,7 +75,7 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Diese Methode ermöglicht das editiern des übergebenen 
+	 * Diese Methode ermï¿½glicht das editiern des ï¿½bergebenen 
 	 * Beitrag-Objekts
 	 * @author Matthias
 	 */
@@ -97,7 +97,7 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Diese Methode löscht das übergebene Beitrag-Objekt
+	 * Diese Methode lï¿½scht das ï¿½bergebene Beitrag-Objekt
 	 * @author Matthias
 	 */
 	
@@ -114,8 +114,8 @@ public class BeitragMapper {
 		}
 	}
 	/**
-	 * Diese Methode dient dem Löschen aller zugehörigen Beitrags-Objekte 
-	 * des übergebenen Nutzerobjekts
+	 * Diese Methode dient dem Lï¿½schen aller zugehï¿½rigen Beitrags-Objekte 
+	 * des ï¿½bergebenen Nutzerobjekts
 	 * @author Matthias
 	 */
 	
@@ -136,7 +136,7 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Diese Methode ermöglicht das suchen eines Beitrag-Objekts über die Id.
+	 * Diese Methode ermï¿½glicht das suchen eines Beitrag-Objekts ï¿½ber die Id.
 	 * @author Matthias
 	 */
 	
@@ -185,7 +185,7 @@ public class BeitragMapper {
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag");
 			
 			
-			while (rs.next());{
+			while (rs.next()){
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));

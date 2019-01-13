@@ -33,6 +33,8 @@ public interface PinnwandVerwaltung extends RemoteService {
 	Nutzer getNutzerByName(String vorname, String nachname) throws IllegalArgumentException;
 
 	Nutzer getNutzerByNickname(String nickname);
+	
+	Vector<Nutzer> getAllNutzer();
 
 	void loeschen(Nutzer n);
 
