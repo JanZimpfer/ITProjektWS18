@@ -1,70 +1,96 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextBox;
+
+import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
+import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class Suchleiste extends HorizontalPanel {
 	
-	private HorizontalPanel suchleiste = new HorizontalPanel ();
-	private MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
-	private Button sucheButton = new Button ("Profil anzeigen");
-	private SuggestBox textfeld = new SuggestBox (oracle);
+	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	
+	private HorizontalPanel suchleiste = new HorizontalPanel ();
+	private Button sucheButton = new Button ("Profil anzeigen");
+	private TextBox txtBox = new TextBox();
 
 	
 	public Suchleiste () {
 		
-	
-	
-	
-		oracle.add(" Flo ");
-		oracle.add(" Nik ");
-		oracle.add(" Matthias ");
-		oracle.add(" Marko ");
-		oracle.add(" Ayse ");
-		oracle.add(" Jan ");
 		
+		this.add(txtBox);
 	
-	
+		this.addStyleName("suchleiste");
+		this.add(suchleiste);
+		
+		sucheButton.addClickHandler(new ProfilAnzeigen ());
+		
+		suchleiste.add(sucheButton);
+		
+		sucheButton.addStyleName("suchButton");
+		
+		
+		super.onLoad();
 	}
 	
-class ProfilAnzeigen implements ClickHandler {
+	
+	class ProfilAnzeigen implements ClickHandler {
 
 		
 		public void onClick(ClickEvent event) {
 			
-		Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
-		
+			String nicknameEingabe = txtBox.getText();
+			pinnwandVerwaltung.getNutzerByNickname(nicknameEingabe, new NickNameAbfrageCallback());
+			
 
 		}
 	}
-	
-	public void onLoad() {
-	
-		
-	this.addStyleName("suchleiste");
-	this.add(suchleiste);
-	
-	sucheButton.addClickHandler(new ProfilAnzeigen ());
-	
-	suchleiste.add(textfeld);
-	suchleiste.add(sucheButton);
+
 	
 	
-	
-	sucheButton.addStyleName("suchButton");
-	textfeld.addStyleName("suchleiste");
-//	suchleiste.addStyleName("suchleiste");
-	
-//	
-//	RootPanel.get("SuchProfilLogout").add(suchleiste);
+	class NickNameAbfrageCallback implements AsyncCallback<Nutzer> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abfragen eines Nutzers : " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Nutzer result) {
+			
+			class SuchErgebnisBox extends DialogBox {
+				
+				public SuchErgebnisBox() {
+					
+				}
+				
+			}
+			
+			
+			SuchErgebnisBox ergebnisBox = new SuchErgebnisBox();
+			ergebnisBox.center();
+			
+			Label nicknameErgebnis = new Label();
+			
+			nicknameErgebnis.setText(result.getNickname());
+			
+			ergebnisBox.add(nicknameErgebnis);
+			
+		}
 		
 	}
-
 }

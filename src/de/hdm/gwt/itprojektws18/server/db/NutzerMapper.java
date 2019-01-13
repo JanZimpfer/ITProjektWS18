@@ -12,6 +12,7 @@ import java.util.Vector;
 
 import com.ibm.icu.util.Calendar;
 
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**Dies ist eine Mapper-Klasse, die Nutzer-Objekte auf eine relationale
@@ -241,7 +242,7 @@ public class NutzerMapper {
 			ResultSet rs = stmt.executeQuery();
 
 			/**
-			 * Für jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt
+			 * Fï¿½r jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt
 			 * erstellt.
 			 */
 			if (rs.next()) {
@@ -261,7 +262,7 @@ public class NutzerMapper {
 		}
 
 		/**
-		 * Nutzerobjekt wird zurückgegeben
+		 * Nutzerobjekt wird zurï¿½ckgegeben
 		 */
 		finally {
 			if (con != null)
@@ -273,6 +274,32 @@ public class NutzerMapper {
 		}
 		return n;
 		
+	}
+	
+	public Vector<Nutzer> getAllNutzer() {
+		Connection con = DBConnection.connection();
+		
+		Vector<Nutzer> result = new Vector<Nutzer>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, erstellzeitpunkt, vorname, nachname, nickname FROM nutzer");
+			
+			
+			while (rs.next()){
+				Nutzer n = new Nutzer();
+				n.setId(rs.getInt("id"));
+				n.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				n.setVorname(rs.getString("vorname"));
+				n.setNachname(rs.getString("nachname"));
+				n.setNickname(rs.getString("nickname"));
+				result.addElement(n);
+			}
+		}
+		catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		return result;
 	}
 	
 }

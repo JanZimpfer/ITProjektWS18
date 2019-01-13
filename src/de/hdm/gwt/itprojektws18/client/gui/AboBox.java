@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -24,7 +25,6 @@ public class AboBox extends VerticalPanel{
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	ClientsideSettings clientSettings = new ClientsideSettings();
 	
 	/**
 	 * Instanziierung der GUI Elemente
@@ -40,7 +40,7 @@ public class AboBox extends VerticalPanel{
 	
 	private HorizontalPanel reportButtonPanel = new HorizontalPanel();
 	
-	private Label profil = new Label("Profil: PeterPan");
+	private Label profil = new Label();
 	
 	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
 	
@@ -55,23 +55,20 @@ public class AboBox extends VerticalPanel{
 	private Button beitragStatistikButton = new Button("BeitragStatistik");
 	
 	private Button nutzerStatistikButton = new Button("NutzerStatistik");
-
 	
-	private Nutzer n = null;
+	Nutzer nutzer = new Nutzer();
 	
 	public AboBox() {
 		
 		profilbereich.setSpacing(2);
 		aboniertePW.setSpacing(2);
 		
-	}
-	
-
-	public void onLoad() {
+		Nutzer n = new Nutzer();
 		
-		/**
-		 * 
-		 */
+		
+//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
+		n.setId(3);
+		
 		this.addStyleName("abobox");
 		this.add(abobox);
 		
@@ -84,10 +81,10 @@ public class AboBox extends VerticalPanel{
 		profilbereich.add(deAboBtn);
 		
 		aboniertePW.add(anzeigePW);
-//		aboniertePW.add(aboPinnwandInfos);
+		aboniertePW.add(aboPinnwandInfos);
 		
-//		aboPinnwandInfos.add(nutzerNameLabel);
-//		aboPinnwandInfos.add(nickNameLabel);
+		aboPinnwandInfos.add(nutzerNameLabel);
+		aboPinnwandInfos.add(nickNameLabel);
 		
 		reportButtonPanel.add(beitragStatistikButton);
 		reportButtonPanel.add(nutzerStatistikButton);
@@ -110,6 +107,12 @@ public class AboBox extends VerticalPanel{
 		/**
 		 * 
 		 */
+		pinnwandVerwaltung.getNutzerbyID(3, new ProfilNameCallBack());
+		
+		
+		/**
+		 * 
+		 */
 		aboErstellBtn.addClickHandler(new aboErstellBtnClickHandler());
 		deAboBtn.addClickHandler(new deAboBtnClickHandler());
 		
@@ -119,9 +122,91 @@ public class AboBox extends VerticalPanel{
 		beitragStatistikButton.addClickHandler(new BeitragStatistikClickHandler());
 		nutzerStatistikButton.addClickHandler(new NutzerStatistikClickHandler());
 		
-		RootPanel.get("AboDiv").add(abobox);
+		super.onLoad();
+	}
+	
+	public AboBox(final Nutzer n) {
+		
+		profilbereich.setSpacing(2);
+		aboniertePW.setSpacing(2);
+		
+		
+		
+		this.nutzer = n;
+		n.setId(3);
+		
+		this.addStyleName("abobox");
+		this.add(abobox);
+		
+		abobox.add(profilbereich);
+		abobox.add(aboniertePW);
+		abobox.add(reportButtonPanel);
+		
+		profilbereich.add(profil);
+		profilbereich.add(aboErstellBtn);
+		profilbereich.add(deAboBtn);
+		
+		aboniertePW.add(anzeigePW);
+		aboniertePW.add(aboPinnwandInfos);
+		
+		aboPinnwandInfos.add(nutzerNameLabel);
+		aboPinnwandInfos.add(nickNameLabel);
+		
+		reportButtonPanel.add(beitragStatistikButton);
+		reportButtonPanel.add(nutzerStatistikButton);
+		
+		/**
+		 * 
+		 */
+		profil.addStyleName("profil");
+		anzeigePW.addStyleName("anzeigePW");
+		aboErstellBtn.addStyleName("aboErstellBtn");
+		deAboBtn.addStyleName("deAboBtn");
+		aboniertePW.addStyleName("aboniertePW");
+		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
+		nutzerNameLabel.addStyleName("nutzerNameLabel");
+		nickNameLabel.addStyleName("nickNameLabel");
+		reportButtonPanel.addStyleName("ReportButtonPanel");
+		beitragStatistikButton.addStyleName("beitragStatistikButton");
+		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
+		
+		/**
+		 * 
+		 */
+		pinnwandVerwaltung.getNutzerbyID(3, new ProfilNameCallBack());
+		
+		/**
+		 * 
+		 */
+		aboErstellBtn.addClickHandler(new aboErstellBtnClickHandler());
+		deAboBtn.addClickHandler(new deAboBtnClickHandler());
+		
+		nutzerNameLabel.addClickHandler(new PinnwandAnzeigen());
+		nickNameLabel.addClickHandler(new PinnwandAnzeigen());
+		
+		beitragStatistikButton.addClickHandler(new BeitragStatistikClickHandler());
+		nutzerStatistikButton.addClickHandler(new NutzerStatistikClickHandler());
+		
+		super.onLoad();
 		
 	}
+	
+	class ProfilNameCallBack implements AsyncCallback<Nutzer> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen des Nutzers: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Nutzer result) {
+			String profilInfos = "Profil: " + result.getVorname() + " "+ result.getNachname() + "";
+			profil.setText(profilInfos);
+		}
+		
+	}
+	
 	
 	class aboErstellBtnClickHandler implements ClickHandler {
 

@@ -197,6 +197,18 @@ public PinnwandVerwaltungImpl() {
 		this.nMapper.deleteNutzer(n);
 	}
 	
+	/**
+	 * Auslesen aller Nutzer im System
+	 * 
+	 * NOCH NICHT FUNKTIONSFÄHIG
+	 * @return
+	 */
+	public Vector <Nutzer> getAllNutzer() {
+		
+		return this.nMapper.getAllNutzer();
+	}
+	
+	
 	/*
 	 **********************************
 	 * Abschnitt Ende: Nutzer
@@ -360,6 +372,7 @@ public PinnwandVerwaltungImpl() {
 	
 	/**
 	 * Auslesen aller Beitraege
+	 * NOCH NICHT FUNKTIONSFÄHIG
 	 * @return Vector<Beitrag>
 	 */
 	@Override

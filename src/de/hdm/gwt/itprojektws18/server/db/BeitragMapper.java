@@ -185,7 +185,7 @@ public class BeitragMapper {
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag");
 			
 			
-			while (rs.next());{
+			while (rs.next()){
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
