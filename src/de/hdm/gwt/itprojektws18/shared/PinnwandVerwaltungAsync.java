@@ -86,4 +86,14 @@ public interface PinnwandVerwaltungAsync {
 	void speichern(Kommentar k, AsyncCallback<Void> callback);
 
 	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
+
+	void getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate, AsyncCallback<Vector<Abonnement>> callback);
+
+	void getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate,
+			AsyncCallback<Vector<Beitrag>> callback);
+
+	void getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate, AsyncCallback<Vector<Like>> callback);
+
+	void getAllKommentareByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate,
+			AsyncCallback<Vector<Kommentar>> callback);
 }

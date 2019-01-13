@@ -3,6 +3,7 @@ package de.hdm.gwt.itprojektws18.server;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.Vector;
@@ -656,6 +657,85 @@ public PinnwandVerwaltungImpl() {
 	public Vector<Abonnement> getAllAbosFor (Pinnwand p) {
 		return this.aMapper.getAllAbosByPinnwand(p);
 	}
+	
+	/**
+	 * Auslesen aller Abos in einer Zeitspanne
+	 * @param Nutzer n, Date firstDate, Date secondDate
+	 * @return Vector<Abonnement>
+	 */
+	@Override
+	public Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate){
+		
+		Vector<Abonnement> aboVector = getAllAbosFor(n);
+		Vector<Abonnement> filterVector  = new Vector<Abonnement>();
+		for (Abonnement abonnement : aboVector) {
+			if(abonnement.getErstellZeitpunkt().after(firstDate) && abonnement.getErstellZeitpunkt().before(secondDate)) {
+				filterVector.add(abonnement);
+			}
+		}
+	
+		return filterVector;
+		
+	}
+		/**
+		 * Auslesen aller Beitraege eines Nutzers in einer bestimmten Zeitspanne
+		 * @param Nutzer n, Date firstDate, Date secondDate
+		 * @return Vector<Beitrag>
+		 */
+		@Override
+		public Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) {
+			
+			Vector<Beitrag> beitragVector = getAllBeitraegeByNutzer(n);
+			Vector<Beitrag> filterVector = new Vector<Beitrag>();
+			for (Beitrag beitrag : beitragVector) {
+				if(beitrag.getErstellZeitpunkt().after(firstDate) && beitrag.getErstellZeitpunkt().before(secondDate)) {
+					filterVector.add(beitrag);
+				}
+			}
+			
+			return filterVector;
+		}
+		
+		/**
+		 * Auslesen aller Kommentare eines bestimmten Nutzers in einer bestimmten Zeitspanne
+		 * @param Nutzer n, Date firstDate, Date secondDate
+		 * @return Vector<Kommentar>
+		 */
+		@Override
+		public Vector<Kommentar> getAllKommentareByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) {
+			
+			Vector<Kommentar> kommentarVector = getAllKommentareByNutzer(n);
+			Vector<Kommentar> filterVector = new Vector<Kommentar>();
+			
+			for (Kommentar kommentar : kommentarVector) {
+				if(kommentar.getErstellZeitpunkt().after(firstDate) && kommentar.getErstellZeitpunkt().before(secondDate)) {
+					filterVector.add(kommentar);
+				}
+			}
+			
+			return filterVector;
+		}
+		
+		/**
+		 * Auslesen aller Likes eines Nutzers in einer bestimmte Zeitspanne
+		 * @param Nutzer n, Date firstDate, Date secondDate
+		 * @return Vector<Like>
+		 */
+		@Override
+		public Vector<Like> getAllLikesByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) {
+			
+			Vector<Like> likeVector = getAllLikesByNutzer(n);
+			Vector<Like> filterVector = new Vector<Like>();
+			
+			for (Like like : likeVector) {
+				if(like.getErstellZeitpunkt().after(firstDate) && like.getErstellZeitpunkt().before(secondDate)) {
+					filterVector.add(like);
+				}
+			}
+			
+			return filterVector;
+		}
+
 
 
 }
