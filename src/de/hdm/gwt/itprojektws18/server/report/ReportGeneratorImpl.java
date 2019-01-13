@@ -107,7 +107,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 	
 	@Override
-	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom) throws IllegalArgumentException {
+	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Date startDate, Date endDate) throws IllegalArgumentException {
 		if (this.getPinnwandVerwaltung() == null) {
 			return null;
 		} 
@@ -124,10 +124,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 			result.setHeaderData(header);
 			
-			Vector<Beitrag> alleBeitraege = getBeitrageByNutzer(n);
+			Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeByNutzerWithTime(n, startDate, endDate);
 			
 			Row headline = new Row();
-			headline.addColumn(new Column("Nutzer"));
 			headline.addColumn(new Column("Beiträge"));
 			headline.addColumn(new Column("Kommentare"));
 			headline.addColumn(new Column("Likes"));
@@ -137,7 +136,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			for (Beitrag beitrag2 : alleBeitraege) {
 				
 				Row row = new Row();
-				row.addColumn(new Column(nutzer.getNickname()));
 				row.addColumn(new Column(beitrag2.getText()));
 				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllKommentareByBeitrag(beitrag2).size()+""));
 				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllLikesByBeitrag(beitrag2).size()+""));
