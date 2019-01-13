@@ -38,7 +38,7 @@ public class HeaderBox extends HorizontalPanel {
 	private Button changeButton = new Button("Aenderungen speichern");
 	private Button closeButton = new Button("Schließen");
 
-	EditForm edtForm = new EditForm();
+	private EditForm dlgBox = new EditForm();
 
 	
 
@@ -73,9 +73,7 @@ public class HeaderBox extends HorizontalPanel {
 
 		public void onClick(ClickEvent event) {
 
-			EditForm dlgBox = new EditForm();
 			dlgBox.center();
-			dlgBox.show();
 
 		}
 
@@ -145,8 +143,7 @@ public class HeaderBox extends HorizontalPanel {
 	class CloseClickHandler implements ClickHandler {
 
 		public void onClick(ClickEvent event) {
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
-
+			dlgBox.hide();
 		}
 
 	}
