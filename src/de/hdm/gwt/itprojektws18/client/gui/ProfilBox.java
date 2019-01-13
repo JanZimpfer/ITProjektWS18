@@ -22,7 +22,7 @@ public class ProfilBox extends VerticalPanel {
 	private HorizontalPanel labelPanel  = new HorizontalPanel ();
 	
 	private Button  profilbildButton = new Button ("Profilbild");
-	private Button 	profilButton = new Button ("Profil");
+	private Button 	profilButton = new Button ("Startseite");
 	
 	private Label 	beitraege = new Label ();
 	private Label 	abonniert = new Label ();

@@ -66,6 +66,8 @@ public class BeitragBox extends VerticalPanel {
 	private KommentarBox kommentarBox = new KommentarBox();
 
 	public BeitragBox() {
+		
+		
 
 	}
 
