@@ -65,6 +65,8 @@ public class BeitragBox extends VerticalPanel {
 //	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 	private KommentarBox kommentarBox = new KommentarBox();
 
+	private Vector<Kommentar> kommentarVector = null;
+	private Nutzer kommentarNutzer = null;
 	public BeitragBox() {
 		
 		
@@ -259,58 +261,34 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Vector<Kommentar> result) {
-
-			for (int i = 0; i < result.size(); i++) {
-
-				KommentarBox kBox = new KommentarBox(result.elementAt(i));
-
-				Nutzer n = new Nutzer();
-				n.setId(result.elementAt(i).getNutzerFK());
-
-				pinnwandVerwaltung.getNutzerbyID(n.getId(), new NutzerInfosCallback());
-
-				n.setNickname(nicknameFiller);
-
-				Beitrag b = new Beitrag();
-				b.setId(result.elementAt(i).getBeitragFK());
-
-				String nicknameString = "@ " + n.getNickname();
-				String erstellZP = result.elementAt(result.size() - 1 - i).getErstellZeitpunkt().toString();
-				String inhalt = result.elementAt(result.size() - 1 - i).getText();
-
-				kBox.befuelleNicklabel(nicknameString);
-				kBox.befuelleErstellzeitpunkt(erstellZP);
-				kBox.befuelleInhalt(inhalt);
-
-				kommentarPanel.add(kBox);
+			
+			
+			for (final Kommentar kommentar : result) {
+				final KommentarBox kBox = new KommentarBox(kommentar);
 				
-				String kA = "Kommentare: " + result.size() + "";
-				
-				kommentarAnzahl.setText(kA);
+				pinnwandVerwaltung.getNutzerbyID(kommentar.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onSuccess(Nutzer result) {
+						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " " +  result.getNachname();
+						final String erstellZP = kommentar.getErstellZeitpunkt().toString();
+						final String inhalt = kommentar.getText();
+						kBox.befuelleNicklabel(nameString);
+						kBox.befuelleErstellzeitpunkt(erstellZP);
+						kBox.befuelleInhalt(inhalt);
+
+						kommentarPanel.add(kBox);
+					}
+				});
 			}
-
 		}
 
-	}
-
-	/**
-	 * Nested Class fuer den Callback Aufruf um Nutzerinformationen zu erhalten
-	 */
-	class NutzerInfosCallback implements AsyncCallback<Nutzer> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Nutzer result) {
-
-//			Window.alert("Nutzer erfolgreich bekommen" + result.getNickname());
-
-		}
 
 	}
 	
@@ -393,7 +371,7 @@ public class BeitragBox extends VerticalPanel {
 		}
 	}
 
-	public void befuelleNicklabel(String nicknameString) {
+	public void befuelleName(String nicknameString) {
 
 		this.nickname.setText(nicknameString);
 

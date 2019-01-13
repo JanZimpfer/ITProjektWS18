@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.util.Vector;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -54,26 +55,34 @@ public class UebersichtBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
 
-			for (int i = 0; i < result.size(); i++) {
+			for (final Beitrag beitrag : result) {
+				final BeitragBox bBox = new BeitragBox(beitrag);
 
-				Nutzer nutzer = new Nutzer();
-				nutzer.setId(result.elementAt(i).getNutzerFK());
+				pinnwandVerwaltung.getNutzerbyID(beitrag.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
-				BeitragBox bBox = new BeitragBox(result.elementAt(result.size() - 1 - i));
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
 
-				String nicknameString = "@ " + nutzer.getNickname();
-				String erstellZP = result.elementAt(result.size() - 1 - i).getErstellZeitpunkt().toString();
-				String inhalt = result.elementAt(result.size() - 1 - i).getText();
+					}
 
-				bBox.befuelleNicklabel(nicknameString);
-				bBox.befuelleErstellzeitpunkt(erstellZP);
-				bBox.befuelleInhalt(inhalt);
+					@Override
+					public void onSuccess(Nutzer result) {
+						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
+								+ result.getNachname();
+						final String erstellZP = beitrag.getErstellZeitpunkt().toString();
+						final String inhalt = beitrag.getText();
 
-				beitragPanel.add(bBox);
+						bBox.befuelleName(nameString);
+						bBox.befuelleErstellzeitpunkt(erstellZP);
+						bBox.befuelleInhalt(inhalt);
 
+						beitragPanel.add(bBox);
+
+					}
+
+				});
 			}
-
 		}
-
 	}
 }

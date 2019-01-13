@@ -44,6 +44,8 @@ public class KommentarBox extends VerticalPanel {
 	private TextBox kommentarBearbeitenText = new TextBox();
 	private Button bearbeitenSpeichernBtn = new Button("Speichern");
 	private Button schliessenBtn = new Button("Schließen");
+	
+	private KommentarBearbeitenForm dlgbox = new KommentarBearbeitenForm();
 
 	public KommentarBox() {
 
@@ -92,7 +94,6 @@ public class KommentarBox extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			KommentarBearbeitenForm dlgbox = new KommentarBearbeitenForm();
 			dlgbox.center();
 			dlgbox.show();
 
@@ -152,7 +153,7 @@ public class KommentarBox extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+			dlgbox.hide();
 		}
 
 	}
