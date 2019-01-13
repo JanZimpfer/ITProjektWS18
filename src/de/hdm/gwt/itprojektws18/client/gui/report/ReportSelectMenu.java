@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-public class ReportSelectMenu extends VerticalPanel {
+public class ReportSelectMenu extends HorizontalPanel {
 
 	private Button reportButton1 = new Button("Nutzerstatistik Report");
 	private Button reportButton2 = new Button("Beitragstatistik Report");
@@ -17,6 +17,7 @@ public class ReportSelectMenu extends VerticalPanel {
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());
 
 		this.add(reportButton1);
+		this.add(reportButton2);
 	}
 
 	private class NutzerStatistikClickhandler implements ClickHandler {

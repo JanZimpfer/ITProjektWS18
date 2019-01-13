@@ -14,9 +14,10 @@ import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 public class BeitragStatistikCallback extends HTMLResultPanel{
 	ReportGeneratorAsync reportverwaltung= ClientsideSettings.getReportGenerator();
 	
-	public BeitragStatistikCallback() {
+	public BeitragStatistikCallback(Date firstDate, Date lastDate) {
 		Nutzer nutzer = new Nutzer();
-		//reportverwaltung.createBeitragStatistikReport(nutzer, new Date(), new BeitragStatistik());
+		nutzer.setId(3);
+		reportverwaltung.createBeitragStatistikReport(nutzer, firstDate, lastDate, new BeitragStatistik());
 		
 }
 
