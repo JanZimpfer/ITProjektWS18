@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.util.Vector;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -17,6 +18,8 @@ public class UebersichtBox extends VerticalPanel {
 
 	private ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox();
 	private VerticalPanel beitragPanel = new VerticalPanel();
+	
+	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
 	public UebersichtBox() {
 
@@ -34,8 +37,6 @@ public class UebersichtBox extends VerticalPanel {
 
 	public UebersichtBox(int nutzerId) {
 
-		this.add(erstelleBeitragBox);
-
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
 
@@ -48,13 +49,13 @@ public class UebersichtBox extends VerticalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
+			Window.alert("Fehler beim Auslesen der Beitragsinformationen: " + caught.getMessage());
 
 		}
 
 		@Override
 		public void onSuccess(Vector<Beitrag> result) {
-
+			
 			for (final Beitrag beitrag : result) {
 				final BeitragBox bBox = new BeitragBox(beitrag);
 
@@ -70,7 +71,7 @@ public class UebersichtBox extends VerticalPanel {
 					public void onSuccess(Nutzer result) {
 						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
 								+ result.getNachname();
-						final String erstellZP = beitrag.getErstellZeitpunkt().toString();
+						final String erstellZP = dtf.format(beitrag.getErstellZeitpunkt());
 						final String inhalt = beitrag.getText();
 
 						bBox.befuelleName(nameString);

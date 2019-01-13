@@ -1,6 +1,6 @@
 package de.hdm.gwt.itprojektws18.shared;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -15,9 +15,8 @@ public interface ReportGeneratorAsync {
 
 	void init(AsyncCallback<Void> callback);
 
-	void createNutzerStatistikReport(Nutzer nutzer, AsyncCallback<NutzerStatistikReport> callback);
 
-	void createBeitragStatistikReport(Nutzer nutzer, Beitrag beitrag, Date dateFrom,
+	void createBeitragStatistikReport(Nutzer nutzer, Date startDate, Date endDate,
 			AsyncCallback<BeitragStatistikReport> callback);
 	
 //	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
@@ -31,4 +30,8 @@ public interface ReportGeneratorAsync {
 	void getBeitrageByNutzer(Nutzer n, AsyncCallback<Vector<Beitrag>> callback);
 
 	void getNutzerById(int nutzerID, AsyncCallback<Nutzer> callback);
+
+
+	void createNutzerStatistikReport(Nutzer nutzer, Date firstDate, Date lastDate,
+			AsyncCallback<NutzerStatistikReport> callback);
 }
