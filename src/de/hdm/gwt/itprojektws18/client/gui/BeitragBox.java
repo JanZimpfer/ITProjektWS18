@@ -57,7 +57,7 @@ public class BeitragBox extends VerticalPanel {
 	private TextBox beitragBearbeitenInhalt = new TextBox();
 	private Button speichernBtn = new Button("Speichern");
 	private Button schliessenBtn = new Button("Schließen");
-	
+
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
 	// Test-Vektor - OBACHT!
@@ -66,15 +66,15 @@ public class BeitragBox extends VerticalPanel {
 //	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 	private KommentarBox kommentarBox = new KommentarBox();
 
-	private Vector<Kommentar> kommentarVector = null;
-	private Nutzer kommentarNutzer = null;
+	private Beitrag beitrag = new Beitrag();
+
 	public BeitragBox() {
-		
-		
 
 	}
 
 	public BeitragBox(final Beitrag b) {
+
+		beitrag = b;
 
 //		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
@@ -113,21 +113,17 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.add(likesAnzeigenBtn);
 		buttonPanel.add(beitragBearbeitenBtn);
 		buttonPanel.add(beitragLoeschenBtn);
-		
-		
-		likeBtn.addClickHandler(new LikesErstellenClickHandler ());
+
+		likeBtn.addClickHandler(new LikesErstellenClickHandler());
 		likesAnzeigenBtn.addClickHandler(new LikesAnzeigenClickHandler());
 		beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
+		beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
 
-		
-		
 		erstelleKommentarPanel.add(erstelleKommentarBox);
-
-		
 
 		pinnwandVerwaltung.getAllKommentareByBeitrag(b, new KommentareAnzeigenCallback());
 		pinnwandVerwaltung.getAllLikesByBeitrag(b, new AlleLikesCallback());
-		
+
 		kommentarPanel.add(kommentarBox);
 
 		this.add(inhaltPanel);
@@ -136,6 +132,36 @@ public class BeitragBox extends VerticalPanel {
 		this.add(kommentarPanel);
 
 		super.onLoad();
+
+	}
+
+	class BeitragLoeschenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			pinnwandVerwaltung.loeschen(beitrag, new BeitragLoeschenCallback());
+
+		}
+	}
+
+	class BeitragLoeschenCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Löschen des Beitrags: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+
+			PinnwandBox pBox = new PinnwandBox();
+
+			Window.alert("Beitrag erfolgreich gelöscht");
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
+
+		}
 
 	}
 
@@ -241,18 +267,15 @@ public class BeitragBox extends VerticalPanel {
 			for (int i = 0; i < result.size(); i++) {
 
 				alleLikesVonBeitrag.add(result.elementAt(i));
-				
-				String lA = "Likes: "+ result.size() + "";
-				
+
+				String lA = "Likes: " + result.size() + "";
+
 				likeAnzahl.setText(lA);
-				
+
 			}
 
 		}
 	}
-	
-	
-	
 
 	class KommentareAnzeigenCallback implements AsyncCallback<Vector<Kommentar>> {
 
@@ -264,22 +287,25 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Vector<Kommentar> result) {
-			
-			
+
+			String aK = "Kommentare: " + result.size() + "";
+
+			kommentarAnzahl.setText(aK);
+
 			for (final Kommentar kommentar : result) {
 				final KommentarBox kBox = new KommentarBox(kommentar);
-				
+
 				pinnwandVerwaltung.getNutzerbyID(kommentar.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
 						// TODO Auto-generated method stub
-						
+
 					}
 
 					@Override
 					public void onSuccess(Nutzer result) {
-						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " " +  result.getNachname();
+						String nameString = "@" + result.getNickname();
 						final String erstellZP = dtf.format(kommentar.getErstellZeitpunkt());
 						final String inhalt = kommentar.getText();
 						kBox.befuelleNicklabel(nameString);
@@ -287,55 +313,55 @@ public class BeitragBox extends VerticalPanel {
 						kBox.befuelleInhalt(inhalt);
 
 						kommentarPanel.add(kBox);
+
 					}
 				});
 			}
+
 		}
 
-
 	}
-	
+
 	class LikesErstellenClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			
-			Like l = new Like ();
-			
-			
-			Beitrag b = new Beitrag ();
-			b.setId(1);
-			
+
 //			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
-			Nutzer n = new Nutzer ();
+			Nutzer n = new Nutzer();
 			n.setId(3);
-			
-			
-			pinnwandVerwaltung.erstelleLike(b, l.getErstellZeitpunkt(), n, new LikeErstelleCallback());
-			
-		}
-		
-		class LikeErstelleCallback implements AsyncCallback<Like> {
 
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Fehler beim Like erstellen : " + caught.getMessage());
-				
+			for (Like l : alleLikesVonBeitrag) {
+
+				if (l.getNutzerFK() != n.getId() && alleLikesVonBeitrag.isEmpty()) {
+					pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
+
+				}
+
+				else {
+
+				}
 			}
 
-			@Override
-			public void onSuccess(Like result) {
-					Window.alert("Like erstellt!");
-					Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
-				
-			}
-			
-			
 		}
-		
 	}
-	
-	
+
+	class LikeErstellenCallback implements AsyncCallback<Like> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Like erstellen : " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Like result) {
+			Window.alert("Like erstellt!");
+			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+
+		}
+
+	}
 
 	class LikesAnzeigenClickHandler implements ClickHandler {
 
@@ -344,7 +370,7 @@ public class BeitragBox extends VerticalPanel {
 
 			LikeDialogBox likeBox = new LikeDialogBox();
 			likeBox.center();
-			
+
 		}
 
 	}

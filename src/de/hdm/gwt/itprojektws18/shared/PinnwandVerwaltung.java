@@ -66,7 +66,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b);
 
-	Like erstelleLike(Beitrag b, Timestamp erstellzeitpunkt, Nutzer n);
+	Like erstelleLike(Beitrag b, Nutzer n);
 
 	void loeschen(Like l);
 

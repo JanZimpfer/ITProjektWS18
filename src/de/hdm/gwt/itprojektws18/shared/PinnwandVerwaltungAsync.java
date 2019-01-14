@@ -61,7 +61,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllKommentareByBeitrag(Beitrag b, AsyncCallback<Vector<Kommentar>> callback);
 
-	void erstelleLike(Beitrag b, Timestamp erstellzeitpunkt, Nutzer n, AsyncCallback<Like> callback);
+	void erstelleLike(Beitrag b, Nutzer n, AsyncCallback<Like> callback);
 
 	void loeschen(Like l, AsyncCallback<Void> callback);
 
