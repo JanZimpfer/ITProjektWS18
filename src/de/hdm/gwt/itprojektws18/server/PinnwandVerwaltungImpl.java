@@ -548,13 +548,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Like 
 	 */
 	@Override
-	public Like erstelleLike(Beitrag b, Timestamp erstellzeitpunkt, Nutzer n) {
+	public Like erstelleLike(Beitrag b, Nutzer n) {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
 		Like l = new Like();
 		l.setBeitragFK(b.getId());
-		l.setErstellZeitpunkt(erstellzeitpunkt);
+		l.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		l.setNutzerFK(n.getId());
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
