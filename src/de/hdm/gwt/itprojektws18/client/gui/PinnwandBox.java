@@ -20,6 +20,7 @@ public class PinnwandBox extends VerticalPanel {
 
 	public PinnwandBox() {
 
+		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(3);
 
@@ -31,6 +32,7 @@ public class PinnwandBox extends VerticalPanel {
 
 	public PinnwandBox(int nutzerId) {
 
+		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
 

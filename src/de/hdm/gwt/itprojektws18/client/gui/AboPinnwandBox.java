@@ -32,10 +32,9 @@ public class AboPinnwandBox extends HorizontalPanel{
 		
 	}
 	
-	public AboPinnwandBox(Abonnement a) {
+	public AboPinnwandBox(final Abonnement a) {
 		
-		this.abo = a;
-//		this.nutzer = n;
+		abo = a;
 		
 		nutzerNameLabel.addStyleName("vornameAbobox");
 		nickNameLabel.addStyleName("nicknameAboBox");
@@ -68,7 +67,7 @@ public class AboPinnwandBox extends HorizontalPanel{
 	
 			
 			public void onClick(ClickEvent event) {
-				PinnwandBox pBox = new PinnwandBox(abo.getNutzerFK());
+				PinnwandBox pBox = new PinnwandBox(abo.getPinnwandFK());
 				
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);
