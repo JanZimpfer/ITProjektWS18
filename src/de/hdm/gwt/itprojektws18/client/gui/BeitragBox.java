@@ -65,9 +65,9 @@ public class BeitragBox extends VerticalPanel {
 
 //	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 	private KommentarBox kommentarBox = new KommentarBox();
-
-	private Vector<Kommentar> kommentarVector = null;
-	private Nutzer kommentarNutzer = null;
+	
+	private Beitrag beitrag = new Beitrag();
+	
 	public BeitragBox() {
 		
 		
@@ -76,6 +76,8 @@ public class BeitragBox extends VerticalPanel {
 
 	public BeitragBox(final Beitrag b) {
 
+		beitrag = b;
+		
 //		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
 		beitragInhalt.addStyleName("beitragInhalt");
@@ -118,6 +120,7 @@ public class BeitragBox extends VerticalPanel {
 		likeBtn.addClickHandler(new LikesErstellenClickHandler ());
 		likesAnzeigenBtn.addClickHandler(new LikesAnzeigenClickHandler());
 		beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
+		beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
 
 		
 		
@@ -139,6 +142,36 @@ public class BeitragBox extends VerticalPanel {
 
 	}
 
+	class BeitragLoeschenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			pinnwandVerwaltung.loeschen(beitrag, new BeitragLoeschenCallback());
+
+		}
+	}
+	
+	class BeitragLoeschenCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Löschen des Beitrags: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+			
+			PinnwandBox pBox = new PinnwandBox();
+			
+			Window.alert("Beitrag erfolgreich gelöscht");
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
+			
+		}
+		
+	}
+	
 	class BeitragBearbeitenClickHandler implements ClickHandler {
 
 		@Override
