@@ -174,9 +174,9 @@ public class NutzerMapper {
 		}
 		}
 	
-	catch (SQLException e2) { 
+	catch (SQLException e) { 
 			
-			e2.printStackTrace();
+			e.printStackTrace();
 		}
 	
 	return n;
@@ -197,9 +197,9 @@ public class NutzerMapper {
 			+"WHERE id= " + "'" + n.getId() + "'" );
 			
 		}
-		catch(SQLException e2) {
+		catch(SQLException e) {
 			
-			e2.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return n;
@@ -217,9 +217,9 @@ public class NutzerMapper {
 			
 		}
 		
-		catch(SQLException e2) {
+		catch(SQLException e) {
 			
-			e2.printStackTrace();
+			e.printStackTrace();
 			
 		}
 	
@@ -257,8 +257,8 @@ public class NutzerMapper {
 				
 				n = nutzer;
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		/**
@@ -296,8 +296,8 @@ public class NutzerMapper {
 				result.addElement(n);
 			}
 		}
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

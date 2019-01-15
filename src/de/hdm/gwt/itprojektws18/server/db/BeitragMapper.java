@@ -66,8 +66,8 @@ public class BeitragMapper {
 						
 			}
 		}
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return b;
@@ -89,8 +89,8 @@ public class BeitragMapper {
 			"text = " + "'" + b.getText() + "'" 
 			+"WHERE id=" + "'" + b.getId() + "'");
 		}
-		catch(SQLException e2) {
-			e2.printStackTrace();
+		catch(SQLException e) {
+			e.printStackTrace();
 		}
 		
 		return b;
@@ -109,8 +109,8 @@ public class BeitragMapper {
 			stmt.executeUpdate("DELETE FROM beitrag WHERE id =" + "'" + b.getId() + "'");
 		}
 		
-		catch(SQLException e2) {
-			e2.printStackTrace();
+		catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	/**
@@ -130,8 +130,8 @@ public class BeitragMapper {
 			stmt.executeUpdate("DELETE FROM beitrag WHERE nutzer_b_FK=" + "'" + n.getId() + "'");
 		}
 		
-		catch(SQLException e2) {
-			e2.printStackTrace();
+		catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -194,8 +194,8 @@ public class BeitragMapper {
 				result.addElement(b);
 			}
 		}
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -225,8 +225,8 @@ public class BeitragMapper {
 				result.addElement(b);
 			}			
 		}
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -265,8 +265,8 @@ public class BeitragMapper {
 				result.addElement(b);
 			}			
 		}
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

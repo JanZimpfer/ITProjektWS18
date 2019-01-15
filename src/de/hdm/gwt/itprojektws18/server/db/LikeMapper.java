@@ -75,9 +75,9 @@ public class LikeMapper {
 
 
 		} 
-		catch (SQLException e2) {
+		catch (SQLException e) {
 			
-			e2.printStackTrace();
+			e.printStackTrace();
 		}
 		return l;
 	}
@@ -97,8 +97,8 @@ public class LikeMapper {
 			stmt.executeUpdate("DELETE FROM likes WHERE id =" + "'" + l.getId() + "'");
 
 
-		} catch (SQLException el2) {
-			el2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -117,8 +117,8 @@ public class LikeMapper {
 			stmt.executeUpdate("DELETE FROM likes " + "WHERE nutzer_l_FK =" + "'" + n.getId() + "'");
 
 
-		} catch (SQLException el3) {
-			el3.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -151,8 +151,8 @@ public class LikeMapper {
 				
 				result.addElement(l);
 		}
-		}catch (SQLException el4) {
-			el4.printStackTrace();
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -191,8 +191,8 @@ public class LikeMapper {
 				result.addElement(l);
 			}
 
-		} catch (SQLException el5) {
-			el5.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 
