@@ -75,7 +75,4 @@ public class AboPinnwandBox extends HorizontalPanel{
 			
 		}
 	
-	//Hinzuf�gen von Methoden, die Methoden der Impl verwenden, um Nick- und Nutzername den jeweilgien Labels hinzuzuf�gen
-	//(Id Abgleich in Konstruktor, ob ID(bzw Pinnwand)bereits verwendet wurde bzw. ob Abonnementbeziehung bereits in Abobox angezeigt wird)
-	// Verkn�pfung mit Suchleiste: Neue Abo Beziehung wird erstellt -> beide update Methoden in AboPWBox werden ausgef�hrt und ein AboPWBox Objekt in AboBox erstellt
 }

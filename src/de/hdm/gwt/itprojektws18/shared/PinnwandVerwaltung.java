@@ -98,5 +98,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Like> getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
 
+	Abonnement getAboFor(int pinnwandId, int nutzerId);
+
 	
 }

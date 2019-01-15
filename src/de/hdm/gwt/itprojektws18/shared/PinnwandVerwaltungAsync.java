@@ -96,4 +96,6 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllKommentareByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate,
 			AsyncCallback<Vector<Kommentar>> callback);
+
+	void getAboFor(int pinnwandId, int nutzerId, AsyncCallback<Abonnement> callback);
 }

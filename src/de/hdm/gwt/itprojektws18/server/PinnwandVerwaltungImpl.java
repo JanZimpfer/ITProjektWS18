@@ -616,41 +616,23 @@ public PinnwandVerwaltungImpl() {
 //		Vector<Abonnement> abos = new Vector<Abonnement>();
 //		abos.addAll(this.getAllAbosFor(n));
 		
-		Abonnement a = getAboFor(p, n);
+		Abonnement a = getAboFor(p.getId(), n.getId());
 		
-		if 
-		
-//		for (int i = 0; i < abos.size(); i++) {
-//			if(abos.elementAt(i).getNutzerFK() != n.getId()) {
-//				//Erstellen eines Abonnementobjekts
-//				//Zuweisen der PinnwandID, die abonniert werden soll
-//				
-//				a.setNutzerFK(n.getId());
-//				a.setPinnwandFK(p.getId());
-//				a.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
-//				
-//				
-//				//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-//				//auf den nächsthöchsten Wert gesetzt wird
-//				a.setId(1);	
-//				
-//			}
-//
-//		}
-		
-//		//Speichern in dr DB
-//		return this.aMapper.insertAbonnement(a);
-		
-		a.setNutzerFK(n.getId());
-		a.setPinnwandFK(p.getId());
-		a.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
-		
-		
-		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-		//auf den nächsthöchsten Wert gesetzt wird
-		a.setId(1);	
-		
-		return this.aMapper.insertAbonnement(a);
+		if(a.getId() == 0) {
+			Abonnement abo = new Abonnement();
+			
+			abo.setPinnwandFK(p.getId());
+			abo.setNutzerFK(n.getId());
+			abo.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
+			
+			//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
+			//auf den nächsthöchsten Wert gesetzt wird
+			abo.setId(1);	
+			
+			return this.aMapper.insertAbonnement(abo);
+		} else {
+			return null;
+		}
 		
 	}
 
@@ -664,8 +646,9 @@ public PinnwandVerwaltungImpl() {
 		this.aMapper.deleteAbonnement(a);
 	}
 	
+	@Override
 	public Abonnement getAboFor (int pinnwandId, int nutzerId) {
-//		return this.aMapper.getAboFor(pinnwandId, nutzerId);
+		return this.aMapper.getAboFor(pinnwandId, nutzerId);
 	}
 	
 	/**

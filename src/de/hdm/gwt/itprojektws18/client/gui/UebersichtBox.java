@@ -5,6 +5,7 @@ import java.util.Vector;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -66,7 +67,6 @@ public class UebersichtBox extends VerticalPanel {
 
 		this.add(abonnierenPanel);
 
-
 		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new BeitraegeAnzeigenCallback());
 
 		this.add(beitragPanel);
@@ -89,92 +89,140 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	class AboErstellenCallback implements AsyncCallback<Abonnement> {
 
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Anlegen des Abonnements: " + caught.getMessage());
 
-class AboErstellenCallback implements AsyncCallback<Abonnement> {
+		}
 
-	@Override
-	public void onFailure(Throwable caught) {
-		Window.alert("Fehler beim Anlegen des Abonnements: " + caught.getMessage());
+		@Override
+		public void onSuccess(Abonnement result) {
 
-	}
+			if (result != null) {
+				Window.alert("Nutzer bereits abonniert!");
+			} else {
+				AboBox aboBox = new AboBox();
 
-	@Override
-	public void onSuccess(Abonnement result) {
-		AboBox aboBox = new AboBox();
+				RootPanel.get("AboDiv").clear();
+				RootPanel.get("AboDiv").add(aboBox);
+			}
 
-		RootPanel.get("AboDiv").clear();
-		RootPanel.get("AboDiv").add(aboBox);
-
-	}
-
-}
-
-class DeAboClickhandler implements ClickHandler {
-
-	@Override
-	public void onClick(ClickEvent event) {
-		// TODO Auto-generated method stub
+		}
 
 	}
 
-}
+	class DeAboClickhandler implements ClickHandler {
 
-class NutzerInformationenCallback implements AsyncCallback<Nutzer> {
-
-	@Override
-	public void onFailure(Throwable caught) {
-		Window.alert("Fehler beim Auslesen des Nutzers: " + caught.getMessage());
-
-	}
-
-	@Override
-	public void onSuccess(Nutzer result) {
-		String profilInfosString = "Profil: " + result.getVorname() + " " + result.getNachname() + "";
-		profilInfos.setText(profilInfosString);
-	}
-
-}
-
-public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
-
-	@Override
-	public void onFailure(Throwable caught) {
-		Window.alert("Fehler beim Auslesen der Beitragsinformationen: " + caught.getMessage());
-
-	}
-
-	@Override
-	public void onSuccess(Vector<Beitrag> result) {
-
-		for (final Beitrag beitrag : result) {
-			final BeitragBox bBox = new BeitragBox(beitrag);
-
-			pinnwandVerwaltung.getNutzerbyID(beitrag.getNutzerFK(), new AsyncCallback<Nutzer>() {
+		@Override
+		public void onClick(ClickEvent event) {
+			
+			Nutzer n = new Nutzer();
+//			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			n.setId(3);
+			
+			
+			pinnwandVerwaltung.getAboFor(p.getId(), n.getId(), new AsyncCallback<Abonnement> () {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
-
+					Window.alert("Fehler beim Löschen des Abonnements: " + caught.getMessage());
 				}
 
 				@Override
-				public void onSuccess(Nutzer result) {
-					String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
-							+ result.getNachname();
-					final String erstellZP = dtf.format(beitrag.getErstellZeitpunkt());
-					final String inhalt = beitrag.getText();
-
-					bBox.befuelleName(nameString);
-					bBox.befuelleErstellzeitpunkt(erstellZP);
-					bBox.befuelleInhalt(inhalt);
-
-					beitragPanel.add(bBox);
-
+				public void onSuccess(Abonnement result) {
+					pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());
+					
 				}
-
+				
 			});
+			
+			
+
+		}
+
+	}
+	
+	class AboLoeschenCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Löschen des Abonnements. " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Void result) {
+			AboBox aboBox = new AboBox();
+
+			RootPanel.get("AboDiv").clear();
+			RootPanel.get("AboDiv").add(aboBox);
+			
+			PinnwandBox pBox = new PinnwandBox(p.getId());
+			
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
+			
+		}
+		
+	}
+
+	class NutzerInformationenCallback implements AsyncCallback<Nutzer> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen des Nutzers: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Nutzer result) {
+			String profilInfosString = "Profil: " + result.getVorname() + " " + result.getNachname() + "";
+			profilInfos.setText(profilInfosString);
+		}
+
+	}
+
+	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Auslesen der Beitragsinformationen: " + caught.getMessage());
+
+		}
+
+		@Override
+		public void onSuccess(Vector<Beitrag> result) {
+
+			for (final Beitrag beitrag : result) {
+				final BeitragBox bBox = new BeitragBox(beitrag);
+
+				pinnwandVerwaltung.getNutzerbyID(beitrag.getNutzerFK(), new AsyncCallback<Nutzer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
+
+					}
+
+					@Override
+					public void onSuccess(Nutzer result) {
+						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
+								+ result.getNachname();
+						final String erstellZP = dtf.format(beitrag.getErstellZeitpunkt());
+						final String inhalt = beitrag.getText();
+
+						bBox.befuelleName(nameString);
+						bBox.befuelleErstellzeitpunkt(erstellZP);
+						bBox.befuelleInhalt(inhalt);
+
+						beitragPanel.add(bBox);
+
+					}
+
+				});
+			}
 		}
 	}
-}
 }

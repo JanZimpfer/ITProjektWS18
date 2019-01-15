@@ -95,7 +95,7 @@ public class AbonnementMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT nutzer_a_FK, pinnwand_a_FK FROM abonnement "
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK FROM abonnement "
 			+ "WHERE nutzer_a_FK= " + "'" + nutzerId + "'" + "AND " + "pinnwand_a_FK= " + "'" + pinnwandId + "'");
 		
 		
@@ -103,6 +103,7 @@ public class AbonnementMapper {
 			
 			Abonnement a = new Abonnement () ;
 			
+			a.setId(rs.getInt("id"));
 			a.setNutzerFK(rs.getInt("nutzer_a_FK"));
 			a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
 			
