@@ -103,6 +103,41 @@ public class LikeMapper {
 	}
 	
 	/**
+	 * Die Methode getLikeFor dient zur Ausgabe eines likesObjekt,
+	 * auf das die übergebene beitragId AND nutzerId zutreffen.
+	 * Ist dies nicht der Fall wird null zurückgegeben.
+	 * @author matthias
+	 */
+	
+	public Like getLikeFor(int beitragId, int nutzerId) {
+		
+		Connection con =DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK FROM likes " 
+			+ "WHERE beitrag_l_FK= " + "'" + beitragId + "'" + "AND" + "nutzer_l_FK = " + "'" + nutzerId + "'");		
+		
+		if (rs.next()){
+			
+			Like l = new Like();
+			
+			l.setId(rs.getInt("id"));
+			l.setBeitragFK(rs.getInt("beitrag_l_FK"));
+			l.setNutzerFK(rs.getInt("nutzer_l_FK"));
+			
+			return l;
+		}
+		}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
+	
+	/**
 	 * LÃ¶schen aller Like-Objekte eines Nutzers aus der Datenbank
 	 * 
 	 * @param n

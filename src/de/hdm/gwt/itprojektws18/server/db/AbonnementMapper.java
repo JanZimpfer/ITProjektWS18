@@ -85,7 +85,9 @@ public class AbonnementMapper {
 	}
 	
 	/**
-	 * Die Mapper_Methode getAboFor dient zur Ausgabe eines Abo_objects auf den die pinnwandId und nutzerId zutreffen
+	 * Die Mapper_Methode getAboFor dient zur Ausgabe eines Abo_objects,
+	 * auf das die pinnwandId AND nutzerId zutreffen.
+	 * Ist dies nicht der Fall wird null zurückgegeben.
 	 * @author matthias
 	 */
 	
@@ -117,6 +119,7 @@ public class AbonnementMapper {
 		}
 		return null;
 	}
+	
 
 	public Vector<Abonnement> getAllAbosByNutzer(Nutzer n) {
 

@@ -574,7 +574,14 @@ public PinnwandVerwaltungImpl() {
 		this.lMapper.deleteLike(l);
 	}
 	
-	
+	/**
+	 * Methode zur Ausgabe/Abfrage eines bestimmten LikeObjects
+	 *
+	 */
+	@Override
+	public Like getLikeFor (int beitragId, int nutzerId) {
+		return this.lMapper.getLikeFor(beitragId, nutzerId);
+	}
 	
 	/**
 	 * Auslesen aller Likes eines Nutezrs

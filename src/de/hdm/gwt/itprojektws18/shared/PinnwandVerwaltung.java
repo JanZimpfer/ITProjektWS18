@@ -69,6 +69,8 @@ public interface PinnwandVerwaltung extends RemoteService {
 	Like erstelleLike(Beitrag b, Nutzer n);
 
 	void loeschen(Like l);
+	
+	Like getLikeFor(int beitragId, int nutzerId);
 
 	Vector<Like> getAllLikesByNutzer(Nutzer n);
 

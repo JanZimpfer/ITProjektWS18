@@ -64,6 +64,8 @@ public interface PinnwandVerwaltungAsync {
 	void erstelleLike(Beitrag b, Nutzer n, AsyncCallback<Like> callback);
 
 	void loeschen(Like l, AsyncCallback<Void> callback);
+	
+	void getLikeFor (int beitragId, int nutzerId, AsyncCallback<Like> callback);
 
 	void getAllLikesByNutzer(Nutzer n, AsyncCallback<Vector<Like>> callback);
 
