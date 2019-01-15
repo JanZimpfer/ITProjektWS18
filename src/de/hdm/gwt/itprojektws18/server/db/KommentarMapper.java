@@ -37,12 +37,19 @@ public class KommentarMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			String sqlStmt = "INSERT INTO kommentar ( text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) " + "VALUES("
+			
+			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM kommentar");
+			
+			if (rs.next()) {
+				k.setId(rs.getInt("maxid")+1);
+				stmt =con.createStatement();
+			
+			stmt.executeUpdate("INSERT INTO kommentar ( text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) " + "VALUES("
 					+ k.getText() + "," + "'" + k.getErstellZeitpunkt() + "'" + "," + k.getBeitragFK() + ","
-					+ k.getNutzerFK() + ")";
-			stmt.executeUpdate(sqlStmt);
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+					+ k.getNutzerFK() + ")");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return k;
@@ -63,8 +70,8 @@ public class KommentarMapper {
 			stmt.executeUpdate("UPDATE kommentar set "+
 					"text = " + "'" + k.getText() + "'" 
 					+"WHERE id=" + "'" + k.getId() + "'");
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return k;
@@ -84,8 +91,8 @@ public class KommentarMapper {
 			stmt.executeUpdate("DELETE FROM kommentar WHERE id =" + "'" + k.getId() + "'");
 		}
 
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -108,8 +115,8 @@ public class KommentarMapper {
 			stmt.executeUpdate("DELETE FROM kommentar WHERE beitrag_k_FK =" + "'" + b.getId() + "'");
 		}
 
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -178,8 +185,8 @@ public class KommentarMapper {
 
 				result.addElement(k);
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 
@@ -213,8 +220,8 @@ public class KommentarMapper {
 
 				result.addElement(k);
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 
@@ -249,8 +256,8 @@ public class KommentarMapper {
 
 				result.addElement(k);
 			}
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 

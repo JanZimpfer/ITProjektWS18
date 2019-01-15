@@ -58,8 +58,8 @@ public class AbonnementMapper {
 
 		}
 
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 
 		}
 
@@ -77,11 +77,44 @@ public class AbonnementMapper {
 
 		}
 
-		catch (SQLException e2) {
+		catch (SQLException e) {
 
-			e2.printStackTrace();
+			e.printStackTrace();
 
 		}
+	}
+	
+	/**
+	 * Die Mapper_Methode getAboFor dient zur Ausgabe eines Abo_objects auf den die pinnwandId und nutzerId zutreffen
+	 * @author matthias
+	 */
+	
+	public Abonnement getAboFor(int pinnwandId, int nutzerId) {
+		
+		Connection con =DBConnection.connection();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT nutzer_a_FK, pinnwand_a_FK FROM abonnement "
+			+ "WHERE nutzer_a_FK= " + "'" + nutzerId + "'" + "AND " + "pinnwand_a_FK= " + "'" + pinnwandId + "'");
+		
+		
+		if (rs.next()) {
+			
+			Abonnement a = new Abonnement () ;
+			
+			a.setNutzerFK(rs.getInt("nutzer_a_FK"));
+			a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
+			
+			return a;
+		}
+		}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
 	}
 
 	public Vector<Abonnement> getAllAbosByNutzer(Nutzer n) {
@@ -108,8 +141,8 @@ public class AbonnementMapper {
 			}
 		}
 
-		catch (SQLException e2) {
-			e2.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return result;
@@ -140,9 +173,9 @@ public class AbonnementMapper {
 
 		}
 
-		catch (SQLException e2) {
+		catch (SQLException e) {
 
-			e2.printStackTrace();
+			e.printStackTrace();
 		}
 
 		return result;

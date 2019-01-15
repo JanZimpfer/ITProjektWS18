@@ -59,8 +59,8 @@ public class PinnwandMapper {
 				p.getNutzerFK() + "," + 
 				"'" + p.getErstellZeitpunkt() + "'" + ")"); 
 			}
-		} catch (SQLException ep1) {
-			ep1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} 
 
 		return p;
@@ -81,8 +81,8 @@ public class PinnwandMapper {
 			stmt.executeUpdate(
 					"UPDATE pinnwand set nutzer_p_FK= " + "'"  + p.getNutzerFK() + "'" + "WHERE id= " + "'" + p.getId() + "'");
 
-		} catch (SQLException ep2) {
-			ep2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return p;
@@ -102,8 +102,8 @@ public class PinnwandMapper {
 
 			stmt.executeUpdate("DELETE FROM pinnwand WHERE id=" + "'" + p.getId() + "'");
 
-		} catch (SQLException e2) {
-			e2.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -135,8 +135,8 @@ public class PinnwandMapper {
 //				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
-		} catch (SQLException ep4) {
-			ep4.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
 
@@ -170,8 +170,8 @@ public class PinnwandMapper {
 //				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
-		}catch(SQLException ep5) {
-			ep5.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
 			return null;
 			
 		}	
@@ -204,8 +204,8 @@ public class PinnwandMapper {
 				// Hinzufügen des neuen Objekts zum Ergebnisvektor
 				result.addElement(p);
 			}
-		} catch (SQLException ep6) {
-			ep6.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		// Ergebnisvektor zurückgeben
