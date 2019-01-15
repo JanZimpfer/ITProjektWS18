@@ -16,10 +16,12 @@ public class PinnwandBox extends VerticalPanel {
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
-	private UebersichtBox uebersichtbox = new UebersichtBox();
+	
 
 	public PinnwandBox() {
 
+		UebersichtBox uebersichtbox = new UebersichtBox();
+		
 		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(3);
@@ -31,10 +33,12 @@ public class PinnwandBox extends VerticalPanel {
 	}
 
 	public PinnwandBox(int nutzerId) {
-
+		
 		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
+		
+		UebersichtBox uebersichtbox = new UebersichtBox(n.getId());
 
 		this.add(uebersichtbox);
 

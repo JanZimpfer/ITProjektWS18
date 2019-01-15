@@ -67,7 +67,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void getAllLikesByNutzer(Nutzer n, AsyncCallback<Vector<Like>> callback);
 
-	void erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt, AsyncCallback<Abonnement> callback);
+	void erstelleAbonnement(Pinnwand p, Nutzer n, AsyncCallback<Abonnement> callback);
 
 	void getAllAbosFor(Nutzer n, AsyncCallback<Vector<Abonnement>> callback);
 

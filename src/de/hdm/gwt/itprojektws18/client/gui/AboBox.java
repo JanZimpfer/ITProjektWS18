@@ -41,13 +41,7 @@ public class AboBox extends VerticalPanel {
 
 	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
 
-//	private Label nutzerNameLabel = new Label("Jan");
-//	
-//	private Label nickNameLabel = new Label("@flizzy");
-
-	private Button beitragStatistikButton = new Button("BeitragStatistik");
-
-	private Button nutzerStatistikButton = new Button("NutzerStatistik");
+	private Button reportButton = new Button("Report");
 
 	Nutzer nutzer = new Nutzer();
 
@@ -72,11 +66,7 @@ public class AboBox extends VerticalPanel {
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
 
-//		aboPinnwandInfos.add(nutzerNameLabel);
-//		aboPinnwandInfos.add(nickNameLabel);
-
-		reportButtonPanel.add(beitragStatistikButton);
-		reportButtonPanel.add(nutzerStatistikButton);
+		reportButtonPanel.add(reportButton);
 
 		/**
 		 * 
@@ -84,41 +74,17 @@ public class AboBox extends VerticalPanel {
 		anzeigePW.addStyleName("anzeigePW");
 		aboniertePW.addStyleName("aboniertePW");
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
-//		nutzerNameLabel.addStyleName("nutzerNameLabel");
-//		nickNameLabel.addStyleName("nickNameLabel");
 		reportButtonPanel.addStyleName("ReportButtonPanel");
-		beitragStatistikButton.addStyleName("beitragStatistikButton");
-		nutzerStatistikButton.addStyleName("nutzerStatistikButton");
+		reportButton.addStyleName("ReportButton");
 
-		/**
-		 * 
-		 */
-		pinnwandVerwaltung.getNutzerbyID(3, new ProfilNameCallBack());
 
 		/**
 		 * ClickHandler den entsprechenden Buttons hinzufügen:
 		 */
 
-		beitragStatistikButton.addClickHandler(new BeitragStatistikClickHandler());
-		nutzerStatistikButton.addClickHandler(new NutzerStatistikClickHandler());
+		reportButton.addClickHandler(new ReportClickHandler());
 
 		super.onLoad();
-	}
-
-	class ProfilNameCallBack implements AsyncCallback<Nutzer> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Auslesen des Nutzers: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Nutzer result) {
-			String profilInfos = "Profil: " + result.getVorname() + " " + result.getNachname() + "";
-//			profil.setText(profilInfos);
-		}
-
 	}
 
 	class NeuesAboAnzeigenCallback implements AsyncCallback<Vector<Abonnement>> {
@@ -160,23 +126,14 @@ public class AboBox extends VerticalPanel {
 
 	}
 
-	class BeitragStatistikClickHandler implements ClickHandler {
+	class ReportClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			// TODO Auto-generated method stub
+			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18Report.html");
 
 		}
 
 	}
 
-	class NutzerStatistikClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
 }

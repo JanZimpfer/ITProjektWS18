@@ -72,7 +72,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Vector<Like> getAllLikesByNutzer(Nutzer n);
 
-	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n, Timestamp erstellzeitpunkt);
+	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n);
 
 	void loeschen(Abonnement a);
 

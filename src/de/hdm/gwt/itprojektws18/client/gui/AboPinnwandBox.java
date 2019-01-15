@@ -67,7 +67,7 @@ public class AboPinnwandBox extends HorizontalPanel{
 	
 			
 			public void onClick(ClickEvent event) {
-				PinnwandBox pBox = new PinnwandBox(abo.getPinnwandFK());
+				PinnwandBox pBox = new PinnwandBox(4);
 				
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);
