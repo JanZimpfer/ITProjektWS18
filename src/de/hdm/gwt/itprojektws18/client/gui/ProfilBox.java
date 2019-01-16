@@ -19,25 +19,26 @@ public class ProfilBox extends VerticalPanel {
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 	
 	private HorizontalPanel buttonPanel  = new HorizontalPanel ();	
-	private HorizontalPanel labelPanel  = new HorizontalPanel ();
+	private VerticalPanel labelPanel  = new VerticalPanel ();
 	
 	private Button  profilbildButton = new Button ("Profilbild");
 	private Button 	profilButton = new Button ("Startseite");
 	
 	private Label 	beitraege = new Label ();
 	private Label 	abonniert = new Label ();
+	private Label   abonnenten = new Label ();
+	
+	Nutzer nutzer = new Nutzer ();
+	
+	
 
-	Nutzer nutzer  = new Nutzer ();
-	
-	
 	public ProfilBox () {
+	
 		
-//	
-//		
 		
-		Nutzer n = new Nutzer ();
+	
 //		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-		n.setId(3);
+		nutzer.setId(3);
 		
 		this.addStyleName("profilBox");
 		
@@ -46,6 +47,7 @@ public class ProfilBox extends VerticalPanel {
 	
 		labelPanel.add(beitraege);
 		labelPanel.add(abonniert);
+		labelPanel.add(abonnenten);
 
 		profilbildButton.addStyleName("profilbildButton");
 		profilButton.addStyleName("profilButton");
@@ -53,11 +55,14 @@ public class ProfilBox extends VerticalPanel {
 		
 		profilButton.addClickHandler(new eigenesProfilAnzeigen ());
 	 
-		pinnwandVerwaltung.getAllAbosFor(n, new anzahlAbosCallback ());
-		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new anzahlBeitragCallback ());
+		pinnwandVerwaltung.getAllAbosFor(nutzer, new anzahlAbosCallback ());
+		pinnwandVerwaltung.getAllBeitraegeByNutzer(nutzer, new anzahlBeitragCallback ());
 
 		this.add(buttonPanel);
 		this.add(labelPanel);
+		
+		beitraege.setHorizontalAlignment(ALIGN_LEFT);
+		abonniert.setHorizontalAlignment(ALIGN_LEFT);
 		
 		
 		super.onLoad();
@@ -92,11 +97,31 @@ public class ProfilBox extends VerticalPanel {
 				
 				String anzahlAbos = "Abonniert: "+ result.size() +"";
 				
+				String aZ = "Anzahl Abonnenten: ";
+				
+				abonnenten.setText(aZ);	
+				
+				Vector<Abonnement> anzahlabonnenten = new Vector <Abonnement> ();
+				
 				abonniert.setText(anzahlAbos);
+			
+				for (int i=0; i< result.size(); i++) {
+					
+					if (nutzer.getId() == result.elementAt(i).getPinnwandFK()) {
+		
+						anzahlabonnenten.addAll(result);
+				
+//						String aZ = "Anzahl Abonnenten: " + anzahlabonnenten.size() + "";
+				
+									
+					
+				}
 				
 				
 			}
 			
+			
+			}
 			
 		}
 		
@@ -122,6 +147,7 @@ public class ProfilBox extends VerticalPanel {
 		}
 		
 	}
+
 		
 		
 	
