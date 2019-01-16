@@ -90,7 +90,7 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 
-	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt, String email) {
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) {
 
 		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
@@ -99,7 +99,7 @@ public PinnwandVerwaltungImpl() {
 		n.setVorname(vorname);
 		n.setNachname(nachname);
 		n.setNickname(nickname);
-		n.setErstellZeitpunkt(erstellzeitpunkt);
+		n.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		n.setEmail(email);
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
@@ -228,13 +228,13 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwnad
 	 */
 	@Override
-	public Pinnwand erstellePinnwand (Nutzer n, Timestamp erstellzeitpunkt) {
+	public Pinnwand erstellePinnwand (Nutzer n) {
 		
 		//Erstellen eines Pinnwandobjekts
 		//Zuweisen der InhaberID
 		Pinnwand p = new Pinnwand();
 		p.setNutzerFK(n.getId());
-		p.setErstellZeitpunkt(erstellzeitpunkt);
+		p.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		
 		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
 		//auf den nächsthöchsten Wert gesetzt wird
