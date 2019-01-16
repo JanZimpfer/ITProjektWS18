@@ -18,8 +18,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
  */
 public interface PinnwandVerwaltungAsync {
 
-	void erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt, String email,
-			AsyncCallback<Nutzer> callback);	
+	void erstelleNutzer(String vorname, String nachname, String nickname, String email, AsyncCallback<Nutzer> callback);	
 
 	void speichern(Nutzer n, AsyncCallback<Void> callback);
 
@@ -31,7 +30,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void loeschen(Nutzer n, AsyncCallback<Void> callback);
 
-	void erstellePinnwand(Nutzer n, Timestamp erstellzeitpunkt, AsyncCallback<Pinnwand> callback);
+	void erstellePinnwand(Nutzer n, AsyncCallback<Pinnwand> callback);
 
 	void speichern(Pinnwand p, AsyncCallback<Void> callback);
 
