@@ -54,10 +54,6 @@ public class BeitragBox extends VerticalPanel {
 	private Button likeBtn = new Button("Gefällt mir!");
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
-	private TextBox beitragBearbeitenInhalt = new TextBox();
-	private Button speichernBtn = new Button("Speichern");
-	private Button schliessenBtn = new Button("Schließen");
-
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
 	// Test-Vektor - OBACHT!
@@ -74,7 +70,7 @@ public class BeitragBox extends VerticalPanel {
 
 	public BeitragBox(final Beitrag b) {
 
-		beitrag = b;
+		this.beitrag = b;
 
 //		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
@@ -135,6 +131,16 @@ public class BeitragBox extends VerticalPanel {
 
 	}
 
+	class BeitragBearbeitenClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			BeitragBearbeitenDialogBox dlgBox = new BeitragBearbeitenDialogBox(beitrag);
+			dlgBox.center();
+			
+		}
+		
+	}
 	class BeitragLoeschenClickHandler implements ClickHandler {
 
 		@Override
@@ -160,94 +166,6 @@ public class BeitragBox extends VerticalPanel {
 			Window.alert("Beitrag erfolgreich gelöscht");
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
-
-		}
-
-	}
-
-	class BeitragBearbeitenClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			BeitragBearbeitenForm beitragBearbeitenForm = new BeitragBearbeitenForm();
-			beitragBearbeitenForm.center();
-			beitragBearbeitenForm.show();
-
-		}
-
-	}
-
-	class BeitragBearbeitenForm extends DialogBox {
-
-		private VerticalPanel editPanel = new VerticalPanel();
-
-		public BeitragBearbeitenForm() {
-
-			speichernBtn.addClickHandler(new BeitragSpeichernClickHandler());
-			schliessenBtn.addClickHandler(new SchliessenClickHandler());
-
-			editPanel.add(beitragBearbeitenInhalt);
-			editPanel.add(speichernBtn);
-			editPanel.add(schliessenBtn);
-
-			this.add(editPanel);
-
-		}
-
-	}
-
-	class BeitragAbrufCallback implements AsyncCallback<Beitrag> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Abrufen des Beitraginhalts: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Beitrag result) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	class BeitragSpeichernClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			Beitrag b = new Beitrag();
-
-			b.setId(1);
-			b.setText(beitragBearbeitenInhalt.getText());
-
-			pinnwandVerwaltung.speichern(b, new BeitragSpeichernCallback());
-
-		}
-
-	}
-
-	class BeitragSpeichernCallback implements AsyncCallback<Void> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Bearbeiten des Beitrags: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Void result) {
-			Window.alert("Beitrag erfolgreich bearbeitet.");
-
-		}
-
-	}
-
-	class SchliessenClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
 
 		}
 
