@@ -22,7 +22,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
 public interface PinnwandVerwaltung extends RemoteService {
 
 
-	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, Timestamp erstellzeitpunkt, String email);
+	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email);
 
 	void speichern(Nutzer n);
 
@@ -38,7 +38,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	void loeschen(Nutzer n);
 
-	Pinnwand erstellePinnwand(Nutzer n, Timestamp erstellzeitpunkt);
+	Pinnwand erstellePinnwand(Nutzer n);
 
 	void speichern(Pinnwand p);
 
