@@ -12,7 +12,7 @@ public class ReportSelectMenu extends HorizontalPanel {
 
 	private Button reportButton1 = new Button("Nutzerstatistik Report");
 	private Button reportButton2 = new Button("Beitragstatistik Report");
-	private Button zurueck= new Button("zurück auf die Startseite");
+	private Button zurueck= new Button("zurueck auf die Startseite");
 
 	public ReportSelectMenu() {
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
@@ -24,6 +24,10 @@ public class ReportSelectMenu extends HorizontalPanel {
 		this.add(zurueck);
 	}
 
+	/*
+	 *  Erstellung von "Nutzerstatistik"  Button 
+	 */
+	
 	private class NutzerStatistikClickhandler implements ClickHandler {
 
 		@Override
@@ -34,6 +38,10 @@ public class ReportSelectMenu extends HorizontalPanel {
 
 	}
 
+	/*
+	 *  Erstellung von "Beitragstatistik"  Button 
+	 */
+	
 	private class BeitragStatistikClickhandler implements ClickHandler {
 
 		@Override
@@ -42,6 +50,11 @@ public class ReportSelectMenu extends HorizontalPanel {
 			RootPanel.get("contentReport").add(new BeitragStatistikForm());
 		}
 	}
+	
+	
+	/*
+	 *  Erstellung von "Zurück auf die Startseite"  Button, vom Report zurück zur Startseite 
+	 */
 	
 	private class ZurueckClickhandler implements ClickHandler{
 		
