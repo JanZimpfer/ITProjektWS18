@@ -243,7 +243,8 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Abruf der Like-Informationen: " + caught.getMessage());
+			
+
 			
 		}
 

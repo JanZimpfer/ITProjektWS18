@@ -647,9 +647,15 @@ public PinnwandVerwaltungImpl() {
 //		Vector<Abonnement> abos = new Vector<Abonnement>();
 //		abos.addAll(this.getAllAbosFor(n));
 		
-		Abonnement a = getAboFor(p.getId(), n.getId());
+		Abonnement a = new Abonnement();
 		
-		if(a.getId() == 0) {
+		if (p != null && n != null) {
+			a = getAboFor(p.getId(), n.getId());
+		} else {
+			return null;
+		}
+		
+		if(a == null) {
 			Abonnement abo = new Abonnement();
 			
 			abo.setPinnwandFK(p.getId());
@@ -674,7 +680,10 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void loeschen (Abonnement a) {
 	
-		this.aMapper.deleteAbonnement(a);
+		if(a != null) {
+			this.aMapper.deleteAbonnement(a);
+		}
+		
 	}
 	
 	@Override
