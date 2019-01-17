@@ -1,7 +1,5 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-import java.sql.Timestamp;
-import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -10,10 +8,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
@@ -29,14 +25,16 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	 * Erstellung der GUI-Elemente
 	 */
 
-	private TextArea erstelleBeitragFeld = new TextArea();
+	private TextBox erstelleBeitragFeld = new TextBox();
 	private Button postingButton = new Button("Posten");
 
 	public ErstelleBeitragBox() {
 
+		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
 
+		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
 		postingButton.addClickHandler(new postingButtonClickHandler());
 
 		super.onLoad();
@@ -51,7 +49,8 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		postingButton.addStyleName("postingButton");
 
 		erstelleBeitragFeld.setSize("470px", "30");
-
+		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
+		
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
 
@@ -99,5 +98,15 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 			}
 
 		}
+	}
+	
+	class BeitragFeldClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			erstelleBeitragFeld.setText("");
+			
+		}
+		
 	}
 }

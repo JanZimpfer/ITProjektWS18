@@ -41,11 +41,7 @@ public class KommentarBox extends VerticalPanel {
 
 	private Button kommentarBearbeitenBtn = new Button("Kommentar bearbeiten");
 
-	private TextBox kommentarBearbeitenText = new TextBox();
-	private Button bearbeitenSpeichernBtn = new Button("Speichern");
-	private Button schliessenBtn = new Button("Schließen");
-	
-	private KommentarBearbeitenForm dlgbox = new KommentarBearbeitenForm();
+	private Kommentar kommentar = new Kommentar();
 
 	public KommentarBox() {
 
@@ -53,9 +49,12 @@ public class KommentarBox extends VerticalPanel {
 
 	public KommentarBox(final Kommentar k) {
 
+		this.kommentar = k;
+		
 		this.addStyleName("kommentarBox");
 //		kommentarText.addStyleName("kommentarText");
 
+		kommentarText.setStylePrimaryName("beitragInhalt");
 		kommentarText.setReadOnly(true);
 
 		kommentarPanel.add(nickname);
@@ -95,69 +94,13 @@ public class KommentarBox extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
+			KommentarBearbeitenDialogBox dlgbox= new KommentarBearbeitenDialogBox(kommentar);
 			dlgbox.center();
-			dlgbox.show();
 
 		}
 
 	}
 
-	class KommentarBearbeitenForm extends DialogBox {
-		private VerticalPanel editPanel = new VerticalPanel();
-
-		public KommentarBearbeitenForm() {
-
-			bearbeitenSpeichernBtn.addClickHandler(new KommentarSpeichernClickHandler());
-			schliessenBtn.addClickHandler(new SchliessenClickHandler());
-
-			editPanel.add(kommentarBearbeitenText);
-			editPanel.add(bearbeitenSpeichernBtn);
-			editPanel.add(schliessenBtn);
-
-			this.add(editPanel);
-
-		}
-	}
-
-	class KommentarSpeichernClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			Kommentar k = new Kommentar();
-
-			k.setId(31);
-			k.setText(kommentarBearbeitenText.getText());
-
-			pinnwandVerwaltung.speichern(k, new KommentarSpeichernCallback());
-
-		}
-
-	}
-
-	class KommentarSpeichernCallback implements AsyncCallback<Void> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Bearbeiten des Kommentars: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Void result) {
-			Window.alert("Kommentar erfolgreich bearbeitet.");
-
-		}
-
-	}
-
-	class SchliessenClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			dlgbox.hide();
-		}
-
-	}
 
 	/**
 	 * <b>Nested Class zum deleteKommentar-Button</b> implementiert den
