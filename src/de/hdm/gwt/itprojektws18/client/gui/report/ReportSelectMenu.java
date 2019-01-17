@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui.report;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -11,13 +12,16 @@ public class ReportSelectMenu extends HorizontalPanel {
 
 	private Button reportButton1 = new Button("Nutzerstatistik Report");
 	private Button reportButton2 = new Button("Beitragstatistik Report");
+	private Button zurueck= new Button("zurück auf die Startseite");
 
 	public ReportSelectMenu() {
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());
+		zurueck.addClickHandler(new ZurueckClickhandler() );
 
 		this.add(reportButton1);
 		this.add(reportButton2);
+		this.add(zurueck);
 	}
 
 	private class NutzerStatistikClickhandler implements ClickHandler {
@@ -38,4 +42,19 @@ public class ReportSelectMenu extends HorizontalPanel {
 			RootPanel.get("contentReport").add(new BeitragStatistikForm());
 		}
 	}
+	
+	private class ZurueckClickhandler implements ClickHandler{
+		
+		@Override
+		
+		public void onClick(ClickEvent event) {
+			
+			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+			
+		}
+	}
+	
+	
+	
+	
 }
