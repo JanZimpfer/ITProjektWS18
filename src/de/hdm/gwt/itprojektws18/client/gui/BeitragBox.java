@@ -196,11 +196,11 @@ public class BeitragBox extends VerticalPanel {
 		public void onSuccess(Vector<Kommentar> result) {
 
 			String aK = "Kommentare: " + result.size() + "";
-
 			kommentarAnzahl.setText(aK);
 
 			for (final Kommentar kommentar : result) {
 				final KommentarBox kBox = new KommentarBox(kommentar);
+				kommentarPanel.add(kBox);
 
 				pinnwandVerwaltung.getNutzerbyID(kommentar.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
@@ -219,8 +219,6 @@ public class BeitragBox extends VerticalPanel {
 						kBox.befuelleErstellzeitpunkt(erstellZP);
 						kBox.befuelleInhalt(inhalt);
 
-						kommentarPanel.add(kBox);
-
 					}
 				});
 			}
@@ -237,10 +235,33 @@ public class BeitragBox extends VerticalPanel {
 			Nutzer n = new Nutzer();
 //			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			n.setId(3);
-
-			pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
-
+			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
 		}
+	}
+	
+	class LikeInfoCallback implements AsyncCallback<Like> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abruf der Like-Informationen: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Like result) {
+			
+			if (result == null){
+				Nutzer n = new Nutzer();
+//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+				n.setId(3);
+				
+				pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
+			} else {
+				pinnwandVerwaltung.loeschen(result, new LikeLoeschenCallback());
+			}
+			
+		}
+		
 	}
 
 	class LikeErstellenCallback implements AsyncCallback<Like> {
@@ -254,16 +275,30 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Like result) {
 
-			if (result != null) {
-				Window.alert("Du hast diesen Beitrag bereits mit Gefällt-mir markiert!");
-			} else {
 				PinnwandBox pBox = new PinnwandBox();
 
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);
-			}
+			
+		}
+	}
+	
+	class LikeLoeschenCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Entfernen der Gefällt-mir Angabe: " + caught.getMessage());
+			
 		}
 
+		@Override
+		public void onSuccess(Void result) {
+			PinnwandBox pBox = new PinnwandBox();
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
+			
+		}
+		
 	}
 
 	class LikesAnzeigenClickHandler implements ClickHandler {
@@ -271,8 +306,8 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onClick(ClickEvent event) {
 
-			LikesAnzeigenDialogBox dlgBox = new LikesAnzeigenDialogBox();
-			dlgBox.center();
+			LikesAnzeigenDialogBox likesAnzeigenBox = new LikesAnzeigenDialogBox(beitrag);
+			likesAnzeigenBox.center();
 
 		}
 

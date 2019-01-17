@@ -196,6 +196,7 @@ public class UebersichtBox extends VerticalPanel {
 
 			for (final Beitrag beitrag : result) {
 				final BeitragBox bBox = new BeitragBox(beitrag);
+				beitragPanel.add(bBox);
 
 				pinnwandVerwaltung.getNutzerbyID(beitrag.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
@@ -215,8 +216,6 @@ public class UebersichtBox extends VerticalPanel {
 						bBox.befuelleName(nameString);
 						bBox.befuelleErstellzeitpunkt(erstellZP);
 						bBox.befuelleInhalt(inhalt);
-
-						beitragPanel.add(bBox);
 
 					}
 

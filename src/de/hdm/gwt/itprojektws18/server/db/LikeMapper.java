@@ -104,8 +104,8 @@ public class LikeMapper {
 	
 	/**
 	 * Die Methode getLikeFor dient zur Ausgabe eines likesObjekt,
-	 * auf das die übergebene beitragId AND nutzerId zutreffen.
-	 * Ist dies nicht der Fall wird null zurückgegeben.
+	 * auf das die ï¿½bergebene beitragId AND nutzerId zutreffen.
+	 * Ist dies nicht der Fall wird null zurï¿½ckgegeben.
 	 * @author matthias
 	 */
 	
@@ -116,7 +116,7 @@ public class LikeMapper {
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK FROM likes " 
-			+ "WHERE beitrag_l_FK= " + "'" + beitragId + "'" + "AND" + "nutzer_l_FK = " + "'" + nutzerId + "'");		
+			+ "WHERE beitrag_l_FK= " + "'" + beitragId + "'" + "AND " + "nutzer_l_FK = " + "'" + nutzerId + "'");		
 		
 		if (rs.next()){
 			

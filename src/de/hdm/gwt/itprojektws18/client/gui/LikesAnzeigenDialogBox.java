@@ -28,23 +28,31 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 	/**
 	 * Erstellung der benötigten GUI-Elemente
 	 */
+	private VerticalPanel uebersichtPanel = new VerticalPanel();
 	private VerticalPanel likePanel = new VerticalPanel();
 	private Label infoText = new Label("Folgende Nutzer haben diesen Beitrag mit Gefällt-mir markiert:");
-	private Button schliessenBtn = new Button();
+	private Button schliessenBtn = new Button("Schließen");
 
+	private Beitrag beitrag = new Beitrag();
+	
 	public LikesAnzeigenDialogBox() {
 
 	}
 
 	public LikesAnzeigenDialogBox(Beitrag b) {
 
+		this.beitrag = b;
+		
+
+		pinnwandVerwaltung.getAllLikesByBeitrag(beitrag, new LikesAusgebenCallback());
+		
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
-
-		pinnwandVerwaltung.getAllLikesByBeitrag(b, new LikesAusgebenCallback());
-
-		this.add(infoText);
-		this.add(likePanel);
-		this.add(schliessenBtn);
+		
+		uebersichtPanel.add(infoText);
+		uebersichtPanel.add(likePanel);
+		uebersichtPanel.add(schliessenBtn);
+		
+		this.add(uebersichtPanel);
 
 	}
 
@@ -64,7 +72,8 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 
 			for (final Like like : result) {
 				final Label nutzername = new Label();
-
+				likePanel.add(nutzername);
+				
 				pinnwandVerwaltung.getNutzerbyID(like.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
 					@Override
@@ -77,7 +86,7 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 					public void onSuccess(Nutzer result) {
 						nutzername.setText(
 								result.getVorname() + " " + result.getNachname() + ", " + "@" + result.getNickname());
-						likePanel.add(nutzername);
+						
 					}
 
 				});
