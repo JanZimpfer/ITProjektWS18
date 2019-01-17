@@ -54,6 +54,7 @@ public class KommentarBox extends VerticalPanel {
 		this.addStyleName("kommentarBox");
 //		kommentarText.addStyleName("kommentarText");
 
+		kommentarText.setStylePrimaryName("beitragInhalt");
 		kommentarText.setReadOnly(true);
 
 		kommentarPanel.add(nickname);

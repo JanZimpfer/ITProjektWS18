@@ -56,10 +56,6 @@ public class BeitragBox extends VerticalPanel {
 
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
-	// Test-Vektor - OBACHT!
-	private Vector<Like> alleLikesVonBeitrag = new Vector<Like>();
-
-//	private ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 	private KommentarBox kommentarBox = new KommentarBox();
 
 	private Beitrag beitrag = new Beitrag();
@@ -72,22 +68,22 @@ public class BeitragBox extends VerticalPanel {
 
 		this.beitrag = b;
 
-//		// Hinzufügen der StyleNames
+		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
-		beitragInhalt.addStyleName("beitragInhalt");
-//		nickname.addStyleName("nickname");
-//		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
-//		kommentarAnzahl.addStyleName("kommentarAnzahl");
-//		likeAnzahl.addStyleName("likeAnzahl");
-//		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
-//		beitragLoeschenBtn.addStyleName("loeschenBtn");
-//		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
-//		likeBtn.addStyleName("likeButton");
-//
-//		inhaltPanel.addStyleName("inhaltPanel");
-//		buttonPanel.addStyleName("ButtonPanel");
-//		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
-//		kommentarPanel.addStyleName("kommentarPanel");
+		beitragInhalt.setStylePrimaryName("beitragInhalt");
+		nickname.addStyleName("nickname");
+		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
+		kommentarAnzahl.addStyleName("kommentarAnzahl");
+		likeAnzahl.addStyleName("likeAnzahl");
+		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
+		beitragLoeschenBtn.addStyleName("loeschenBtn");
+		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
+		likeBtn.addStyleName("likeButton");
+
+		inhaltPanel.addStyleName("inhaltPanel");
+		buttonPanel.addStyleName("ButtonPanel");
+		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
+		kommentarPanel.addStyleName("kommentarPanel");
 
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
@@ -96,8 +92,7 @@ public class BeitragBox extends VerticalPanel {
 		 * ermöglichen. Zusätzlich: Festlegung der Größe der TextArea.
 		 */
 		beitragInhalt.setReadOnly(true);
-		beitragInhalt.setSize("470px", "30px");
-		beitragInhalt.addStyleName("beitragInhalt");
+		beitragInhalt.setSize("150px", "30px");
 
 		inhaltPanel.add(nickname);
 		inhaltPanel.add(erstellzeitpunkt);
@@ -137,10 +132,11 @@ public class BeitragBox extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 			BeitragBearbeitenDialogBox dlgBox = new BeitragBearbeitenDialogBox(beitrag);
 			dlgBox.center();
-			
+
 		}
-		
+
 	}
+
 	class BeitragLoeschenClickHandler implements ClickHandler {
 
 		@Override
@@ -182,15 +178,8 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Like> result) {
 
-			for (int i = 0; i < result.size(); i++) {
-
-				alleLikesVonBeitrag.add(result.elementAt(i));
-
-				String lA = "Likes: " + result.size() + "";
-
-				likeAnzahl.setText(lA);
-
-			}
+			String lA = "Likes: " + result.size() + "";
+			likeAnzahl.setText(lA);
 
 		}
 	}
@@ -217,7 +206,7 @@ public class BeitragBox extends VerticalPanel {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						// TODO Auto-generated method stub
+						Window.alert("Fehler beim Auslesen der Nutzerinformationen: " + caught.getMessage());
 
 					}
 
@@ -245,21 +234,11 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onClick(ClickEvent event) {
 
-//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			Nutzer n = new Nutzer();
+//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			n.setId(3);
 
-			for (Like l : alleLikesVonBeitrag) {
-
-				if (l.getNutzerFK() != n.getId() && alleLikesVonBeitrag.isEmpty()) {
-					pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
-
-				}
-
-				else {
-
-				}
-			}
+			pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
 
 		}
 	}
@@ -274,9 +253,15 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Like result) {
-			Window.alert("Like erstellt!");
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
 
+			if (result != null) {
+				Window.alert("Du hast diesen Beitrag bereits mit Gefällt-mir markiert!");
+			} else {
+				PinnwandBox pBox = new PinnwandBox();
+
+				RootPanel.get("InhaltDiv").clear();
+				RootPanel.get("InhaltDiv").add(pBox);
+			}
 		}
 
 	}
@@ -286,36 +271,11 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onClick(ClickEvent event) {
 
-			LikeDialogBox likeBox = new LikeDialogBox();
-			likeBox.center();
+			LikesAnzeigenDialogBox dlgBox = new LikesAnzeigenDialogBox();
+			dlgBox.center();
 
 		}
 
-	}
-
-	class LikeDialogBox extends DialogBox {
-
-		VerticalPanel likeElemente = new VerticalPanel();
-		ScrollPanel likeListe = new ScrollPanel();
-
-		public LikeDialogBox() {
-
-			for (int i = 0; i < alleLikesVonBeitrag.size(); i++) {
-
-				Label nutzerInfo = new Label();
-
-				String text = "" + alleLikesVonBeitrag.elementAt(i).getNutzerFK() + "";
-
-				nutzerInfo.setText(text);
-
-				likeElemente.add(nutzerInfo);
-
-			}
-
-			likeListe.add(likeElemente);
-			this.add(likeListe);
-
-		}
 	}
 
 	public void befuelleName(String nicknameString) {

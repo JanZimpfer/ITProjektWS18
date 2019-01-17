@@ -36,7 +36,6 @@ public class UebersichtBox extends VerticalPanel {
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
 	private Pinnwand p = new Pinnwand();
-	private Vector<Abonnement> alleAbos = new Vector<Abonnement>();
 
 	public UebersichtBox() {
 

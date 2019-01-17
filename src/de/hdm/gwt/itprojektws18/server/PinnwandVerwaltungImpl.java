@@ -550,19 +550,31 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public Like erstelleLike(Beitrag b, Nutzer n) {
 		
-		//Erstellen eines Beitragobjekts
-		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
-		Like l = new Like();
-		l.setBeitragFK(b.getId());
-		l.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
-		l.setNutzerFK(n.getId());
+		/*
+		 * Überprüfen ob bereits ein Like-Objekt mit diesen Werten besteht
+		 */
+		Like l = getLikeFor(b.getId(), n.getId());
 		
-		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-		//auf den nächsthöchsten Wert gesetzt wird
-		l.setId(1);
-		
-		//Speichern in dr DB
-		return this.lMapper.insertLike(l);
+		/*
+		 * Gibt es noch kein Like-Objekt für diese Werte, so wird eines erstellt.
+		 */
+		if (l.getId() == 0) {
+			
+			Like like = new Like();
+			like.setBeitragFK(b.getId());
+			like.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
+			like.setNutzerFK(n.getId());
+			/*
+			 * Setzen einer vorläufigen ID, welche nach Kommunikation mit der DB
+			 * auf den nächsthöchsten Wert gesetzt wird
+			 */
+			like.setId(1);
+			
+			return this.lMapper.insertLike(like);
+		} else {
+			
+			return null;
+		}
 	}
 	
 	/**
