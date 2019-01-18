@@ -35,6 +35,8 @@ public interface PinnwandVerwaltung extends RemoteService {
 	Nutzer getNutzerByNickname(String nickname);
 	
 	Vector<Nutzer> getAllNutzer();
+	
+	Vector<Nutzer> searchNutzer(String sucheingabe);
 
 	void loeschen(Nutzer n);
 
@@ -101,6 +103,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 	Vector<Like> getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
 
 	Abonnement getAboFor(int pinnwandId, int nutzerId);
+
 
 	
 }
