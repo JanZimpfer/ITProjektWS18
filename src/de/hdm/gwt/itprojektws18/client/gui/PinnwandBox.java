@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.util.Vector;
 
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -24,7 +25,8 @@ public class PinnwandBox extends VerticalPanel {
 		
 		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
-		n.setId(3);
+//		n.setId(3);
+		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		this.add(uebersichtbox);
 

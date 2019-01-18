@@ -67,8 +67,8 @@ public class HeaderBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			final Nutzer n = new Nutzer();
-			// n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			//n.setId(3);
 			pinnwandVerwaltung.getNutzerbyID(n.getId(), new AsyncCallback<Nutzer>() {
 
 				@Override
@@ -127,8 +127,8 @@ public class HeaderBox extends HorizontalPanel {
 
 			// Später Cookie Id anstatt Id = 3
 			Nutzer n = new Nutzer();
-			// n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			//n.setId(3);
 			pinnwandVerwaltung.loeschen(n, new DeleteNutzerCallback());
 
 		}

@@ -233,8 +233,8 @@ public class BeitragBox extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer n = new Nutzer();
-//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
-			n.setId(3);
+			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
+//			n.setId(3);
 			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
 		}
 	}
@@ -253,8 +253,8 @@ public class BeitragBox extends VerticalPanel {
 			
 			if (result == null){
 				Nutzer n = new Nutzer();
-//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
-				n.setId(3);
+				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+				//n.setId(3);
 				
 				pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
 			} else {

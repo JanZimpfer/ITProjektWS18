@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -49,7 +50,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		
 		this.nutzer = n;
 		//Aktuell Id Übergabe mit Id=3, später über Cookie Id
-		// nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		nicknameTextbox.setText(n.getNickname());
 		vornameTextbox.setText(n.getVorname());

@@ -57,8 +57,8 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 			
 			Nutzer n = new Nutzer();
-			n.setId(3);
-//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
+//			n.setId(3);
+			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			
 			beitrag.getId();
 			String kText = "'" +eingabeFeld.getText() + "'";

@@ -51,8 +51,8 @@ public class AboBox extends VerticalPanel {
 		aboniertePW.setSpacing(2);
 
 		// Später Cookie-Id statt id=3 verwenden
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		nutzer.setId(3);
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+//		nutzer.setId(3);
 
 		pinnwandVerwaltung.getAllAbosFor(nutzer, new NeuesAboAnzeigenCallback());
 

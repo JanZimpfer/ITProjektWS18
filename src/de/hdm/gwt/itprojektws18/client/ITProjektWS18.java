@@ -47,6 +47,9 @@ public class ITProjektWS18 implements EntryPoint {
 	private Anchor signInLink = new Anchor("Einloggen");
 	private Anchor signOutLink = new Anchor("Ausloggen");
 	private Button loginBtn = new Button("Einloggen");
+	
+	private RegistrierungsformDialogBox dlgBox;
+	
 
 	private TextBox vornameBox = new TextBox();
 	private TextBox nachnameBox = new TextBox();
@@ -64,42 +67,30 @@ public class ITProjektWS18 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 
-//		LoginServiceAsync loginService = GWT.create(LoginService.class);
-//		loginService.login(GWT.getHostPageBaseURL()+
-//				"ITProjektWS18.html", new LoginCallback());
+		LoginServiceAsync loginService = GWT.create(LoginService.class);
+		loginService.login(GWT.getHostPageBaseURL()+
+				"ITProjektWS18.html", new LoginCallback());
 	
 
-		// Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt
-		// werden.
-		HeaderBox hBox = new HeaderBox();
-		PinnwandBox pBox = new PinnwandBox();
-		AboBox aBox = new AboBox();
 
-		/*
-		 * Befuellen des RootPanels
-		 */
-
-		RootPanel.get("SuchProfilLogout").add(hBox);
-		RootPanel.get("InhaltDiv").add(pBox);
-		RootPanel.get("AboDiv").add(aBox);
 
 	}
 
 	private void loadPinnwandVerwaltung() {
-
-		ProfilBox profilbox = new ProfilBox();
-		Suchleiste suchleiste = new Suchleiste();
-		PinnwandBox pinnwandbox = new PinnwandBox();
-		AboBox abobox = new AboBox();
-		AboPinnwandBox abopwbox = new AboPinnwandBox();
-//			Button 	profilButton = new Button ("Mein Profil");
-
-//			RootPanel.get("header").add(profilbox);
-//			RootPanel.get("header").add(suchleiste);
-//			RootPanel.get("InhaltBereich").add(pinnwandbox);
-//			RootPanel.get("AboBereich").add(abobox);
-//			RootPanel.get("AboBereich").add(abopwbox);
-
+	
+			// Anlegen der <code>Box</code> Objekte, welche zum RootPanel hinzugefügt
+			// werden.
+			HeaderBox hBox = new HeaderBox();
+			PinnwandBox pBox = new PinnwandBox();
+			AboBox aBox = new AboBox();
+	
+			/*
+			 * Befuellen des RootPanels
+			 */
+	
+			RootPanel.get("SuchProfilLogout").add(hBox);
+			RootPanel.get("InhaltDiv").add(pBox);
+			RootPanel.get("AboDiv").add(aBox);
 	}
 
 		/**
@@ -193,7 +184,7 @@ public class ITProjektWS18 implements EntryPoint {
 			}
 
 			else {
-				RegistrierungsformDialogBox dlgBox = new RegistrierungsformDialogBox(loginInfo.getEmailAddress());
+				dlgBox = new RegistrierungsformDialogBox(loginInfo.getEmailAddress());
 				dlgBox.center();
 			}
 		}
@@ -268,7 +259,7 @@ public class ITProjektWS18 implements EntryPoint {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			// hide(); - funktioniert nicht
+			dlgBox.hide();
 			signOutLink.setHref(loginInfo.getLogoutUrl());
 			Window.open(signOutLink.getHref(), "_self", "");
 		}
@@ -295,7 +286,7 @@ public class ITProjektWS18 implements EntryPoint {
 			Cookies.setCookie("ausloggen", loginInfo.getLogoutUrl());
 			Cookies.setCookie("email", result.getEmail());
 			Cookies.setCookie("id", result.getId() + "");
-			// hide(); - funktioniert nicht
+			dlgBox.hide(); 
 			
 			pinnwandVerwaltung.erstellePinnwand(result, new PinnwandAnlegenCallback());
 

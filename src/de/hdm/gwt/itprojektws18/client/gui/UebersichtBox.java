@@ -41,7 +41,8 @@ public class UebersichtBox extends VerticalPanel {
 		this.add(erstelleBeitragBox);
 
 		Nutzer n = new Nutzer();
-		n.setId(3);
+		n.setId(Integer.parseInt(Cookies.getCookie("id")));
+//		n.setId(3);
 
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
 
@@ -79,8 +80,8 @@ public class UebersichtBox extends VerticalPanel {
 
 			Nutzer n = new Nutzer();
 
-//			n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+//			n.setId(3);
 
 			pinnwandVerwaltung.getAboFor(p.getId(), n.getId(), new AboInfoCallback());
 		}
@@ -100,8 +101,8 @@ public class UebersichtBox extends VerticalPanel {
 			
 			if (result == null) {
 				Nutzer n = new Nutzer();
-//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
-				n.setId(3);
+				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+//				n.setId(3);
 				pinnwandVerwaltung.erstelleAbonnement(p, n, new AboErstellenCallback());
 			} else {
 				pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());

@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -36,8 +37,8 @@ public class ProfilBox extends VerticalPanel {
 //		
 		
 		Nutzer n = new Nutzer ();
-//		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-		n.setId(3);
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+//		n.setId(3);
 		
 		this.addStyleName("profilBox");
 		
