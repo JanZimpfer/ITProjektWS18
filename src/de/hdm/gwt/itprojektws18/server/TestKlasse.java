@@ -31,9 +31,7 @@
 //		PinnwandVerwaltungImpl impl = new  PinnwandVerwaltungImpl();
 //		impl.init();
 //		
-//		Nutzer n = new Nutzer () ;
-//		
-//		n = impl.getNutzerbyID(1);
+//		System.out.println(impl.searchNutzer("Tim"));
 //		
 ////		n = impl.erstelleNutzer ("'flo'", "'timmler'", "'ft'", n.getErstellZeitpunkt(), "'hllo@world.de'");
 //		
@@ -46,9 +44,7 @@
 ////		
 ////		System.out.println(result);
 //	
-//		n.setNickname("Ahmed");
-//		impl.speichern(n);
-//
+//	
 ////		
 ////		
 ////		Like l = new Like ();
