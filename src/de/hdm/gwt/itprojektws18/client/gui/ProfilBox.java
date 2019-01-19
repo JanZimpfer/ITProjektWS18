@@ -16,6 +16,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class ProfilBox extends VerticalPanel {
 
+
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
@@ -36,8 +37,14 @@ public class ProfilBox extends VerticalPanel {
 //		
 
 		Nutzer n = new Nutzer();
+
 //		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+
+		
+		
+
 		n.setId(3);
+
 
 		this.addStyleName("profilBox");
 
@@ -47,24 +54,37 @@ public class ProfilBox extends VerticalPanel {
 
 		labelPanel.add(beitraege);
 		labelPanel.add(abonniert);
+		
 
 		profilbildButton.addStyleName("profilBtn");
 		profilButton.addStyleName("profilBtn");
 		reportButton.addStyleName("profilBtn");
+
+		
+	
 
 		profilButton.addClickHandler(new eigenesProfilAnzeigen());
 
 		pinnwandVerwaltung.getAllAbosFor(n, new anzahlAbosCallback());
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new anzahlBeitragCallback());
 
+
 		this.add(buttonPanel);
 		this.add(labelPanel);
+
+		
+		beitraege.setHorizontalAlignment(ALIGN_LEFT);
+		abonniert.setHorizontalAlignment(ALIGN_LEFT);
+		
+		
+
 
 		/**
 		 * ClickHandler den entsprechenden Buttons hinzufügen:
 		 */
 
 		reportButton.addClickHandler(new ReportClickHandler());
+
 
 		super.onLoad();
 
@@ -83,8 +103,10 @@ public class ProfilBox extends VerticalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
+			
 
 			Window.alert("Fehler beim zählen der Abos: " + caught.getMessage());
+
 		}
 
 		@Override
@@ -97,6 +119,12 @@ public class ProfilBox extends VerticalPanel {
 		}
 
 	}
+
+
+		
+		
+	
+	
 
 	class anzahlBeitragCallback implements AsyncCallback<Vector<Beitrag>> {
 
@@ -126,3 +154,4 @@ public class ProfilBox extends VerticalPanel {
 	}
 
 }
+

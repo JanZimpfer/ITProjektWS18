@@ -4,10 +4,10 @@ com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, t
 com.google.gwt.user.client.rpc.RpcTokenException, true, true, false, false, com.google.gwt.user.client.rpc.RpcTokenException/2345075298, 2345075298
 com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.gwt.user.client.rpc.XsrfToken/4254043109, 4254043109
 de.hdm.gwt.itprojektws18.shared.ReportGenerator, false, false, false, false, _, 1800444966
-de.hdm.gwt.itprojektws18.shared.bo.Beitrag, true, true, true, true, de.hdm.gwt.itprojektws18.shared.bo.Beitrag/1310965018, 1310965018
-de.hdm.gwt.itprojektws18.shared.bo.BusinessObject, true, false, true, false, de.hdm.gwt.itprojektws18.shared.bo.BusinessObject/1620836737, 1620836737
-de.hdm.gwt.itprojektws18.shared.bo.Nutzer, true, true, true, true, de.hdm.gwt.itprojektws18.shared.bo.Nutzer/878012945, 878012945
-de.hdm.gwt.itprojektws18.shared.bo.Textbeitrag, true, false, true, false, de.hdm.gwt.itprojektws18.shared.bo.Textbeitrag/1517016131, 1517016131
+de.hdm.gwt.itprojektws18.shared.bo.Beitrag, true, true, false, false, de.hdm.gwt.itprojektws18.shared.bo.Beitrag/1901671689, 1901671689
+de.hdm.gwt.itprojektws18.shared.bo.BusinessObject, true, false, true, false, de.hdm.gwt.itprojektws18.shared.bo.BusinessObject/1758980960, 1758980960
+de.hdm.gwt.itprojektws18.shared.bo.Nutzer, true, true, true, true, de.hdm.gwt.itprojektws18.shared.bo.Nutzer/3878410223, 3878410223
+de.hdm.gwt.itprojektws18.shared.bo.Textbeitrag, true, false, false, false, de.hdm.gwt.itprojektws18.shared.bo.Textbeitrag/2720044286, 2720044286
 de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport, true, true, false, false, de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport/506188057, 506188057
 de.hdm.gwt.itprojektws18.shared.report.Column, true, true, false, false, de.hdm.gwt.itprojektws18.shared.report.Column/2764790232, 2764790232
 de.hdm.gwt.itprojektws18.shared.report.CompositeParagraph, true, true, false, false, de.hdm.gwt.itprojektws18.shared.report.CompositeParagraph/255610979, 255610979
