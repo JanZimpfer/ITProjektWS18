@@ -51,6 +51,8 @@ public class UebersichtBox extends VerticalPanel {
 	}
 
 	public UebersichtBox(int nutzerId) {
+		
+		aboErstellBtn.addStyleName("uebersichtBtn");
 
 		p.setId(nutzerId);
 

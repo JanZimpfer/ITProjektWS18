@@ -25,6 +25,8 @@ public class PinnwandBox extends VerticalPanel {
 		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(3);
+		
+		this.addStyleName("pinnwandBox");
 
 		this.add(uebersichtbox);
 
@@ -37,6 +39,8 @@ public class PinnwandBox extends VerticalPanel {
 		RootPanel.get("InhaltDiv").clear();
 		Nutzer n = new Nutzer();
 		n.setId(nutzerId);
+		
+		this.addStyleName("pinnwandBox");
 		
 		UebersichtBox uebersichtbox = new UebersichtBox(n.getId());
 

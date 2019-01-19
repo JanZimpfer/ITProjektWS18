@@ -74,10 +74,11 @@ public class BeitragBox extends VerticalPanel {
 		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
 		kommentarAnzahl.addStyleName("kommentarAnzahl");
 		likeAnzahl.addStyleName("likeAnzahl");
-		beitragBearbeitenBtn.addStyleName("beitragBearbeitenButton");
-		beitragLoeschenBtn.addStyleName("loeschenBtn");
-		likesAnzeigenBtn.addStyleName("likesAnzeigenBtn");
-		likeBtn.addStyleName("likeButton");
+		
+		beitragBearbeitenBtn.addStyleName("beitragBtn");
+		beitragLoeschenBtn.addStyleName("beitragBtn");
+		likesAnzeigenBtn.addStyleName("beitragBtn");
+		likeBtn.addStyleName("beitragBtn");
 
 		inhaltPanel.addStyleName("inhaltPanel");
 		buttonPanel.addStyleName("ButtonPanel");

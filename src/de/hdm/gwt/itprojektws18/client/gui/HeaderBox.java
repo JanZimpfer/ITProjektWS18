@@ -53,9 +53,9 @@ public class HeaderBox extends HorizontalPanel {
 		openDeleteFormButton.addClickHandler(new OpenDeleteFormClickHandler());
 
 		logoutEditPanel.addStyleName("logoutEditPanel");
-		logoutButton.addStyleName("logoutButton");
-		profilEditButton.addStyleName("profilEditButton");
-		openDeleteFormButton.addStyleName("openDeleteFormButton");
+		logoutButton.addStyleName("headerBtn");
+		profilEditButton.addStyleName("headerBtn");
+		openDeleteFormButton.addStyleName("headerBtn");
 
 		profilEditButton.addClickHandler(new ChangeClickHandler());
 

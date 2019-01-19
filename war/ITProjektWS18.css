@@ -2,6 +2,13 @@
 /**Styling der Div-Elemente*/
 body {
 	background-color: #dfdfdf;
+	font-family: 'Oxygen', sans-serif;
+}
+
+html *{
+	font-family: 'Oxygen', sans-serif;
+	font-size: 16px;
+	font-weight: light;
 }
 
 div {
@@ -9,6 +16,9 @@ div {
 	margin: 0px;
 	background-color: white;
 }
+
+
+/* Styling der HTML Div-Elemente */
 
 #container {
 	float: none;
@@ -22,11 +32,13 @@ div {
 #header {
 	background-color: #ff7d78;
 	border-radius: 20px;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 #SuchProfilLogout {
 	background-color: #dfdfdf;
-	width: 110%;
+	width: 100%;
 }
 
 #AboDiv {
@@ -63,106 +75,41 @@ div {
 	border-radius: 20px;
 }
 
-/** Example rules used by the template application (remove for your app) */
-h1 {
-	font-size: 18pt;
-	text-align: center;
-	color: #424242;
-}
 
-.headerBox {
-	width: 100%;
-}
+/* Styling von Button-Elementen */
 
-.sendButton {
-	display: block;
-	font-size: 16pt;
-}
-
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-	width: 400px;
-}
-
-.dialogVPanel {
-	margin: 5px;
-}
-
-.serverResponseLabelError {
-	color: red;
-}
-
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-	margin: 15px 6px 6px;
-}
-
-.profilbildButton {
-	color: black;
-}
-
-.profilButton {
-	color: black;
-}
-
-.profilBox {
-	color: black;
-	float: left;
-	left: 100%;
-}
-
-.suchleiste {
-	color: black;
-
-}
-
-.suchButton {
-	color: black;
-
-}
-
-.profilEditButton {
-	color: black;
-
-}
-
-.openDeleteFormButton{
+.profilBtn {
 	
 }
 
-.logoutButton {
-	color: black;
-}
-
-.logoutEditPanel {
+.headerBtn {
 	
 }
 
-.nutzerNameLabel {
-	color: black;
-	background-color: #dfdfdf;
-	border-radius: 20px;
+.uebersichtBtn {
+	
 }
 
-.nickNameLabel {
-	color: black;
-	background-color: #c0c0c0;
-	border-radius: 20px;
+.beitragBtn {
+	
 }
+
+.kommentarBtn {
+	
+}
+
+/* Angezeigte Textbeiträge */
+
+.beitragInhalt {
+	border-bottom: 0.5px solid black;
+	color: black;
+	font-size: 10pt;
+	/* Anmerkung: PrimaryName */
+}
+
+/* Stylen der AboBox */
 
 .abobox {
-	color: black;
-}
-
-.aboErstellBtn {
-	color: black;
-}
-
-.aboniertePW {
-	color: black;
-}
-
-.profil {
 	color: black;
 }
 
@@ -171,28 +118,39 @@ h1 {
 	border-radius: 20px;
 }
 
-.deAboBtn {
+.aboniertePW { /* löschen, da nur panel? */
 	color: black;
 }
 
-.aboPinnwandInfos {
+.aboPinnwandInfos { /* löschen da nur panel? */
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.ReportButtonPanel {
-	color: black;
-	margin-left: auto;
-	margin-right: auto;
+
+/* Stylen der AboPinnwandBox */
+
+.vornameAbobox {
+	
+	
 }
 
-.beitragStatistikButton {
+.nicknameAboBox {
 	color: black;
+	background-color: #dfdfdf;
+	border-radius: 20px;
 }
 
-.nutzerStatistikButton {
-	color: black;
+.aboPinnwandBox {
+	
 }
+
+/* Stylen der BeitragBearbeitenDialogBox */
+
+/* Keinerlei Stylenames hinzugefügt */
+
+
+/* Stylen der BeitragBox */
 
 .beitragBox {
 	color: black;
@@ -204,18 +162,10 @@ h1 {
 	border-bottom: 0.5px solid black;
 	color: black;
 	font-size: 10pt;
-
+	/* Anmerkung: PrimaryName */
 }
 
-.infoPanel {
-	
-}
-
-.inhaltPanel {
-	
-}
-
-.nickname {
+.nickname {	/* Überarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
 	color: #424242;
 	font-weight: bold;
 }
@@ -225,85 +175,139 @@ h1 {
 	font-weight: bold;
 }
 
-.submitButton {
-	color: black;
+.kommentarAnzahl {
+	
 }
 
-.nicknameBeitragBox {
-	color: black;
-}
-
-.vornameBeitragBox {
-	color: black;
-}
-
-.nachnameBeitragBox {
-	color: black;
-}
-
-.ButtonPanel {
-	border-bottom: 0.5px solid black;
+.likeAnzahl {
+	
 }
 
 .beitragBearbeitenButton {
 	color: black;
 }
 
-.likeButton {
+
+.inhaltPanel {
+	
+}
+
+.ButtonPanel { /* Namen spezifieren */
+	border-bottom: 0.5px solid black;
+}
+
+.erstelleKommentarPanel {
+	
+}
+
+.kommentarPanel {
+	
+}
+
+
+/* Stylen der BeitragLoeschenDialogBox */
+
+
+
+/* Stylen der ErstelleBeitragBox */
+
+.erstelleBeitragBox {
 	color: black;
 }
 
-.kommentareAnzeigenButton {
+.erstelleBeitragFeld {
 	color: black;
+	
 }
 
-.likesAnzeigenButton {
-	color: black;
+
+/* Stylen der ErstelleKommentarBox */
+
+.kommentarEingabeFeld {
+
 }
+
+
+.erstelleKommentarBox {
+	border-radius: 20px;
+}
+
+
+/* Stylen der HeaderBox */
+
+.headerBox {
+	width: 100%;
+}
+
+.logoutEditPanel {
+	
+}
+
+
+/* Stylen der KommentarBearbeitenDialogBox */
+
+
+
+
+/* Stylen der KommentarBox */
 
 .kommentarBox {
 	color: black;
 	border: 0.5px solid black;
 
 }
+/* Anmerkung: nickname, erstellzp über einen class selektor ansprchen! */
 
-.nicknameKommentarBox {
-	color: black;
-}
 
-.kommentarEingabeFeld{
-	
+/* Stylen der KommentarLoeschenDialogBox */
+/* Anmerkung: allgemeines ansprechen aller dialogboxen! */
 
-}
 
-.vornameKommentarBox {
-	color: black;
-}
+/* Stylen der LikesAnzeigenDialogBox */
 
-.nachnameKommentarBox {
-	color: black;
-}
 
-.kommentarTextLabel {
-	
-}
+
+/* Stylen der PinnwandBox */
 
 .pinnwandBox {
 	color: black;
 }
 
-.erstelleBeitragBox {
+
+
+/* Stylen der ProfilBearbeitenDialogBox */
+
+
+/* Stylen der ProfilBox */
+
+.profilBox {
 	color: black;
+	float: left;
+	left: 100%;
 }
 
-.erstelleKommentarBox {
-	border-radius: 20px;
+
+
+/* Stylen der Suchleiste */
+
+.suchleiste {
+	color: black;
+
 }
 
-.erstelleBeitragFeld {
+.suchButton {
 	color: black;
-	
 
+}
+
+/* Stylen der UebersichtBox */
+
+
+
+/* Stylen des LogIn */
+
+.submitButton {
+	color: black;
 }
 
 .loginGreet {
@@ -316,4 +320,28 @@ h1 {
 
 .loginAufforderung {
 	
+}
+
+
+/* Stylen des Report */
+
+.social-simpletext {
+	
+}
+
+
+/** Stylen der DialogBoxen */
+
+.gwt-DialogBox {
+	max-width: 500px;
+	height: auto;
+}
+
+
+.dialogVPanel {
+	margin: 5px;
+}
+
+.serverResponseLabelError {
+	color: red;
 }

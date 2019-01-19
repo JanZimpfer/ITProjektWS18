@@ -33,7 +33,7 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 	public ErstelleKommentarBox(final Beitrag b) {
 		
 		eingabeFeld.addStyleName("kommentarEingabeFeld");
-		submitKommentarBtn.addStyleName("submitBtn");
+		submitKommentarBtn.addStyleName("kommentarBtn");
 		
 		this.addStyleName("erstelleKommentarBox");
 		

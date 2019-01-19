@@ -48,9 +48,9 @@ public class ProfilBox extends VerticalPanel {
 		labelPanel.add(beitraege);
 		labelPanel.add(abonniert);
 
-		profilbildButton.addStyleName("profilbildButton");
-		profilButton.addStyleName("profilButton");
-		profilButton.addStyleName("profilButton");
+		profilbildButton.addStyleName("profilBtn");
+		profilButton.addStyleName("profilBtn");
+		reportButton.addStyleName("profilBtn");
 
 		profilButton.addClickHandler(new eigenesProfilAnzeigen());
 

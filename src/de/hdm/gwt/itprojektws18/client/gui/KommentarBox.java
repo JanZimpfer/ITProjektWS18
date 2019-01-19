@@ -42,6 +42,9 @@ public class KommentarBox extends VerticalPanel {
 
 		kommentarText.setStylePrimaryName("beitragInhalt");
 		kommentarText.setReadOnly(true);
+		
+		kommentarLoeschenBtn.addStyleName("kommentarBtn");
+		kommentarBearbeitenBtn.addStyleName("kommentarBtn");
 
 		kommentarPanel.add(nickname);
 		kommentarPanel.add(erstellZeitpunkt);
