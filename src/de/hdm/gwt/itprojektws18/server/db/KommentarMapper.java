@@ -173,7 +173,7 @@ public class KommentarMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM kommentar");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM kommentar");
 
 			while (rs.next())
 				;

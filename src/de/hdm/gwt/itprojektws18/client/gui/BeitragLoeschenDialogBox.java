@@ -6,15 +6,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 
-public class BeitragBearbeitenDialogBox extends DialogBox {
+public class BeitragLoeschenDialogBox extends DialogBox {
 
 	/**
 	 * Instanziierung eines PinnwandVerwaltung-Objekts um eine
@@ -30,72 +31,76 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	/**
 	 * Erstellung der benötigten GUI-Elemente
 	 */
-	private VerticalPanel editPanel = new VerticalPanel();
-	private TextBox beitragText = new TextBox();
-	private Button speichernBtn = new Button("Speichern");
-	private Button schliessenBtn = new Button("Schliessen");
+	private VerticalPanel vPanel = new VerticalPanel();
+	private VerticalPanel abfragePanel = new VerticalPanel();
+	private HorizontalPanel btnPanel = new HorizontalPanel();
+	private Label abfrage = new Label("Möchten Sie diesen Beitrag wirklich löschen?");
+	private Button loeschenBtn = new Button("Ja");
+	private Button schliessenBtn = new Button("Nein");
 
-	public BeitragBearbeitenDialogBox() {
+	public BeitragLoeschenDialogBox() {
 
 	}
 
-	public BeitragBearbeitenDialogBox(Beitrag b) {
+	public BeitragLoeschenDialogBox(Beitrag b) {
+
 		this.beitrag = b;
 
-		beitragText.setText(b.getText());
-
-		speichernBtn.addClickHandler(new BeitragAendernClickHandler());
+		loeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
 
-		editPanel.add(beitragText);
-		editPanel.add(speichernBtn);
-		editPanel.add(schliessenBtn);
+		abfragePanel.add(abfrage);
+		btnPanel.add(loeschenBtn);
+		btnPanel.add(schliessenBtn);
 
-		this.add(editPanel);
+		vPanel.add(abfragePanel);
+		vPanel.add(btnPanel);
+		this.add(vPanel);
+
 	}
 
 	/**
-	 * <b>Nested Class für den speichern-Button</b> 
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den loeschen-Button</b> implementiert den entsprechenden
+	 * ClickHandler
+	 * 
 	 */
-	class BeitragAendernClickHandler implements ClickHandler {
+	class BeitragLoeschenClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			beitrag.setText(beitragText.getText());
-
-			pinnwandVerwaltung.speichern(beitrag, new BeitragSpeichernCallback());
+			pinnwandVerwaltung.loeschen(beitrag, new BeitragLoeschenCallback());
 
 		}
 	}
 
 	/**
-	 * </b>Nested Class für den speichern-Buttton</b> 
-	 * Callback Aufruf zum Speichern der Änderungen an einem Beitrag
+	 * <b>Nested Class für den loeschen-Button</b> Callback Aufruf zum Loeschen
+	 * eines Beitrags
+	 *
 	 */
-	class BeitragSpeichernCallback implements AsyncCallback<Void> {
+	class BeitragLoeschenCallback implements AsyncCallback<Void> {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Bearbeiten des Beitrags: " + caught.getMessage());
+			Window.alert("Fehler beim Löschen des Beitrags: " + caught.getMessage());
 
 		}
 
 		@Override
 		public void onSuccess(Void result) {
 			hide();
-
 			PinnwandBox pBox = new PinnwandBox();
+
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
+
 		}
 	}
 
 	/**
-	 * <b>Nested Class für den schliessen-Button</b> 
-	 * implementiert den entsprechenden ClickHandler
-	 * 
-	 * Die DialogBox wird geschlossen
+	 * <b>Nested Class für den schließen-Button</b> implementiert den entsprechenden
+	 * ClickHandler
+	 *
 	 */
 	class SchliessenClickHandler implements ClickHandler {
 
@@ -104,6 +109,5 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 			hide();
 
 		}
-
 	}
 }

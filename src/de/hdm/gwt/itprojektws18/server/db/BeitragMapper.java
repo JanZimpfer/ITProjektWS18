@@ -182,7 +182,7 @@ public class BeitragMapper {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt FROM beitrag");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM beitrag");
 			
 			
 			while (rs.next()){

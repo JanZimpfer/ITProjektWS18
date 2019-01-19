@@ -1,7 +1,5 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-import java.sql.Timestamp;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
@@ -10,7 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
@@ -27,7 +25,7 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 	/**
 	 * Elemente zur Darstellung der ErstelleKommentar-Box
 	 */
-	private TextArea eingabeFeld = new TextArea();
+	private TextBox eingabeFeld = new TextBox();
 	private Button submitKommentarBtn = new Button("Kommentieren");
 	
 	private Beitrag beitrag = new Beitrag();

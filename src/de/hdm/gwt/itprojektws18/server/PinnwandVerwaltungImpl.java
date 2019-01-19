@@ -209,6 +209,15 @@ public PinnwandVerwaltungImpl() {
 		return this.nMapper.getAllNutzer();
 	}
 	
+	/**
+	 * Suchen eines Nutzers in der Datenbank anhand eines Suchbegriffs
+	 */
+	@Override
+	public Vector <Nutzer> searchNutzer(String sucheingabe){
+		
+		
+		return this.nMapper.searchNutzer(sucheingabe);
+	}
 	
 	/*
 	 **********************************
@@ -550,25 +559,34 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public Like erstelleLike(Beitrag b, Nutzer n) {
 		
+		Like l = new Like();
 		/*
 		 * Überprüfen ob bereits ein Like-Objekt mit diesen Werten besteht
 		 */
-		Like l = getLikeFor(b.getId(), n.getId());
+		if (b != null && n != null) {
+			l = getLikeFor(b.getId(), n.getId());
+		} else {
+			return null;
+		}
+		
 		
 		/*
 		 * Gibt es noch kein Like-Objekt für diese Werte, so wird eines erstellt.
 		 */
-		if (l.getId() == 0) {
+		if (l == null) {
 			
 			Like like = new Like();
-			like.setBeitragFK(b.getId());
-			like.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
-			like.setNutzerFK(n.getId());
+			
 			/*
 			 * Setzen einer vorläufigen ID, welche nach Kommunikation mit der DB
 			 * auf den nächsthöchsten Wert gesetzt wird
 			 */
 			like.setId(1);
+			
+			like.setBeitragFK(b.getId());
+			like.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
+			like.setNutzerFK(n.getId());
+		
 			
 			return this.lMapper.insertLike(like);
 		} else {
@@ -583,7 +601,10 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public void loeschen (Like l) {
-		this.lMapper.deleteLike(l);
+		if (l != null) {
+			this.lMapper.deleteLike(l);
+		}
+		
 	}
 	
 	/**
@@ -635,9 +656,15 @@ public PinnwandVerwaltungImpl() {
 //		Vector<Abonnement> abos = new Vector<Abonnement>();
 //		abos.addAll(this.getAllAbosFor(n));
 		
-		Abonnement a = getAboFor(p.getId(), n.getId());
+		Abonnement a = new Abonnement();
 		
-		if(a.getId() == 0) {
+		if (p != null && n != null) {
+			a = getAboFor(p.getId(), n.getId());
+		} else {
+			return null;
+		}
+		
+		if(a == null) {
 			Abonnement abo = new Abonnement();
 			
 			abo.setPinnwandFK(p.getId());
@@ -662,7 +689,10 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void loeschen (Abonnement a) {
 	
-		this.aMapper.deleteAbonnement(a);
+		if(a != null) {
+			this.aMapper.deleteAbonnement(a);
+		}
+		
 	}
 	
 	@Override

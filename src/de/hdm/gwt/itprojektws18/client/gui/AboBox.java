@@ -37,11 +37,7 @@ public class AboBox extends VerticalPanel {
 
 	private HorizontalPanel aboPinnwandInfos = new HorizontalPanel();
 
-	private HorizontalPanel reportButtonPanel = new HorizontalPanel();
-
 	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
-
-	private Button reportButton = new Button("Report");
 
 	Nutzer nutzer = new Nutzer();
 
@@ -61,12 +57,9 @@ public class AboBox extends VerticalPanel {
 
 		abobox.add(profilbereich);
 		abobox.add(aboniertePW);
-		abobox.add(reportButtonPanel);
 
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
-
-		reportButtonPanel.add(reportButton);
 
 		/**
 		 * 
@@ -74,15 +67,6 @@ public class AboBox extends VerticalPanel {
 		anzeigePW.addStyleName("anzeigePW");
 		aboniertePW.addStyleName("aboniertePW");
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
-		reportButtonPanel.addStyleName("ReportButtonPanel");
-		reportButton.addStyleName("ReportButton");
-
-
-		/**
-		 * ClickHandler den entsprechenden Buttons hinzufügen:
-		 */
-
-		reportButton.addClickHandler(new ReportClickHandler());
 
 		super.onLoad();
 	}
@@ -121,16 +105,6 @@ public class AboBox extends VerticalPanel {
 				});
 
 			}
-
-		}
-
-	}
-
-	class ReportClickHandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18Report.html");
 
 		}
 

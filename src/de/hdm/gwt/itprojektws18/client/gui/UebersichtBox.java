@@ -31,7 +31,6 @@ public class UebersichtBox extends VerticalPanel {
 
 	private Label profilInfos = new Label();
 	private Button aboErstellBtn = new Button("Abonnieren");
-	private Button deAboBtn = new Button("Deabonnieren");
 
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
@@ -57,10 +56,10 @@ public class UebersichtBox extends VerticalPanel {
 
 		abonnierenPanel.add(profilInfos);
 		abonnierenPanel.add(aboErstellBtn);
-		abonnierenPanel.add(deAboBtn);
+
 
 		aboErstellBtn.addClickHandler(new AboErstellClickhandler());
-		deAboBtn.addClickHandler(new DeAboClickhandler());
+
 
 		pinnwandVerwaltung.getNutzerbyID(nutzerId, new NutzerInformationenCallback());
 
@@ -83,9 +82,33 @@ public class UebersichtBox extends VerticalPanel {
 //			n.setId(Integer.parseInt(Cookies.getCookie("id")));
 			n.setId(3);
 
-			pinnwandVerwaltung.erstelleAbonnement(p, n, new AboErstellenCallback());
+			pinnwandVerwaltung.getAboFor(p.getId(), n.getId(), new AboInfoCallback());
 		}
 
+	}
+	
+	class AboInfoCallback implements AsyncCallback<Abonnement> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abruf der Abo-Informationen: " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Abonnement result) {
+			
+			if (result == null) {
+				Nutzer n = new Nutzer();
+//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+				n.setId(3);
+				pinnwandVerwaltung.erstelleAbonnement(p, n, new AboErstellenCallback());
+			} else {
+				pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());
+			}
+			
+		}
+		
 	}
 
 	class AboErstellenCallback implements AsyncCallback<Abonnement> {
@@ -98,10 +121,9 @@ public class UebersichtBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Abonnement result) {
-
-			if (result != null) {
-				Window.alert("Nutzer bereits abonniert!");
-			} else {
+				
+				aboErstellBtn.setText("Nicht mehr abonnieren");
+				
 				AboBox aboBox = new AboBox();
 
 				RootPanel.get("AboDiv").clear();
@@ -109,39 +131,6 @@ public class UebersichtBox extends VerticalPanel {
 			}
 
 		}
-
-	}
-
-	class DeAboClickhandler implements ClickHandler {
-
-		@Override
-		public void onClick(ClickEvent event) {
-			
-			Nutzer n = new Nutzer();
-//			n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
-			
-			
-			pinnwandVerwaltung.getAboFor(p.getId(), n.getId(), new AsyncCallback<Abonnement> () {
-
-				@Override
-				public void onFailure(Throwable caught) {
-					Window.alert("Fehler beim Löschen des Abonnements: " + caught.getMessage());
-				}
-
-				@Override
-				public void onSuccess(Abonnement result) {
-					pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());
-					
-				}
-				
-			});
-			
-			
-
-		}
-
-	}
 	
 	class AboLoeschenCallback implements AsyncCallback<Void> {
 
@@ -153,15 +142,13 @@ public class UebersichtBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
+			
+			aboErstellBtn.setText("Abonnieren");
+			
 			AboBox aboBox = new AboBox();
 
 			RootPanel.get("AboDiv").clear();
 			RootPanel.get("AboDiv").add(aboBox);
-			
-			PinnwandBox pBox = new PinnwandBox(p.getId());
-			
-			RootPanel.get("InhaltDiv").clear();
-			RootPanel.get("InhaltDiv").add(pBox);
 			
 		}
 		
@@ -196,6 +183,7 @@ public class UebersichtBox extends VerticalPanel {
 
 			for (final Beitrag beitrag : result) {
 				final BeitragBox bBox = new BeitragBox(beitrag);
+				beitragPanel.add(bBox);
 
 				pinnwandVerwaltung.getNutzerbyID(beitrag.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
@@ -215,8 +203,6 @@ public class UebersichtBox extends VerticalPanel {
 						bBox.befuelleName(nameString);
 						bBox.befuelleErstellzeitpunkt(erstellZP);
 						bBox.befuelleInhalt(inhalt);
-
-						beitragPanel.add(bBox);
 
 					}
 

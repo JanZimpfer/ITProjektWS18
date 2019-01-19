@@ -5,22 +5,17 @@ import java.util.Vector;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.thirdparty.javascript.jscomp.Result;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-import de.hdm.gwt.itprojektws18.client.gui.BeitragBox.AlleLikesCallback;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
@@ -29,6 +24,10 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class BeitragBox extends VerticalPanel {
 
+	/**
+	 * Instanziierung eines PinnwandVerwaltung-Objekts um eine
+	 * Applikationsverwaltung zu initialisieren
+	 */
 	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
@@ -126,6 +125,13 @@ public class BeitragBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * <b>Nested Class für den Bearbeiten-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 * 
+	 * Sobald ein ClickEvent empfangen wird
+	 * öffnet sich eine BeitragBearbeitenDialogBox
+	 */
 	class BeitragBearbeitenClickHandler implements ClickHandler {
 
 		@Override
@@ -137,36 +143,31 @@ public class BeitragBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * <b>Nested Class für den Löschen-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 * 
+	 * Sobald ein ClickEvent empfangen wird
+	 * öffnet sich eine BeitragLoeschenDialogBox
+	 */
 	class BeitragLoeschenClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			pinnwandVerwaltung.loeschen(beitrag, new BeitragLoeschenCallback());
+			BeitragLoeschenDialogBox loeschenBox = new BeitragLoeschenDialogBox(beitrag);
+			loeschenBox.center();
 
 		}
 	}
 
-	class BeitragLoeschenCallback implements AsyncCallback<Void> {
-
-		@Override
-		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Löschen des Beitrags: " + caught.getMessage());
-
-		}
-
-		@Override
-		public void onSuccess(Void result) {
-
-			PinnwandBox pBox = new PinnwandBox();
-
-			Window.alert("Beitrag erfolgreich gelöscht");
-			RootPanel.get("InhaltDiv").clear();
-			RootPanel.get("InhaltDiv").add(pBox);
-
-		}
-
-	}
-
+	/**
+	 * <b>Nested Class zur Like-Abfrage eines Beitrags</b>
+	 * Callback Aufruf zur Ausgabe aller Likes
+	 * 
+	 * Setzt die Größe des Ergebnisvektors als Anzahl aller Likes
+	 * für einen Beitrag
+	 *
+	 */
 	class AlleLikesCallback implements AsyncCallback<Vector<Like>> {
 
 		@Override
@@ -184,6 +185,14 @@ public class BeitragBox extends VerticalPanel {
 		}
 	}
 
+	/**
+	 * <b>Nested Class zur Kommentar-Abfrage eines Beitrags</b>
+	 * Callback Aufruf zur Ausgabe aller Kommentare.
+	 * 
+	 * Legt für jedes Kommentar-Objekt eine entsprechende KommentarBox an
+	 * und befüllt diese mit dem Inhalt des Kommentars
+	 *
+	 */
 	class KommentareAnzeigenCallback implements AsyncCallback<Vector<Kommentar>> {
 
 		@Override
@@ -196,11 +205,11 @@ public class BeitragBox extends VerticalPanel {
 		public void onSuccess(Vector<Kommentar> result) {
 
 			String aK = "Kommentare: " + result.size() + "";
-
 			kommentarAnzahl.setText(aK);
 
 			for (final Kommentar kommentar : result) {
 				final KommentarBox kBox = new KommentarBox(kommentar);
+				kommentarPanel.add(kBox);
 
 				pinnwandVerwaltung.getNutzerbyID(kommentar.getNutzerFK(), new AsyncCallback<Nutzer>() {
 
@@ -219,16 +228,17 @@ public class BeitragBox extends VerticalPanel {
 						kBox.befuelleErstellzeitpunkt(erstellZP);
 						kBox.befuelleInhalt(inhalt);
 
-						kommentarPanel.add(kBox);
-
 					}
 				});
 			}
-
 		}
-
 	}
 
+	/**
+	 * <b>Nested Class für den Like-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 *
+	 */
 	class LikesErstellenClickHandler implements ClickHandler {
 
 		@Override
@@ -237,12 +247,42 @@ public class BeitragBox extends VerticalPanel {
 			Nutzer n = new Nutzer();
 //			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			n.setId(3);
+			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
+		}
+	}
+	
+	/**
+	 * <b>Nested Class für den Like-Button</b>
+	 * Callback Aufruf zur Überprüfung ob Like bereits vorhanden ist
+	 *
+	 */
+	class LikeInfoCallback implements AsyncCallback<Like> {
 
-			pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abrufen der Gefällt-mir Angaben: " + caught.getMessage());
+		}
 
+		@Override
+		public void onSuccess(Like result) {
+			
+			if (result == null){
+				Nutzer n = new Nutzer();
+//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+				n.setId(3);
+				
+				pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
+			} else {
+				pinnwandVerwaltung.loeschen(result, new LikeLoeschenCallback());
+			}
 		}
 	}
 
+	/**
+	 * <b>Nested Class für den like-Button</b>
+	 * Callback Aufruf zum Erstellen eines Likes
+	 *
+	 */
 	class LikeErstellenCallback implements AsyncCallback<Like> {
 
 		@Override
@@ -254,42 +294,78 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Like result) {
 
-			if (result != null) {
-				Window.alert("Du hast diesen Beitrag bereits mit Gefällt-mir markiert!");
-			} else {
 				PinnwandBox pBox = new PinnwandBox();
 
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);
-			}
+			
+		}
+	}
+	
+	/**
+	 * <b>Nested Class für den like-Button</b>
+	 * Callback Aufruf zum Entfernen eines Likes
+	 *
+	 */
+	class LikeLoeschenCallback implements AsyncCallback<Void> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Entfernen der Gefällt-mir Angabe: " + caught.getMessage());
+			
 		}
 
+		@Override
+		public void onSuccess(Void result) {
+			PinnwandBox pBox = new PinnwandBox();
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
+			
+		}
+		
 	}
 
+	/**
+	 * <b>Nested Class für den LikesAnzeigen-Button</b>
+	 * implementiert den entsprechenden ClickHandler
+	 *
+	 */
 	class LikesAnzeigenClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
 
-			LikesAnzeigenDialogBox dlgBox = new LikesAnzeigenDialogBox();
-			dlgBox.center();
+			LikesAnzeigenDialogBox likesAnzeigenBox = new LikesAnzeigenDialogBox(beitrag);
+			likesAnzeigenBox.center();
 
 		}
 
 	}
 
-	public void befuelleName(String nicknameString) {
+	/**
+	 * Methode zum Setzen des Autors eines Beitrags
+	 * @param name
+	 */
+	public void befuelleName(String name) {
 
-		this.nickname.setText(nicknameString);
+		this.nickname.setText(name);
 
 	}
-
+	
+	/**
+	 * Methode zum Setzen des Erstellzeitpunkts eines Beitrags
+	 * @param erstellzeitpunkt
+	 */
 	public void befuelleErstellzeitpunkt(String erstellzeitpunkt) {
 
 		this.erstellzeitpunkt.setText(erstellzeitpunkt);
 
 	}
 
+	/**
+	 * Methode zum Setzen des Beitraginhalts
+	 * @param inhalt
+	 */
 	public void befuelleInhalt(String inhalt) {
 
 		this.beitragInhalt.setText(inhalt);

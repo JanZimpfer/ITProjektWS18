@@ -27,6 +27,8 @@ public interface PinnwandVerwaltungAsync {
 	void getNutzerByName(String vorname, String nachname, AsyncCallback<Nutzer> callback);
 
 	void getNutzerByNickname(String nickname, AsyncCallback<Nutzer> callback);
+	
+	void searchNutzer(String sucheingabe, AsyncCallback<Vector<Nutzer>> callback);
 
 	void loeschen(Nutzer n, AsyncCallback<Void> callback);
 
