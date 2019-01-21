@@ -18,6 +18,7 @@ public class KommentarBox extends VerticalPanel {
 
 	private VerticalPanel kommentarPanel = new VerticalPanel();
 	private HorizontalPanel kommentarBtnPanel = new HorizontalPanel();
+	private HorizontalPanel nutzerZeitPanel = new HorizontalPanel ();
 
 	private TextBox kommentarText = new TextBox();
 	private Label nickname = new Label();
@@ -46,9 +47,11 @@ public class KommentarBox extends VerticalPanel {
 		kommentarLoeschenBtn.addStyleName("kommentarBtn");
 		kommentarBearbeitenBtn.addStyleName("kommentarBtn");
 
-		kommentarPanel.add(nickname);
-		kommentarPanel.add(erstellZeitpunkt);
+		kommentarPanel.add(nutzerZeitPanel);
 		kommentarPanel.add(kommentarText);
+		
+		nutzerZeitPanel.add(nickname);
+		nutzerZeitPanel.add(erstellZeitpunkt);
 
 		kommentarBearbeitenBtn.addClickHandler(new KommentarBearbeitenClickHandler());
 		kommentarLoeschenBtn.addClickHandler(new KommentarLoeschenClickHandler());

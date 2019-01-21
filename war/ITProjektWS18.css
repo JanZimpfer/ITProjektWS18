@@ -78,6 +78,10 @@ div {
 
 /* Styling von Button-Elementen */
 
+.gwt-Button { 
+   color:red;   
+}
+
 .profilBtn {
 	
 }

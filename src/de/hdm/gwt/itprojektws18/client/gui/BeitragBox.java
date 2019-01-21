@@ -37,6 +37,7 @@ public class BeitragBox extends VerticalPanel {
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel erstelleKommentarPanel = new VerticalPanel();
 	private VerticalPanel kommentarPanel = new VerticalPanel();
+	private HorizontalPanel nutzerZeitPanel = new HorizontalPanel ();
 
 	/**
 	 * Erstellung benötigter GUI-Elemente
@@ -74,7 +75,7 @@ public class BeitragBox extends VerticalPanel {
 		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
 		kommentarAnzahl.addStyleName("kommentarAnzahl");
 		likeAnzahl.addStyleName("likeAnzahl");
-		
+
 		beitragBearbeitenBtn.addStyleName("beitragBtn");
 		beitragLoeschenBtn.addStyleName("beitragBtn");
 		likesAnzeigenBtn.addStyleName("beitragBtn");
@@ -94,9 +95,11 @@ public class BeitragBox extends VerticalPanel {
 		beitragInhalt.setReadOnly(true);
 		beitragInhalt.setSize("150px", "30px");
 
-		inhaltPanel.add(nickname);
-		inhaltPanel.add(erstellzeitpunkt);
+		inhaltPanel.add(nutzerZeitPanel);
 		inhaltPanel.add(beitragInhalt);
+		
+		nutzerZeitPanel.add(nickname);
+		nutzerZeitPanel.add(erstellzeitpunkt);
 
 		buttonPanel.add(likeAnzahl);
 		buttonPanel.add(kommentarAnzahl);
@@ -127,11 +130,11 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class für den Bearbeiten-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den Bearbeiten-Button</b> implementiert den
+	 * entsprechenden ClickHandler
 	 * 
-	 * Sobald ein ClickEvent empfangen wird
-	 * öffnet sich eine BeitragBearbeitenDialogBox
+	 * Sobald ein ClickEvent empfangen wird öffnet sich eine
+	 * BeitragBearbeitenDialogBox
 	 */
 	class BeitragBearbeitenClickHandler implements ClickHandler {
 
@@ -145,11 +148,11 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class für den Löschen-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den Löschen-Button</b> implementiert den entsprechenden
+	 * ClickHandler
 	 * 
-	 * Sobald ein ClickEvent empfangen wird
-	 * öffnet sich eine BeitragLoeschenDialogBox
+	 * Sobald ein ClickEvent empfangen wird öffnet sich eine
+	 * BeitragLoeschenDialogBox
 	 */
 	class BeitragLoeschenClickHandler implements ClickHandler {
 
@@ -162,11 +165,10 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class zur Like-Abfrage eines Beitrags</b>
-	 * Callback Aufruf zur Ausgabe aller Likes
+	 * <b>Nested Class zur Like-Abfrage eines Beitrags</b> Callback Aufruf zur
+	 * Ausgabe aller Likes
 	 * 
-	 * Setzt die Größe des Ergebnisvektors als Anzahl aller Likes
-	 * für einen Beitrag
+	 * Setzt die Größe des Ergebnisvektors als Anzahl aller Likes für einen Beitrag
 	 *
 	 */
 	class AlleLikesCallback implements AsyncCallback<Vector<Like>> {
@@ -180,6 +182,7 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Vector<Like> result) {
 
+
 			String lA = "Likes: " + result.size() + "";
 			likeAnzahl.setText(lA);
 
@@ -187,11 +190,11 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class zur Kommentar-Abfrage eines Beitrags</b>
-	 * Callback Aufruf zur Ausgabe aller Kommentare.
+	 * <b>Nested Class zur Kommentar-Abfrage eines Beitrags</b> Callback Aufruf zur
+	 * Ausgabe aller Kommentare.
 	 * 
-	 * Legt für jedes Kommentar-Objekt eine entsprechende KommentarBox an
-	 * und befüllt diese mit dem Inhalt des Kommentars
+	 * Legt für jedes Kommentar-Objekt eine entsprechende KommentarBox an und
+	 * befüllt diese mit dem Inhalt des Kommentars
 	 *
 	 */
 	class KommentareAnzeigenCallback implements AsyncCallback<Vector<Kommentar>> {
@@ -236,8 +239,8 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class für den Like-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den Like-Button</b> implementiert den entsprechenden
+	 * ClickHandler
 	 *
 	 */
 	class LikesErstellenClickHandler implements ClickHandler {
@@ -249,12 +252,13 @@ public class BeitragBox extends VerticalPanel {
 //			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			n.setId(3);
 			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
+
 		}
 	}
-	
+
 	/**
-	 * <b>Nested Class für den Like-Button</b>
-	 * Callback Aufruf zur Überprüfung ob Like bereits vorhanden ist
+	 * <b>Nested Class für den Like-Button</b> Callback Aufruf zur Überprüfung ob
+	 * Like bereits vorhanden ist
 	 *
 	 */
 	class LikeInfoCallback implements AsyncCallback<Like> {
@@ -266,13 +270,14 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Like result) {
-			
-			if (result == null){
+
+			if (result == null) {
 				Nutzer n = new Nutzer();
 //				n.setId(Integer.parseInt(Cookies.getCookie("id")));
 				n.setId(3);
-				
+
 				pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
+
 			} else {
 				pinnwandVerwaltung.loeschen(result, new LikeLoeschenCallback());
 			}
@@ -280,8 +285,8 @@ public class BeitragBox extends VerticalPanel {
 	}
 
 	/**
-	 * <b>Nested Class für den like-Button</b>
-	 * Callback Aufruf zum Erstellen eines Likes
+	 * <b>Nested Class für den like-Button</b> Callback Aufruf zum Erstellen eines
+	 * Likes
 	 *
 	 */
 	class LikeErstellenCallback implements AsyncCallback<Like> {
@@ -295,17 +300,19 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Like result) {
 
-				PinnwandBox pBox = new PinnwandBox();
+			PinnwandBox pBox = new PinnwandBox();
 
-				RootPanel.get("InhaltDiv").clear();
-				RootPanel.get("InhaltDiv").add(pBox);
+			RootPanel.get("InhaltDiv").clear();
+			RootPanel.get("InhaltDiv").add(pBox);
 			
+			
+
 		}
 	}
-	
+
 	/**
-	 * <b>Nested Class für den like-Button</b>
-	 * Callback Aufruf zum Entfernen eines Likes
+	 * <b>Nested Class für den like-Button</b> Callback Aufruf zum Entfernen eines
+	 * Likes
 	 *
 	 */
 	class LikeLoeschenCallback implements AsyncCallback<Void> {
@@ -313,7 +320,7 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Entfernen der Gefällt-mir Angabe: " + caught.getMessage());
-			
+
 		}
 
 		@Override
@@ -322,13 +329,15 @@ public class BeitragBox extends VerticalPanel {
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
 			
+			
+
 		}
-		
+
 	}
 
 	/**
-	 * <b>Nested Class für den LikesAnzeigen-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den LikesAnzeigen-Button</b> implementiert den
+	 * entsprechenden ClickHandler
 	 *
 	 */
 	class LikesAnzeigenClickHandler implements ClickHandler {
@@ -345,6 +354,7 @@ public class BeitragBox extends VerticalPanel {
 
 	/**
 	 * Methode zum Setzen des Autors eines Beitrags
+	 * 
 	 * @param name
 	 */
 	public void befuelleName(String name) {
@@ -352,9 +362,10 @@ public class BeitragBox extends VerticalPanel {
 		this.nickname.setText(name);
 
 	}
-	
+
 	/**
 	 * Methode zum Setzen des Erstellzeitpunkts eines Beitrags
+	 * 
 	 * @param erstellzeitpunkt
 	 */
 	public void befuelleErstellzeitpunkt(String erstellzeitpunkt) {
@@ -365,6 +376,7 @@ public class BeitragBox extends VerticalPanel {
 
 	/**
 	 * Methode zum Setzen des Beitraginhalts
+	 * 
 	 * @param inhalt
 	 */
 	public void befuelleInhalt(String inhalt) {
