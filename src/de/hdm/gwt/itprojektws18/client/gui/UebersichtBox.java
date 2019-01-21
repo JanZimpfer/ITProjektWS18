@@ -30,7 +30,7 @@ public class UebersichtBox extends VerticalPanel {
 	private HorizontalPanel abonnierenPanel = new HorizontalPanel();
 
 	private Label profilInfos = new Label();
-	private Button aboErstellBtn = new Button("Abonnieren");
+	private Button aboErstellBtn = new Button();
 
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
 
@@ -41,6 +41,7 @@ public class UebersichtBox extends VerticalPanel {
 		this.add(erstelleBeitragBox);
 
 		Nutzer n = new Nutzer();
+//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 		n.setId(3);
 
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
@@ -52,6 +53,10 @@ public class UebersichtBox extends VerticalPanel {
 
 	public UebersichtBox(int nutzerId) {
 		
+		Nutzer n = new Nutzer();
+//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
+		n.setId(3);
+		
 		aboErstellBtn.addStyleName("uebersichtBtn");
 
 		p.setId(nutzerId);
@@ -62,7 +67,9 @@ public class UebersichtBox extends VerticalPanel {
 
 		aboErstellBtn.addClickHandler(new AboErstellClickhandler());
 
-
+		pinnwandVerwaltung.getAboFor(nutzerId, n.getId() , new AboPruefenCallback());
+		
+		
 		pinnwandVerwaltung.getNutzerbyID(nutzerId, new NutzerInformationenCallback());
 
 		this.add(abonnierenPanel);
@@ -124,7 +131,7 @@ public class UebersichtBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Abonnement result) {
 				
-				aboErstellBtn.setText("Nicht mehr abonnieren");
+				aboErstellBtn.setText("Deabonnieren");
 				
 				AboBox aboBox = new AboBox();
 
@@ -151,6 +158,26 @@ public class UebersichtBox extends VerticalPanel {
 
 			RootPanel.get("AboDiv").clear();
 			RootPanel.get("AboDiv").add(aboBox);
+			
+		}
+		
+	}
+	
+	class AboPruefenCallback implements AsyncCallback<Abonnement>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abfragen des Abonnements " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Abonnement result) {
+			if(result == null) {
+				aboErstellBtn.setText("Abonnieren");
+			} else {
+				aboErstellBtn.setText("Deabonnieren");
+			}
 			
 		}
 		
