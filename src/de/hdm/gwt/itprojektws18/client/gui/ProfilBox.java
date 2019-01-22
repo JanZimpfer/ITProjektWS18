@@ -56,7 +56,7 @@ public class ProfilBox extends VerticalPanel {
 		labelPanel.add(abonniert);
 		
 
-		profilbildButton.setStylePrimaryName("profilBtn");
+		profilbildButton.addStyleName("profilBtn");
 		profilButton.addStyleName("profilBtn");
 		reportButton.addStyleName("profilBtn");
 

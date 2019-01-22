@@ -54,7 +54,7 @@ public class BeitragBox extends VerticalPanel {
 	private Button likeBtn = new Button("Gefällt mir!");
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
-	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
+	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' k:mm");
 
 	private KommentarBox kommentarBox = new KommentarBox();
 

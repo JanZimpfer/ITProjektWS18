@@ -57,7 +57,7 @@ public class BeitragMapper {
 						+ ","
 						+ b.getText()
 						+ ","
-						+ "'" + b.getErstellZeitpunkt() + "'"
+						+ "'" + b.getErstellZeitpunkt().toLocalDateTime() + "'"
 						+","
 						+ b.getPinnwandFK()
 						+ ","

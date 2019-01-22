@@ -1,6 +1,7 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.util.Vector;
+import java.time.LocalDateTime;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -32,7 +33,7 @@ public class UebersichtBox extends VerticalPanel {
 	private Label profilInfos = new Label();
 	private Button aboErstellBtn = new Button();
 
-	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' hh:mm");
+	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' k:mm");
 
 	private Pinnwand p = new Pinnwand();
 
