@@ -37,7 +37,7 @@ public class AboBox extends VerticalPanel {
 
 	private HorizontalPanel aboPinnwandInfos = new HorizontalPanel();
 
-	private Label anzeigePW = new Label("Abonnierte Pinnwaende: ");
+	private Label anzeigePW = new Label("Abonnierte Pinnwände: ");
 
 	Nutzer nutzer = new Nutzer();
 

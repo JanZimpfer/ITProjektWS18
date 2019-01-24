@@ -20,9 +20,9 @@ public class ProfilBox extends VerticalPanel {
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
-	private HorizontalPanel labelPanel = new HorizontalPanel();
+	private VerticalPanel labelPanel = new VerticalPanel();
 
-	private Button profilbildButton = new Button("Profilbild");
+	
 	private Button profilButton = new Button("Startseite");
 	private Button reportButton = new Button("Report");
 
@@ -47,8 +47,9 @@ public class ProfilBox extends VerticalPanel {
 
 
 		this.addStyleName("profilBox");
+		labelPanel.addStyleName("labelPanel");
 
-		buttonPanel.add(profilbildButton);
+		
 		buttonPanel.add(profilButton);
 		buttonPanel.add(reportButton);
 
@@ -56,7 +57,7 @@ public class ProfilBox extends VerticalPanel {
 		labelPanel.add(abonniert);
 		
 
-		profilbildButton.addStyleName("profilBtn");
+		
 		profilButton.addStyleName("profilBtn");
 		reportButton.addStyleName("profilBtn");
 

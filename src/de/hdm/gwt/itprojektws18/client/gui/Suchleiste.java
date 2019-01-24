@@ -41,8 +41,9 @@ public class Suchleiste extends HorizontalPanel {
 
 		this.add(txtBox);
 		txtBox.setText("Nicknamen eingeben...");
+		txtBox.setStyleName("suchBox");
 
-		this.addStyleName("suchleiste");
+		this.addStyleName("suchleistePanel");
 		this.add(suchleiste);
 		
 		suchleiste.add(sucheButton);

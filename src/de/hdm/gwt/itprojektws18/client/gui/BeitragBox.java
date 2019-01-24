@@ -54,7 +54,7 @@ public class BeitragBox extends VerticalPanel {
 	private Button likeBtn = new Button("Gefällt mir!");
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
-	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy 'um' k:mm");
+	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy k:mm");
 
 	private KommentarBox kommentarBox = new KommentarBox();
 
@@ -62,6 +62,7 @@ public class BeitragBox extends VerticalPanel {
 
 	public BeitragBox() {
 
+	
 	}
 
 	public BeitragBox(final Beitrag b) {
@@ -85,6 +86,7 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.addStyleName("ButtonPanel");
 		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
 		kommentarPanel.addStyleName("kommentarPanel");
+		nutzerZeitPanel.addStyleName("nutzerZeitPanel");
 
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 

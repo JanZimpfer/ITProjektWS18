@@ -23,7 +23,7 @@ public class HeaderBox extends HorizontalPanel {
 	private VerticalPanel logoutEditPanel = new VerticalPanel();
 
 	private Button logoutButton = new Button("Logout");
-	private Button profilEditButton = new Button("Mein Profil bearbeiten");
+	private Button profilEditButton = new Button("Profil bearbeiten");
 
 	private Label deleteCheckLbl = new Label("Sind Sie sich sicher, dass Sie Ihr Nutzerprofil und" + "\n"
 			+ "alle damit in Zusammenhang stehende Daten unwiderruflich löschen wollen?");
