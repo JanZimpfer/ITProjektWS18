@@ -101,6 +101,12 @@ div {
    
 }
 
+.gwt-TextBox{
+	height: 20px;
+	width: 400px;
+	
+}
+
 .profilBtn {
 	
 }
@@ -272,8 +278,11 @@ div {
 }
 
 .erstelleBeitragFeld {
-	height: 100%;
-	width: 100%;
+
+
+
+	color: black;
+	widht: 100%;
 
 	
 }

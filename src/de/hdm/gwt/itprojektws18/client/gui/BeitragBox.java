@@ -51,7 +51,7 @@ public class BeitragBox extends VerticalPanel {
 
 	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
 	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
-	private Button likeBtn = new Button("Gefällt mir!");
+	private Button likeBtn = new Button();
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy k:mm");
@@ -68,6 +68,9 @@ public class BeitragBox extends VerticalPanel {
 	public BeitragBox(final Beitrag b) {
 
 		this.beitrag = b;
+		Nutzer n = new Nutzer();
+//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
+		n.setId(3);
 
 		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
@@ -86,7 +89,13 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.addStyleName("ButtonPanel");
 		erstelleKommentarPanel.addStyleName("erstelleKommentarPanel");
 		kommentarPanel.addStyleName("kommentarPanel");
+
 		nutzerZeitPanel.addStyleName("nutzerZeitPanel");
+
+		
+		pinnwandVerwaltung.getLikeFor(b.getId(), n.getId(), new LikeCheckCallback());
+		
+
 
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
@@ -129,6 +138,27 @@ public class BeitragBox extends VerticalPanel {
 
 		super.onLoad();
 
+	}
+	
+	class LikeCheckCallback implements AsyncCallback<Like>{
+
+		@Override
+		public void onFailure(Throwable caught) {
+			Window.alert("Fehler beim Abfragen des Likes " +caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(Like result) {
+			if(result == null) {
+				likeBtn.setText("Gefällt mir!");
+			} else {
+				likeBtn.setText("Gefällt mir nicht mehr!");
+			}
+			
+		}
+		
+		
 	}
 
 	/**
