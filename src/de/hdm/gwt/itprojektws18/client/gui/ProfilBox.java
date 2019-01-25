@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -33,17 +34,9 @@ public class ProfilBox extends VerticalPanel {
 
 	public ProfilBox() {
 
-//	
-//		
-
 		Nutzer n = new Nutzer();
 
-//		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-
-		
-		
-
-		n.setId(3);
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 
 		this.addStyleName("profilBox");
@@ -95,7 +88,7 @@ public class ProfilBox extends VerticalPanel {
 
 		public void onClick(ClickEvent event) {
 
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+			Window.open("sw1819-projekt.appspot.com", "_self", "");
 
 		}
 	}
@@ -148,7 +141,7 @@ public class ProfilBox extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18Report.html");
+			Window.Location.assign("/ITProjektWS18Report.html");
 
 		}
 

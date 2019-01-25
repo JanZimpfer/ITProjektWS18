@@ -67,8 +67,8 @@ public class HeaderBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			final Nutzer n = new Nutzer();
-			// n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			 
 			pinnwandVerwaltung.getNutzerbyID(n.getId(), new AsyncCallback<Nutzer>() {
 
 				@Override
@@ -125,10 +125,9 @@ public class HeaderBox extends HorizontalPanel {
 		@Override
 		public void onClick(ClickEvent event) {
 
-			// Später Cookie Id anstatt Id = 3
 			Nutzer n = new Nutzer();
-			// n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
+			 
 			pinnwandVerwaltung.loeschen(n, new DeleteNutzerCallback());
 
 		}
@@ -145,8 +144,10 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
+			Cookies.removeCookie("id");
+			Cookies.removeCookie("email");
 			Window.alert("Ihr Profil wurde erfolgreich gelöscht!");
-			// Laden der Login-Seie ausstehend
+			Window.Location.assign("sw1819-projekt.appspot.com");
 
 		}
 

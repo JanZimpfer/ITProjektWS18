@@ -136,36 +136,39 @@ public class NutzerMapper {
 	}
 
 	public Nutzer insertNutzer(Nutzer n) {
-
 		Connection con = DBConnection.connection();
 
 		try {
 
 			Statement stmt = con.createStatement();
 
-			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS 'maxid' " + "FROM nutzer");
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid FROM nutzer");
 
 			if (rs.next()) {
 				n.setId(rs.getInt("maxid") + 1);
-				stmt = con.createStatement();
+				
+				PreparedStatement stmt1 = con.prepareStatement(
+						"INSERT INTO nutzer (id, erstellzeitpunkt, vorname, nachname, mail, nickname) VALUES (?, ?, ?, ?, ?, ?) ",
 
-				stmt.executeUpdate("INSERT INTO nutzer" + " (id, erstellzeitpunkt, vorname, nachname, mail, nickname)"
-						+ "VALUES ( " +
+						Statement.RETURN_GENERATED_KEYS);
 
-						n.getId() + ", " + "'" + n.getErstellZeitpunkt() + "'" + ", " + n.getVorname() + ", "
-						+ n.getNachname() + ", " + n.getEmail() + ", " + n.getNickname() + ")");
+				System.out.println();
+				stmt1.setInt(1, n.getId());
+				stmt1.setTimestamp(2, n.getErstellZeitpunkt());
+				stmt1.setString(3, n.getVorname());
+				stmt1.setString(4, n.getNachname());
+				stmt1.setString(5, n.getEmail());
+				stmt1.setString(6, n.getNickname());
 
+				System.out.println(stmt);
+				stmt1.executeUpdate();
 			}
-		}
-
-		catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		} 
 		return n;
-
-	}
+}
+	
 
 	public Nutzer updateNutzer(Nutzer n) {
 
@@ -205,21 +208,17 @@ public class NutzerMapper {
 
 	}
 
-	public Nutzer getNutzerByEmail(String email) {
+	public Nutzer getNutzerByEmail(String mail) {
 
 		/**
 		 * Verbindung zur DB Connection
 		 */
 		Connection con = DBConnection.connection();
 
-		Nutzer n = new Nutzer();
-
 		try {
 
-			PreparedStatement stmt = con.prepareStatement("SELECT * FROM nutzer WHERE mail = ?");
-
-			stmt.setString(1, email);
-			ResultSet rs = stmt.executeQuery();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM nutzer WHERE mail= " + "'" + mail + "'");
 
 			/**
 			 * F�r jeden Eintrag im Suchergebnis wird nun ein Nutzer-Objekt erstellt.
@@ -234,24 +233,14 @@ public class NutzerMapper {
 				nutzer.setNickname(rs.getString("nickname"));
 				nutzer.setEmail(rs.getString("mail"));
 
-				n = nutzer;
+				return nutzer;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-
-		/**
-		 * Nutzerobjekt wird zur�ckgegeben
-		 */
-		finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
-		return n;
+		
+		return null;
 
 	}
 

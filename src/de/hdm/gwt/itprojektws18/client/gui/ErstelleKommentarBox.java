@@ -57,8 +57,7 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 			
 			Nutzer n = new Nutzer();
-			n.setId(3);
-//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
+			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
 			
 			beitrag.getId();
 			String kText = "'" +eingabeFeld.getText() + "'";
@@ -80,7 +79,7 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 			@Override
 			public void onSuccess(Kommentar result) {
 			
-				PinnwandBox pBox = new PinnwandBox();
+				PinnwandBox pBox = new PinnwandBox(beitrag.getNutzerFK());
 				
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);

@@ -74,9 +74,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer nutzer = new Nutzer();
-//			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-
-			nutzer.setId(3);
+			nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 			Pinnwand pinnwand = new Pinnwand();
 			pinnwand.setId(nutzer.getId());

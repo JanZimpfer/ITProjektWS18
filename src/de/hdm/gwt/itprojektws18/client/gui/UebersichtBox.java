@@ -1,7 +1,6 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
 import java.util.Vector;
-import java.time.LocalDateTime;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -42,8 +41,7 @@ public class UebersichtBox extends VerticalPanel {
 		this.add(erstelleBeitragBox);
 
 		Nutzer n = new Nutzer();
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		n.setId(3);
+		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		pinnwandVerwaltung.getAllBeitraegeByNutzer(n, new BeitraegeAnzeigenCallback());
 
@@ -55,8 +53,7 @@ public class UebersichtBox extends VerticalPanel {
 	public UebersichtBox(int nutzerId) {
 		
 		Nutzer n = new Nutzer();
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		n.setId(3);
+		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 		
 		aboErstellBtn.addStyleName("uebersichtBtn");
 
@@ -88,9 +85,7 @@ public class UebersichtBox extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer n = new Nutzer();
-
-//			n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			n.setId(3);
+			n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 			pinnwandVerwaltung.getAboFor(p.getId(), n.getId(), new AboInfoCallback());
 		}
@@ -110,8 +105,8 @@ public class UebersichtBox extends VerticalPanel {
 			
 			if (result == null) {
 				Nutzer n = new Nutzer();
-//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
-				n.setId(3);
+				n.setId(Integer.parseInt(Cookies.getCookie("id")));
+				
 				pinnwandVerwaltung.erstelleAbonnement(p, n, new AboErstellenCallback());
 			} else {
 				pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());

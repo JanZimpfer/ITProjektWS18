@@ -69,17 +69,14 @@ public class BeitragBox extends VerticalPanel {
 
 		this.beitrag = b;
 		Nutzer n = new Nutzer();
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		n.setId(3);
+		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
-		// Hinzufügen der StyleNames
 		this.addStyleName("beitragBox");
 		beitragInhalt.setStylePrimaryName("beitragInhalt");
 		nickname.addStyleName("nickname");
 		erstellzeitpunkt.addStyleName("erstellzeitpunkt");
 		kommentarAnzahl.addStyleName("kommentarAnzahl");
 		likeAnzahl.addStyleName("likeAnzahl");
-
 		beitragBearbeitenBtn.addStyleName("beitragBtn");
 		beitragLoeschenBtn.addStyleName("beitragBtn");
 		likesAnzeigenBtn.addStyleName("beitragBtn");
@@ -92,17 +89,10 @@ public class BeitragBox extends VerticalPanel {
 
 		nutzerZeitPanel.addStyleName("nutzerZeitPanel");
 
-		
 		pinnwandVerwaltung.getLikeFor(b.getId(), n.getId(), new LikeCheckCallback());
 		
-
-
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
-		/**
-		 * Die TextArea soll nur den Text des Beitrags anzeigen und keine Texteingabe
-		 * ermöglichen. Zusätzlich: Festlegung der Größe der TextArea.
-		 */
 		beitragInhalt.setReadOnly(true);
 		beitragInhalt.setSize("150px", "30px");
 
@@ -116,13 +106,16 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.add(kommentarAnzahl);
 		buttonPanel.add(likeBtn);
 		buttonPanel.add(likesAnzeigenBtn);
-		buttonPanel.add(beitragBearbeitenBtn);
-		buttonPanel.add(beitragLoeschenBtn);
+		
+		if (n.getId() == b.getNutzerFK()) {
+			buttonPanel.add(beitragBearbeitenBtn);
+			buttonPanel.add(beitragLoeschenBtn);
+			beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
+			beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
+		}
 
 		likeBtn.addClickHandler(new LikesErstellenClickHandler());
 		likesAnzeigenBtn.addClickHandler(new LikesAnzeigenClickHandler());
-		beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
-		beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
 
 		erstelleKommentarPanel.add(erstelleKommentarBox);
 
@@ -281,8 +274,8 @@ public class BeitragBox extends VerticalPanel {
 		public void onClick(ClickEvent event) {
 
 			Nutzer n = new Nutzer();
-//			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
-			n.setId(3);
+			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
+			
 			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
 
 		}
@@ -305,8 +298,7 @@ public class BeitragBox extends VerticalPanel {
 
 			if (result == null) {
 				Nutzer n = new Nutzer();
-//				n.setId(Integer.parseInt(Cookies.getCookie("id")));
-				n.setId(3);
+				n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 				pinnwandVerwaltung.erstelleLike(beitrag, n, new LikeErstellenCallback());
 
@@ -332,8 +324,8 @@ public class BeitragBox extends VerticalPanel {
 		@Override
 		public void onSuccess(Like result) {
 
-			PinnwandBox pBox = new PinnwandBox();
-
+			PinnwandBox pBox = new PinnwandBox(beitrag.getNutzerFK());
+			
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
 			
@@ -357,7 +349,7 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Void result) {
-			PinnwandBox pBox = new PinnwandBox();
+			PinnwandBox pBox = new PinnwandBox(beitrag.getNutzerFK());
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
 			

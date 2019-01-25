@@ -121,7 +121,7 @@ public PinnwandVerwaltungImpl() {
 		Nutzer nutzer = new Nutzer();
 		nutzer = this.nMapper.getNutzerByEmail(mail);
 		
-		if(nutzer.getId() == 0) {
+		if(nutzer == null) {
 			return null;
 		}
 		else {
@@ -192,10 +192,12 @@ public PinnwandVerwaltungImpl() {
 		
 		if (p1 != null) {
 			this.loeschen(p1);
+			//Loeschen des Nutzers
+			
 		}
 		
-		//Loeschen des Nutzers
 		this.nMapper.deleteNutzer(n);
+
 	}
 	
 	/**
@@ -245,8 +247,7 @@ public PinnwandVerwaltungImpl() {
 		p.setNutzerFK(n.getId());
 		p.setErstellZeitpunkt(new Timestamp(System.currentTimeMillis()));
 		
-		//Setzen einer vorlaeufigen ID, welche nach Kommunikation mit der DB
-		//auf den nächsthöchsten Wert gesetzt wird
+		//Setzen einer vorläufigen ID, die später richtig gesetzt wird
 		p.setId(1);
 		
 		//Speichern in der DB
@@ -282,7 +283,14 @@ public PinnwandVerwaltungImpl() {
 	 */
 	@Override
 	public Pinnwand getPinnwandByNutzer(Nutzer n) {
-		return this.pMapper.getPinnwandByNutzer(n);
+		Pinnwand p = new Pinnwand();
+		p = this.pMapper.getPinnwandByNutzer(n);
+		
+		if (p == null) {
+			return null;
+		} else {
+			return p;
+		}
 	}
 	
 	/**
