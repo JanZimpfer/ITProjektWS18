@@ -37,7 +37,7 @@ div {
 }
 
 #SuchProfilLogout {
-	background-color: #dfdfdf;
+	background-color: #5E5E5E;
 	border-radius: 20px;
 	margin-bottom: 15px;
 	border-style: inset;
@@ -49,10 +49,12 @@ div {
 	width: 20%;
 	min-height: 15em;
 	font-size: 10pt;
-	border: 10px solid ;
+	border: 7px solid ;
 	border-radius: 20px;
 	margin-left: 0px;
 	border-style: inset;
+	
+	
 }
 
 #InhaltDiv {
@@ -62,7 +64,7 @@ div {
 	padding: 10px;
 	width: 65%;
 	font-size: 10pt;
-	border-left: 5px solid grey;
+	border-left: 5px solid #df1717;
 	
 
 }
@@ -83,20 +85,18 @@ div {
 /* Styling von Button-Elementen */
 
 .gwt-Button { 
-   background-color:#fe1a00;
-	moz-border-radius:6px;
-	webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #d83526;
+  
+	background-color:grey;
+	border:1px solid black;
 	display:inline-block;
 	cursor:pointer;
-	font-weight:bold;
-	padding:6px 24px;
+	color:black;
+	font-family:Oxygen;
+	font-size:16px;
+	padding:6px 12px;
 	text-decoration:none;
-	font-family: 'Oxygen', sans-serif;
 	width: 100px;
-	height: 50px;
-	font-size: 150;
+	heigth: 80px;
 	
    
 }
@@ -130,7 +130,6 @@ div {
 /* Angezeigte Textbeiträge */
 
 .beitragInhalt {
-	border-bottom: 0.5px solid black;
 	color: black;
 	font-size: 20pt;
 	padding: 20px;
@@ -154,6 +153,7 @@ div {
 
 .aboniertePW { /* löschen, da nur panel? */
 	color: black;
+	
 }
 
 .aboPinnwandInfos { /* löschen da nur panel? */
@@ -189,18 +189,17 @@ div {
 
 .beitragBox {
 	color: black;
-	border: 10px solid;
+	border: 7px solid;
 	border-radius: 20px;
 	padding: 15px;
 	margin: 20px;
-	border-style: outset;
+	border-style: inset;
 	width: 50%;
 	
 	
 }
 
 .beitragInhalt {
-	border-bottom: 0.5px solid black;
 	color: black;
 	font-size: 10pt;
 	/* Anmerkung: PrimaryName */
@@ -244,7 +243,7 @@ div {
 	
 	padding:10px;
 	margin: 20px;
-	border-bottom: 2px solid grey;
+	border-bottom: 2px solid #df1717;
 	width: 100px;
 	
 }
@@ -253,7 +252,7 @@ div {
 
 	padding:20px;
 	margin: 20px;
-	border-bottom: 2px solid grey;
+	border-bottom: 2px solid #df1717;
 
 }
 
