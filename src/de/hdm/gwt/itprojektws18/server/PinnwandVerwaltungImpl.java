@@ -182,11 +182,25 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public void loeschen (Nutzer n) {
 		
+		/**
+		 * Löschen alle Abonemennt-Objekte in denen der zu löschende user
+		 * als FK auftritt.
+		 */
+		
+		Vector<Abonnement> abos = this.getAllAbosFor(n);
+		
+		if (abos != null) {
+			for (Abonnement a : abos) {
+				this.loeschen(a);
+			}
+		}
+		
 		/*
 		 * Zunaechst wird die Pinnwand des Nutzers geloescht.
 		 * Dies loest eine Loesch-Kaskade aus die alle zugehörigen Objekte loescht.
 		 * 
 		 */
+		
 		
 		Pinnwand p1 = this.getPinnwandByNutzer(n);
 		
