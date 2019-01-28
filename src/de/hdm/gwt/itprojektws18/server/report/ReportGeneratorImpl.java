@@ -28,7 +28,7 @@ import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
 	/**
-	 * Zugriff auf die Bankadministration um essentielle Methoden für die Koexistenz 
+	 * Zugriff auf die PinnwandAdmin um essentielle Methoden für die Koexistenz 
 	 * von Datenobjekten (vgl. bo- Package) bietet.
 	 * 
 	 * @author Ayse, in Anlehnung Thies
@@ -128,7 +128,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			CompositeParagraph header = new CompositeParagraph();
 			// Nickname des Nutzers aufnehmen.
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
-			// Hinzufügen der zusammengestellten Kopfdaten zu dem Report
+			// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
 			result.setHeaderData(header);
 			
 			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosForWithTime(n, firstDate, lastDate);
@@ -182,6 +182,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Diese Methode soll alle  Kommentare und Likes f�r einen Zeitraum aller Beitr�ge anzeigen 
 	 * (non-Javadoc)
 	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
+	 * 	 *@return der fertige Report 
+
 	 */
 	
 	@Override
@@ -196,34 +198,63 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
 			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
+			//Ein leeren Report anlegen.
 			BeitragStatistikReport result = new BeitragStatistikReport();
+			// Jeder Report hat einen Titel
 			result.setTitle("Beitragstatistik:");
+			
+			/**
+		     * Ab hier erfolgt die Zusammenstellung der Kopfdaten (die Dinge, die oben
+		     * auf dem Report stehen) des Reports. Die Kopfdaten sind mehrzeilig, daher
+		     * die Verwendung von CompositeParagraph.
+		     * 
+		     * @author in Anlehnung Thies
+		     */
 			CompositeParagraph header = new CompositeParagraph();
+			// Nickname des Nutzers aufnehmen.
 			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+			// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
 			result.setHeaderData(header);
 			
 			Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeByNutzerWithTime(n, startDate, endDate);
-			
+			//Kopfzeile für die Beitragstatistik- Tabelle.
 			Row headline = new Row();
+			/**
+			 * Wir wollen Zeilen mit 3 Spalten in der Tabelle erzeugen. In die erste
+			 * Spalte schreiben wir Spalte die jeweilige Beitraganzahl, in die zweite Spalte die jeweilige 
+			 * Kommentaranzahl und in die dritte Spalte die jeweilige Likeanzahl. 
+			 * In der Kopfzeile werden die entsprechenden Überschriften angelegt.
+			 * 
+			 * @author Ayse, in Anlehnung Thies
+			 */
+			
 			headline.addColumn(new Column("Beitr�ge"));
 			headline.addColumn(new Column("Kommentare"));
 			headline.addColumn(new Column("Likes"));
 
+			
+			// Hinzufügen der Kopfzeile.
 			result.addRow(headline);
 			
 			for (Beitrag beitrag2 : alleBeitraege) {
 				
+				// Eine leere Zeile anlegen.
 				Row row = new Row();
+				
+				// Erste Spalte: Beitrag anzeigen.
 				row.addColumn(new Column(beitrag2.getText()));
+				//Zweite Spalte: Kommentaranzahl hinzufügen.
 				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllKommentareByBeitrag(beitrag2).size()+""));
+				// Dritte Spalte: Likeanzahl hinzufügen.
 				row.addColumn(new Column(this.getPinnwandVerwaltung().getAllLikesByBeitrag(beitrag2).size()+""));
+				//und die Zeilen dem Report hinzufügen
 				result.addRow(row);
 				
 			}
-			
+			//Impressum hinzufügen
 			this.addImprint(result);
 
-		
+			//zum Schluss müssen wir noch den fertigen Report zurückgeben.
 		return result;
 
 	}
