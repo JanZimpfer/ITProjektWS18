@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-import java.sql.Timestamp;
+
 
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
@@ -76,6 +76,7 @@ public class PinnwandMapper {
 		Connection con = DBConnection.connection();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 
 			stmt.executeUpdate(
@@ -132,7 +133,6 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-//				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
 				return p;
 			}
 		} catch (SQLException e) {
@@ -167,7 +167,7 @@ public class PinnwandMapper {
 				Pinnwand p = new Pinnwand();
 				p.setId(rs.getInt("id"));
 				p.setNutzerFK(rs.getInt("nutzer_p_FK"));
-//				p.setErstellZeitpunkt(rs.getDate("erstellzeitpunkt"));
+				
 				return p;
 			}
 		}catch(SQLException e) {
