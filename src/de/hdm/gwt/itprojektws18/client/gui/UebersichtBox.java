@@ -60,10 +60,14 @@ public class UebersichtBox extends VerticalPanel {
 		p.setId(nutzerId);
 
 		abonnierenPanel.add(profilInfos);
-		abonnierenPanel.add(aboErstellBtn);
+		
+		if (nutzerId != n.getId()) {
+			abonnierenPanel.add(aboErstellBtn);
+			aboErstellBtn.addClickHandler(new AboErstellClickhandler());
+		}
 
 
-		aboErstellBtn.addClickHandler(new AboErstellClickhandler());
+		
 
 		pinnwandVerwaltung.getAboFor(nutzerId, n.getId() , new AboPruefenCallback());
 		
