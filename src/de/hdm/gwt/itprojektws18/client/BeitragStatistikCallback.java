@@ -2,6 +2,7 @@ package de.hdm.gwt.itprojektws18.client;
 
 import java.util.Date;
 
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -16,7 +17,7 @@ public class BeitragStatistikCallback extends HTMLResultPanel{
 	
 	public BeitragStatistikCallback(Date firstDate, Date lastDate) {
 		Nutzer nutzer = new Nutzer();
-		nutzer.setId(3);
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 		reportverwaltung.createBeitragStatistikReport(nutzer, firstDate, lastDate, new BeitragStatistik());
 		
 }

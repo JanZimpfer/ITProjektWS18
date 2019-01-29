@@ -26,7 +26,7 @@ public class Textbeitrag extends BusinessObject{
 	}
 	
 	/**
-	 * String-Repr‰sentation einer Textbeitraginstanz
+	 * String-Repr√§sentation einer Textbeitraginstanz
 	 */
 	public String toString() {
 		
