@@ -30,7 +30,7 @@ div {
 }
 
 #header {
-	background-color: white;
+	background-color: #5e5e5e;
 	border-radius: 20px;
 	font-size: 22px;
 	font-weight: bold;
@@ -85,6 +85,74 @@ div {
   box-sizing: border-box;
 }
 
+/* Styling der GWT-DialogBox */
+
+.gwt-DialogBox .dialogContent {
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogBottomCenter {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogMiddleLeft {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogMiddleRight {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogTopLeftInner {
+  width: 8px;
+}
+.gwt-DialogBox .dialogTopRightInner {
+  width: 10px;
+}
+.gwt-DialogBox .dialogBottomLeftInner {
+  width: 8px;
+}
+.gwt-DialogBox .dialogBottomRightInner {
+  width: 10px;
+}
+.gwt-DialogBox .dialogTopLeft {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogTopRight {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogBottomLeft {
+  padding: 2px;
+  background: #929292;
+}
+.gwt-DialogBox .dialogBottomRight {
+  padding: 2px;
+  background: #929292;
+}
+* html .gwt-DialogBox .dialogTopLeftInner {
+  width: 3px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogTopRightInner {
+  width: 5px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogBottomLeftInner {
+  width: 3px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogBottomRightInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+
 
 /* Styling von Button-Elementen */
 
@@ -111,33 +179,15 @@ div {
 	
 }
 
-.profilBtn {
-	
-}
-
-.headerBtn {
-	
-}
-
-.uebersichtBtn {
-	
-}
-
-.beitragBtn {
-	
-}
-
-.kommentarBtn {
-	
-}
 
 /* Angezeigte Textbeitr�ge */
 
 .beitragInhalt {
 	color: black;
 	font-size: 20pt;
-	padding: 20px;
-	margin: 20px;	
+	width: 400px;
+	padding: 10px;
+	margin: 10px;	
 	box-sizing: border-box;
 	resize: none;
 	/* Anmerkung: PrimaryName */
@@ -196,22 +246,23 @@ div {
 	color: black;
 	border: 7px solid;
 	border-radius: 20px;
-	padding: 15px;
-	margin: 20px;
+	padding: 5px;
+	margin: 10px;
 	border-style: inset;
-	width: 50%;
+	width: 70%;
 	
 	
 }
 
 .beitragInhalt {
 	color: black;
-	font-size: 10pt;
+	font-size: 16px;
 	/* Anmerkung: PrimaryName */
 }
 
 .nutzerZeitPanel{
 	
+	font-size: 16px;
 	width: 100%;
 	
 }
@@ -248,15 +299,15 @@ div {
 	
 	padding:10px;
 	margin: 20px;
-	border-bottom: 2px solid #df1717;
 	width: 100px;
 	
 }
 
 .ButtonPanel { /* Namen spezifieren */
 
-	padding:20px;
-	margin: 20px;
+	padding: 7px;
+	margin: 7px;
+	border-top: 2px solid #df1717;
 	border-bottom: 2px solid #df1717;
 
 }
