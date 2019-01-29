@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
@@ -25,48 +26,26 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	 * Erstellung der GUI-Elemente
 	 */
 
-	private TextBox erstelleBeitragFeld = new TextBox();
+	private TextArea erstelleBeitragFeld = new TextArea();
 	private Button postingButton = new Button("Posten");
 
 	public ErstelleBeitragBox() {
-
+		
 		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
-		this.add(erstelleBeitragFeld);
-		this.add(postingButton);
-
-		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
-		postingButton.addClickHandler(new postingButtonClickHandler());
-
-		super.onLoad();
-
-	}
-
-	public ErstelleBeitragBox(final Pinnwand p) {
-
-		// Hinzufügen der StyleNames
-		this.addStyleName("erstelleBeitragBox");
-
-		erstelleBeitragFeld.setStylePrimaryName("erstelleBeitragFeld");
-
-		//erstelleBeitragFeld.addStyleName("erstelleBeitragFeld");
-
-		postingButton.addStyleName("uebersichtBtn");
-
-
-		erstelleBeitragFeld.setSize("100px", "30");
-
-		//erstelleBeitragFeld.setSize("900px", "60");
-
-		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
+		erstelleBeitragFeld.setStylePrimaryName("beitragEingabeFeld");
+		erstelleBeitragFeld.getElement().setAttribute("maxlength", "300");
 		
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
 
+		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
 		postingButton.addClickHandler(new postingButtonClickHandler());
 
 		super.onLoad();
 
 	}
+
+	 
 
 	class postingButtonClickHandler implements ClickHandler {
 

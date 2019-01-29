@@ -90,7 +90,6 @@ public class Suchleiste extends HorizontalPanel {
 			
 		pinnwandVerwaltung.getNutzerByNickname(txtBox.getText(), new ShowPinnwandCallback());
 		
-		txtBox.refreshSuggestionList();
 		}	
 	}
 	class ShowPinnwandCallback implements AsyncCallback<Nutzer>{
@@ -106,6 +105,7 @@ public class Suchleiste extends HorizontalPanel {
 			PinnwandBox pB = new PinnwandBox(result.getId());
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pB);
+			txtBox.refreshSuggestionList();
 			
 		}
 		

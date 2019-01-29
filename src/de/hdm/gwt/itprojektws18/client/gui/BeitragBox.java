@@ -10,8 +10,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -42,15 +44,15 @@ public class BeitragBox extends VerticalPanel {
 	/**
 	 * Erstellung benötigter GUI-Elemente
 	 */
-	private TextBox beitragInhalt = new TextBox();
+	private TextArea beitragInhalt = new TextArea();
 
 	private Label nickname = new Label();
 	private Label erstellzeitpunkt = new Label();
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
 
-	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
-	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
+	private Image beitragBearbeitenBtn = new Image("/images/stift.jpg");
+	private Image beitragLoeschenBtn = new Image("/images/mülleimer.jpg");
 	private Button likeBtn = new Button();
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
@@ -112,6 +114,8 @@ public class BeitragBox extends VerticalPanel {
 			buttonPanel.add(beitragLoeschenBtn);
 			beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
 			beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
+			beitragBearbeitenBtn.getElement().setPropertyString("style", "max-width: 22px;");
+			beitragLoeschenBtn.getElement().setPropertyString("style", "max-width: 22px;");
 		}
 
 		likeBtn.addClickHandler(new LikesErstellenClickHandler());
