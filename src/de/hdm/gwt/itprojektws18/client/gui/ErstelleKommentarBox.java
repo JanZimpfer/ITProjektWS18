@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
@@ -25,13 +26,14 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 	/**
 	 * Elemente zur Darstellung der ErstelleKommentar-Box
 	 */
-	private TextBox eingabeFeld = new TextBox();
+	private TextArea eingabeFeld = new TextArea();
 	private Button submitKommentarBtn = new Button("Kommentieren");
 	
 	private Beitrag beitrag = new Beitrag();
 	
 	public ErstelleKommentarBox(final Beitrag b) {
 		
+		eingabeFeld.setCharacterWidth(300);
 		eingabeFeld.addStyleName("kommentarEingabeFeld");
 		submitKommentarBtn.addStyleName("kommentarBtn");
 		

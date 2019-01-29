@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
@@ -25,11 +26,12 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 	 * Erstellung der GUI-Elemente
 	 */
 
-	private TextBox erstelleBeitragFeld = new TextBox();
+	private TextArea erstelleBeitragFeld = new TextArea();
 	private Button postingButton = new Button("Posten");
 
 	public ErstelleBeitragBox() {
-
+		
+		erstelleBeitragFeld.setCharacterWidth(300);
 		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
@@ -52,7 +54,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		postingButton.addStyleName("uebersichtBtn");
 
-
+		erstelleBeitragFeld.setCharacterWidth(300);
 		erstelleBeitragFeld.setSize("100px", "30");
 
 		//erstelleBeitragFeld.setSize("900px", "60");

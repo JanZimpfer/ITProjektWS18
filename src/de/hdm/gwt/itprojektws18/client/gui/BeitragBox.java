@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -42,7 +43,7 @@ public class BeitragBox extends VerticalPanel {
 	/**
 	 * Erstellung benötigter GUI-Elemente
 	 */
-	private TextBox beitragInhalt = new TextBox();
+	private TextArea beitragInhalt = new TextArea();
 
 	private Label nickname = new Label();
 	private Label erstellzeitpunkt = new Label();
