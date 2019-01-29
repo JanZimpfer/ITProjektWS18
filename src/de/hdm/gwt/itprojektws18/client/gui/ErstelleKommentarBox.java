@@ -33,7 +33,6 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 	
 	public ErstelleKommentarBox(final Beitrag b) {
 		
-		eingabeFeld.setCharacterWidth(300);
 		eingabeFeld.addStyleName("kommentarEingabeFeld");
 		submitKommentarBtn.addStyleName("kommentarBtn");
 		

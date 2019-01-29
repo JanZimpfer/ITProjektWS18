@@ -81,6 +81,10 @@ div {
 	margin-top: 15px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 /* Styling von Button-Elementen */
 
@@ -127,14 +131,15 @@ div {
 	
 }
 
-/* Angezeigte Textbeiträge */
+/* Angezeigte Textbeitrï¿½ge */
 
 .beitragInhalt {
 	color: black;
 	font-size: 20pt;
 	padding: 20px;
-	margin: 20px;
-	width: 70px;
+	margin: 20px;	
+	box-sizing: border-box;
+	resize: none;
 	/* Anmerkung: PrimaryName */
 }
 
@@ -151,12 +156,12 @@ div {
 	
 }
 
-.aboniertePW { /* löschen, da nur panel? */
+.aboniertePW { /* lï¿½schen, da nur panel? */
 	color: black;
 	
 }
 
-.aboPinnwandInfos { /* löschen da nur panel? */
+.aboPinnwandInfos { /* lï¿½schen da nur panel? */
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -182,7 +187,7 @@ div {
 
 /* Stylen der BeitragBearbeitenDialogBox */
 
-/* Keinerlei Stylenames hinzugefügt */
+/* Keinerlei Stylenames hinzugefï¿½gt */
 
 
 /* Stylen der BeitragBox */
@@ -211,7 +216,7 @@ div {
 	
 }
 
-.nickname {	/* Überarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
+.nickname {	/* ï¿½berarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
 	color: #424242;
 	font-weight: bold;
 	margin-right: 100px;
@@ -278,11 +283,12 @@ div {
 
 .erstelleBeitragFeld {
 
-
-
 	color: black;
-	widht: 100%;
-
+	padding: 20px;
+	margin: 20px;	
+	box-sizing: border-box;
+	resize: none;
+	
 	
 }
 
@@ -290,10 +296,11 @@ div {
 /* Stylen der ErstelleKommentarBox */
 
 .kommentarEingabeFeld {
-
 	
-padding: 20px;
+	padding: 20px;
 	margin: 20px;	
+	box-sizing: border-box;
+	resize: none;
 }
 
 
@@ -331,7 +338,7 @@ padding: 20px;
 	border-style: outset;
 
 }
-/* Anmerkung: nickname, erstellzp über einen class selektor ansprchen! */
+/* Anmerkung: nickname, erstellzp ï¿½ber einen class selektor ansprchen! */
 
 
 /* Stylen der KommentarLoeschenDialogBox */
