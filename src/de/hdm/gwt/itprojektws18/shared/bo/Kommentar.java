@@ -6,13 +6,13 @@ public class Kommentar extends Textbeitrag{
 	
 	
 	/**
-	 * Fremdschluesselbeziehung zum Beitrag
+	 * Fremdschlüsselbeziehung zum Beitrag
 	 */
 	
 	private int beitragFK;
 
 	/**
-	 * Auslesen des Fremdschluessels zum Beitrag
+	 * Auslesen des Fremdschlüssels zum Beitrag
 	 * @return zielId
 	 */
 	public int getBeitragFK() {
@@ -20,7 +20,7 @@ public class Kommentar extends Textbeitrag{
 	}
 
 	/**
-	 * Setzen des Fremdschluessels zum Beitrag
+	 * Setzen des Fremdschlüssels zum Beitrag
 	 * @param zielId
 	 */
 	public void setBeitragFK(int beitragFK) {
@@ -28,12 +28,12 @@ public class Kommentar extends Textbeitrag{
 	}
 	
 	/**
-	 * Fremdschluesselbeziehung zum Nutzer
+	 * Fremdschlüsselbeziehung zum Nutzer
 	 */
 	private int nutzerFK;
 
 	/**
-	 * Auslesen des Fremdschluessels zum Nutzer
+	 * Auslesen des Fremdschlüssels zum Nutzer
 	 * @return
 	 */
 	public int getNutzerFK() {
@@ -41,7 +41,7 @@ public class Kommentar extends Textbeitrag{
 	}
 
 	/**
-	 * Setzen des Fremdschluessels zum Nutzer
+	 * Setzen des Fremdschlüssels zum Nutzer
 	 * @param nutzerFK
 	 */
 	public void setNutzerFK(int nutzerFK) {
@@ -49,7 +49,7 @@ public class Kommentar extends Textbeitrag{
 	}
 	
 	/**
-	 * String-Repr�sentation einer Kommentarinstanz
+	 * String-Repräsentation einer Kommentarinstanz
 	 */
 	public String toString() {
 		return super.toString() + " Beitrag:" + this.getBeitragFK() + " Nutzer:" + this.getNutzerFK();

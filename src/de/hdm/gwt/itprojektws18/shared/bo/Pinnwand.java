@@ -5,12 +5,12 @@ public class Pinnwand extends BusinessObject{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Fremdschlüsselbeziehung zum Inhaber des Pinnwand
+	 * FremdschlÃ¼sselbeziehung zum Inhaber des Pinnwand
 	 */
 	private int nutzerFK;
 
 	/**
-	 * Der Fremdschlüssel zum Pinnwandinhaber wird ausgelesen
+	 * Der FremdschlÃ¼ssel zum Pinnwandinhaber wird ausgelesen
 	 * @return
 	 */
 	public int getNutzerFK() {
@@ -18,17 +18,15 @@ public class Pinnwand extends BusinessObject{
 	}
 
 	/**
-	 * Der Fremdschlüssel zum Pinnwandinhaber wird gesetzt.
+	 * Der FremdschlÃ¼ssel zum Pinnwandinhaber wird gesetzt.
 	 * @param nutzerId
 	 */
 	public void setNutzerFK(int nutzerFK) {
 		this.nutzerFK = nutzerFK;
 	}
 	
-	// equals Methode implementieren?!
-	
 	/**
-	 * String-Repräsentation einer Pinnwandinstanz
+	 * String-ReprÃ¤sentation einer Pinnwandinstanz
 	 */
 	public String toString() {
 		return super.toString() + " Nutzer:" + this.getNutzerFK();

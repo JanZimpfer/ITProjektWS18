@@ -6,7 +6,7 @@ public class Nutzer extends BusinessObject{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * selbstgew‰hltes Pseudonym des Nutzers
+	 * selbstgew√§hltes Pseudonym des Nutzers
 	 */
 	private String nickname = "";
 	
@@ -20,6 +20,9 @@ public class Nutzer extends BusinessObject{
 	 */
 	private String nachname = "";
 
+	/**
+	 * Email-Adresse des Nutzers
+	 */
 	private String email = "";
 	
 	/**
@@ -70,20 +73,26 @@ public class Nutzer extends BusinessObject{
 		this.nachname = nachname;
 	}
 	
-	//equals Methode implementieren?!
-	
 	/**
-	 * String-Repr‰sentation einer Nutzerinstanz
+	 * String-Repr√§sentation einer Nutzerinstanz
 	 */
 	public String toString() {
 		
 		return super.toString() + " Vorname: " + this.getVorname() + " Nachname:" + this.getNachname() + " Nickname:" + this.getNickname();
 	}
 
+	/**
+	 * Email-Adresse wird ausgelesen
+	 * @return
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Email-Adresse wird gesetzt
+	 * @param email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}

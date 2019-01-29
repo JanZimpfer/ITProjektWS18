@@ -3,16 +3,14 @@ package de.hdm.gwt.itprojektws18.shared.bo;
 public class Like extends BusinessObject{
 	
 	private static final long serialVersionUID = 1L;
-
 	
 	/**
-	 * Fremdschluesselbeziehung zum Beitrag
+	 * Fremdschlüsselbeziehung zum Beitrag
 	 */
-	
 	private int beitragFK;
 
 	/**
-	 * Auslesen des Fremdschluessels zum Beitrag
+	 * Auslesen des Fremdschlüssels zum Beitrag
 	 * @return zielId
 	 */
 	public int getBeitragFK() {
@@ -20,7 +18,7 @@ public class Like extends BusinessObject{
 	}
 
 	/**
-	 * Setzen des Fremdschluessels zum Beitrag
+	 * Setzen des Fremdschlüssels zum Beitrag
 	 * @param zielId
 	 */
 	public void setBeitragFK(int beitragFK) {
@@ -28,7 +26,7 @@ public class Like extends BusinessObject{
 	}
 	
 	/**
-	 * Fremdschluesselbeziehung zum Nutzer
+	 * Fremdschlüsselbeziehung zum Nutzer
 	 */
 	private int nutzerFK;
 
@@ -42,7 +40,7 @@ public class Like extends BusinessObject{
 	}
 
 	/**
-	 * Setzen des Fremdschluessels zum Nutzer
+	 * Setzen des Fremdschlüssels zum Nutzer
 	 * @param nutzerFK
 	 */
 	public void setNutzerFK(int nutzerFK) {
@@ -50,7 +48,7 @@ public class Like extends BusinessObject{
 	}
 	
 	/**
-	 * String-Repr�sentation einer Likeinstanz
+	 * String-Repräsentation einer Likeinstanz
 	 */
 	public String toString() {
 		return super.toString() + " Beitrag:" + this.getBeitragFK() + " Nutzer:" + this.getNutzerFK();
