@@ -1,32 +1,35 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-//import de.hdm.gwt.itprojektws18.client.gui.AboPinnwandBox.PinnwandAnzeigen;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
-import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
-import java.sql.Timestamp;
 import java.util.Vector;
+
+/**
+ * Klasse zur Darstellung aller Abonnement Beziehungen eines Nutzers.
+ * @author NiklasFuchs
+ *
+ */
 
 public class AboBox extends VerticalPanel {
 
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
 	 * initialisieren.
+	 * @author NiklasFuchs
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
 	 * Instanziierung der GUI Elemente
+	 * @author NiklasFuchs
 	 */
 
 	private VerticalPanel abobox = new VerticalPanel();
@@ -39,6 +42,10 @@ public class AboBox extends VerticalPanel {
 
 	private Label anzeigePW = new Label("Abonnierte Pinnwände: ");
 
+	/**
+	 * Deklarierung des Business Object das verwendet wird
+	 * @author NiklasFuchs
+	 */
 	Nutzer nutzer = new Nutzer();
 
 	public AboBox() {
@@ -48,20 +55,25 @@ public class AboBox extends VerticalPanel {
 		
 		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
+		/**
+		 * Diese Methode gibt alle Abonnements für den eingeloggten Nutzer aus
+		 * @author NiklasFuchs
+		 */
 		pinnwandVerwaltung.getAllAbosFor(nutzer, new NeuesAboAnzeigenCallback());
-
-		this.addStyleName("abobox");
-		this.add(abobox);
 
 		abobox.add(profilbereich);
 		abobox.add(aboniertePW);
 
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
+		
+		this.add(abobox);
 
 		/**
-		 * 
+		 * Hinzufügen der StyleNamen für CSS-Styling
+		 * @author NiklasFuchs
 		 */
+		this.addStyleName("abobox");
 		anzeigePW.addStyleName("anzeigePW");
 		aboniertePW.addStyleName("aboniertePW");
 		aboPinnwandInfos.addStyleName("aboPinnwandInfos");
@@ -69,6 +81,11 @@ public class AboBox extends VerticalPanel {
 		super.onLoad();
 	}
 
+	/**
+	 * Nested Class für das Anzeigen der Abonnements
+	 * @author NiklasFuchs
+	 *
+	 */
 	class NeuesAboAnzeigenCallback implements AsyncCallback<Vector<Abonnement>> {
 
 		@Override
@@ -81,6 +98,7 @@ public class AboBox extends VerticalPanel {
 		public void onSuccess(Vector<Abonnement> result) {
 			for (final Abonnement a : result) {
 				final AboPinnwandBox apBox = new AboPinnwandBox(a);
+				abobox.add(apBox);
 
 				pinnwandVerwaltung.getNutzerbyID(a.getPinnwandFK(), new AsyncCallback<Nutzer>() {
 
@@ -97,7 +115,7 @@ public class AboBox extends VerticalPanel {
 
 						apBox.updateNutzerNameLabel(nameString);
 						apBox.updateNickNameLabel(nicknameString);
-						abobox.add(apBox);
+						
 					}
 
 				});
