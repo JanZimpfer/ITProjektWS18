@@ -22,87 +22,87 @@ import de.hdm.gwt.itprojektws18.shared.bo.Like;
 public interface PinnwandVerwaltung extends RemoteService {
 
 
-	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email);
+	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException;
 
 	void speichern(Nutzer n);
 
 	public Nutzer checkEmail(String mail) throws IllegalArgumentException;
 	
-	Nutzer getNutzerbyID(int nutzerID);
+	Nutzer getNutzerbyID(int nutzerID) throws IllegalArgumentException;
 
 	Nutzer getNutzerByName(String vorname, String nachname) throws IllegalArgumentException;
 
-	Nutzer getNutzerByNickname(String nickname);
+	Nutzer getNutzerByNickname(String nickname) throws IllegalArgumentException;
 	
-	Vector<Nutzer> getAllNutzer();
+	Vector<Nutzer> getAllNutzer() throws IllegalArgumentException;
 	
-	Vector<Nutzer> searchNutzer(String sucheingabe);
+	Vector<Nutzer> searchNutzer(String sucheingabe) throws IllegalArgumentException;
 
-	void loeschen(Nutzer n);
+	void loeschen(Nutzer n) throws IllegalArgumentException;
 
-	Pinnwand erstellePinnwand(Nutzer n);
+	Pinnwand erstellePinnwand(Nutzer n) throws IllegalArgumentException;
 
-	void speichern(Pinnwand p);
+	void speichern(Pinnwand p) throws IllegalArgumentException;
 
-	Pinnwand getPinnwandByID(int pinnwandID);
+	Pinnwand getPinnwandByID(int pinnwandID) throws IllegalArgumentException;
 
-	void loeschen(Pinnwand p);
+	void loeschen(Pinnwand p) throws IllegalArgumentException;
 
-	Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n);
+	Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n) throws IllegalArgumentException;
 
-	void speichern(Beitrag b);
+	void speichern(Beitrag b) throws IllegalArgumentException;
 
-	Beitrag getBeitragByID(int beitragID);
+	Beitrag getBeitragByID(int beitragID) throws IllegalArgumentException;
 
-	Vector<Beitrag> getAllBeitraege();
+	Vector<Beitrag> getAllBeitraege() throws IllegalArgumentException;
 
-	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p);
+	Vector<Beitrag> getAllBeitraegeByPinnwand(Pinnwand p) throws IllegalArgumentException;
 
-	void loeschen(Beitrag b);
+	void loeschen(Beitrag b) throws IllegalArgumentException;
 
-	Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n);
+	Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n) throws IllegalArgumentException;
 
-	void loeschen(Kommentar k);
+	void loeschen(Kommentar k) throws IllegalArgumentException;
 
-	Vector<Kommentar> getAllKommentare();
+	Vector<Kommentar> getAllKommentare() throws IllegalArgumentException;
 
-	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b);
+	Vector<Kommentar> getAllKommentareByBeitrag(Beitrag b) throws IllegalArgumentException;
 
-	Like erstelleLike(Beitrag b, Nutzer n);
+	Like erstelleLike(Beitrag b, Nutzer n) throws IllegalArgumentException;
 
-	void loeschen(Like l);
+	void loeschen(Like l) throws IllegalArgumentException;
 	
-	Like getLikeFor(int beitragId, int nutzerId);
+	Like getLikeFor(int beitragId, int nutzerId) throws IllegalArgumentException;
 
-	Vector<Like> getAllLikesByNutzer(Nutzer n);
+	Vector<Like> getAllLikesByNutzer(Nutzer n) throws IllegalArgumentException;
 
-	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n);
+	Abonnement erstelleAbonnement(Pinnwand p, Nutzer n) throws IllegalArgumentException;
 
-	void loeschen(Abonnement a);
+	void loeschen(Abonnement a) throws IllegalArgumentException;
 
-	Vector<Abonnement> getAllAbosFor(Nutzer n);
+	Vector<Abonnement> getAllAbosFor(Nutzer n) throws IllegalArgumentException;
 
-	Vector<Kommentar> getAllKommentareByNutzer(Nutzer n);
+	Vector<Kommentar> getAllKommentareByNutzer(Nutzer n) throws IllegalArgumentException;
 
-	Vector<Like> getAllLikesByBeitrag(Beitrag b);
+	Vector<Like> getAllLikesByBeitrag(Beitrag b) throws IllegalArgumentException;
 
-	Pinnwand getPinnwandByNutzer(Nutzer n);
+	Pinnwand getPinnwandByNutzer(Nutzer n) throws IllegalArgumentException;
 
-	Vector<Abonnement> getAllAbosFor(Pinnwand p);
+	Vector<Abonnement> getAllAbosFor(Pinnwand p) throws IllegalArgumentException;
 
-	Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n);
+	Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n) throws IllegalArgumentException;
 
-	void speichern(Kommentar k);
+	void speichern(Kommentar k) throws IllegalArgumentException;
 
-	Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate);
+	Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException;
 
-	Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+	Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException;
 
-	Vector<Kommentar> getAllKommentareByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+	Vector<Kommentar> getAllKommentareByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException;
 
-	Vector<Like> getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate);
+	Vector<Like> getAllLikesByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException;
 
-	Abonnement getAboFor(int pinnwandId, int nutzerId);
+	Abonnement getAboFor(int pinnwandId, int nutzerId) throws IllegalArgumentException;
 
 
 	
