@@ -29,17 +29,11 @@ div {
 	border-radius: 20px;
 }
 
-#header {
-	background-color: #5e5e5e;
+#Header {
+	background-color: #5E5E5E;
 	border-radius: 20px;
 	font-size: 22px;
 	font-weight: bold;
-}
-
-#SuchProfilLogout {
-	background-color: #5E5E5E;
-	border-radius: 20px;
-	margin-bottom: 15px;
 	border-style: inset;
 }
 
@@ -88,54 +82,63 @@ div {
 /* Styling der GWT-DialogBox */
 
 .gwt-DialogBox .dialogContent {
+	width: auto;
+	margin: auto auto;
+	padding: 20px 20px 20px 20px;
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 .gwt-DialogBox .dialogMiddleCenter {
-  padding: 2px;
-  background: #929292;
+  	padding: 15px;
+	background: white;
+	margin-left: 40px;
 }
 .gwt-DialogBox .dialogBottomCenter {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
 }
 .gwt-DialogBox .dialogMiddleLeft {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogMiddleRight {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogTopLeftInner {
-  width: 8px;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogTopRightInner {
-  width: 10px;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogBottomLeftInner {
-  width: 8px;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogBottomRightInner {
-  width: 10px;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogTopLeft {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogTopRight {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogBottomLeft {
-  padding: 2px;
-  background: #929292;
+  margin: auto auto;
+
 }
 .gwt-DialogBox .dialogBottomRight {
-  padding: 2px;
-  background: #929292;
+margin: auto auto;
+
 }
 * html .gwt-DialogBox .dialogTopLeftInner {
-  width: 3px;
+  width: 5px;
   overflow: hidden;
 }
 * html .gwt-DialogBox .dialogTopRightInner {
@@ -143,7 +146,7 @@ div {
   overflow: hidden;
 }
 * html .gwt-DialogBox .dialogBottomLeftInner {
-  width: 3px;
+  width: 5px;
   height: 5px;
   overflow: hidden;
 }
@@ -178,7 +181,6 @@ div {
 	width: 400px;
 	
 }
-
 
 /* Angezeigte Textbeitr�ge */
 
@@ -445,6 +447,11 @@ div {
 	color: black;
 
 
+}
+
+.suchLabel {
+	color: white;
+	opacity: 0.0;
 }
 
 /* Stylen der UebersichtBox */

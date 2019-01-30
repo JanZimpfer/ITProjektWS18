@@ -53,7 +53,7 @@ public class ReportSelectMenu extends HorizontalPanel {
 	
 	
 	/*
-	 *  Erstellung von "Zurück auf die Startseite"  Button, vom Report zurück zur Startseite 
+	 *  Erstellung von "Zurï¿½ck auf die Startseite"  Button, vom Report zurï¿½ck zur Startseite 
 	 */
 	
 	private class ZurueckClickhandler implements ClickHandler{
@@ -62,7 +62,7 @@ public class ReportSelectMenu extends HorizontalPanel {
 		
 		public void onClick(ClickEvent event) {
 			
-			Window.Location.assign("http://127.0.0.1:8888/ITProjektWS18.html");
+			Window.Location.assign("/");
 			
 		}
 	}

@@ -17,6 +17,13 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
+/**
+ * Klasse, die das Anzeigen von Nutzern ermöglicht, die einen Beitrag mit einem "Liek" versehen haben.
+ * Darstellung erfolgt über eine DialogBox.
+ * @author NiklasFuchs
+ *
+ */
+
 public class LikesAnzeigenDialogBox extends DialogBox {
 
 	/**
@@ -26,13 +33,18 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
-	 * Erstellung der benötigten GUI-Elemente
+	 * Instanziierung der benötigten GUI-Elemente
+	 * @author NiklasFuchs
 	 */
 	private VerticalPanel uebersichtPanel = new VerticalPanel();
 	private VerticalPanel likePanel = new VerticalPanel();
 	private Label infoText = new Label("Folgende Nutzer haben diesen Beitrag mit Gefällt-mir markiert:");
 	private Button schliessenBtn = new Button("Schließen");
 
+	/**
+	 * Deklarierung des Business Object das verwendet wird
+	 * @author NiklasFuchs
+	 */
 	private Beitrag beitrag = new Beitrag();
 	
 	public LikesAnzeigenDialogBox() {
@@ -43,9 +55,16 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 
 		this.beitrag = b;
 		
-
+		/**
+		 * Methode, alle Likes zu einem beitrag ausgibt.
+		 * @author NiklasFuchs
+		 */
 		pinnwandVerwaltung.getAllLikesByBeitrag(beitrag, new LikesAusgebenCallback());
 		
+		/**
+		 * Hinzufügen eines ClickHandler, der das Schließen der DialogBox bewirkt.
+		 * @author NiklasFuchs
+		 */
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
 		
 		uebersichtPanel.add(infoText);
@@ -58,6 +77,7 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 
 	/**
 	 * <b>Nested Class für den Callback Aufruf zur Ausgabe aller Likes</b>
+	 * @author NiklasFuchs
 	 */
 	class LikesAusgebenCallback implements AsyncCallback<Vector<Like>> {
 
@@ -99,6 +119,7 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 	/**
 	 * <b>Nested Class für den schliessen-Button</b> implementiert den
 	 * entsprechenden ClickHandler
+	 * @author NiklasFuchs
 	 */
 	class SchliessenClickHandler implements ClickHandler {
 

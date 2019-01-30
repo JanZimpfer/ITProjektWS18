@@ -33,12 +33,35 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		
 		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
 		erstelleBeitragFeld.setStylePrimaryName("beitragEingabeFeld");
-		erstelleBeitragFeld.getElement().setAttribute("maxlength", "300");
+		erstelleBeitragFeld.setSize("300px", "100px");
 		
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
 
 		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
+		postingButton.addClickHandler(new postingButtonClickHandler());
+
+		super.onLoad();
+
+	}
+	
+	public ErstelleBeitragBox(final Pinnwand p) {
+
+		// Hinzufügen der StyleNames
+		this.addStyleName("erstelleBeitragBox");
+
+		erstelleBeitragFeld.setStylePrimaryName("erstelleBeitragFeld");
+
+		postingButton.addStyleName("uebersichtBtn");
+
+		erstelleBeitragFeld.setCharacterWidth(300);
+		erstelleBeitragFeld.setSize("300px", "100px");
+
+		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
+
+		this.add(erstelleBeitragFeld);
+		this.add(postingButton);
+
 		postingButton.addClickHandler(new postingButtonClickHandler());
 
 		super.onLoad();
