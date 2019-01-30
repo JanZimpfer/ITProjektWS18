@@ -7,25 +7,34 @@ import com.google.gwt.user.client.ui.*;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
-import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
-import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
+
+/**
+ * Klasse, die es ermöglicht, einzelne Abonnements eines Nutzers zu erstellen, die dessen Nutzername
+ * und Nickname beinhalten. Instanzen dieser Klasse werden in der Klasse "AboBox" dargestellt.
+ * @author NiklasFuchs
+ *
+ */
 
 public class AboPinnwandBox extends HorizontalPanel{
-
 	
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu initialisieren.
+	 * @author NiklasFuchs
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
 	 * Instanziierung der GUI Elemente
+	 * @author NiklasFuchs
 	 */
 	private Label nutzerNameLabel = new Label();
 	
 	private Label nickNameLabel = new Label();
 	
-//	 Nutzer nutzer = new Nutzer();
+	/**
+	 * Deklarierung des Business Object das verwendet wird
+	 * @author NiklasFuchs
+	 */
 	Abonnement abo = new Abonnement();
 	
 	public AboPinnwandBox() {
@@ -36,33 +45,54 @@ public class AboPinnwandBox extends HorizontalPanel{
 		
 		abo = a;
 		
-		nutzerNameLabel.addStyleName("vornameAbobox");
-		nickNameLabel.addStyleName("nicknameAboBox");
-		this.addStyleName("aboPinnwandBox");
-		
-		
+		/**
+		 * Hinzufügen von Clickhandler auf die Label, um auf die Pinnwand		 * 
+		 * des angeklickten Nutzers zu gelangen
+		 * @author NiklasFuchs
+		 */
 		nutzerNameLabel.addClickHandler(new PinnwandAnzeigenClickhandler());
 		nickNameLabel.addClickHandler(new PinnwandAnzeigenClickhandler());
 		
 		this.add(nutzerNameLabel);
 		this.add(nickNameLabel);
 		
+		/**
+		 * Hinzufügen der StyleNamen für CSS-Styling
+		 * @author NiklasFuchs
+		 */
+		nutzerNameLabel.addStyleName("vornameAbobox");
+		nickNameLabel.addStyleName("nicknameAboBox");
+		this.addStyleName("aboPinnwandBox");
+		
 		super.onLoad();
 	}
 	
+	/**
+	 * Methode zum Setzen eines Nutzernamens einer AboPinnwandBox
+	 * @param nutzernameString
+	 */
 	public void updateNutzerNameLabel(String nutzernameString) {
 		
 		this.nutzerNameLabel.setText(nutzernameString);
 		
 	}
 	
+	/**
+	 * Methode zum Setzen eines Nicknamens einer AboPinnwandBox
+	 * @param nicknameString
+	 */
 	public void updateNickNameLabel(String nicknameString) {
 		
 		this.nickNameLabel.setText(nicknameString);
 	}
 	
-	
-	
+
+	/**
+	 * Nested Class für das Anzeigen der Pinnwand des abonnierten Nutzers, implementiert
+	 * das ClickHandler Interface
+	 * @author NiklasFuchs
+	 *
+	 */
 	class PinnwandAnzeigenClickhandler implements ClickHandler{
 	
 			

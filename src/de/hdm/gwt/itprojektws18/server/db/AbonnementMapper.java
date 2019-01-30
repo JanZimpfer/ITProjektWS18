@@ -11,11 +11,11 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 /**
- * Dies ist eine Mapper-Klasse, die Nutzer-Objekte auf eine relationale
+ * Dies ist eine Mapper-Klasse, die Abonnement-Objekte auf eine relationale
  * Datenbank darstellt. Sie enthält Methoden zum erstellen, suchen, bearbeiten
  * und löschen.
  * 
- * @author jan
+ * @author Jan Zimpfer
  **/
 
 public class AbonnementMapper {
@@ -35,13 +35,27 @@ public class AbonnementMapper {
 		return abonnementMapper;
 
 	}
+	
+	/**
+	 * Einfügen eines Abonnement-Objekts in die Datenbank:
+	 * 
+	 * @param a
+	 * @return Abonnement a
+	 */
 
 	public Abonnement insertAbonnement(Abonnement a) {
+		
+		/**
+		 * Verbindung zur DB Connection
+		 */
 
 		Connection con = DBConnection.connection();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
+			
+			// Als erstes wird überprüft, welches der derzeit höchste Primärschlüssel ist.
 			ResultSet rs = stmt.executeQuery("SELECT MAX(id) as 'maxId' " + "FROM abonnement");
 
 			if (rs.next()) {
@@ -66,12 +80,23 @@ public class AbonnementMapper {
 		return a;
 
 	}
+	
+	/**
+	 * Löschen der Daten eines Abonnement-Objekts aus der Datenbank
+	 * 
+	 * @param a
+	 */
 
 	public void deleteAbonnement(Abonnement a) {
+		
+		/**
+		 * Verbindung zur DB Connection
+		 */
 
 		Connection con = DBConnection.connection();
 
 		try {
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("DELETE FROM abonnement WHERE id=" + "'" + a.getId() + "'");
 
@@ -87,7 +112,7 @@ public class AbonnementMapper {
 	/**
 	 * Die Mapper_Methode getAboFor dient zur Ausgabe eines Abo_objects,
 	 * auf das die pinnwandId AND nutzerId zutreffen.
-	 * Ist dies nicht der Fall wird null zur�ckgegeben.
+	 * Ist dies nicht der Fall wird null zurückgegeben.
 	 * @author matthias
 	 */
 	
@@ -103,8 +128,8 @@ public class AbonnementMapper {
 		
 		if (rs.next()) {
 			
+			// Vorhandenes Ergebnis in ein Objekt umwandeln
 			Abonnement a = new Abonnement () ;
-			
 			a.setId(rs.getInt("id"));
 			a.setNutzerFK(rs.getInt("nutzer_a_FK"));
 			a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
@@ -120,22 +145,34 @@ public class AbonnementMapper {
 		return null;
 	}
 	
+	/**
+	 * Diese Mehtode dient dazu, alle vorhandenen Abonnements für einen Nutzer finden.
+	 * 
+	 * @return Vector<Abonnement>
+	 */
 
 	public Vector<Abonnement> getAllAbosByNutzer(Nutzer n) {
+		
+		/**
+		 * Verbindung zur DB Connection
+		 */
 
 		Connection con = DBConnection.connection();
 		Vector<Abonnement> result = new Vector<Abonnement>();
 
 		try {
 
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
+			
+			// Query ausführen
 			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK, erstellzeitpunkt  FROM abonnement WHERE nutzer_a_FK="
 					+ "'" + n.getId() + "'");
 
 			while (rs.next()) {
 
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Abonnement a = new Abonnement();
-
 				a.setId(rs.getInt("id"));
 				a.setNutzerFK(rs.getInt("nutzer_a_FK"));
 				a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
@@ -148,25 +185,39 @@ public class AbonnementMapper {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		// Ergebnisvektor zurückgeben
 		return result;
 
 	}
+	
+	/**
+	 * Diese Mehtode dient dazu, alle vorhandenen Abonnements für eine Pinnwand finden.
+	 * 
+	 * @return Vector<Abonnement>
+	 */
 
 	public Vector<Abonnement> getAllAbosByPinnwand(Pinnwand p) {
+		
+		/**
+		 * Verbindung zur DB Connection
+		 */
 
 		Connection con = DBConnection.connection();
 		Vector<Abonnement> result = new Vector<Abonnement>();
 
 		try {
 
+			// Statement ohne Inhalt anlegen
 			Statement stmt = con.createStatement();
+			
+			// Query ausführen
 			ResultSet rs = stmt
 					.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK FROM abonnement WHERE pinnwand_a_FK =" + "'"
 							+ p.getId() + "'");
 
 			while (rs.next()) {
 
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
 				Abonnement a = new Abonnement();
 				a.setId(rs.getInt("id"));
 				a.setNutzerFK(rs.getInt("nutzer_a_FK"));
@@ -181,7 +232,7 @@ public class AbonnementMapper {
 
 			e.printStackTrace();
 		}
-
+		// Ergebnisvektor zurückgeben
 		return result;
 
 	}

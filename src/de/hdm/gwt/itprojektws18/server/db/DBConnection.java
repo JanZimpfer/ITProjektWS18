@@ -6,7 +6,15 @@ import com.google.appengine.api.utils.SystemProperty;
 
 public class DBConnection {
 
+	/* 
+	 * Connection, welche nur einmal instanntiiert wird. Da wir nur auf eine Datenbank zugreifen.
+	 */
+	
 	private static Connection con = null;
+	
+	/**
+	 * URL, mit deren Hilfe die Datenbank angesprochen wird.
+	 */
 
 	private static String googleUrl = "jdbc:mysql://35.195.132.125:3306/sw1819";
 	private static String localUrl = "jdbc:mysql://35.195.132.125:3306/sw1819";
