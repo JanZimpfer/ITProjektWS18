@@ -30,7 +30,7 @@ public class HeaderBox extends HorizontalPanel {
 
 	private Button openDeleteFormButton = new Button("Profil löschen");
 	private Button deleteButton = new Button("Nutzerdaten endgültig löschen");
-	private Button abortDeletionButton = new Button("Abbruch");
+	private Button abortDeletionButton = new Button("Abbrechen");
 
 	private DeleteForm deleteBox = new DeleteForm();
 
@@ -111,7 +111,6 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-//			dlgBox.hide();
 			deleteBox.center();
 
 		}
@@ -147,7 +146,7 @@ public class HeaderBox extends HorizontalPanel {
 			Cookies.removeCookie("id");
 			Cookies.removeCookie("email");
 			Window.alert("Ihr Profil wurde erfolgreich gelöscht!");
-			Window.Location.assign("sw1819-projekt.appspot.com");
+			Window.Location.assign("/");
 
 		}
 

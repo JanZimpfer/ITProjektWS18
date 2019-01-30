@@ -57,27 +57,25 @@ public class UebersichtBox extends VerticalPanel {
 		
 		aboErstellBtn.addStyleName("uebersichtBtn");
 
-		p.setId(nutzerId);
+		this.p.setId(nutzerId);
 
 		abonnierenPanel.add(profilInfos);
 		
 		if (nutzerId != n.getId()) {
 			abonnierenPanel.add(aboErstellBtn);
 			aboErstellBtn.addClickHandler(new AboErstellClickhandler());
+		} else {
+			this.add(erstelleBeitragBox);
 		}
 
 
 		
 
 		pinnwandVerwaltung.getAboFor(nutzerId, n.getId() , new AboPruefenCallback());
-		
-		
 		pinnwandVerwaltung.getNutzerbyID(nutzerId, new NutzerInformationenCallback());
-
-		this.add(abonnierenPanel);
-
 		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new BeitraegeAnzeigenCallback());
-
+		
+		this.add(abonnierenPanel);
 		this.add(beitragPanel);
 
 		super.onLoad();

@@ -195,6 +195,28 @@ public PinnwandVerwaltungImpl() {
 			}
 		}
 		
+		/**
+		 * Löschen aller Like-Objekte in denen der zu löschende Nutzer
+		 * als FK hinterlegt ist
+		 */
+		Vector<Like> likes = this.getAllLikesByNutzer(n);
+		if (likes != null) {
+			for (Like l : likes) {
+				this.loeschen(l);
+			}
+		}
+		
+		/**
+		 * Löschen aller Kommentar-Objekte in denen der zu löschende Nutzer
+		 * als FK hinterlegt ist
+		 */
+		Vector<Kommentar> kommentare = this.getAllKommentareByNutzer(n);
+		if(kommentare != null) {
+			for (Kommentar k : kommentare) {
+				this.loeschen(k);
+			}
+		}
+		
 		/*
 		 * Zunaechst wird die Pinnwand des Nutzers geloescht.
 		 * Dies loest eine Loesch-Kaskade aus die alle zugehörigen Objekte loescht.

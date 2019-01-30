@@ -29,11 +29,9 @@ public class Suchleiste extends HorizontalPanel {
 	private HorizontalPanel suchleiste = new HorizontalPanel();
 	private Button sucheButton = new Button("Pinnwand anzeigen");
 //	private TextBox txtBox = new TextBox();
-	
+
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	private SuggestBox txtBox = new SuggestBox(oracle);
-
-	
 
 //	private DialogBox suchErgebnisBox = new DialogBox();
 
@@ -45,7 +43,7 @@ public class Suchleiste extends HorizontalPanel {
 
 		this.addStyleName("suchleistePanel");
 		this.add(suchleiste);
-		
+
 		suchleiste.add(sucheButton);
 		pinnwandVerwaltung.getAllNutzer(new SearchCallback());
 
@@ -55,13 +53,13 @@ public class Suchleiste extends HorizontalPanel {
 
 		super.onLoad();
 	}
-		
-	class SearchCallback implements AsyncCallback<Vector<Nutzer>>{
+
+	class SearchCallback implements AsyncCallback<Vector<Nutzer>> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Ausführen der Suche: " + caught.getMessage());
-			
+
 		}
 
 		@Override
@@ -69,35 +67,32 @@ public class Suchleiste extends HorizontalPanel {
 
 			String searchResultString = new String();
 			Label searchLbl = new Label();
-			for(int i=0; i<result.size(); i++) {
-				
+			for (int i = 0; i < result.size(); i++) {
+
 				searchResultString = "" + result.elementAt(i).getNickname();
 				oracle.add(searchResultString);
-				
-				
-			}
-			
-			
-		}
-		
-		
-	}
-	
-	class ShowPinnwandClickHandler implements ClickHandler{
 
-		
-		public void onClick(ClickEvent event) {
-			
-		pinnwandVerwaltung.getNutzerByNickname(txtBox.getText(), new ShowPinnwandCallback());
-		
-		}	
+			}
+
+		}
+
 	}
-	class ShowPinnwandCallback implements AsyncCallback<Nutzer>{
+
+	class ShowPinnwandClickHandler implements ClickHandler {
+
+		public void onClick(ClickEvent event) {
+
+			pinnwandVerwaltung.getNutzerByNickname(txtBox.getText(), new ShowPinnwandCallback());
+
+		}
+	}
+
+	class ShowPinnwandCallback implements AsyncCallback<Nutzer> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Anzeigen der Pinnwand" + caught.getMessage());
-			
+
 		}
 
 		@Override
@@ -106,46 +101,9 @@ public class Suchleiste extends HorizontalPanel {
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pB);
 			txtBox.refreshSuggestionList();
-			
-		}
-		
-	}
-	
-	}
-	
-//	class SuchClickHandler implements ClickHandler {
-//
-//		public void onClick(ClickEvent event) {
-//
-//		final	String suchEingabe = txtBox.getText();
-//
-//			pinnwandVerwaltung.searchNutzer(suchEingabe, new AsyncCallback<Vector<Nutzer>>() {
-//
-//				@Override
-//				public void onFailure(Throwable caught) {
-//					// TODO Auto-generated method stub
-//
-//				}
-//
-//				@Override
-//				public void onSuccess(Vector<Nutzer> result) {
-//
-//					for (int i = 0; i < result.size(); i++) {
-//
-//						if (result == null) {}
-//
-//
-//						else {
-//							SuchergebnisBox sb = new SuchergebnisBox(suchEingabe);
-//							sb.center();
-//						}
-//					}
-//
-//				}
-//
-//			});
-//
-//		}
-//
-//	}
 
+		}
+
+	}
+
+}

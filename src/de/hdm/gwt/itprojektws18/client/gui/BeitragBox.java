@@ -96,7 +96,6 @@ public class BeitragBox extends VerticalPanel {
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
 		beitragInhalt.setReadOnly(true);
-		beitragInhalt.setSize("150px", "30px");
 
 		inhaltPanel.add(nutzerZeitPanel);
 		inhaltPanel.add(beitragInhalt);

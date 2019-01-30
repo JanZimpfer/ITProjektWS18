@@ -34,7 +34,8 @@ public class ProfilBox extends VerticalPanel {
 
 		this.addStyleName("profilBox");
 		
-		logo.setUrl("/images/tellIT_Logo.png");
+		logo.setUrl("/images/logo_new.png");
+		logo.setSize("250px", "250px");
 		imgPanel.add(logo);
 		
 		buttonPanel.add(profilButton);
