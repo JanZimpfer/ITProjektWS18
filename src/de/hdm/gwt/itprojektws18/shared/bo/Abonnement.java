@@ -5,12 +5,12 @@ public class Abonnement extends BusinessObject{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Fremdschlüsselbeziehung zum Bezugsprofil des Abonnements
+	 * FremdschlÃ¼sselbeziehung zum Bezugsprofil des Abonnements
 	 */
 	private int nutzerFK;
 
 	/**
-	 * Der Fremdschlüssel zum Bezugsprofil wird ausgelesen
+	 * Der FremdschlÃ¼ssel zum Bezugsprofil wird ausgelesen
 	 * @return
 	 */
 	public int getNutzerFK() {
@@ -18,7 +18,7 @@ public class Abonnement extends BusinessObject{
 	}
 
 	/**
-	 * Der Fremdschlüssel zum Bezugsprofil wird gesetzt.
+	 * Der Fremdschlï¿½ssel zum Bezugsprofil wird gesetzt.
 	 * @param nutzerId
 	 */
 	public void setNutzerFK(int nutzerFK) {
@@ -27,12 +27,12 @@ public class Abonnement extends BusinessObject{
 	
 	
 	/**
-	 * Fremdschlüsselbeziehung zur Pinnwand
+	 * FremdschlÃ¼sselbeziehung der zu abonnierenden Pinnwand
 	 */
 	private int pinnwandFK;
 
 	/**
-	 * Der Fremdschlüssel zur Pinnwand wird ausgelesen
+	 * Der Fremdschlï¿½ssel der zu abonnierenden Pinnwand wird ausgelesen
 	 * @return
 	 */
 	public int getPinnwandFK() {
@@ -40,7 +40,7 @@ public class Abonnement extends BusinessObject{
 	}
 
 	/**
-	 * Der Fremdschlüssel zur Pinnwand wird gesetzt
+	 * Der FremdschlÃ¼ssel zur Pinnwand wird gesetzt
 	 * @param pinnwandFK
 	 */
 	public void setPinnwandFK(int pinnwandFK) {
@@ -48,7 +48,7 @@ public class Abonnement extends BusinessObject{
 	}
 	
 	/**
-	 * String-Repräsentation einer Aboinstanz
+	 * String-ReprÃ¤sentation einer Aboinstanz
 	 */
 	public String toString() {
 		return super.toString() + " abonnierter Nutzer:" + this.getNutzerFK() + " abonnierte Pinnwand:" + this.getPinnwandFK();

@@ -142,7 +142,7 @@ public class ITProjektWS18 implements EntryPoint {
 	 */
 	private void loadPinnwandVerwaltung() {
 
-		RootPanel.get("SuchProfilLogout").clear();
+		RootPanel.get("Header").clear();
 		RootPanel.get("InhaltDiv").clear();
 		RootPanel.get("AboDiv").clear();
 		/**
@@ -155,7 +155,7 @@ public class ITProjektWS18 implements EntryPoint {
 		/**
 		 * Hinzufügen zum RootPanel
 		 */
-		RootPanel.get("SuchProfilLogout").add(hBox);
+		RootPanel.get("Header").add(hBox);
 		RootPanel.get("InhaltDiv").add(pBox);
 		RootPanel.get("AboDiv").add(aBox);
 
@@ -288,8 +288,7 @@ public class ITProjektWS18 implements EntryPoint {
 
 			@Override
 			public void onSuccess(Nutzer result) {
-				Window.alert("Ihr Nutzer wurde angelegt");
-
+				
 				/**
 				 * Setzen der Cookies zur späteren Nutzeridentifikation
 				 */

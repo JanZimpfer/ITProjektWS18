@@ -5,13 +5,13 @@ public class Beitrag extends Textbeitrag{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Fremdschluesselbeziehung zur Pinnwand
+	 * Fremdschlüsselbeziehung zur Pinnwand
 	 */
 	
 	private int pinnwandFK;
 
 	/**
-	 * Auslesen des Fremdschluessels zur Pinnwand
+	 * Auslesen des Fremdschlüssels zur Pinnwand
 	 * @return 
 	 */
 	public int getPinnwandFK() {
@@ -19,7 +19,7 @@ public class Beitrag extends Textbeitrag{
 	}
 
 	/**
-	 * Setzen des Fremdschluessels zur Pinnwand
+	 * Setzen des Fremdschlüssels zur Pinnwand
 	 * @param 
 	 */
 	public void setPinnwandFK(int pinnwandFK) {
@@ -27,12 +27,12 @@ public class Beitrag extends Textbeitrag{
 	}
 	
 	/**
-	 * Fremdschluesselbeziehung zum Nutzer
+	 * Fremdschlüsselbeziehung zum Nutzer
 	 */
 	public int nutzerFK;
 
 	/**
-	 * Auslesen des Fremdschluessels zum Nutzer
+	 * Auslesen des Fremdschlüssels zum Nutzer
 	 * @return
 	 */
 	public int getNutzerFK() {
@@ -40,7 +40,7 @@ public class Beitrag extends Textbeitrag{
 	}
 
 	/**
-	 * Setzen des Fremdschl�ssels zum Nutzer
+	 * Setzen des Fremdschlüssels zum Nutzer
 	 * @param nutzerFK
 	 */
 	public void setNutzerFK(int nutzerFK) {
@@ -48,7 +48,7 @@ public class Beitrag extends Textbeitrag{
 	}
 	
 	/**
-	 * String-Repr�sentation einer Beitragsinstanz
+	 * String-Repräsentation einer Beitragsinstanz
 	 */
 	public String toString() {
 		

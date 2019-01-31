@@ -40,7 +40,13 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	}
 
 	public BeitragBearbeitenDialogBox(Beitrag b) {
+		
 		this.beitrag = b;
+		
+		this.setText("Beitrag bearbeiten");
+		this.setGlassEnabled(true);
+		this.setAnimationEnabled(true);
+		this.setAutoHideEnabled(true);
 
 		beitragText.setText(b.getText());
 

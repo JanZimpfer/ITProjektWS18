@@ -89,8 +89,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-
-	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) {
+	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException {
 
 		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
@@ -117,7 +116,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-	public Nutzer checkEmail(String mail) throws IllegalArgumentException{
+	public Nutzer checkEmail(String mail) throws IllegalArgumentException {
 		Nutzer nutzer = new Nutzer();
 		nutzer = this.nMapper.getNutzerByEmail(mail);
 		
@@ -128,12 +127,13 @@ public PinnwandVerwaltungImpl() {
 			return nutzer;
 		}
 	}
+	
 	/**
 	 * Speichern eines bearbeiteten Nutzers
 	 * @param Nutzer n
 	 */
 	@Override
-	public void speichern(Nutzer n) {
+	public void speichern(Nutzer n) throws IllegalArgumentException {
 		
 		//Bearbeiten
 //		n.setVorname(null);
@@ -150,7 +150,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer getNutzerbyID(int nutzerID) {
+	public Nutzer getNutzerbyID(int nutzerID) throws IllegalArgumentException {
 		return this.nMapper.getNutzerbyid(nutzerID);
 	}
 	
@@ -161,7 +161,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer getNutzerByName(String vorname, String nachname) {
+	public Nutzer getNutzerByName(String vorname, String nachname) throws IllegalArgumentException {
 		return this.nMapper.getNutzerByName(vorname, nachname);
 	}
 	 
@@ -171,7 +171,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Nutzer
 	 */
 	@Override
-	public Nutzer getNutzerByNickname(String nickname) {
+	public Nutzer getNutzerByNickname(String nickname)  throws IllegalArgumentException {
 		return this.nMapper.getNutzerByNickname(nickname);
 	}
 	
@@ -180,7 +180,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Nutzer n
 	 */
 	@Override
-	public void loeschen (Nutzer n) {
+	public void loeschen (Nutzer n) throws IllegalArgumentException {
 		
 		/**
 		 * Löschen alle Abonemennt-Objekte in denen der zu löschende user
@@ -192,6 +192,28 @@ public PinnwandVerwaltungImpl() {
 		if (abos != null) {
 			for (Abonnement a : abos) {
 				this.loeschen(a);
+			}
+		}
+		
+		/**
+		 * Löschen aller Like-Objekte in denen der zu löschende Nutzer
+		 * als FK hinterlegt ist
+		 */
+		Vector<Like> likes = this.getAllLikesByNutzer(n);
+		if (likes != null) {
+			for (Like l : likes) {
+				this.loeschen(l);
+			}
+		}
+		
+		/**
+		 * Löschen aller Kommentar-Objekte in denen der zu löschende Nutzer
+		 * als FK hinterlegt ist
+		 */
+		Vector<Kommentar> kommentare = this.getAllKommentareByNutzer(n);
+		if(kommentare != null) {
+			for (Kommentar k : kommentare) {
+				this.loeschen(k);
 			}
 		}
 		
@@ -220,7 +242,7 @@ public PinnwandVerwaltungImpl() {
 	 * NOCH NICHT FUNKTIONSFÄHIG
 	 * @return
 	 */
-	public Vector <Nutzer> getAllNutzer() {
+	public Vector <Nutzer> getAllNutzer() throws IllegalArgumentException {
 		
 		return this.nMapper.getAllNutzer();
 	}
@@ -229,7 +251,7 @@ public PinnwandVerwaltungImpl() {
 	 * Suchen eines Nutzers in der Datenbank anhand eines Suchbegriffs
 	 */
 	@Override
-	public Vector <Nutzer> searchNutzer(String sucheingabe){
+	public Vector <Nutzer> searchNutzer(String sucheingabe) throws IllegalArgumentException {
 		
 		
 		return this.nMapper.searchNutzer(sucheingabe);
@@ -253,7 +275,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwnad
 	 */
 	@Override
-	public Pinnwand erstellePinnwand (Nutzer n) {
+	public Pinnwand erstellePinnwand (Nutzer n) throws IllegalArgumentException {
 		
 		//Erstellen eines Pinnwandobjekts
 		//Zuweisen der InhaberID
@@ -273,7 +295,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Pinnwand p
 	 */
 	@Override
-	public void speichern (Pinnwand p) {
+	public void speichern (Pinnwand p) throws IllegalArgumentException {
 		
 		pMapper.updatePinnwand(p);
 		
@@ -285,7 +307,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwand
 	 */
 	
-	public Pinnwand getPinnwandByID(int pinnwandID) {
+	public Pinnwand getPinnwandByID(int pinnwandID) throws IllegalArgumentException {
 		
 		return this.pMapper.getPinnwandByID(pinnwandID);
 	}
@@ -296,7 +318,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Pinnwand
 	 */
 	@Override
-	public Pinnwand getPinnwandByNutzer(Nutzer n) {
+	public Pinnwand getPinnwandByNutzer(Nutzer n) throws IllegalArgumentException {
 		Pinnwand p = new Pinnwand();
 		p = this.pMapper.getPinnwandByNutzer(n);
 		
@@ -312,7 +334,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Pinnwand p
 	 */
 	@Override
-	public void loeschen (Pinnwand p) {
+	public void loeschen (Pinnwand p) throws IllegalArgumentException {
 		
 		//Zunaechst werden alle Beitraege der Pinnwand geloescht
 		Vector<Beitrag> beitraege = this.getAllBeitraegeByPinnwand(p);
@@ -358,7 +380,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n) {
+	public Beitrag erstelleBeitrag(Pinnwand p, String text, Nutzer n)  throws IllegalArgumentException {
 		
 		//Erstellen eines Beitragobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
@@ -383,7 +405,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Beitrag b
 	 */
 	@Override
-	public void speichern (Beitrag b) {
+	public void speichern (Beitrag b)  throws IllegalArgumentException{
 		
 		//Bearbeiten
 	//	b.setText(null);
@@ -397,7 +419,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Beitrag
 	 */
 	@Override
-	public Beitrag getBeitragByID(int beitragID) {
+	public Beitrag getBeitragByID(int beitragID) throws IllegalArgumentException {
 		
 		return this.bMapper.getBeitragById(beitragID);
 	}
@@ -408,7 +430,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Beitrag>
 	 */
 	@Override
-	public Vector <Beitrag> getAllBeitraege() {
+	public Vector <Beitrag> getAllBeitraege() throws IllegalArgumentException {
 		
 		return this.bMapper.getAllBeitraege();
 	}
@@ -419,7 +441,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Beitrag>
 	 */
 	
-	public Vector<Beitrag> getAllBeitraegeByPinnwand (Pinnwand p) {
+	public Vector<Beitrag> getAllBeitraegeByPinnwand (Pinnwand p) throws IllegalArgumentException {
 		
 		return this.bMapper.getAllBeitraegeByPinnwand(p);
 	}
@@ -430,7 +452,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Beitrag>
 	 */
 	@Override
-	public Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n) {
+	public Vector<Beitrag> getAllBeitraegeByNutzer(Nutzer n) throws IllegalArgumentException {
 		return this.bMapper.getAllBeitraegeByNutzer(n);
 	}
 
@@ -440,7 +462,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Beitrag b
 	 */
 	@Override
-	public void loeschen(Beitrag b) {
+	public void loeschen(Beitrag b) throws IllegalArgumentException {
 		
 		//Loeschen aller Kommentare eines Beitrags
 		Vector<Kommentar> kommentare = this.getAllKommentareByBeitrag(b);
@@ -488,7 +510,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Kommentar
 	 */
 	@Override
-	public Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n) {
+	public Kommentar erstelleKommentar(Beitrag b, String text, Nutzer n) throws IllegalArgumentException {
 		
 		//Erstellen eines Kommentarobjekts
 		//Zuweisen der PinnwandID zur Feststellung, zu welcher Pinnwand der Beitrag gehoert
@@ -514,7 +536,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Kommentar k
 	 */
 	@Override
-	public void loeschen (Kommentar k) {
+	public void loeschen (Kommentar k) throws IllegalArgumentException {
 		this.kMapper.deleteKommentar(k);
 	}	
 	
@@ -523,7 +545,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Kommentar>
 	 */
 	@Override
-	public Vector<Kommentar> getAllKommentare() {
+	public Vector<Kommentar> getAllKommentare()  throws IllegalArgumentException {
 		return this.kMapper.getAllKommentare();
 	}
 	
@@ -533,7 +555,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Kommentar>
 	 */
 	@Override
-	public Vector<Kommentar> getAllKommentareByBeitrag (Beitrag b) {
+	public Vector<Kommentar> getAllKommentareByBeitrag (Beitrag b) throws IllegalArgumentException {
 		return this.kMapper.getAllKommentareByBeitrag(b);
 	}
 	
@@ -543,7 +565,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Kommentar>
 	 */
 	@Override
-	public Vector<Kommentar> getAllKommentareByNutzer (Nutzer n) {
+	public Vector<Kommentar> getAllKommentareByNutzer (Nutzer n)  throws IllegalArgumentException {
 		
 		return this.kMapper.getAllKommentareByNutzer(n);
 	}
@@ -552,7 +574,7 @@ public PinnwandVerwaltungImpl() {
 	 * Speichern eines bearbeiteten Kommentars
 	 * @param k
 	 */
-	public void speichern (Kommentar k) {
+	public void speichern (Kommentar k) throws IllegalArgumentException {
 		
 		
 		kMapper.updateKommentar(k);
@@ -579,7 +601,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Like 
 	 */
 	@Override
-	public Like erstelleLike(Beitrag b, Nutzer n) {
+	public Like erstelleLike(Beitrag b, Nutzer n)  throws IllegalArgumentException {
 		
 		Like l = new Like();
 		/*
@@ -622,7 +644,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Like l
 	 */
 	@Override
-	public void loeschen (Like l) {
+	public void loeschen (Like l) throws IllegalArgumentException {
 		if (l != null) {
 			this.lMapper.deleteLike(l);
 		}
@@ -634,7 +656,7 @@ public PinnwandVerwaltungImpl() {
 	 *
 	 */
 	@Override
-	public Like getLikeFor (int beitragId, int nutzerId) {
+	public Like getLikeFor (int beitragId, int nutzerId) throws IllegalArgumentException {
 		return this.lMapper.getLikeFor(beitragId, nutzerId);
 	}
 	
@@ -644,7 +666,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Like>
 	 */
 	@Override
-	public Vector<Like> getAllLikesByNutzer (Nutzer n) {
+	public Vector<Like> getAllLikesByNutzer (Nutzer n)throws IllegalArgumentException {
 		return this.lMapper.getAllLikesByNutzer(n);
 	}
 	
@@ -654,7 +676,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Like>
 	 */
 	@Override
-	public Vector<Like> getAllLikesByBeitrag (Beitrag b) {
+	public Vector<Like> getAllLikesByBeitrag (Beitrag b) throws IllegalArgumentException {
 		return this.lMapper.getAllLikesByBeitrag(b);
 	}
 	
@@ -673,7 +695,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Abonnement
 	 */
 	@Override
-	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n) {
+	public Abonnement erstelleAbonnement(Pinnwand p, Nutzer n) throws IllegalArgumentException {
 		
 //		Vector<Abonnement> abos = new Vector<Abonnement>();
 //		abos.addAll(this.getAllAbosFor(n));
@@ -709,7 +731,7 @@ public PinnwandVerwaltungImpl() {
 	 * @param Abonnement
 	 */
 	@Override
-	public void loeschen (Abonnement a) {
+	public void loeschen (Abonnement a) throws IllegalArgumentException {
 	
 		if(a != null) {
 			this.aMapper.deleteAbonnement(a);
@@ -718,7 +740,7 @@ public PinnwandVerwaltungImpl() {
 	}
 	
 	@Override
-	public Abonnement getAboFor (int pinnwandId, int nutzerId) {
+	public Abonnement getAboFor (int pinnwandId, int nutzerId)  throws IllegalArgumentException {
 		return this.aMapper.getAboFor(pinnwandId, nutzerId);
 	}
 	
@@ -726,7 +748,7 @@ public PinnwandVerwaltungImpl() {
 	 * Auslesen aller Abonnements eines Nutzers
 	 */
 	@Override
-	public Vector<Abonnement> getAllAbosFor (Nutzer n) {
+	public Vector<Abonnement> getAllAbosFor (Nutzer n)  throws IllegalArgumentException {
 		return this.aMapper.getAllAbosByNutzer(n);
 	}
 	
@@ -736,7 +758,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Abonnement>
 	 */
 	@Override
-	public Vector<Abonnement> getAllAbosFor (Pinnwand p) {
+	public Vector<Abonnement> getAllAbosFor (Pinnwand p) throws IllegalArgumentException {
 		return this.aMapper.getAllAbosByPinnwand(p);
 	}
 	
@@ -746,7 +768,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return Vector<Abonnement>
 	 */
 	@Override
-	public Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate){
+	public Vector<Abonnement> getAllAbosForWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException {
 		
 		Vector<Abonnement> aboVector = getAllAbosFor(n);
 		Vector<Abonnement> filterVector  = new Vector<Abonnement>();
@@ -765,7 +787,7 @@ public PinnwandVerwaltungImpl() {
 		 * @return Vector<Beitrag>
 		 */
 		@Override
-		public Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) {
+		public Vector<Beitrag> getAllBeitraegeByNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException {
 			
 			Vector<Beitrag> beitragVector = getAllBeitraegeByNutzer(n);
 			Vector<Beitrag> filterVector = new Vector<Beitrag>();
@@ -784,7 +806,7 @@ public PinnwandVerwaltungImpl() {
 		 * @return Vector<Kommentar>
 		 */
 		@Override
-		public Vector<Kommentar> getAllKommentareByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) {
+		public Vector<Kommentar> getAllKommentareByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException {
 			
 			Vector<Kommentar> kommentarVector = getAllKommentareByNutzer(n);
 			Vector<Kommentar> filterVector = new Vector<Kommentar>();
@@ -804,7 +826,7 @@ public PinnwandVerwaltungImpl() {
 		 * @return Vector<Like>
 		 */
 		@Override
-		public Vector<Like> getAllLikesByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) {
+		public Vector<Like> getAllLikesByNutzerWithTime (Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException {
 			
 			Vector<Like> likeVector = getAllLikesByNutzer(n);
 			Vector<Like> filterVector = new Vector<Like>();

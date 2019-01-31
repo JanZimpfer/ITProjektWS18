@@ -1,22 +1,32 @@
 package de.hdm.gwt.itprojektws18.client.gui;
 
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-import de.hdm.gwt.itprojektws18.client.ITProjektWS18;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
+/**
+ * Klasse zur Erstellung der Headerbox.
+ * @author Jan Zimpfer
+ */
+
 public class HeaderBox extends HorizontalPanel {
 
+	/**
+	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
+	 * initialisieren.
+	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	
+	/**
+	 * Instanziierung der GUI Elemente
+	 */
 
 	private ProfilBox profilBox = new ProfilBox();
 	private Suchleiste suchLeiste = new Suchleiste();
@@ -30,7 +40,7 @@ public class HeaderBox extends HorizontalPanel {
 
 	private Button openDeleteFormButton = new Button("Profil löschen");
 	private Button deleteButton = new Button("Nutzerdaten endgültig löschen");
-	private Button abortDeletionButton = new Button("Abbruch");
+	private Button abortDeletionButton = new Button("Abbrechen");
 
 	private DeleteForm deleteBox = new DeleteForm();
 
@@ -52,6 +62,10 @@ public class HeaderBox extends HorizontalPanel {
 
 		openDeleteFormButton.addClickHandler(new OpenDeleteFormClickHandler());
 
+		/**
+		 * Hinzufügen der StyleNamen für CSS-Styling
+		 */
+		
 		logoutEditPanel.addStyleName("logoutEditPanel");
 		logoutButton.addStyleName("headerBtn");
 		profilEditButton.addStyleName("headerBtn");
@@ -61,6 +75,10 @@ public class HeaderBox extends HorizontalPanel {
 
 		super.onLoad();
 	}
+	
+	/**
+	 * Nested Class für das Bearbeiten des Nutzers
+	 */
 
 	public class ChangeClickHandler implements ClickHandler {
 
@@ -68,7 +86,7 @@ public class HeaderBox extends HorizontalPanel {
 
 			final Nutzer n = new Nutzer();
 			n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			 
+
 			pinnwandVerwaltung.getNutzerbyID(n.getId(), new AsyncCallback<Nutzer>() {
 
 				@Override
@@ -111,7 +129,6 @@ public class HeaderBox extends HorizontalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-//			dlgBox.hide();
 			deleteBox.center();
 
 		}
@@ -127,7 +144,7 @@ public class HeaderBox extends HorizontalPanel {
 
 			Nutzer n = new Nutzer();
 			n.setId(Integer.parseInt(Cookies.getCookie("id")));
-			 
+
 			pinnwandVerwaltung.loeschen(n, new DeleteNutzerCallback());
 
 		}
@@ -146,8 +163,7 @@ public class HeaderBox extends HorizontalPanel {
 		public void onSuccess(Void result) {
 			Cookies.removeCookie("id");
 			Cookies.removeCookie("email");
-			Window.alert("Ihr Profil wurde erfolgreich gelöscht!");
-			Window.Location.assign("sw1819-projekt.appspot.com");
+			Window.Location.assign("/");
 
 		}
 

@@ -212,7 +212,7 @@ public class BeitragMapper {
 		try {
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'");
+			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'" + "ORDER BY erstellzeitpunkt DESC");
 			
 			while (rs.next()) {
 				Beitrag b = new Beitrag();

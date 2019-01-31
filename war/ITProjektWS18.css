@@ -29,17 +29,11 @@ div {
 	border-radius: 20px;
 }
 
-#header {
-	background-color: white;
+#Header {
+	background-color: #5E5E5E;
 	border-radius: 20px;
 	font-size: 22px;
 	font-weight: bold;
-}
-
-#SuchProfilLogout {
-	background-color: #5E5E5E;
-	border-radius: 20px;
-	margin-bottom: 15px;
 	border-style: inset;
 }
 
@@ -81,6 +75,10 @@ div {
 	margin-top: 15px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 /* Styling von Button-Elementen */
 
@@ -107,34 +105,16 @@ div {
 	
 }
 
-.profilBtn {
-	
-}
-
-.headerBtn {
-	
-}
-
-.uebersichtBtn {
-	
-}
-
-.beitragBtn {
-	
-}
-
-.kommentarBtn {
-	
-}
-
-/* Angezeigte Textbeiträge */
+/* Angezeigte Textbeitrï¿½ge */
 
 .beitragInhalt {
 	color: black;
 	font-size: 20pt;
-	padding: 20px;
-	margin: 20px;
-	width: 70px;
+	width: 400px;
+	padding: 10px;
+	margin: 10px;	
+	box-sizing: border-box;
+	resize: none;
 	/* Anmerkung: PrimaryName */
 }
 
@@ -151,12 +131,12 @@ div {
 	
 }
 
-.aboniertePW { /* löschen, da nur panel? */
+.aboniertePW { /* lï¿½schen, da nur panel? */
 	color: black;
 	
 }
 
-.aboPinnwandInfos { /* löschen da nur panel? */
+.aboPinnwandInfos { /* lï¿½schen da nur panel? */
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -182,7 +162,7 @@ div {
 
 /* Stylen der BeitragBearbeitenDialogBox */
 
-/* Keinerlei Stylenames hinzugefügt */
+/* Keinerlei Stylenames hinzugefï¿½gt */
 
 
 /* Stylen der BeitragBox */
@@ -191,27 +171,28 @@ div {
 	color: black;
 	border: 7px solid;
 	border-radius: 20px;
-	padding: 15px;
-	margin: 20px;
+	padding: 5px;
+	margin: 10px;
 	border-style: inset;
-	width: 50%;
+	width: 70%;
 	
 	
 }
 
 .beitragInhalt {
 	color: black;
-	font-size: 10pt;
+	font-size: 16px;
 	/* Anmerkung: PrimaryName */
 }
 
 .nutzerZeitPanel{
 	
+	font-size: 16px;
 	width: 100%;
 	
 }
 
-.nickname {	/* Überarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
+.nickname {	/* ï¿½berarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
 	color: #424242;
 	font-weight: bold;
 	margin-right: 100px;
@@ -243,15 +224,15 @@ div {
 	
 	padding:10px;
 	margin: 20px;
-	border-bottom: 2px solid #df1717;
 	width: 100px;
 	
 }
 
 .ButtonPanel { /* Namen spezifieren */
 
-	padding:20px;
-	margin: 20px;
+	padding: 7px;
+	margin: 7px;
+	border-top: 2px solid #df1717;
 	border-bottom: 2px solid #df1717;
 
 }
@@ -278,11 +259,12 @@ div {
 
 .erstelleBeitragFeld {
 
-
-
 	color: black;
-	widht: 100%;
-
+	padding: 20px;
+	margin: 20px;	
+	box-sizing: border-box;
+	resize: none;
+	
 	
 }
 
@@ -290,10 +272,11 @@ div {
 /* Stylen der ErstelleKommentarBox */
 
 .kommentarEingabeFeld {
-
 	
-padding: 20px;
+	padding: 20px;
 	margin: 20px;	
+	box-sizing: border-box;
+	resize: none;
 }
 
 
@@ -331,7 +314,7 @@ padding: 20px;
 	border-style: outset;
 
 }
-/* Anmerkung: nickname, erstellzp über einen class selektor ansprchen! */
+/* Anmerkung: nickname, erstellzp ï¿½ber einen class selektor ansprchen! */
 
 
 /* Stylen der KommentarLoeschenDialogBox */
@@ -389,6 +372,11 @@ padding: 20px;
 
 }
 
+.suchLabel {
+	color: white;
+	opacity: 0.0;
+}
+
 /* Stylen der UebersichtBox */
 
 
@@ -421,10 +409,66 @@ padding: 20px;
 
 /** Stylen der DialogBoxen */
 
-.gwt-DialogBox {
-	max-width: 500px;
-	height: auto;
+.gwt-DialogBox .Caption {
+	background: white;
+	cursor: default;
+	border-bottom: 1px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 1px solid #bbbbbb;
+	border-right: 1px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
 }
+
+.gwt-DialogBox {
+	background: white;
+	cursor: default;
+	border-bottom: 5px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 5px solid #bbbbbb;
+	border-right: 1px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogContent {
+	width: auto;
+	margin: auto auto;
+	padding: 20px 20px 20px 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+	background: white;
+	cursor: default;
+	border-bottom: 5px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 5px solid #bbbbbb;
+	border-right: 5px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	display: table;
+	margin: auto auto;
+	width: 100%;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	width: 100%;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	display: table;
+	margin: auto auto;
+	font-family: 'Oxygen', sans-serif;
+}
+
 
 
 .dialogVPanel {

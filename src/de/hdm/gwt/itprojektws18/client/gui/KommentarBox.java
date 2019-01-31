@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -22,7 +23,7 @@ public class KommentarBox extends VerticalPanel {
 	private HorizontalPanel kommentarBtnPanel = new HorizontalPanel();
 	private HorizontalPanel nutzerZeitPanel = new HorizontalPanel();
 
-	private TextBox kommentarText = new TextBox();
+	private TextArea kommentarText = new TextArea();
 	private Label nickname = new Label();
 	private Label erstellZeitpunkt = new Label();
 

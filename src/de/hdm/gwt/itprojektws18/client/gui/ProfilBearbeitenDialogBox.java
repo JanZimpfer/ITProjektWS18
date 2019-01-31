@@ -49,8 +49,19 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	public ProfilBearbeitenDialogBox(Nutzer n) {
 		
 		this.nutzer = n;
+		
+		this.setText("Profil bearbeiten");
+		this.setGlassEnabled(true);
+		this.setAnimationEnabled(true);
+		this.setAutoHideEnabled(true);
+		
+		this.setStylePrimaryName("gwt-DialogBox");
 
-		 nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+		nicknameTextbox.setSize("200px", "25px");
+		vornameTextbox.setSize("200px", "25px");
+		nachnameTextbox.setSize("200px", "25px");
+		
+		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		nicknameTextbox.setText(n.getNickname());
 		vornameTextbox.setText(n.getVorname());
