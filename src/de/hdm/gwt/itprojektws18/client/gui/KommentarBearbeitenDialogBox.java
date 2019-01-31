@@ -53,6 +53,8 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
 		
+		this.setStylePrimaryName("customDialogbox");
+		
 		kommentarText.setText(k.getText());
 
 		/**

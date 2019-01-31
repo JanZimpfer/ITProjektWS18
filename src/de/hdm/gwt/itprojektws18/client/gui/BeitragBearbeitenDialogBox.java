@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -30,7 +31,9 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	/**
 	 * Erstellung der benötigten GUI-Elemente
 	 */
+	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel editPanel = new VerticalPanel();
+	private HorizontalPanel btnPanel = new HorizontalPanel();
 	private TextBox beitragText = new TextBox();
 	private Button speichernBtn = new Button("Speichern");
 	private Button schliessenBtn = new Button("Schliessen");
@@ -47,6 +50,8 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
+		
+		this.setStylePrimaryName("customDialogbox");
 
 		beitragText.setText(b.getText());
 
@@ -54,10 +59,12 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
 
 		editPanel.add(beitragText);
-		editPanel.add(speichernBtn);
-		editPanel.add(schliessenBtn);
+		btnPanel.add(speichernBtn);
+		btnPanel.add(schliessenBtn);
+		vPanel.add(editPanel);
+		vPanel.add(btnPanel);
 
-		this.add(editPanel);
+		this.add(vPanel);
 	}
 
 	/**

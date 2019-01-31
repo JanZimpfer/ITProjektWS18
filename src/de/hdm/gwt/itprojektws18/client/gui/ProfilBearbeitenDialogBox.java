@@ -7,6 +7,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -29,7 +30,9 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	/**
 	 * Deklarierung der benötigten Widgets
 	 */
+	private VerticalPanel vPanel = new VerticalPanel();
 	private VerticalPanel editPanel = new VerticalPanel();
+	private HorizontalPanel btnPanel = new HorizontalPanel();
 	
 	private Label nicknameLbl = new Label("Neuer Nickname: ");
 	private Label vornameLbl = new Label("Neuer Vorname: ");
@@ -39,7 +42,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	private TextBox vornameTextbox = new TextBox();
 	private TextBox nachnameTextbox = new TextBox();
 	
-	private Button changeButton = new Button("Aenderungen speichern");
+	private Button changeButton = new Button("Änderungen speichern");
 	private Button closeButton = new Button("Schließen");
 	
 	public ProfilBearbeitenDialogBox() {
@@ -47,7 +50,6 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	}
 	
 	public ProfilBearbeitenDialogBox(Nutzer n) {
-		
 		this.nutzer = n;
 		
 		this.setText("Profil bearbeiten");
@@ -55,12 +57,8 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
 		
-		this.setStylePrimaryName("gwt-DialogBox");
+		this.setStylePrimaryName("customDialogbox");
 
-		nicknameTextbox.setSize("200px", "25px");
-		vornameTextbox.setSize("200px", "25px");
-		nachnameTextbox.setSize("200px", "25px");
-		
 		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		nicknameTextbox.setText(n.getNickname());
@@ -76,10 +74,12 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		editPanel.add(vornameTextbox);
 		editPanel.add(nachnameLbl);
 		editPanel.add(nachnameTextbox);
-		editPanel.add(changeButton);
-		editPanel.add(closeButton);
+		btnPanel.add(changeButton);
+		btnPanel.add(closeButton);
 		
-		this.add(editPanel);
+		vPanel.add(editPanel);
+		vPanel.add(btnPanel);
+		this.add(vPanel);
 	}
 	
 	class ProfilEditClickHandler implements ClickHandler {

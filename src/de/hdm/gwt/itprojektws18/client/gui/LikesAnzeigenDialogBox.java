@@ -60,6 +60,8 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
 		
+		this.setStylePrimaryName("customDialogbox");
+		
 		/**
 		 * Methode, alle Likes zu einem beitrag ausgibt.
 		 * @author NiklasFuchs

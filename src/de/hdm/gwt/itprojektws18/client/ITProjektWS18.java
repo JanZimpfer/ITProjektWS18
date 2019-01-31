@@ -230,6 +230,13 @@ public class ITProjektWS18 implements EntryPoint {
 		public RegistrierungsformDialogBox(String mail) {
 
 			googleMail = mail;
+			
+			this.setText("Registrierung @tellIT");
+			this.setGlassEnabled(true);
+			this.setAnimationEnabled(true);
+			this.setAutoHideEnabled(true);
+			
+			this.setStylePrimaryName("customDialogbox");
 
 			jaBtn.addClickHandler(new NutzerAnlegenClickHandler(this));
 			neinBtn.addClickHandler(new NutzerNichtAnlegenClickHandler(this));
