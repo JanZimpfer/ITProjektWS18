@@ -339,5 +339,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		}
 		return this.getPinnwandVerwaltung().getAllBeitraegeByNutzer(n);
 	}
+	
+	@Override
+	public Vector<Nutzer> getAllNutzer() throws IllegalArgumentException {
+		if (this.getPinnwandVerwaltung() == null) {
+			return null;
+		}
+		return this.getPinnwandVerwaltung().getAllNutzer();
+	}
 
 }

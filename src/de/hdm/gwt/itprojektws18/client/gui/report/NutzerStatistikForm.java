@@ -22,6 +22,7 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.client.NutzerStatistikCallback;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class NutzerStatistikForm extends HorizontalPanel {
@@ -36,8 +37,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 	
 	private VerticalPanel vpanel = new VerticalPanel();
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy");
-
-	private PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	private ReportGeneratorAsync reportverwaltung = ClientsideSettings.getReportGenerator();
 	
 	public NutzerStatistikForm() {
 
@@ -59,7 +59,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 
 		reportStart.addClickHandler(new ReportStartClickhandler());
 
-		pinnwandVerwaltung.getAllNutzer(new GetAllNutzerCallback());
+		reportverwaltung.getAllNutzer(new GetAllNutzerCallback());
 		
 		this.add(ft);
 	}

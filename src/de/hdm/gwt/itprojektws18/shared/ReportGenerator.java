@@ -33,6 +33,10 @@ Nutzer getNutzerById(int nutzerID) throws IllegalArgumentException;
 
 NutzerStatistikReport createNutzerStatistikReport(String nickname, Date firstDate, Date lastDate);
 
+
+
+Vector<Nutzer> getAllNutzer() throws IllegalArgumentException;
+
 }
 
 

@@ -34,4 +34,7 @@ public interface ReportGeneratorAsync {
 
 	void createNutzerStatistikReport(String nickname, Date firstDate, Date lastDate,
 			AsyncCallback<NutzerStatistikReport> callback);
+
+
+	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
 }
