@@ -100,7 +100,7 @@ public class ITProjektWS18 implements EntryPoint {
 		loginPanel.add(loginGreet);
 		loginPanel.add(loginMsg);
 		loginPanel.add(loginBtn);
-		
+
 		RootPanel.get("InhaltDiv").clear();
 		RootPanel.get("InhaltDiv").add(loginPanel);
 	}
@@ -162,18 +162,13 @@ public class ITProjektWS18 implements EntryPoint {
 		signOutLink.setHref(loginInfo.getLogoutUrl());
 	}
 
-
-	
-
 	/**
 	 * <b>Nested Class fuer den AsyncCallback checkEmail</b>
 	 * 
-	 * Ist der Nutzer vorhanden:
-	 * Setzen der Cookies zur späteren Nutzeridentifikation
-	 * und laden der PinnwandVerwaltung.
+	 * Ist der Nutzer vorhanden: Setzen der Cookies zur späteren
+	 * Nutzeridentifikation und laden der PinnwandVerwaltung.
 	 * 
-	 * Ist der Nutzer nicht vorhanden: 
-	 * Starten einer Registrierungs-Abfrage
+	 * Ist der Nutzer nicht vorhanden: Starten einer Registrierungs-Abfrage
 	 */
 	class NutzerAbrufCallback implements AsyncCallback<Nutzer> {
 
@@ -198,7 +193,6 @@ public class ITProjektWS18 implements EntryPoint {
 		}
 
 	}
-
 
 	/**
 	 * <b>Nested Class einer Registrierungsform</b>
@@ -254,7 +248,7 @@ public class ITProjektWS18 implements EntryPoint {
 
 			this.add(vPanel);
 		}
-		
+
 		/**
 		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
 		 * 
@@ -295,19 +289,24 @@ public class ITProjektWS18 implements EntryPoint {
 
 			@Override
 			public void onSuccess(Nutzer result) {
-				
-				/**
-				 * Setzen der Cookies zur späteren Nutzeridentifikation
-				 */
-				Cookies.setCookie("email", result.getEmail());
-				Cookies.setCookie("id", result.getId() + "");
-				Cookies.setCookie("vorname", result.getVorname());
-				Cookies.setCookie("nachname", result.getNachname());
-				Cookies.setCookie("nickname", result.getNickname());
 
-				this.regForm.hide();
+				if (result == null) {
+					Window.alert("Nickname bereits vergeben");
+				} else {
 
-				pinnwandVerwaltung.erstellePinnwand(result, new PinnwandAnlegenCallback());
+					/**
+					 * Setzen der Cookies zur späteren Nutzeridentifikation
+					 */
+					Cookies.setCookie("email", result.getEmail());
+					Cookies.setCookie("id", result.getId() + "");
+					Cookies.setCookie("vorname", result.getVorname());
+					Cookies.setCookie("nachname", result.getNachname());
+					Cookies.setCookie("nickname", result.getNickname());
+
+					this.regForm.hide();
+
+					pinnwandVerwaltung.erstellePinnwand(result, new PinnwandAnlegenCallback());
+				}
 
 			}
 
@@ -348,5 +347,5 @@ public class ITProjektWS18 implements EntryPoint {
 
 		}
 	}
-	
+
 }

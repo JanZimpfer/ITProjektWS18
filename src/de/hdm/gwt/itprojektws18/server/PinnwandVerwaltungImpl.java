@@ -92,6 +92,17 @@ public PinnwandVerwaltungImpl() {
 	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException {
 
 		
+		Nutzer n1 = new Nutzer();
+		
+		n1 = nMapper.getNutzerByNickname(nickname);
+		
+		if (n1 != null) {
+			return null;
+		}
+		
+		else {
+					
+		
 		//Erstellen eines Nutzerobjekts mit Vorname, Nachname und Nachname
 		Nutzer n = new Nutzer();
 		
@@ -107,6 +118,7 @@ public PinnwandVerwaltungImpl() {
 		
 		//Speichern in der DB
 		return this.nMapper.insertNutzer(n);
+		}
 		
 	}
 
@@ -133,15 +145,22 @@ public PinnwandVerwaltungImpl() {
 	 * @param Nutzer n
 	 */
 	@Override
-	public void speichern(Nutzer n) throws IllegalArgumentException {
+	public Nutzer speichern(Nutzer n) throws IllegalArgumentException {
 		
-		//Bearbeiten
-//		n.setVorname(null);
-//		n.setNachname(null);
-//		n.setNickname(null);
+		Nutzer n1 = new Nutzer();
 		
+		n1 = nMapper.getNutzerByNickname(n.getNickname());
+		
+		if (n1 != null) {
+			
+			return null;
+		}
+		
+		else {
+			
 		nMapper.updateNutzer(n);
-				
+		return n;
+		}		
 	}
 	
 	/**

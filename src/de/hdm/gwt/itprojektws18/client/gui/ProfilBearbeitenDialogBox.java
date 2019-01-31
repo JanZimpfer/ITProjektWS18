@@ -94,7 +94,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 
 		}
 		
-	public class NutzerEditCallback implements AsyncCallback<Void> {
+	public class NutzerEditCallback implements AsyncCallback<Nutzer> {
 
 		@Override
 		public void onFailure(Throwable caught) {
@@ -103,11 +103,18 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		}
 
 		@Override
-		public void onSuccess(Void result) {
+		public void onSuccess(Nutzer result) {
 			
-			PinnwandBox pBox = new PinnwandBox();
-			RootPanel.get("InhaltDiv").clear();
-			RootPanel.get("InhaltDiv").add(pBox);
+			
+			if (result == null) {
+				Window.alert("Nickname bereits vergeben");
+			} else {
+				
+				PinnwandBox pBox = new PinnwandBox();
+				RootPanel.get("InhaltDiv").clear();
+				RootPanel.get("InhaltDiv").add(pBox);
+			}
+		
 			
 		}
 		
