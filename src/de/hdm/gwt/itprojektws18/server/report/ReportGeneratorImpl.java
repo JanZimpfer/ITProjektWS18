@@ -237,8 +237,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 * 
 		 * @author Ayse, in Anlehnung Thies
 		 */
-
-		headline.addColumn(new Column("Beitr�ge"));
+		
+		headline.addColumn(new Column("Autor"));
+		headline.addColumn(new Column("Beiträge"));
 		headline.addColumn(new Column("Kommentare"));
 		headline.addColumn(new Column("Likes"));
 
@@ -246,10 +247,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.addRow(headline);
 
 		for (Beitrag beitrag2 : alleBeitraege) {
-
+			
+			Nutzer nutzerBeitrag =  this.getPinnwandVerwaltung().getNutzerbyID(beitrag2.getNutzerFK());
+			
 			// Eine leere Zeile anlegen.
 			Row row = new Row();
 
+			row.addColumn(new Column(nutzerBeitrag.getNickname()));
 			// Erste Spalte: Beitrag anzeigen.
 			row.addColumn(new Column(beitrag2.getText()));
 			// Zweite Spalte: Kommentaranzahl hinzufügen.

@@ -10,11 +10,16 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ReportSelectMenu extends HorizontalPanel {
 
-	private Button reportButton1 = new Button("Nutzerstatistik Report");
-	private Button reportButton2 = new Button("Beitragstatistik Report");
-	private Button zurueck= new Button("zurueck auf die Startseite");
+	private Button reportButton1 = new Button("Nutzerstatistik");
+	private Button reportButton2 = new Button("Beitragstatistik");
+	private Button zurueck= new Button("Zurück");
 
 	public ReportSelectMenu() {
+		
+		reportButton1.setStyleName("reportButton");
+		reportButton2.setStyleName("reportButton");
+		zurueck.setStyleName("reportButton");
+		
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());
 		zurueck.addClickHandler(new ZurueckClickhandler() );

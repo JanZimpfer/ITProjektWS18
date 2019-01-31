@@ -387,6 +387,11 @@ div {
 	color: black;
 }
 
+.reportButton {
+	margin-right: 20px;
+    width: 64%;
+}
+
 .loginGreet {
 	
 }
