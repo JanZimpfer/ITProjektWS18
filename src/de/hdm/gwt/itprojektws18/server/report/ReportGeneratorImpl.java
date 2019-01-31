@@ -148,7 +148,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 * @author Ayse, in Anlehnung Thies
 			 */
 			headline.addColumn(new Column("Abonnementanzahl"));
-			headline.addColumn(new Column("Beitr�geanzahl"));
+			headline.addColumn(new Column("Beiträgeanzahl"));
 			headline.addColumn(new Column("Kommentaranzahl"));
 			headline.addColumn(new Column("Likeanzahl")); 
 
@@ -179,7 +179,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	}
 	
 	/*
-	 * Diese Methode soll alle  Kommentare und Likes f�r einen Zeitraum aller Beitr�ge anzeigen 
+	 * Diese Methode soll alle  Kommentare und Likes f�r einen Zeitraum aller Beiträge anzeigen 
 	 * (non-Javadoc)
 	 * @see de.hdm.gwt.itprojektws18.shared.ReportGenerator#createNutzerStatistikReport(de.hdm.gwt.itprojektws18.shared.bo.Nutzer)
 	 * 	 *@return der fertige Report 
@@ -228,7 +228,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 * @author Ayse, in Anlehnung Thies
 			 */
 			
-			headline.addColumn(new Column("Beitr�ge"));
+			headline.addColumn(new Column("Beiträge"));
 			headline.addColumn(new Column("Kommentare"));
 			headline.addColumn(new Column("Likes"));
 
