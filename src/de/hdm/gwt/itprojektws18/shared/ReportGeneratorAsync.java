@@ -16,8 +16,6 @@ public interface ReportGeneratorAsync {
 	void init(AsyncCallback<Void> callback);
 
 
-	void createBeitragStatistikReport(Date startDate, Date endDate,
-			AsyncCallback<BeitragStatistikReport> callback);
 	
 //	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
 
@@ -37,4 +35,7 @@ public interface ReportGeneratorAsync {
 
 
 	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
+
+
+	void createBeitragStatistikReport(Date startDate, Date endDate, AsyncCallback<BeitragStatistikReport> callback);
 }
