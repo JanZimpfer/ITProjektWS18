@@ -89,7 +89,6 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-
 	public Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) {
 
 		
@@ -117,7 +116,7 @@ public PinnwandVerwaltungImpl() {
 	 * @return nutzer
 	 */
 	@Override
-	public Nutzer checkEmail(String mail) throws IllegalArgumentException{
+	public Nutzer checkEmail(String mail) {
 		Nutzer nutzer = new Nutzer();
 		nutzer = this.nMapper.getNutzerByEmail(mail);
 		
@@ -128,6 +127,7 @@ public PinnwandVerwaltungImpl() {
 			return nutzer;
 		}
 	}
+	
 	/**
 	 * Speichern eines bearbeiteten Nutzers
 	 * @param Nutzer n

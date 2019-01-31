@@ -55,6 +55,11 @@ public class LikesAnzeigenDialogBox extends DialogBox {
 
 		this.beitrag = b;
 		
+		this.setText("Gefällt-mir Angaben");
+		this.setGlassEnabled(true);
+		this.setAnimationEnabled(true);
+		this.setAutoHideEnabled(true);
+		
 		/**
 		 * Methode, alle Likes zu einem beitrag ausgibt.
 		 * @author NiklasFuchs

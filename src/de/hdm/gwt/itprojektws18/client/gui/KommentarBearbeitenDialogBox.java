@@ -32,6 +32,11 @@ public class KommentarBearbeitenDialogBox extends DialogBox{
 	public KommentarBearbeitenDialogBox(Kommentar k) {
 		this.kommentar = k;
 		
+		this.setText("Kommentar bearbeiten");
+		this.setGlassEnabled(true);
+		this.setAnimationEnabled(true);
+		this.setAutoHideEnabled(true);
+		
 		kommentarText.setText(k.getText());
 		
 		speichernBtn.addClickHandler(new KommentarAendernClickHandler());

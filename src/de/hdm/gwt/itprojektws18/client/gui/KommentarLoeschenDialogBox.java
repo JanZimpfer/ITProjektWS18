@@ -45,6 +45,11 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 	public KommentarLoeschenDialogBox(Kommentar k) {
 
 		this.kommentar = k;
+		
+		this.setText("Kommentar löschen");
+		this.setGlassEnabled(true);
+		this.setAnimationEnabled(true);
+		this.setAutoHideEnabled(true);
 
 		loeschenBtn.addClickHandler(new KommentarLoeschenClickHandler());
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());

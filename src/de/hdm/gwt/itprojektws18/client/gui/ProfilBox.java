@@ -28,8 +28,6 @@ public class ProfilBox extends VerticalPanel {
 	 */
 
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
-	private VerticalPanel imgPanel = new VerticalPanel();
-
 	Image logo = new Image();
 
 	private Button profilButton = new Button("Startseite");
@@ -45,9 +43,8 @@ public class ProfilBox extends VerticalPanel {
 
 		this.addStyleName("profilBox");
 		
-		logo.setUrl("/images/logo_new.png");
-		logo.setUrl("/images/tellIT_Logo.png");
-		imgPanel.add(logo);
+		logo.setUrl("/images/tellIT-logo.png");
+		logo.setSize("210px", "120px");
 
 		buttonPanel.add(profilButton);
 		buttonPanel.add(reportButton);
@@ -59,7 +56,7 @@ public class ProfilBox extends VerticalPanel {
 		profilButton.addClickHandler(new eigenesProfilAnzeigen());
 
 		this.add(buttonPanel);
-		this.add(imgPanel);
+		this.add(logo);
 
 		super.onLoad();
 

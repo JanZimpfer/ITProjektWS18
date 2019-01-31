@@ -79,83 +79,6 @@ div {
   box-sizing: border-box;
 }
 
-/* Styling der GWT-DialogBox */
-
-.gwt-DialogBox .dialogContent {
-	width: auto;
-	margin: auto auto;
-	padding: 20px 20px 20px 20px;
-	margin-left: 50px;
-	margin-right: 50px;
-}
-
-.gwt-DialogBox .dialogMiddleCenter {
-  	padding: 15px;
-	background: white;
-	margin-left: 40px;
-}
-.gwt-DialogBox .dialogBottomCenter {
-  margin: auto auto;
-}
-.gwt-DialogBox .dialogMiddleLeft {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogMiddleRight {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogTopLeftInner {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogTopRightInner {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogBottomLeftInner {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogBottomRightInner {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogTopLeft {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogTopRight {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogBottomLeft {
-  margin: auto auto;
-
-}
-.gwt-DialogBox .dialogBottomRight {
-margin: auto auto;
-
-}
-* html .gwt-DialogBox .dialogTopLeftInner {
-  width: 5px;
-  overflow: hidden;
-}
-* html .gwt-DialogBox .dialogTopRightInner {
-  width: 5px;
-  overflow: hidden;
-}
-* html .gwt-DialogBox .dialogBottomLeftInner {
-  width: 5px;
-  height: 5px;
-  overflow: hidden;
-}
-* html .gwt-DialogBox .dialogBottomRightInner {
-  width: 5px;
-  height: 5px;
-  overflow: hidden;
-}
-
 
 /* Styling von Button-Elementen */
 
@@ -486,10 +409,66 @@ margin: auto auto;
 
 /** Stylen der DialogBoxen */
 
-.gwt-DialogBox {
-	max-width: 500px;
-	height: auto;
+.gwt-DialogBox .Caption {
+	background: white;
+	cursor: default;
+	border-bottom: 1px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 1px solid #bbbbbb;
+	border-right: 1px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
 }
+
+.gwt-DialogBox {
+	background: white;
+	cursor: default;
+	border-bottom: 5px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 5px solid #bbbbbb;
+	border-right: 1px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogContent {
+	width: auto;
+	margin: auto auto;
+	padding: 20px 20px 20px 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+	background: white;
+	cursor: default;
+	border-bottom: 5px solid #bbbbbb;
+	border-top: 5px solid #d0e4f6;
+	border-left: 5px solid #bbbbbb;
+	border-right: 5px solid #bbbbbb;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	display: table;
+	margin: auto auto;
+	width: 100%;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	width: 100%;
+	font-family: 'Oxygen', sans-serif;
+}
+
+.gwt-DialogBox .dialogMiddleCenterInner  {
+	display: table;
+	margin: auto auto;
+	font-family: 'Oxygen', sans-serif;
+}
+
 
 
 .dialogVPanel {
