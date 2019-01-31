@@ -18,7 +18,7 @@ public class BeitragStatistikCallback extends HTMLResultPanel{
 	public BeitragStatistikCallback(Date firstDate, Date lastDate) {
 		Nutzer nutzer = new Nutzer();
 		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-		reportverwaltung.createBeitragStatistikReport(nutzer, firstDate, lastDate, new BeitragStatistik());
+		reportverwaltung.createBeitragStatistikReport(firstDate, lastDate, new BeitragStatistik());
 		
 }
 
