@@ -29,7 +29,7 @@ public class Beitrag extends Textbeitrag{
 	/**
 	 * Fremdschlüsselbeziehung zum Nutzer
 	 */
-	public int nutzerFK;
+	private int nutzerFK;
 
 	/**
 	 * Auslesen des Fremdschlüssels zum Nutzer
