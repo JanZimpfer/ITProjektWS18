@@ -163,7 +163,6 @@ public class HeaderBox extends HorizontalPanel {
 		public void onSuccess(Void result) {
 			Cookies.removeCookie("id");
 			Cookies.removeCookie("email");
-			Window.alert("Ihr Profil wurde erfolgreich gelöscht!");
 			Window.Location.assign("/");
 
 		}

@@ -51,7 +51,7 @@ public class BeitragBox extends VerticalPanel {
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
 
-	private Image beitragBearbeitenBtn = new Image("/images/stift.jpg");
+	private Image beitragBearbeitenBtn = new Image("/images/stift.png");
 	private Image beitragLoeschenBtn = new Image("/images/mülleimer.png");
 	private Button likeBtn = new Button();
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");

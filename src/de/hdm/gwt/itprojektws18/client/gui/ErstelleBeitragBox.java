@@ -128,7 +128,6 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Beitrag result) {
-			Window.alert("Der Beitrag wurde erfolgreich angelegt.");
 
 			PinnwandBox pBox = new PinnwandBox();
 

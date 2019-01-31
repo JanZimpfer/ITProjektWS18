@@ -288,8 +288,7 @@ public class ITProjektWS18 implements EntryPoint {
 
 			@Override
 			public void onSuccess(Nutzer result) {
-				Window.alert("Ihr Nutzer wurde angelegt");
-
+				
 				/**
 				 * Setzen der Cookies zur späteren Nutzeridentifikation
 				 */

@@ -24,7 +24,7 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Nutzer erstelleNutzer(String vorname, String nachname, String nickname, String email) throws IllegalArgumentException;
 
-	void speichern(Nutzer n);
+	void speichern(Nutzer n) throws IllegalArgumentException;
 
 	public Nutzer checkEmail(String mail) throws IllegalArgumentException;
 	
