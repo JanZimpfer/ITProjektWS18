@@ -839,6 +839,20 @@ public PinnwandVerwaltungImpl() {
 			
 			return filterVector;
 		}
+		
+		@Override
+		public Vector<Beitrag> getAllBeitraegeWithTime(Date firstDate, Date secondDate) throws IllegalArgumentException {
+			
+			Vector<Beitrag> beitragVector = getAllBeitraege();
+			Vector<Beitrag> filterVector = new Vector<Beitrag>();
+			for (Beitrag beitrag : beitragVector) {
+				if(beitrag.getErstellZeitpunkt().after(firstDate) && beitrag.getErstellZeitpunkt().before(secondDate)) {
+					filterVector.add(beitrag);
+				}
+			}
+			
+			return filterVector;
+		}
 
 
 

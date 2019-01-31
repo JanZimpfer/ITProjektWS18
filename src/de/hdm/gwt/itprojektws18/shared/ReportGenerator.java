@@ -25,7 +25,7 @@ public Vector<Nutzer> getNutzerByNickname(String nickname) throws IllegalArgumen
 
 Nutzer findNutzerByEmail(String mail) throws IllegalArgumentException;
 
-BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Date startDate, Date endDate);
+BeitragStatistikReport createBeitragStatistikReport(Date startDate, Date endDate);
 
 Vector<Beitrag> getBeitrageByNutzer(Nutzer n) throws IllegalArgumentException;
 

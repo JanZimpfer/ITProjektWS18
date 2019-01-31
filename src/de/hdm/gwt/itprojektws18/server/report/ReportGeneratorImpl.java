@@ -196,13 +196,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 
 	@Override
-	public BeitragStatistikReport createBeitragStatistikReport(Nutzer nutzer, Date startDate, Date endDate)
+	public BeitragStatistikReport createBeitragStatistikReport(Date startDate, Date endDate)
 			throws IllegalArgumentException {
 		if (this.getPinnwandVerwaltung() == null) {
 			return null;
 		}
 
-		Nutzer n = getNutzerById(nutzer.getId());
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
@@ -225,7 +224,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
 		result.setHeaderData(header);
 
-		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeByNutzerWithTime(n, startDate,
+		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeWithTime(startDate,
 				endDate);
 		// Kopfzeile für die Beitragstatistik- Tabelle.
 		Row headline = new Row();
