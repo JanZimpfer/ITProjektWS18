@@ -15,10 +15,10 @@ import de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport;
 public class NutzerStatistikCallback extends HTMLResultPanel {
 	ReportGeneratorAsync reportverwaltung = ClientsideSettings.getReportGenerator();
 	
-	public NutzerStatistikCallback(Date firstDate, Date lastDate) {
-		Nutzer nutzer = new Nutzer();
-		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
-		reportverwaltung.createNutzerStatistikReport(nutzer, firstDate, lastDate, new NutzerStatistik());
+	public NutzerStatistikCallback(String nickname, Date firstDate, Date lastDate) {
+		
+		
+		reportverwaltung.createNutzerStatistikReport(nickname, firstDate, lastDate, new NutzerStatistik());
 	}
 
 	

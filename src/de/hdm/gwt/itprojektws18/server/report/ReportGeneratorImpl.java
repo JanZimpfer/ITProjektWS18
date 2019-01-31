@@ -101,14 +101,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * @return der fertige Report
 	 */
 	@Override
-	public NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer, Date firstDate, Date lastDate)
+	public NutzerStatistikReport createNutzerStatistikReport(String nickname, Date firstDate, Date lastDate)
 			throws IllegalArgumentException {
 
 		if (this.getPinnwandVerwaltung() == null) {
 			return null;
 		}
 
-		Nutzer n = getNutzerById(nutzer.getId());
+		Nutzer n = this.pinnwandAdmin.getNutzerByNickname(nickname);
 
 		if (n != null) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
@@ -128,7 +128,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 */
 			CompositeParagraph header = new CompositeParagraph();
 			// Nickname des Nutzers aufnehmen.
-			header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+			header.addSubParagraph(new SimpleParagraph("Nutzer: " + n.getNickname()));
 			// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
 			result.setHeaderData(header);
 

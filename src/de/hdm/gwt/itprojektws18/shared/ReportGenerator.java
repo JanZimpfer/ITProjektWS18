@@ -31,8 +31,7 @@ Vector<Beitrag> getBeitrageByNutzer(Nutzer n) throws IllegalArgumentException;
 
 Nutzer getNutzerById(int nutzerID) throws IllegalArgumentException;
 
-NutzerStatistikReport createNutzerStatistikReport(Nutzer nutzer, Date firstDate, Date lastDate)
-		throws IllegalArgumentException;
+NutzerStatistikReport createNutzerStatistikReport(String nickname, Date firstDate, Date lastDate);
 
 }
 

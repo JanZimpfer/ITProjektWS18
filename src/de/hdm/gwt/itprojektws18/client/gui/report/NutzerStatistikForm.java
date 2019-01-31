@@ -89,7 +89,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 				Window.alert("Wählen Sie einen Nutzer aus!");	
 			} else {
 				vpanel.clear();
-				vpanel.add(new NutzerStatistikCallback(dateBox.getValue(), endDateBox.getValue()));
+				vpanel.add(new NutzerStatistikCallback(listBox.getSelectedValue(), dateBox.getValue(), endDateBox.getValue()));
 				RootPanel.get("contentReport").add(vpanel);		
 			}
 		}
