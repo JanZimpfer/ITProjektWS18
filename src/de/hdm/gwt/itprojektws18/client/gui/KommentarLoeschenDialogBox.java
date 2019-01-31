@@ -51,6 +51,8 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
 
+		this.setStylePrimaryName("customDialogbox");
+		
 		loeschenBtn.addClickHandler(new KommentarLoeschenClickHandler());
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
 

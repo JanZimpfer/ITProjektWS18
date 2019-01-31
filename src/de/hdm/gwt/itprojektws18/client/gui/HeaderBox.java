@@ -108,17 +108,29 @@ public class HeaderBox extends HorizontalPanel {
 
 	// Schablone der DialogBox, die das Löschen des Profils ermöglicht
 	private class DeleteForm extends DialogBox {
+		private VerticalPanel vPanel = new VerticalPanel();
 		private VerticalPanel deletePanel = new VerticalPanel();
+		private HorizontalPanel btnPanel = new HorizontalPanel();
 
 		public DeleteForm() {
 
+			this.setText("Profil löschen");
+			this.setGlassEnabled(true);
+			this.setAnimationEnabled(true);
+			this.setAutoHideEnabled(true);
+			
+			this.setStylePrimaryName("customDialogbox");
+			
 			deleteButton.addClickHandler(new DeleteProfilClickHandler());
 			abortDeletionButton.addClickHandler(new AbortDeletionClickHandler());
 
 			deletePanel.add(deleteCheckLbl);
-			deletePanel.add(deleteButton);
-			deletePanel.add(abortDeletionButton);
-			this.add(deletePanel);
+			btnPanel.add(deleteButton);
+			btnPanel.add(abortDeletionButton);
+			vPanel.add(deletePanel);
+			vPanel.add(btnPanel);
+			
+			this.add(vPanel);
 
 		}
 	}

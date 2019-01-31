@@ -50,6 +50,8 @@ public class BeitragLoeschenDialogBox extends DialogBox {
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
+		
+		this.setStylePrimaryName("customDialogbox");
 
 		loeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());

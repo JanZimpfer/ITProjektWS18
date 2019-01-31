@@ -412,69 +412,6 @@ div {
 }
 
 
-/** Stylen der DialogBoxen */
-
-.gwt-DialogBox .Caption {
-	background: white;
-	cursor: default;
-	border-bottom: 1px solid #bbbbbb;
-	border-top: 5px solid #d0e4f6;
-	border-left: 1px solid #bbbbbb;
-	border-right: 1px solid #bbbbbb;
-	text-align: center;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox {
-	background: white;
-	cursor: default;
-	border-bottom: 5px solid #bbbbbb;
-	border-top: 5px solid #d0e4f6;
-	border-left: 5px solid #bbbbbb;
-	border-right: 1px solid #bbbbbb;
-	text-align: center;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox .dialogContent {
-	width: auto;
-	margin: auto auto;
-	padding: 20px 20px 20px 20px;
-	margin-left: 50px;
-	margin-right: 50px;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox .dialogMiddleCenter {
-	background: white;
-	cursor: default;
-	border-bottom: 5px solid #bbbbbb;
-	border-top: 5px solid #d0e4f6;
-	border-left: 5px solid #bbbbbb;
-	border-right: 5px solid #bbbbbb;
-	text-align: center;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox .dialogMiddleCenterInner  {
-	display: table;
-	margin: auto auto;
-	width: 100%;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox .dialogMiddleCenterInner  {
-	width: 100%;
-	font-family: 'Oxygen', sans-serif;
-}
-
-.gwt-DialogBox .dialogMiddleCenterInner  {
-	display: table;
-	margin: auto auto;
-	font-family: 'Oxygen', sans-serif;
-}
-
-
 
 .dialogVPanel {
 	margin: 5px;
