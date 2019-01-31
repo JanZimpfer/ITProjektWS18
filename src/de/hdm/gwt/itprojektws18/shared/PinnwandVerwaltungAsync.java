@@ -20,7 +20,7 @@ public interface PinnwandVerwaltungAsync {
 
 	void erstelleNutzer(String vorname, String nachname, String nickname, String email, AsyncCallback<Nutzer> callback);	
 
-	void speichern(Nutzer n, AsyncCallback<Void> callback);
+	void speichern(Nutzer n, AsyncCallback<Nutzer> callback);
 
 	void getNutzerbyID(int nutzerID, AsyncCallback<Nutzer> callback);
 
