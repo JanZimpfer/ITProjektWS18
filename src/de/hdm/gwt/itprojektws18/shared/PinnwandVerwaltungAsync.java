@@ -101,4 +101,6 @@ public interface PinnwandVerwaltungAsync {
 			AsyncCallback<Vector<Kommentar>> callback);
 
 	void getAboFor(int pinnwandId, int nutzerId, AsyncCallback<Abonnement> callback);
+
+	void getAllBeitraegeWithTime(Date firstDate, Date secondDate, AsyncCallback<Vector<Beitrag>> callback);
 }

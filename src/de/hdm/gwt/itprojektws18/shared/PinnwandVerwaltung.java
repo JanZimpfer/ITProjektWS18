@@ -104,6 +104,8 @@ public interface PinnwandVerwaltung extends RemoteService {
 
 	Abonnement getAboFor(int pinnwandId, int nutzerId) throws IllegalArgumentException;
 
+	Vector<Beitrag> getAllBeitraegeWithTime(Date firstDate, Date secondDate) throws IllegalArgumentException;
+
 
 	
 }
