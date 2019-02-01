@@ -190,6 +190,8 @@ public class BeitragMapper {
 				b.setId(rs.getInt("id"));
 				b.setText(rs.getString("text"));
 				b.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				b.setPinnwandFK(rs.getInt("pinnwand_b_FK"));
+				b.setNutzerFK(rs.getInt("nutzer_b_FK"));
 				
 				result.addElement(b);
 			}

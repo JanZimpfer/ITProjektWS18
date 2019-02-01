@@ -37,7 +37,6 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
 		erstelleBeitragFeld.setStylePrimaryName("beitragEingabeFeld");
-		erstelleBeitragFeld.setSize("300px", "100px");
 
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
@@ -66,9 +65,6 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		erstelleBeitragFeld.setStylePrimaryName("erstelleBeitragFeld");
 
 		postingButton.addStyleName("uebersichtBtn");
-
-		erstelleBeitragFeld.setCharacterWidth(300);
-		erstelleBeitragFeld.setSize("300px", "100px");
 
 		/**
 		 * Hinzufügen eines ClickHandlers auf den Button, um den angezeigten Text in der

@@ -37,6 +37,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	private Label nicknameLbl = new Label("Neuer Nickname: ");
 	private Label vornameLbl = new Label("Neuer Vorname: ");
 	private Label nachnameLbl = new Label("Neuer Nachname: ");
+	private Label meldungLbl = new Label();
 	
 	private TextBox nicknameTextbox = new TextBox();
 	private TextBox vornameTextbox = new TextBox();
@@ -68,6 +69,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		changeButton.addClickHandler(new ProfilEditClickHandler());
 		closeButton.addClickHandler(new CloseClickHandler());
 		
+		editPanel.add(meldungLbl);
 		editPanel.add(nicknameLbl);
 		editPanel.add(nicknameTextbox);
 		editPanel.add(vornameLbl);
@@ -107,9 +109,12 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 			
 			
 			if (result == null) {
-				Window.alert("Nickname bereits vergeben");
+				meldungLbl.setText("Nickname bereits vergeben!");
+				
+				
 			} else {
 				
+				hide();
 				PinnwandBox pBox = new PinnwandBox();
 				RootPanel.get("InhaltDiv").clear();
 				RootPanel.get("InhaltDiv").add(pBox);

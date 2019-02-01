@@ -4,6 +4,8 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -13,6 +15,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 
@@ -42,16 +45,19 @@ public class Suchleiste extends HorizontalPanel {
 	private Button sucheButton = new Button("Pinnwand anzeigen");
 
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
-	private SuggestBox txtBox = new SuggestBox(oracle);
+	private TextBox suggestTextBox = new TextBox();
+	private SuggestBox txtBox = new SuggestBox(oracle, suggestTextBox);
 
 	public Suchleiste() {
 
 		this.add(suchleiste);
 		this.add(txtBox);
 
-		txtBox.setText("Nicknamen eingeben...");
+		suggestTextBox.setValue("Nickname eingeben ...");
 		txtBox.setStyleName("suchBox");
-
+		
+		suggestTextBox.addClickHandler(new SuggestClickhandler());
+		
 		this.addStyleName("suchleistePanel");
 		this.add(suchleiste);
 
@@ -89,7 +95,6 @@ public class Suchleiste extends HorizontalPanel {
 		public void onSuccess(Vector<Nutzer> result) {
 
 			String searchResultString = new String();
-			Label searchLbl = new Label();
 			for (int i = 0; i < result.size(); i++) {
 
 				searchResultString = "" + result.elementAt(i).getNickname();
@@ -133,5 +138,15 @@ public class Suchleiste extends HorizontalPanel {
 
 		}
 
+	}
+	
+	class SuggestClickhandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			suggestTextBox.setValue("");
+			
+		}
+		
 	}
 }
