@@ -34,6 +34,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 	private DateBox endDateBox = new DateBox();
 	private FlexTable ft = new FlexTable();
 	private ListBox listBox = new ListBox();
+	private Label nn= new Label("Nickname:");
 	
 	private VerticalPanel vpanel = new VerticalPanel();
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy");
@@ -44,12 +45,13 @@ public class NutzerStatistikForm extends HorizontalPanel {
 //		Nutzer n = new Nutzer();
 //		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 		
-		ft.setWidget(0, 0, listBox);
-		ft.setWidget(1, 0, startDatum);
-		ft.setWidget(1, 1, dateBox);
-		ft.setWidget(2, 0, endDatum);
-		ft.setWidget(2, 1, endDateBox);
-		ft.setWidget(3, 0, reportStart);
+		ft.setWidget(0, 0, nn);
+		ft.setWidget(0, 1, listBox);
+		ft.setWidget(2, 0, startDatum);
+		ft.setWidget(2, 1, dateBox);
+		ft.setWidget(3, 0, endDatum);
+		ft.setWidget(3, 1, endDateBox);
+		ft.setWidget(4, 0, reportStart);
 
 		dateBox.setFormat(new DateBox.DefaultFormat(dtf));
 		endDateBox.setFormat(new DateBox.DefaultFormat(dtf));
@@ -74,7 +76,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 
 		@Override
 		public void onSuccess(Vector<Nutzer> result) {
-			for (Nutzer nutzer : result) {
+			for (Nutzer nutzer : result) { 
 				listBox.addItem(nutzer.getNickname());
 			}
 		}
