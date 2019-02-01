@@ -5,25 +5,30 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ReportSelectMenu extends HorizontalPanel {
-
+	private Image reportlogo = new Image();
 	private Button reportButton1 = new Button("Nutzerstatistik");
 	private Button reportButton2 = new Button("Beitragstatistik");
 	private Button zurueck= new Button("Zurück");
 
 	public ReportSelectMenu() {
 		
-		reportButton1.setStyleName("reportButton");
-		reportButton2.setStyleName("reportButton");
-		zurueck.setStyleName("reportButton");
+		reportlogo.setUrl("/images/tellIT-logo.png");
+		reportlogo.setSize("210px", "120px");
+		
+		reportButton1.setStyleName("gwt-Button");
+		reportButton2.setStyleName("gwt-Button");
+		zurueck.setStyleName("gwt-Button");
 		
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());
 		zurueck.addClickHandler(new ZurueckClickhandler() );
-
+		
+		this.add(reportlogo);
 		this.add(reportButton1);
 		this.add(reportButton2);
 		this.add(zurueck);

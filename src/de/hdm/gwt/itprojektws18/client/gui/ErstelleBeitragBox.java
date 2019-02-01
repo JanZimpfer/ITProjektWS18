@@ -62,7 +62,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		// Hinzufügen der StyleNames
 		this.addStyleName("erstelleBeitragBox");
 
-		erstelleBeitragFeld.setStylePrimaryName("erstelleBeitragFeld");
+		erstelleBeitragFeld.setStylePrimaryName("beitragEingabeFeld");
 
 		postingButton.addStyleName("uebersichtBtn");
 
