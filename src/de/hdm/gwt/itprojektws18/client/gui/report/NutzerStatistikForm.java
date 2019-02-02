@@ -41,9 +41,6 @@ public class NutzerStatistikForm extends HorizontalPanel {
 	private ReportGeneratorAsync reportverwaltung = ClientsideSettings.getReportGenerator();
 	
 	public NutzerStatistikForm() {
-
-//		Nutzer n = new Nutzer();
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 		
 		ft.setWidget(0, 0, nn);
 		ft.setWidget(0, 1, listBox);
@@ -70,7 +67,7 @@ public class NutzerStatistikForm extends HorizontalPanel {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
+			Window.alert("Fehler beim Abrufen der Nutzer: " + caught.getMessage());
 			
 		}
 

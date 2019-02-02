@@ -6,7 +6,6 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
-import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
 import de.hdm.gwt.itprojektws18.shared.report.*;
 import de.hdm.gwt.itprojektws18.shared.bo.*;
@@ -38,8 +37,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	public ReportGeneratorImpl() throws IllegalArgumentException {
 
 	}
-
-	private Nutzer nutzer = new Nutzer();
 
 	@Override
 	public void init() throws IllegalArgumentException {
@@ -82,7 +79,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 
 		CompositeParagraph imprint = new CompositeParagraph();
-		imprint.addSubParagraph(new SimpleParagraph("<b>Impressum:</b>"));
+		imprint.addSubParagraph(new SimpleParagraph("Impressum: "));
 		imprint.addSubParagraph(new SimpleParagraph("@tellIT"));
 		imprint.addSubParagraph(new SimpleParagraph("Nobelstraße 10"));
 		imprint.addSubParagraph(new SimpleParagraph("70569 Stuttgart"));
@@ -111,9 +108,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		Nutzer n = this.pinnwandAdmin.getNutzerByNickname(nickname);
 
 		if (n != null) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
 
-			Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
 			// Ein leeren Report anlegen.
 			NutzerStatistikReport result = new NutzerStatistikReport();
 			// Jeder Report hat einen Titel.
@@ -169,7 +164,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			result.addRow(row);
 
 			// Impressum hinzufügen
-			//this.addImprint(result);
+			this.addImprint(result);
 
 			// zum Schluss müssen wir noch den fertigen Report zurückgeben
 			return result;
@@ -197,10 +192,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			return null;
 		}
 
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
-
-		Vector<Nutzer> alleNutzer = new Vector<Nutzer>();
 		// Ein leeren Report anlegen.
 		BeitragStatistikReport result = new BeitragStatistikReport();
 		// Jeder Report hat einen Titel
@@ -222,9 +213,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		// Kopfzeile für die Beitragstatistik- Tabelle.
 		Row headline = new Row();
 		/**
-		 * Wir wollen Zeilen mit 3 Spalten in der Tabelle erzeugen. In die erste Spalte
-		 * schreiben wir Spalte die jeweilige Beitraganzahl, in die zweite Spalte die
-		 * jeweilige Kommentaranzahl und in die dritte Spalte die jeweilige Likeanzahl.
+		 * Wir wollen Zeilen mit 4 Spalten in der Tabelle erzeugen. In die erste Spalte
+		 * schreiben wir den Autor eines Beitrags, in die zweite Spalte den betreffenden Beitrag,
+		 * in die dritte Spalte die jeweilige Kommentaranzahl und in die vierte Zeile die Likeanzahl.
 		 * In der Kopfzeile werden die entsprechenden Überschriften angelegt.
 		 * 
 		 * @author Ayse, in Anlehnung Thies
@@ -262,13 +253,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		// zum Schluss müssen wir noch den fertigen Report zurückgeben.
 		return result;
 
-	}
-
-	private Nutzer getNutzerByName(Nutzer vorname, Nutzer nachname) throws IllegalArgumentException {
-		if (this.getPinnwandVerwaltung() == null) {
-			return null;
-		}
-		return this.getPinnwandVerwaltung().getNutzerByName(vorname.getVorname(), nachname.getNachname());
 	}
 
 	public Nutzer getNutzerByNickname(Nutzer nickname) throws IllegalArgumentException {

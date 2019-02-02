@@ -16,8 +16,7 @@ public class BeitragStatistikCallback extends HTMLResultPanel{
 	ReportGeneratorAsync reportverwaltung= ClientsideSettings.getReportGenerator();
 	
 	public BeitragStatistikCallback(Date firstDate, Date lastDate) {
-		Nutzer nutzer = new Nutzer();
-		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
+
 		reportverwaltung.createBeitragStatistikReport(firstDate, lastDate, new BeitragStatistik());
 		
 }
@@ -27,13 +26,13 @@ public class BeitragStatistikCallback extends HTMLResultPanel{
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
+	
 			
 		}
 
 		@Override
 		public void onSuccess(BeitragStatistikReport result) {
-			// TODO Auto-generated method stub
+	
 			int resultSize = result.getRows().size();
 			if(resultSize == 0){
 				Window.alert("Es wurden keine Daten geladen.");
