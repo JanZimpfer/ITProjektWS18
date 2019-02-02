@@ -219,7 +219,7 @@ public class UebersichtBox extends VerticalPanel {
 
 					@Override
 					public void onSuccess(Nutzer result) {
-						String nameString = "@" + result.getNickname() + "," + result.getVorname() + " "
+						String nameString = "@" + result.getNickname() + ", " + result.getVorname() + " "
 								+ result.getNachname();
 						final String erstellZP = dtf.format(beitrag.getErstellZeitpunkt());
 						final String inhalt = beitrag.getText();
