@@ -89,7 +89,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		// Das eigentliche Hinzufügen des Impressums zum Report.
 
-//		r.setImprint(imprint);
+		r.setImprint(imprint);
 	}
 
 	/**
@@ -218,11 +218,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 * 
 		 * @author in Anlehnung Thies
 		 */
-//		CompositeParagraph header = new CompositeParagraph();
+		CompositeParagraph header = new CompositeParagraph();
 		// Nickname des Nutzers aufnehmen.
-//		header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+		header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
 		// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
-//		result.setHeaderData(header);
+		result.setHeaderData(header);
 
 		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeWithTime(startDate,
 				endDate);
@@ -264,7 +264,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		}
 		// Impressum hinzufügen
-		//this.addImprint(result);
+		this.addImprint(result);
 
 		// zum Schluss müssen wir noch den fertigen Report zurückgeben.
 		return result;

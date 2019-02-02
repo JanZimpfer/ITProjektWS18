@@ -92,12 +92,8 @@ public class HTMLReportWriter extends ReportWriter {
 		StringBuffer result = new StringBuffer();
 		// result.append("<h3>" + p.getTitle() + "</h3>");
 		result.append("<table style=\"width:40%\"><tr>");
-		result.append("<td><b>" + r.getTitle() + "</b></td></tr><tr>");
-
-		result.append("<td><b>" + paragraph2HTML(r.getHeaderData()) + "</b></td>");
-
-		result.append("<td width=200>" + paragraph2HTML(r.getImprint()) + "</td>");
-		result.append("</tr><tr><td></td><td>" + r.getCreated().toString() + "</td></tr></table>");
+		result.append("<td><b>" + r.getTitle() + "</b></td></tr></table>");
+		
 
 		Vector<Row> rows = r.getRows();
 		result.append("<br><br>");
@@ -121,6 +117,13 @@ public class HTMLReportWriter extends ReportWriter {
 		}
 
 		result.append("</table>");
+		
+		result.append("<table>");
+		result.append("<tr><td><b>" + paragraph2HTML(r.getHeaderData()) + "</b></td>");
+
+		result.append("<td width=200>" + paragraph2HTML(r.getImprint()) + "</td>");
+		result.append("</tr><tr><td></td><td>" + r.getCreated().toString() + "</td></tr></table>");
+		
 		this.reportText = result.toString();
 	}
 
@@ -129,12 +132,8 @@ public class HTMLReportWriter extends ReportWriter {
 		StringBuffer result = new StringBuffer();
 		// result.append("<h3>" + p.getTitle() + "</h3>");
 		result.append("<table style=\"width:40%\"><tr>");
-		result.append("<td><b>" + r.getTitle() + "</b></td></tr><tr>");
-
-		result.append("<td><b>" + paragraph2HTML(r.getHeaderData()) + "</b></td>");
-
-		result.append("<td width=200>" + paragraph2HTML(r.getImprint()) + "</td>");
-		result.append("</tr><tr><td></td><td>" + r.getCreated().toString() + "</td></tr></table>");
+		result.append("<td><b>" + r.getTitle() + "</b></td></tr></table>");
+		
 
 		Vector<Row> rows = r.getRows();
 		result.append("<br><br>");
@@ -158,6 +157,13 @@ public class HTMLReportWriter extends ReportWriter {
 		}
 
 		result.append("</table>");
+		
+		result.append("<table>");
+		result.append("<tr><td><b>" + paragraph2HTML(r.getHeaderData()) + "</b></td>");
+
+		result.append("<td width=200>" + paragraph2HTML(r.getImprint()) + "</td>");
+		result.append("</tr><tr><td></td><td>" + r.getCreated().toString() + "</td></tr></table>");
+		
 		this.reportText = result.toString();
 	}
 
