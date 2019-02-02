@@ -150,8 +150,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 * 
 			 * @author Ayse, in Anlehnung Thies
 			 */
-			headline.addColumn(new Column("Abonnementanzahl"));
-			headline.addColumn(new Column("Beiträgeeanzahl"));
+			headline.addColumn(new Column("Abonniert"));
+			headline.addColumn(new Column("Beitraganzahl"));
 			headline.addColumn(new Column("Kommentaranzahl"));
 			headline.addColumn(new Column("Likeanzahl"));
 
@@ -174,7 +174,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			result.addRow(row);
 
 			// Impressum hinzufügen
-			this.addImprint(result);
+			//this.addImprint(result);
 
 			// zum Schluss müssen wir noch den fertigen Report zurückgeben
 			return result;
@@ -238,7 +238,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 		
 		headline.addColumn(new Column("Autor"));
-		headline.addColumn(new Column("Beiträge"));
+		headline.addColumn(new Column("Beitrag"));
 		headline.addColumn(new Column("Kommentare"));
 		headline.addColumn(new Column("Likes"));
 
@@ -264,7 +264,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		}
 		// Impressum hinzufügen
-		this.addImprint(result);
+		//this.addImprint(result);
 
 		// zum Schluss müssen wir noch den fertigen Report zurückgeben.
 		return result;
