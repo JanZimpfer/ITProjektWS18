@@ -20,9 +20,9 @@ public class ReportSelectMenu extends HorizontalPanel {
 		reportlogo.setUrl("/images/tellIT-logo.png");
 		reportlogo.setSize("210px", "120px");
 		
-		reportButton1.setStyleName("gwt-Button");
-		reportButton2.setStyleName("gwt-Button");
-		zurueck.setStyleName("gwt-Button");
+		reportButton1.setStyleName("reportButton");
+		reportButton2.setStyleName("reportButton");
+		zurueck.setStyleName("reportButton");
 		
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());

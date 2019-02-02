@@ -38,6 +38,7 @@ public class ErstelleKommentarBox extends HorizontalPanel {
 		
 		this.addStyleName("erstelleKommentarBox");
 		
+		this.setVerticalAlignment(ALIGN_MIDDLE);
 		this.add(eingabeFeld);
 		this.add(submitKommentarBtn);
 		this.beitrag = b;

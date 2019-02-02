@@ -183,6 +183,7 @@ public class ITProjektWS18 implements EntryPoint {
 			if (result != null) {
 				Cookies.setCookie("email", result.getEmail());
 				Cookies.setCookie("id", result.getId() + "");
+				Cookies.setCookie("logout", loginInfo.getLogoutUrl());
 				loadPinnwandVerwaltung();
 			}
 
