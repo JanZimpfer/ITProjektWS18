@@ -39,7 +39,7 @@ public class HeaderBox extends HorizontalPanel {
 			+ "alle damit in Zusammenhang stehende Daten unwiderruflich löschen wollen?");
 
 	private Button openDeleteFormButton = new Button("Profil löschen");
-	private Button deleteButton = new Button("Nutzerdaten endgültig löschen");
+	private Button deleteButton = new Button("Account löschen");
 	private Button abortDeletionButton = new Button("Abbrechen");
 
 	private DeleteForm deleteBox = new DeleteForm();
@@ -72,6 +72,7 @@ public class HeaderBox extends HorizontalPanel {
 		openDeleteFormButton.addStyleName("headerBtn");
 
 		profilEditButton.addClickHandler(new ChangeClickHandler());
+		logoutButton.addClickHandler(new LogoutClickHandler());
 
 		super.onLoad();
 	}
@@ -104,6 +105,24 @@ public class HeaderBox extends HorizontalPanel {
 			});
 		}
 
+	}
+	
+	/**
+	 * Nested Class für den Logout-Button
+	 * implementiert den ClickHandler zum Ausloggen aus dem System
+	 *
+	 */
+	class LogoutClickHandler implements ClickHandler {
+
+		@Override
+		public void onClick(ClickEvent event) {
+			
+			Anchor signOutLink = new Anchor();
+			
+			signOutLink.setHref(Cookies.getCookie("logout"));
+			Window.open(signOutLink.getHref(), "_self", "");
+		}
+		
 	}
 
 	// Schablone der DialogBox, die das Löschen des Profils ermöglicht

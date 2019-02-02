@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 
 public class KommentarLoeschenDialogBox extends DialogBox {
@@ -98,10 +99,27 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 		@Override
 		public void onSuccess(Void result) {
 			hide();
-			PinnwandBox pBox = new PinnwandBox();
+			
+			pinnwandVerwaltung.getBeitragByID(kommentar.getBeitragFK(), new AsyncCallback<Beitrag>() {
 
-			RootPanel.get("InhaltDiv").clear();
-			RootPanel.get("InhaltDiv").add(pBox);
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Fehler beim Abruf der Beitragsinformationen: " + caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Beitrag result) {
+					
+					PinnwandBox pBox = new PinnwandBox(result.getNutzerFK());
+
+					RootPanel.get("InhaltDiv").clear();
+					RootPanel.get("InhaltDiv").add(pBox);
+					
+				}
+				
+			});
+			
 
 		}
 	}

@@ -53,7 +53,7 @@ public class ITProjektWS18 implements EntryPoint {
 	private TextBox nicknameEingabe = new TextBox();
 
 	private VerticalPanel loginPanel = new VerticalPanel();
-	private Label loginGreet = new Label("Willkommen im HdM Network");
+	private Label loginGreet = new Label("Willkommen bei tellIT");
 	private Label loginMsg = new Label("Bitte loggen Sie sich mit Ihrem Google Account ein.");
 	private Anchor signInLink = new Anchor("Einloggen");
 	private Anchor signOutLink = new Anchor("Ausloggen");
@@ -183,6 +183,7 @@ public class ITProjektWS18 implements EntryPoint {
 			if (result != null) {
 				Cookies.setCookie("email", result.getEmail());
 				Cookies.setCookie("id", result.getId() + "");
+				Cookies.setCookie("logout", loginInfo.getLogoutUrl());
 				loadPinnwandVerwaltung();
 			}
 
@@ -210,7 +211,7 @@ public class ITProjektWS18 implements EntryPoint {
 		private Button neinBtn = new Button("Abbrechen");
 		private VerticalPanel vPanel = new VerticalPanel();
 		private HorizontalPanel btnPanel = new HorizontalPanel();
-
+		private Label meldungLabel = new Label();
 		/**
 		 * Ein String der die E-Mail Adresse speichert
 		 */
@@ -234,7 +235,9 @@ public class ITProjektWS18 implements EntryPoint {
 
 			jaBtn.addClickHandler(new NutzerAnlegenClickHandler(this));
 			neinBtn.addClickHandler(new NutzerNichtAnlegenClickHandler(this));
-
+			
+			vPanel.add(meldungLabel);
+			
 			vPanel.add(abfrage);
 			vPanel.add(vornameLabel);
 			vPanel.add(vornameEingabe);
@@ -291,7 +294,8 @@ public class ITProjektWS18 implements EntryPoint {
 			public void onSuccess(Nutzer result) {
 
 				if (result == null) {
-					Window.alert("Nickname bereits vergeben");
+					meldungLabel.setText("Nickname bereits vergeben!");
+					
 				} else {
 
 					/**

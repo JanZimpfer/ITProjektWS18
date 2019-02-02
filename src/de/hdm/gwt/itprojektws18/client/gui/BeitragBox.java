@@ -51,8 +51,8 @@ public class BeitragBox extends VerticalPanel {
 	private Label kommentarAnzahl = new Label();
 	private Label likeAnzahl = new Label();
 
-	private Image beitragBearbeitenBtn = new Image("/images/stift.png");
-	private Image beitragLoeschenBtn = new Image("/images/mülleimer.png");
+	private Button beitragBearbeitenBtn = new Button("Beitrag bearbeiten");
+	private Button beitragLoeschenBtn = new Button("Beitrag löschen");
 	private Button likeBtn = new Button();
 	private Button likesAnzeigenBtn = new Button("Likes anzeigen");
 
@@ -113,8 +113,6 @@ public class BeitragBox extends VerticalPanel {
 			buttonPanel.add(beitragLoeschenBtn);
 			beitragBearbeitenBtn.addClickHandler(new BeitragBearbeitenClickHandler());
 			beitragLoeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());
-			beitragBearbeitenBtn.getElement().setPropertyString("style", "max-width: 22px;");
-			beitragLoeschenBtn.getElement().setPropertyString("style", "max-width: 28px;");
 		}
 
 		likeBtn.addClickHandler(new LikesErstellenClickHandler());

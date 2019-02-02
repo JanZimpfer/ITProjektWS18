@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 
 /**
@@ -109,9 +110,26 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 		public void onSuccess(Void result) {
 			hide();
 
-			PinnwandBox pBox = new PinnwandBox();
-			RootPanel.get("InhaltDiv").clear();
-			RootPanel.get("InhaltDiv").add(pBox);
+			pinnwandVerwaltung.getBeitragByID(kommentar.getBeitragFK(), new AsyncCallback<Beitrag>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Fehler beim Abruf der Beitragsinformationen: " + caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Beitrag result) {
+					
+					PinnwandBox pBox = new PinnwandBox(result.getNutzerFK());
+					RootPanel.get("InhaltDiv").clear();
+					RootPanel.get("InhaltDiv").add(pBox);
+					
+				}
+				
+			});
+			
+			
 
 		}
 	}

@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -37,47 +38,17 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 
 		erstelleBeitragFeld.setText("Verfasse einen Beitrag...");
 		erstelleBeitragFeld.setStylePrimaryName("beitragEingabeFeld");
-		erstelleBeitragFeld.setSize("300px", "100px");
+		postingButton.setStyleName("gwt-Button");
 
+		this.setVerticalAlignment(ALIGN_MIDDLE);
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
-
+		
 		/**
 		 * Hinzufügen eines ClickHandlers auf den Button, um den angezeigten Text in der
 		 * TextArea zurückzusetzen
 		 */
 		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
-
-		/**
-		 * Hinzufügen eines ClickHandlers auf den Button, um den Text, der in der
-		 * TextArea eingegeben wurde, als Beitrag abzuspeichern
-		 */
-		postingButton.addClickHandler(new postingButtonClickHandler());
-
-		super.onLoad();
-
-	}
-
-	public ErstelleBeitragBox(final Pinnwand p) {
-
-		// Hinzufügen der StyleNames
-		this.addStyleName("erstelleBeitragBox");
-
-		erstelleBeitragFeld.setStylePrimaryName("erstelleBeitragFeld");
-
-		postingButton.addStyleName("uebersichtBtn");
-
-		erstelleBeitragFeld.setCharacterWidth(300);
-		erstelleBeitragFeld.setSize("300px", "100px");
-
-		/**
-		 * Hinzufügen eines ClickHandlers auf den Button, um den angezeigten Text in der
-		 * TextArea zurückzusetzen
-		 */
-		erstelleBeitragFeld.addClickHandler(new BeitragFeldClickHandler());
-
-		this.add(erstelleBeitragFeld);
-		this.add(postingButton);
 
 		/**
 		 * Hinzufügen eines ClickHandlers auf den Button, um den Text, der in der
