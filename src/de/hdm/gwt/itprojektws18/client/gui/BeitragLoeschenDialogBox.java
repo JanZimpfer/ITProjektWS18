@@ -45,12 +45,12 @@ public class BeitragLoeschenDialogBox extends DialogBox {
 	public BeitragLoeschenDialogBox(Beitrag b) {
 
 		this.beitrag = b;
-		
+
 		this.setText("Beitrag löschen");
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
-		
+
 		this.setStylePrimaryName("customDialogbox");
 
 		loeschenBtn.addClickHandler(new BeitragLoeschenClickHandler());

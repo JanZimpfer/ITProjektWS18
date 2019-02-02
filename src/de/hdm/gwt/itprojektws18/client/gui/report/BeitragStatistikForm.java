@@ -21,45 +21,39 @@ import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.client.NutzerStatistikCallback;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 
+public class BeitragStatistikForm extends HorizontalPanel {
 
-
-public class BeitragStatistikForm extends HorizontalPanel{
-	
 	ReportGeneratorAsync reportVerwaltung = ClientsideSettings.getReportGenerator();
-	
-	
-	private Button reportStart= new Button("Report Starten");
+
+	private Button reportStart = new Button("Report Starten");
 	private Label startDatum = new Label("Startdatum");
 	private DateBox dateBox = new DateBox();
 	private Label endDatum = new Label("Enddatum");
 	private DateBox endDateBox = new DateBox();
 	private FlexTable ft = new FlexTable();
-	
+
 	private VerticalPanel vpanel = new VerticalPanel();
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy");
+
 	public BeitragStatistikForm() {
-		
-//		Nutzer n = new Nutzer();
-//		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		
+
 		ft.setWidget(0, 0, startDatum);
 		ft.setWidget(0, 1, dateBox);
 		ft.setWidget(1, 0, endDatum);
 		ft.setWidget(1, 1, endDateBox);
 		ft.setWidget(2, 0, reportStart);
-		
+
 		dateBox.setFormat(new DateBox.DefaultFormat(dtf));
 		endDateBox.setFormat(new DateBox.DefaultFormat(dtf));
 
 		dateBox.addValueChangeHandler(new StartDatum());
 		endDateBox.addValueChangeHandler(new EndDatum());
-		
-		
+
 		reportStart.addClickHandler(new ReportStartClickhandler());
-		
+
 		this.add(ft);
 	}
-		
+
 	private class ReportStartClickhandler implements ClickHandler {
 
 		@Override
@@ -67,7 +61,7 @@ public class BeitragStatistikForm extends HorizontalPanel{
 			vpanel.clear();
 			vpanel.add(new BeitragStatistikCallback(dateBox.getValue(), endDateBox.getValue()));
 			RootPanel.get("contentReport").add(vpanel);
-			
+
 		}
 
 	}
@@ -93,10 +87,4 @@ public class BeitragStatistikForm extends HorizontalPanel{
 			}
 		}
 	}
-	}
-	
-	
-	
-	
-	
-	
+}

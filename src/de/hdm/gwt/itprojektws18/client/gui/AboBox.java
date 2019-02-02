@@ -14,6 +14,7 @@ import java.util.Vector;
 
 /**
  * Klasse zur Darstellung aller Abonnement Beziehungen eines Nutzers.
+ * 
  * @author NiklasFuchs
  *
  */
@@ -23,12 +24,14 @@ public class AboBox extends VerticalPanel {
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
 	 * initialisieren.
+	 * 
 	 * @author NiklasFuchs
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
 	 * Instanziierung der GUI Elemente
+	 * 
 	 * @author NiklasFuchs
 	 */
 
@@ -44,6 +47,7 @@ public class AboBox extends VerticalPanel {
 
 	/**
 	 * Deklarierung des Business Object das verwendet wird
+	 * 
 	 * @author NiklasFuchs
 	 */
 	Nutzer nutzer = new Nutzer();
@@ -52,11 +56,12 @@ public class AboBox extends VerticalPanel {
 
 		profilbereich.setSpacing(2);
 		aboniertePW.setSpacing(2);
-		
+
 		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		/**
 		 * Diese Methode gibt alle Abonnements für den eingeloggten Nutzer aus
+		 * 
 		 * @author NiklasFuchs
 		 */
 		pinnwandVerwaltung.getAllAbosFor(nutzer, new NeuesAboAnzeigenCallback());
@@ -66,11 +71,12 @@ public class AboBox extends VerticalPanel {
 
 		aboniertePW.add(anzeigePW);
 		aboniertePW.add(aboPinnwandInfos);
-		
+
 		this.add(abobox);
 
 		/**
 		 * Hinzufügen der StyleNamen für CSS-Styling
+		 * 
 		 * @author NiklasFuchs
 		 */
 		this.addStyleName("abobox");
@@ -83,6 +89,7 @@ public class AboBox extends VerticalPanel {
 
 	/**
 	 * Nested Class für das Anzeigen der Abonnements
+	 * 
 	 * @author NiklasFuchs
 	 *
 	 */
@@ -115,7 +122,7 @@ public class AboBox extends VerticalPanel {
 
 						apBox.updateNutzerNameLabel(nameString);
 						apBox.updateNickNameLabel(nicknameString);
-						
+
 					}
 
 				});

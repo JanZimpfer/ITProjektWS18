@@ -10,19 +10,20 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**
  * Klasse zur Erstellung einer ProfilBox.
+ * 
  * @author Jan Zimpfer
  *
  */
 
 public class ProfilBox extends VerticalPanel {
-	
+
 	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
 	 * initialisieren.
 	 */
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	
+
 	/**
 	 * Instanziierung der GUI Elemente
 	 */
@@ -32,7 +33,7 @@ public class ProfilBox extends VerticalPanel {
 
 	private Button profilButton = new Button("Startseite");
 	private Button reportButton = new Button("Report");
-	
+
 	/**
 	 * Deklarierung des Business Object das verwendet wird
 	 */
@@ -42,7 +43,7 @@ public class ProfilBox extends VerticalPanel {
 	public ProfilBox() {
 
 		this.addStyleName("profilBox");
-		
+
 		logo.setUrl("/images/tellIT-logo.png");
 		logo.setSize("210px", "120px");
 

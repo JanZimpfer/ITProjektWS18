@@ -51,16 +51,16 @@ public class UebersichtBox extends VerticalPanel {
 	}
 
 	public UebersichtBox(int nutzerId) {
-		
+
 		Nutzer n = new Nutzer();
 		n.setId(Integer.parseInt(Cookies.getCookie("id")));
-		
+
 		aboErstellBtn.addStyleName("uebersichtBtn");
 
 		this.p.setId(nutzerId);
 
 		abonnierenPanel.add(profilInfos);
-		
+
 		if (nutzerId != n.getId()) {
 			abonnierenPanel.add(aboErstellBtn);
 			aboErstellBtn.addClickHandler(new AboErstellClickhandler());
@@ -68,13 +68,10 @@ public class UebersichtBox extends VerticalPanel {
 			this.add(erstelleBeitragBox);
 		}
 
-
-		
-
-		pinnwandVerwaltung.getAboFor(nutzerId, n.getId() , new AboPruefenCallback());
+		pinnwandVerwaltung.getAboFor(nutzerId, n.getId(), new AboPruefenCallback());
 		pinnwandVerwaltung.getNutzerbyID(nutzerId, new NutzerInformationenCallback());
 		pinnwandVerwaltung.getAllBeitraegeByPinnwand(p, new BeitraegeAnzeigenCallback());
-		
+
 		this.add(abonnierenPanel);
 		this.add(beitragPanel);
 
@@ -93,29 +90,29 @@ public class UebersichtBox extends VerticalPanel {
 		}
 
 	}
-	
+
 	class AboInfoCallback implements AsyncCallback<Abonnement> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Abruf der Abo-Informationen: " + caught.getMessage());
-			
+
 		}
 
 		@Override
 		public void onSuccess(Abonnement result) {
-			
+
 			if (result == null) {
 				Nutzer n = new Nutzer();
 				n.setId(Integer.parseInt(Cookies.getCookie("id")));
-				
+
 				pinnwandVerwaltung.erstelleAbonnement(p, n, new AboErstellenCallback());
 			} else {
 				pinnwandVerwaltung.loeschen(result, new AboLoeschenCallback());
 			}
-			
+
 		}
-		
+
 	}
 
 	class AboErstellenCallback implements AsyncCallback<Abonnement> {
@@ -128,57 +125,57 @@ public class UebersichtBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Abonnement result) {
-				
-				aboErstellBtn.setText("Deabonnieren");
-				
-				AboBox aboBox = new AboBox();
 
-				RootPanel.get("AboDiv").clear();
-				RootPanel.get("AboDiv").add(aboBox);
-			}
+			aboErstellBtn.setText("Deabonnieren");
 
+			AboBox aboBox = new AboBox();
+
+			RootPanel.get("AboDiv").clear();
+			RootPanel.get("AboDiv").add(aboBox);
 		}
-	
+
+	}
+
 	class AboLoeschenCallback implements AsyncCallback<Void> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Löschen des Abonnements. " + caught.getMessage());
-			
+
 		}
 
 		@Override
 		public void onSuccess(Void result) {
-			
+
 			aboErstellBtn.setText("Abonnieren");
-			
+
 			AboBox aboBox = new AboBox();
 
 			RootPanel.get("AboDiv").clear();
 			RootPanel.get("AboDiv").add(aboBox);
-			
+
 		}
-		
+
 	}
-	
-	class AboPruefenCallback implements AsyncCallback<Abonnement>{
+
+	class AboPruefenCallback implements AsyncCallback<Abonnement> {
 
 		@Override
 		public void onFailure(Throwable caught) {
 			Window.alert("Fehler beim Abfragen des Abonnements " + caught.getMessage());
-			
+
 		}
 
 		@Override
 		public void onSuccess(Abonnement result) {
-			if(result == null) {
+			if (result == null) {
 				aboErstellBtn.setText("Abonnieren");
 			} else {
 				aboErstellBtn.setText("Deabonnieren");
 			}
-			
+
 		}
-		
+
 	}
 
 	class NutzerInformationenCallback implements AsyncCallback<Nutzer> {

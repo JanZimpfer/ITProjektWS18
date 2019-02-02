@@ -4,14 +4,11 @@ import java.util.Vector;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -22,22 +19,23 @@ import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
-/*
+/**
  * Klasse um ein NutzerProfil über die Suchleiste aufzurufen.
+ * 
  * @author Jan Zimpfer
  *
  */
 
 public class Suchleiste extends HorizontalPanel {
 
-	/*
+	/**
 	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
 	 * initialisieren.
 	 */
 
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
-	/*
+	/**
 	 * Instanziierung der GUI Elemente
 	 */
 
@@ -55,9 +53,9 @@ public class Suchleiste extends HorizontalPanel {
 
 		suggestTextBox.setValue("Nickname eingeben ...");
 		txtBox.setStyleName("suchBox");
-		
+
 		suggestTextBox.addClickHandler(new SuggestClickhandler());
-		
+
 		this.addStyleName("suchleistePanel");
 		this.add(suchleiste);
 
@@ -139,14 +137,14 @@ public class Suchleiste extends HorizontalPanel {
 		}
 
 	}
-	
+
 	class SuggestClickhandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
 			suggestTextBox.setValue("");
-			
+
 		}
-		
+
 	}
 }
