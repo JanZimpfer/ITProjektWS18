@@ -82,7 +82,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 
 		CompositeParagraph imprint = new CompositeParagraph();
-
+		imprint.addSubParagraph(new SimpleParagraph("<b>Impressum:</b>"));
 		imprint.addSubParagraph(new SimpleParagraph("@tellIT"));
 		imprint.addSubParagraph(new SimpleParagraph("Nobelstraße 10"));
 		imprint.addSubParagraph(new SimpleParagraph("70569 Stuttgart"));
@@ -126,11 +126,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 * 
 			 * @author in Anlehnung Thies
 			 */
-			CompositeParagraph header = new CompositeParagraph();
-			// Nickname des Nutzers aufnehmen.
-			header.addSubParagraph(new SimpleParagraph("Nutzer: " + n.getNickname()));
-			// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
-			result.setHeaderData(header);
 
 			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosForWithTime(n, firstDate, lastDate);
 			Vector<Kommentar> kommentar = this.getPinnwandVerwaltung().getAllKommentareByNutzerWithTime(n, firstDate,
@@ -218,11 +213,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 * 
 		 * @author in Anlehnung Thies
 		 */
-		CompositeParagraph header = new CompositeParagraph();
 		// Nickname des Nutzers aufnehmen.
-		header.addSubParagraph(new SimpleParagraph("Nutzer: " + nutzer.getNickname()));
+		
 		// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
-		result.setHeaderData(header);
 
 		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeWithTime(startDate,
 				endDate);
