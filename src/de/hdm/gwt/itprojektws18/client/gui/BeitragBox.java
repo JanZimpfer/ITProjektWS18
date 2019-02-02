@@ -10,11 +10,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
@@ -39,7 +37,7 @@ public class BeitragBox extends VerticalPanel {
 	private HorizontalPanel buttonPanel = new HorizontalPanel();
 	private VerticalPanel erstelleKommentarPanel = new VerticalPanel();
 	private VerticalPanel kommentarPanel = new VerticalPanel();
-	private HorizontalPanel nutzerZeitPanel = new HorizontalPanel ();
+	private HorizontalPanel nutzerZeitPanel = new HorizontalPanel();
 
 	/**
 	 * Erstellung benötigter GUI-Elemente
@@ -64,7 +62,6 @@ public class BeitragBox extends VerticalPanel {
 
 	public BeitragBox() {
 
-	
 	}
 
 	public BeitragBox(final Beitrag b) {
@@ -92,14 +89,14 @@ public class BeitragBox extends VerticalPanel {
 		nutzerZeitPanel.addStyleName("nutzerZeitPanel");
 
 		pinnwandVerwaltung.getLikeFor(b.getId(), n.getId(), new LikeCheckCallback());
-		
+
 		ErstelleKommentarBox erstelleKommentarBox = new ErstelleKommentarBox(b);
 
 		beitragInhalt.setReadOnly(true);
 
 		inhaltPanel.add(nutzerZeitPanel);
 		inhaltPanel.add(beitragInhalt);
-		
+
 		nutzerZeitPanel.add(nickname);
 		nutzerZeitPanel.add(erstellzeitpunkt);
 
@@ -107,7 +104,7 @@ public class BeitragBox extends VerticalPanel {
 		buttonPanel.add(kommentarAnzahl);
 		buttonPanel.add(likeBtn);
 		buttonPanel.add(likesAnzeigenBtn);
-		
+
 		if (n.getId() == b.getNutzerFK()) {
 			buttonPanel.add(beitragBearbeitenBtn);
 			buttonPanel.add(beitragLoeschenBtn);
@@ -133,26 +130,31 @@ public class BeitragBox extends VerticalPanel {
 		super.onLoad();
 
 	}
-	
-	class LikeCheckCallback implements AsyncCallback<Like>{
+
+	/**
+	 * <b>Nested Class für den Like-Button</b>
+	 * 
+	 * Callback Aufruf zur Überprüfung ob der Beitrag bereits vom eingeloggten
+	 * Nutzer geliked wurde
+	 */
+	class LikeCheckCallback implements AsyncCallback<Like> {
 
 		@Override
 		public void onFailure(Throwable caught) {
-			Window.alert("Fehler beim Abfragen des Likes " +caught.getMessage());
-			
+			Window.alert("Fehler beim Abfragen des Likes " + caught.getMessage());
+
 		}
 
 		@Override
 		public void onSuccess(Like result) {
-			if(result == null) {
+			if (result == null) {
 				likeBtn.setText("Gefällt mir!");
 			} else {
 				likeBtn.setText("Gefällt mir nicht mehr!");
 			}
-			
+
 		}
-		
-		
+
 	}
 
 	/**
@@ -207,7 +209,6 @@ public class BeitragBox extends VerticalPanel {
 
 		@Override
 		public void onSuccess(Vector<Like> result) {
-
 
 			String lA = "Likes: " + result.size() + "";
 			likeAnzahl.setText(lA);
@@ -276,7 +277,7 @@ public class BeitragBox extends VerticalPanel {
 
 			Nutzer n = new Nutzer();
 			n.setId(Integer.parseInt((Cookies.getCookie("id"))));
-			
+
 			pinnwandVerwaltung.getLikeFor(beitrag.getId(), n.getId(), new LikeInfoCallback());
 
 		}
@@ -326,11 +327,9 @@ public class BeitragBox extends VerticalPanel {
 		public void onSuccess(Like result) {
 
 			PinnwandBox pBox = new PinnwandBox(beitrag.getNutzerFK());
-			
+
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
-			
-			
 
 		}
 	}
@@ -353,8 +352,6 @@ public class BeitragBox extends VerticalPanel {
 			PinnwandBox pBox = new PinnwandBox(beitrag.getNutzerFK());
 			RootPanel.get("InhaltDiv").clear();
 			RootPanel.get("InhaltDiv").add(pBox);
-			
-			
 
 		}
 

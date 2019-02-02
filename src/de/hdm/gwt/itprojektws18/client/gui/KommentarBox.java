@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
@@ -44,7 +43,6 @@ public class KommentarBox extends VerticalPanel {
 		n.setId(Integer.parseInt(Cookies.getCookie("id")));
 
 		this.addStyleName("kommentarBox");
-//		kommentarText.addStyleName("kommentarText");
 
 		kommentarText.setStylePrimaryName("beitragInhalt");
 		kommentarText.setReadOnly(true);

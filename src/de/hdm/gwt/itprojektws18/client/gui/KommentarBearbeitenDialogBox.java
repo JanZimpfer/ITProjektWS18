@@ -15,9 +15,8 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 
 /**
- * Klasse zur Erstellung einer DialogBox, die die Bearbeitung
- * des Texts eines Kommentars und die Speicherung des
- * bearbeiteten Texts ermöglicht.
+ * Klasse zur Erstellung einer DialogBox, die die Bearbeitung des Texts eines
+ * Kommentars und die Speicherung des bearbeiteten Texts ermöglicht.
  *
  */
 
@@ -48,14 +47,14 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 
 	public KommentarBearbeitenDialogBox(Kommentar k) {
 		this.kommentar = k;
-		
+
 		this.setText("Kommentar bearbeiten");
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
-		
+
 		this.setStylePrimaryName("customDialogbox");
-		
+
 		kommentarText.setText(k.getText());
 
 		/**
@@ -77,7 +76,6 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 		this.add(editPanel);
 	}
 
-	
 	/**
 	 * Nested Class für das Bearbeiten des Kommentartextes, implementiert das
 	 * ClickHandler Interface
@@ -94,7 +92,6 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 		}
 	}
 
-	
 	/**
 	 * Nested Class für das Speichern des überarbeiteten Kommentars
 	 *
@@ -115,26 +112,23 @@ public class KommentarBearbeitenDialogBox extends DialogBox {
 				@Override
 				public void onFailure(Throwable caught) {
 					Window.alert("Fehler beim Abruf der Beitragsinformationen: " + caught.getMessage());
-					
+
 				}
 
 				@Override
 				public void onSuccess(Beitrag result) {
-					
+
 					PinnwandBox pBox = new PinnwandBox(result.getNutzerFK());
 					RootPanel.get("InhaltDiv").clear();
 					RootPanel.get("InhaltDiv").add(pBox);
-					
+
 				}
-				
+
 			});
-			
-			
 
 		}
 	}
 
-	
 	/**
 	 * Nested Class für das Schließen der DialogBox zum Bearbeiten des Kommentares,
 	 * implementiert das ClickHandler Interface

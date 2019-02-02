@@ -6,7 +6,6 @@ import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -43,7 +42,7 @@ public class ErstelleBeitragBox extends HorizontalPanel {
 		this.setVerticalAlignment(ALIGN_MIDDLE);
 		this.add(erstelleBeitragFeld);
 		this.add(postingButton);
-		
+
 		/**
 		 * Hinzufügen eines ClickHandlers auf den Button, um den angezeigten Text in der
 		 * TextArea zurückzusetzen

@@ -3,7 +3,6 @@ package de.hdm.gwt.itprojektws18.server;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.gwt.itprojektws18.client.LoginInfo;

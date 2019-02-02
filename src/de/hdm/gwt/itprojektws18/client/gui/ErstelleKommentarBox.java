@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.TextBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;

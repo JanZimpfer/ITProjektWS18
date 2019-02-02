@@ -17,7 +17,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 
 public class KommentarLoeschenDialogBox extends DialogBox {
-	
+
 	/**
 	 * Instanziierung eines PinnwandVerwaltung-Objekts um eine
 	 * Applikationsverwaltung zu initialisieren
@@ -46,14 +46,14 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 	public KommentarLoeschenDialogBox(Kommentar k) {
 
 		this.kommentar = k;
-		
+
 		this.setText("Kommentar löschen");
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
 
 		this.setStylePrimaryName("customDialogbox");
-		
+
 		loeschenBtn.addClickHandler(new KommentarLoeschenClickHandler());
 		schliessenBtn.addClickHandler(new SchliessenClickHandler());
 
@@ -64,14 +64,14 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 		vPanel.add(abfragePanel);
 		vPanel.add(btnPanel);
 		this.add(vPanel);
-		
+
 		super.onLoad();
 
 	}
 
 	/**
-	 * <b>Nested Class für den loeschen-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den loeschen-Button</b> implementiert den entsprechenden
+	 * ClickHandler
 	 * 
 	 */
 	class KommentarLoeschenClickHandler implements ClickHandler {
@@ -84,8 +84,8 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 	}
 
 	/**
-	 * <b>Nested Class für den loeschen-Button</b>
-	 * Callback Aufruf zum Loeschen eines Kommentars
+	 * <b>Nested Class für den loeschen-Button</b> Callback Aufruf zum Loeschen
+	 * eines Kommentars
 	 *
 	 */
 	class KommentarLoeschenCallback implements AsyncCallback<Void> {
@@ -99,34 +99,33 @@ public class KommentarLoeschenDialogBox extends DialogBox {
 		@Override
 		public void onSuccess(Void result) {
 			hide();
-			
+
 			pinnwandVerwaltung.getBeitragByID(kommentar.getBeitragFK(), new AsyncCallback<Beitrag>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
 					Window.alert("Fehler beim Abruf der Beitragsinformationen: " + caught.getMessage());
-					
+
 				}
 
 				@Override
 				public void onSuccess(Beitrag result) {
-					
+
 					PinnwandBox pBox = new PinnwandBox(result.getNutzerFK());
 
 					RootPanel.get("InhaltDiv").clear();
 					RootPanel.get("InhaltDiv").add(pBox);
-					
+
 				}
-				
+
 			});
-			
 
 		}
 	}
 
 	/**
-	 * <b>Nested Class für den schließen-Button</b>
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den schließen-Button</b> implementiert den entsprechenden
+	 * ClickHandler
 	 * 
 	 * Die DialogBox wird geschlossen
 	 *

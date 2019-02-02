@@ -13,6 +13,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 /**
  * Klasse zur Erstellung der Headerbox.
+ * 
  * @author Jan Zimpfer
  */
 
@@ -23,7 +24,7 @@ public class HeaderBox extends HorizontalPanel {
 	 * initialisieren.
 	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
-	
+
 	/**
 	 * Instanziierung der GUI Elemente
 	 */
@@ -65,7 +66,7 @@ public class HeaderBox extends HorizontalPanel {
 		/**
 		 * Hinzufügen der StyleNamen für CSS-Styling
 		 */
-		
+
 		logoutEditPanel.addStyleName("logoutEditPanel");
 		logoutButton.addStyleName("headerBtn");
 		profilEditButton.addStyleName("headerBtn");
@@ -76,7 +77,7 @@ public class HeaderBox extends HorizontalPanel {
 
 		super.onLoad();
 	}
-	
+
 	/**
 	 * Nested Class für das Bearbeiten des Nutzers
 	 */
@@ -106,26 +107,30 @@ public class HeaderBox extends HorizontalPanel {
 		}
 
 	}
-	
+
 	/**
-	 * Nested Class für den Logout-Button
-	 * implementiert den ClickHandler zum Ausloggen aus dem System
+	 * Nested Class für den Logout-Button implementiert den ClickHandler zum
+	 * Ausloggen aus dem System
 	 *
 	 */
 	class LogoutClickHandler implements ClickHandler {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			
+
 			Anchor signOutLink = new Anchor();
-			
+
 			signOutLink.setHref(Cookies.getCookie("logout"));
 			Window.open(signOutLink.getHref(), "_self", "");
 		}
-		
+
 	}
 
-	// Schablone der DialogBox, die das Löschen des Profils ermöglicht
+	/**
+	 * <b>Nested Class einer DialogBox</b>
+	 * 
+	 * Abfrage ob der User sein Profil löschen möchte
+	 */
 	private class DeleteForm extends DialogBox {
 		private VerticalPanel vPanel = new VerticalPanel();
 		private VerticalPanel deletePanel = new VerticalPanel();
@@ -137,9 +142,9 @@ public class HeaderBox extends HorizontalPanel {
 			this.setGlassEnabled(true);
 			this.setAnimationEnabled(true);
 			this.setAutoHideEnabled(true);
-			
+
 			this.setStylePrimaryName("customDialogbox");
-			
+
 			deleteButton.addClickHandler(new DeleteProfilClickHandler());
 			abortDeletionButton.addClickHandler(new AbortDeletionClickHandler());
 
@@ -148,14 +153,17 @@ public class HeaderBox extends HorizontalPanel {
 			btnPanel.add(abortDeletionButton);
 			vPanel.add(deletePanel);
 			vPanel.add(btnPanel);
-			
+
 			this.add(vPanel);
 
 		}
 	}
 
-	// ClickHandler, der das Öffnen der DeleteForm zum Löschen des Profils
-	// ermöglicht
+	/**
+	 * <b>Nested Class für den Löschen-Button der HeaderBox</b> implementiert den
+	 * ClickHandler zum Öffnen der Sicherheitsabfrage DeleteBox
+	 *
+	 */
 	class OpenDeleteFormClickHandler implements ClickHandler {
 
 		@Override
@@ -166,8 +174,11 @@ public class HeaderBox extends HorizontalPanel {
 
 	}
 
-	// ClickHandler, der die Löschung des Profils des eingeloggten Nutzers
-	// durchführt
+	/**
+	 * <b>Nested Class für den Löschen-Button der DeleteBox</b> implementiert den
+	 * ClickHandler zum Löschen der Nutzerdaten
+	 *
+	 */
 	class DeleteProfilClickHandler implements ClickHandler {
 
 		@Override
@@ -182,6 +193,12 @@ public class HeaderBox extends HorizontalPanel {
 
 	}
 
+	/**
+	 * <b>Nested Class für den Löschen-Button in der DeleteBox</b> Callback Aufruf
+	 * zum Löschen der Nutzerdaten. Bei erfolgreicher Löschung werden die
+	 * nutzerspezifischen Cookies entfernt
+	 *
+	 */
 	public class DeleteNutzerCallback implements AsyncCallback<Void> {
 
 		@Override
@@ -200,6 +217,11 @@ public class HeaderBox extends HorizontalPanel {
 
 	}
 
+	/**
+	 * <b>Nested Class für den Abbrechen-Button in der DeleteBox</b> implementiert
+	 * den ClickHandler für das Schließen der DialogBox
+	 *
+	 */
 	class AbortDeletionClickHandler implements ClickHandler {
 
 		@Override

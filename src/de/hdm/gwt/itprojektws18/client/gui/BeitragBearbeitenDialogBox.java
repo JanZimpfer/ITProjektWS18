@@ -43,14 +43,14 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	}
 
 	public BeitragBearbeitenDialogBox(Beitrag b) {
-		
+
 		this.beitrag = b;
-		
+
 		this.setText("Beitrag bearbeiten");
 		this.setGlassEnabled(true);
 		this.setAnimationEnabled(true);
 		this.setAutoHideEnabled(true);
-		
+
 		this.setStylePrimaryName("customDialogbox");
 
 		beitragText.setText(b.getText());
@@ -68,8 +68,8 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	}
 
 	/**
-	 * <b>Nested Class für den speichern-Button</b> 
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den speichern-Button</b> implementiert den entsprechenden
+	 * ClickHandler
 	 */
 	class BeitragAendernClickHandler implements ClickHandler {
 
@@ -83,8 +83,8 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	}
 
 	/**
-	 * </b>Nested Class für den speichern-Buttton</b> 
-	 * Callback Aufruf zum Speichern der Änderungen an einem Beitrag
+	 * </b>Nested Class für den speichern-Buttton</b> Callback Aufruf zum Speichern
+	 * der Änderungen an einem Beitrag
 	 */
 	class BeitragSpeichernCallback implements AsyncCallback<Void> {
 
@@ -105,8 +105,8 @@ public class BeitragBearbeitenDialogBox extends DialogBox {
 	}
 
 	/**
-	 * <b>Nested Class für den schliessen-Button</b> 
-	 * implementiert den entsprechenden ClickHandler
+	 * <b>Nested Class für den schliessen-Button</b> implementiert den
+	 * entsprechenden ClickHandler
 	 * 
 	 * Die DialogBox wird geschlossen
 	 */
