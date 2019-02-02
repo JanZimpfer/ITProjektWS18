@@ -174,7 +174,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			result.addRow(row);
 
 			// Impressum hinzufügen
-			//this.addImprint(result);
+			this.addImprint(result);
 
 			// zum Schluss müssen wir noch den fertigen Report zurückgeben
 			return result;
