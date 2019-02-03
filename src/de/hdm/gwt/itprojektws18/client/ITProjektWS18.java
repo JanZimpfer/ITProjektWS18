@@ -30,7 +30,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * Entry point classes define <code>onModuleLoad()</code>.
+ * Entry Point Klasse des Projekts tellIT - ITProjektWS18
  */
 @SuppressWarnings("unused")
 public class ITProjektWS18 implements EntryPoint {
