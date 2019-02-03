@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public abstract class BusinessObject implements Serializable{
 	
-	private static final long serialversionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Eindeutige Identifikationsnummer einer Instanz der Klasse

@@ -6,11 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import de.hdm.gwt.itprojektws18.shared.bo.Abonnement;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
-import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 /**
  * Dies ist eine Mapper-Klasse, die Like-Objekte auf eine relationale

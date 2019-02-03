@@ -29,10 +29,10 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 public class ITProjektWS18Report implements EntryPoint{
 	
 	/**
-	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
+	 * Erzeugen eines Reportgenerator-Objekts um eine Reportverwaltung zu
 	 * initialisieren.
 	 */
-	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
+	ReportGeneratorAsync reportVerwaltung = ClientsideSettings.getReportGenerator();
 	
 	private LoginInfo loginInfo = null;
 	
@@ -93,8 +93,8 @@ public class ITProjektWS18Report implements EntryPoint{
 		loginPanel.add(loginMsg);
 		loginPanel.add(loginBtn);
 
-		RootPanel.get("InhaltDiv").clear();
-		RootPanel.get("InhaltDiv").add(loginPanel);
+		RootPanel.get("contentReport").clear();
+		RootPanel.get("contentReport").add(loginPanel);
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class ITProjektWS18Report implements EntryPoint{
 	 * @param loginInfo
 	 */
 	private void loadNutzerAbruf(LoginInfo loginInfo) {
-		pinnwandVerwaltung.checkEmail(loginInfo.getEmailAddress(), new NutzerAbrufCallback());
+		reportVerwaltung.findNutzerByEmail(loginInfo.getEmailAddress(), new NutzerAbrufCallback());
 	}
 	
 	private void loadReportgenerator() {
@@ -135,12 +135,13 @@ public class ITProjektWS18Report implements EntryPoint{
 	}
 	
 	/**
-	 * <b>Nested Class fuer den AsyncCallback checkEmail</b>
+	 * <b>Nested Class fuer den AsyncCallback findNutzerByEmail</b>
 	 * 
 	 * Ist der Nutzer vorhanden: Setzen der Cookies zur späteren
 	 * Nutzeridentifikation und laden der PinnwandVerwaltung.
 	 * 
-	 * Ist der Nutzer nicht vorhanden: Starten einer Registrierungs-Abfrage
+	 * Ist der Nutzer nicht vorhanden, so erscheint eine Fehlermeldung
+	 * mit der Bitte um vorherige Registrierung im System
 	 */
 	class NutzerAbrufCallback implements AsyncCallback<Nutzer> {
 
@@ -155,174 +156,17 @@ public class ITProjektWS18Report implements EntryPoint{
 			if (result != null) {
 				Cookies.setCookie("email", result.getEmail());
 				Cookies.setCookie("id", result.getId() + "");
-				Cookies.setCookie("logout", loginInfo.getLogoutUrl());
+				RootPanel.get("contentReport").clear();
 				loadReportgenerator();
 			}
 
 			else {
-				RegistrierungsformDialogBox dlgBox = new RegistrierungsformDialogBox(loginInfo.getEmailAddress());
-				dlgBox.center();
+				Window.alert("Bitte registrieren Sie sich zuerst bei tellIT.");
+				signOutLink.setHref(loginInfo.getLogoutUrl());
+				Window.open(signOutLink.getHref(), "_self", "");
 			}
 		}
 
-	}
-	
-	/**
-	 * <b>Nested Class einer Registrierungsform</b>
-	 * 
-	 * Abfrage ob der User sich registrieren möchte
-	 */
-	class RegistrierungsformDialogBox extends DialogBox {
-
-		/**
-		 * Instantiierung der notwendigen GUI Objekte
-		 */
-		private Label abfrage = new Label("Sie sind noch nicht registriert."
-				+ "Wenn Sie einen Nutzer anlegen möchten, füllen Sie bitte folgendes Formular aus.");
-		private Button jaBtn = new Button("Registrieren");
-		private Button neinBtn = new Button("Abbrechen");
-		private VerticalPanel vPanel = new VerticalPanel();
-		private HorizontalPanel btnPanel = new HorizontalPanel();
-		private Label meldungLabel = new Label();
-		/**
-		 * Ein String der die E-Mail Adresse speichert
-		 */
-		private String googleMail;
-
-		/**
-		 * Aufruf des Konstruktors
-		 * 
-		 * @param mail
-		 */
-		public RegistrierungsformDialogBox(String mail) {
-
-			googleMail = mail;
-
-			this.setText("Registrierung @tellIT");
-			this.setGlassEnabled(true);
-			this.setAnimationEnabled(true);
-			this.setAutoHideEnabled(true);
-
-			this.setStylePrimaryName("customDialogbox");
-
-			jaBtn.addClickHandler(new NutzerAnlegenClickHandler(this));
-			neinBtn.addClickHandler(new NutzerNichtAnlegenClickHandler(this));
-
-			vPanel.add(meldungLabel);
-
-			vPanel.add(abfrage);
-			vPanel.add(vornameLabel);
-			vPanel.add(vornameEingabe);
-			vPanel.add(nachnameLabel);
-			vPanel.add(nachnameEingabe);
-			vPanel.add(nicknameLabel);
-			vPanel.add(nicknameEingabe);
-			btnPanel.add(jaBtn);
-			btnPanel.add(neinBtn);
-			vPanel.add(btnPanel);
-
-			this.add(vPanel);
-		}
-
-		/**
-		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
-		 * 
-		 * implementiert den entsprechenden ClickHandler, falls ein Nutzer angelegt
-		 * werden soll.
-		 */
-		class NutzerAnlegenClickHandler implements ClickHandler {
-			RegistrierungsformDialogBox regForm;
-
-			public NutzerAnlegenClickHandler(RegistrierungsformDialogBox registrierungsformDialogBox) {
-				this.regForm = registrierungsformDialogBox;
-			}
-
-			@Override
-			public void onClick(ClickEvent event) {
-				pinnwandVerwaltung.erstelleNutzer(vornameEingabe.getText(), nachnameEingabe.getText(),
-						nicknameEingabe.getText(), loginInfo.getEmailAddress(), new NutzerAnlegenCallback(regForm));
-
-			}
-		}
-
-		/**
-		 * <b>Nested Class für die Registrierungsform</b>
-		 * 
-		 * Callback Aufruf um einen Nutzer anzulegen
-		 */
-		class NutzerAnlegenCallback implements AsyncCallback<Nutzer> {
-			RegistrierungsformDialogBox regForm;
-
-			public NutzerAnlegenCallback(RegistrierungsformDialogBox registrierungsformDialogBox) {
-				this.regForm = registrierungsformDialogBox;
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Ihr User konnte nicht erstellt werden" + caught.getMessage());
-			}
-
-			@Override
-			public void onSuccess(Nutzer result) {
-
-				if (result == null) {
-					meldungLabel.setText("Nickname bereits vergeben!");
-
-				} else {
-
-					/**
-					 * Setzen der Cookies zur späteren Nutzeridentifikation
-					 */
-					Cookies.setCookie("email", result.getEmail());
-					Cookies.setCookie("id", result.getId() + "");
-					Cookies.setCookie("vorname", result.getVorname());
-					Cookies.setCookie("nachname", result.getNachname());
-					Cookies.setCookie("nickname", result.getNickname());
-
-					this.regForm.hide();
-
-					pinnwandVerwaltung.erstellePinnwand(result, new PinnwandAnlegenCallback());
-				}
-
-			}
-
-		}
-
-		class PinnwandAnlegenCallback implements AsyncCallback<Pinnwand> {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Ihre Pinnwand konnte nicht erstellt werden" + caught.getMessage());
-
-			}
-
-			@Override
-			public void onSuccess(Pinnwand result) {
-				
-				Window.Location.assign("/");
-			}
-
-		}
-
-		/**
-		 * <b>Nested Class in der <class>RegistrierungsformDialogBox</class></b>
-		 * 
-		 * implementiert den entsprechenden ClickHandler, falls kein User angelegt
-		 * werden soll.
-		 */
-		class NutzerNichtAnlegenClickHandler implements ClickHandler {
-			RegistrierungsformDialogBox regForm;
-
-			public NutzerNichtAnlegenClickHandler(RegistrierungsformDialogBox registrierungsformDialogBox) {
-				this.regForm = registrierungsformDialogBox;
-			}
-
-			@Override
-			public void onClick(ClickEvent event) {
-				this.regForm.hide();
-			}
-
-		}
 	}
 	
 }
