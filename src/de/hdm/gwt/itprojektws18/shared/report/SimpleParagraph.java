@@ -15,7 +15,7 @@ public class SimpleParagraph extends Paragraph implements Serializable{
 	  /**
 	   * <p>
 	   * Serialisierbare Klassen, die mittels GWT-RPC transportiert werden sollen,
-	   * müssen einen No-Argument-Konstruktor besitzen. Ist kein Konstruktor
+	   * mï¿½ssen einen No-Argument-Konstruktor besitzen. Ist kein Konstruktor
 	   * explizit angegeben, so existiert ini Java-Klassen implizit der
 	   * Default-Konstruktor, der dem No-Argument-Konstruktor entspricht.
 	   * </p>
@@ -23,7 +23,7 @@ public class SimpleParagraph extends Paragraph implements Serializable{
 	   * Besitzt eine Klasse mind. einen explizit implementierten Konstruktor, so
 	   * gelten nur diese explizit implementierten Konstruktoren. Der
 	   * Default-Konstruktor gilt dann nicht. Wenn wir in einer solchen Situation
-	   * aber dennoch einen No-Argument-Konstruktor benötigen, müssen wir diesen wie
+	   * aber dennoch einen No-Argument-Konstruktor benï¿½tigen, mï¿½ssen wir diesen wie
 	   * in diesem Beispiel explizit implementieren.
 	   * </p>
 	   * 
@@ -34,8 +34,8 @@ public class SimpleParagraph extends Paragraph implements Serializable{
 	  }
 
 	  /**
-	   * Dieser Konstruktor ermöglicht es, bereits bei Instantiierung von
-	   * <code>SimpleParagraph</code>-Objekten deren Inhalt angeben zu können.
+	   * Dieser Konstruktor ermÃ¶glicht es, bereits bei Instantiierung von
+	   * <code>SimpleParagraph</code>-Objekten deren Inhalt angeben zu kÃ¶nnen.
 	   * 
 	   * @param value der Inhalt des Absatzes
 	   * @see #SimpleParagraph()
@@ -56,7 +56,7 @@ public class SimpleParagraph extends Paragraph implements Serializable{
 	  }
 
 	  /**
-	   * Überschreiben des Inhalts.
+	   * Ãœberschreiben des Inhalts.
 	   * 
 	   * @param text der neue Inhalt des Absatzes.
 	   * @author thies

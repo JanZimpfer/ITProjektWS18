@@ -14,8 +14,8 @@ public abstract class CompositeReport extends Report implements Serializable{
 	private Vector<Report> subReports = new Vector<Report>();
 
 	/**
-	 * Hinzufügen eines Teil-Reports.
-	 * @param r der hinzuzufügende Teil-Report.
+	 * HinzufÃ¼gen eines Teil-Reports.
+	 * @param r der hinzuzufÃ¼gende Teil-Report.
 	 * @author thies
 	 */
 	public void addSubReport(Report r) {
@@ -42,7 +42,7 @@ public abstract class CompositeReport extends Report implements Serializable{
 
 	/**
 	 * Auslesen eines einzelnen Teil-Reports.
-	 * @param i Position des Teilreports. Bei n Elementen läuft der Index i von 0
+	 * @param i Position des Teilreports. Bei n Elementen lÃ¤uft der Index i von 0
 	 * bis n-1.
 	 * 
 	 * @return Position des Teil-Reports.

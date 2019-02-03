@@ -17,9 +17,9 @@ public abstract class SimpleReport extends Report implements Serializable{
 	  private Vector<Row> table = new Vector<Row>();
 
 	  /**
-	   * Hinzufügen einer Zeile.
+	   * HinzufÃ¼gen einer Zeile.
 	   * 
-	   * @param r die hinzuzufügende Zeile
+	   * @param r die hinzuzufÃ¼gende Zeile
 	   * @author thies
 	   */
 	  public void addRow(Row r) {
@@ -37,7 +37,7 @@ public abstract class SimpleReport extends Report implements Serializable{
 	  }
 
 	  /**
-	   * Auslesen sämtlicher Positionsdaten.
+	   * Auslesen sÃ¤mtlicher Positionsdaten.
 	   * 
 	   * @return die Tabelle der Positionsdaten
 	   * @author thies

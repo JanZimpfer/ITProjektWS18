@@ -9,13 +9,13 @@ public class Row implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	   * Speicherplatz für die Spalten der Zeile.
+	   * Speicherplatz fÃ¼r die Spalten der Zeile.
 	   * @author thies
 	   */
 	  private Vector<Column> columns = new Vector<Column>();
 
 	  /**
-	   * Hinzufügen einer Spalte.
+	   * Hinzufï¿½gen einer Spalte.
 	   * 
 	   * @param c das Spaltenobjekt
 	   * @author thies
@@ -35,9 +35,9 @@ public class Row implements Serializable{
 	  }
 
 	  /**
-	   * Auslesen sämtlicher Spalten.
+	   * Auslesen sÃ¤mtlicher Spalten.
 	   * 
-	   * @return <code>Vector</code>-Objekts mit sämtlichen Spalten
+	   * @return <code>Vector</code>-Objekts mit sÃ¤mtlichen Spalten
 	   * @author thies
 	   */
 	  public Vector<Column> getColumns() {
@@ -45,7 +45,7 @@ public class Row implements Serializable{
 	  }
 
 	  /**
-	   * Auslesen der Anzahl sämtlicher Spalten.
+	   * Auslesen der Anzahl sÃ¤mtlicher Spalten.
 	   * 
 	   * @return int Anzahl der Spalten
 	   * @author thies
@@ -59,7 +59,7 @@ public class Row implements Serializable{
 	   * 
 	   * @param i der Index der auszulesenden Spalte (0 <= i < n), mit n = Anzahl
 	   *          der Spalten.
-	   * @return das gewünschte Spaltenobjekt.
+	   * @return das gewÃ¼nschte Spaltenobjekt.
 	   * @author thies
 	   */
 	  public Column getColumnAt(int i) {

@@ -15,9 +15,9 @@ public class CompositeParagraph extends Paragraph implements Serializable{
 	  private Vector<SimpleParagraph> subParagraphs = new Vector<SimpleParagraph>();
 
 	  /**
-	   * Einen Unterabschnitt hinzufügen.
+	   * Einen Unterabschnitt hinzufÃ¼gen.
 	   * 
-	   * @param p der hinzuzufügende Unterabschnitt.
+	   * @param p der hinzuzufÃ¼gende Unterabschnitt.
 	   * @author thies
 	   */
 	  public void addSubParagraph(SimpleParagraph p) {
@@ -35,9 +35,9 @@ public class CompositeParagraph extends Paragraph implements Serializable{
 	  }
 
 	  /**
-	   * Auslesen sämtlicher Unterabschnitte.
+	   * Auslesen sÃ¤mtlicher Unterabschnitte.
 	   * 
-	   * @return <code>Vector</code>, der sämtliche Unterabschnitte enthält.
+	   * @return <code>Vector</code>, der sÃ¤mtliche Unterabschnitte enthÃ¤lt.
 	   * @author thies
 	   */
 	  public Vector<SimpleParagraph> getSubParagraphs() {
@@ -57,10 +57,10 @@ public class CompositeParagraph extends Paragraph implements Serializable{
 	  /**
 	   * Auslesen eines einzelnen Unterabschnitts.
 	   * 
-	   * @param i der Index des gewünschten Unterabschnitts (0 <= i <n), mit n =
+	   * @param i der Index des gewÃ¼nschten Unterabschnitts (0 <= i <n), mit n =
 	   *          Anzahl der Unterabschnitte.
 	   * 
-	   * @return der gewünschte Unterabschnitt.
+	   * @return der gewÃ¼nschte Unterabschnitt.
 	   * @author thies
 	   */
 	  public SimpleParagraph getParagraphAt(int i) {
@@ -75,8 +75,8 @@ public class CompositeParagraph extends Paragraph implements Serializable{
 	  @Override
 	public String toString() {
 	    /*
-	     * Wir legen einen leeren Buffer an, in den wir sukzessive sämtliche
-	     * String-Repräsentationen der Unterabschnitte eintragen.
+	     * Wir legen einen leeren Buffer an, in den wir sukzessive sÃ¤mtliche
+	     * String-ReprÃ¤sentationen der Unterabschnitte eintragen.
 	     * @author thies
 	     */
 	    StringBuffer result = new StringBuffer();
@@ -85,15 +85,15 @@ public class CompositeParagraph extends Paragraph implements Serializable{
 	      SimpleParagraph p = this.subParagraphs.elementAt(i);
 
 	      /*
-	       * den jew. Unterabschnitt in einen String wandeln und an den Buffer hängen.
+	       * den jew. Unterabschnitt in einen String wandeln und an den Buffer hÃ¤ngen.
 	       * @author thies
 	       */
 	      result.append(p.toString() + "\n");
 	    }
 
 	    /*
-	     * Schließlich wird der Buffer in einen String umgewandelt und
-	     * zurückgegeben.
+	     * SchlieÃŸlich wird der Buffer in einen String umgewandelt und
+	     * zurÃ¼ckgegeben.
 	     * @author thies
 	     */
 	    return result.toString();
