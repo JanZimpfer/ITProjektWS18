@@ -264,18 +264,6 @@ public PinnwandVerwaltungImpl() {
 		return this.nMapper.getAllNutzer();
 	}
 	
-	/**
-	 * Suchen eines Nutzers in der Datenbank anhand eines Suchbegriffs
-	 * @param String sucheingabe
-	 * @return Nutzer
-	 */
-	@Override
-	public Vector <Nutzer> searchNutzer(String sucheingabe) throws IllegalArgumentException {
-		
-		
-		return this.nMapper.searchNutzer(sucheingabe);
-	}
-	
 	/*
 	 **********************************
 	 * Abschnitt Ende: Nutzer
