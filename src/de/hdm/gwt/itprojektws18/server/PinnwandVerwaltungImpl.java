@@ -258,8 +258,7 @@ public PinnwandVerwaltungImpl() {
 	/**
 	 * Auslesen aller Nutzer im System
 	 * 
-	 * NOCH NICHT FUNKTIONSFÄHIG
-	 * @return
+	 * @return Vector<Nutzer>
 	 */
 	public Vector <Nutzer> getAllNutzer() throws IllegalArgumentException {
 		
@@ -268,6 +267,8 @@ public PinnwandVerwaltungImpl() {
 	
 	/**
 	 * Suchen eines Nutzers in der Datenbank anhand eines Suchbegriffs
+	 * @param String sucheingabe
+	 * @return Nutzer
 	 */
 	@Override
 	public Vector <Nutzer> searchNutzer(String sucheingabe) throws IllegalArgumentException {

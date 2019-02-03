@@ -8,10 +8,21 @@ import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
+/**
+ * Klasse zur Darstellung der Pinnwand innerhalb der ÜbersichtBox.
+ *
+ */
 public class PinnwandBox extends VerticalPanel {
 
+	/**
+	 * Instanziierung eines PinnwandVerwaltung-Objekts um eine
+	 * Applikationsverwaltung zu initialisieren
+	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
+	/**
+	 * Konstruktor für die PinnwandBox des eingeloggten Users
+	 */
 	public PinnwandBox() {
 
 		UebersichtBox uebersichtbox = new UebersichtBox();
@@ -27,7 +38,9 @@ public class PinnwandBox extends VerticalPanel {
 		super.onLoad();
 
 	}
-
+	/**
+	 * Konstruktor für die PinnwandBox des ausgewählten Users
+	 */
 	public PinnwandBox(int nutzerId) {
 
 		Nutzer n = new Nutzer();

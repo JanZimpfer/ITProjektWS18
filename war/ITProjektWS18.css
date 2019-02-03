@@ -13,10 +13,7 @@ html *{
 
 div {
 	padding: 8px;
-	margin: 0px;
-	background-color: white;
 }
-
 
 /* Styling der HTML Div-Elemente */
 
@@ -24,7 +21,7 @@ div {
 	float: none;
 	height: 100%;
 	margin: 5 px;
-	min-width: 1000px;
+	width: 100%;
 	background-color:  white;
 	border-radius: 20px;
 }
@@ -60,6 +57,7 @@ div {
 	width: 65%;
 	font-size: 10pt;
 	border-left: 2px solid #df1717;
+	margin-bottom: 10px;
 	
 
 }
@@ -70,10 +68,10 @@ div {
 	border-top: 1px white;
 	font-size: 80%;
 	text-align: center;
-	background: #dfdfdf;
-	color: #424242;
-	border-radius: 20px;
-	margin-top: 15px;
+	background: #5e5e5e;
+	color: white;
+	border-radius: 10px;
+	border-style: inset;
 }
 
 * {
@@ -111,7 +109,7 @@ div {
 	height: 80%;
 }
 
-/* Angezeigte Textbeitr�ge */
+/* Angezeigte Textbeiträge */
 
 .beitragInhalt {
 	color: black;
@@ -136,12 +134,12 @@ div {
 	
 }
 
-.aboniertePW { /* l�schen, da nur panel? */
+.aboniertePW { /* löschen, da nur panel? */
 	color: black;
 	
 }
 
-.aboPinnwandInfos { /* l�schen da nur panel? */
+.aboPinnwandInfos { /* löschen da nur panel? */
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -150,7 +148,7 @@ div {
 /* Stylen der AboPinnwandBox */
 
 .vornameAbobox {
-	
+	cursor: pointer;
 	
 }
 
@@ -158,6 +156,7 @@ div {
 	color: black;
 	background-color: grey;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .aboPinnwandBox {
@@ -168,7 +167,7 @@ div {
 
 /* Stylen der BeitragBearbeitenDialogBox */
 
-/* Keinerlei Stylenames hinzugef�gt */
+/* Keinerlei Stylenames hinzugefügt */
 
 
 /* Stylen der BeitragBox */
@@ -179,7 +178,7 @@ div {
 	padding: 5px;
 	margin-top: 10px;
 	border-style: inset;
-	width: 100%%;
+	width: 100%;
 	
 	
 }
@@ -192,10 +191,9 @@ div {
 	
 }
 
-.nickname {	/* �berarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
+.nickname {	/* Überarbeitung Bezeichnung -> alle nickname Label gleich ansprechen? */
 	color: #424242;
 	font-weight: bold;
-	margin-right: 100px;
 	width: 100%;
 	
 }
@@ -203,6 +201,7 @@ div {
 .erstellZeitpunkt {
 	color: #424242;
 	font-weight: bold;
+	float: right;
 	
 	
 }
@@ -227,7 +226,7 @@ div {
 	
 }
 
-.ButtonPanel { /* Namen spezifieren */
+.ButtonPanel { 
 
 	padding: 7px;
 	margin: 7px;
@@ -246,10 +245,6 @@ div {
 }
 
 
-/* Stylen der BeitragLoeschenDialogBox */
-
-
-
 /* Stylen der ErstelleBeitragBox */
 
 .erstelleBeitragBox {
@@ -260,17 +255,13 @@ div {
 .beitragEingabeFeld {
 
 	color: black;
-	padding: 20px;
-	margin: 20px;	
+	padding: 12px;
+	margin-right: 5px;	
 	box-sizing: border-box;
 	resize: none;
-	
-	
-}
-
-.beitragEingabeFeld{
-	resize: none;
 	border-radius: 10px;
+
+	
 }
 
 
@@ -279,7 +270,8 @@ div {
 .kommentarEingabeFeld {
 	
 	
-	margin-left: 15px;	
+	margin-left: 20px;	
+	margin-right: 5px;
 	box-sizing: border-box;
 	resize: none;
 	border-radius: 10px;
@@ -303,12 +295,6 @@ div {
 	margin-right: 10px;
 }
 
-
-/* Stylen der KommentarBearbeitenDialogBox */
-
-
-
-
 /* Stylen der KommentarBox */
 
 .kommentarBox {
@@ -321,27 +307,12 @@ div {
 	width: 100;
 
 }
-/* Anmerkung: nickname, erstellzp �ber einen class selektor ansprchen! */
-
-
-/* Stylen der KommentarLoeschenDialogBox */
-/* Anmerkung: allgemeines ansprechen aller dialogboxen! */
-
-
-/* Stylen der LikesAnzeigenDialogBox */
-
-
 
 /* Stylen der PinnwandBox */
 
 .pinnwandBox {
 	color: black;
 }
-
-
-
-/* Stylen der ProfilBearbeitenDialogBox */
-
 
 /* Stylen der ProfilBox */
 
@@ -367,7 +338,7 @@ div {
 .suchBox{
 	height: 100%;
 	width: 100%;
-	border-radius: 20px;
+	border-radius: 10px;
 	float: center;
 	margin-right: 5px;
 	
@@ -376,17 +347,12 @@ div {
 .suchButton {
 	color: black;
 
-
 }
 
 .suchLabel {
 	color: white;
 	opacity: 0.0;
 }
-
-/* Stylen der UebersichtBox */
-
-
 
 /* Stylen des LogIn */
 

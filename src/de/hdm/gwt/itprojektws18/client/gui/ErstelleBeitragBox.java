@@ -24,6 +24,10 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
 public class ErstelleBeitragBox extends HorizontalPanel {
 
+	/**
+	 * Instanziierung eines PinnwandVerwaltung-Objekts um eine
+	 * Applikationsverwaltung zu initialisieren
+	 */
 	private static PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
 	/**
