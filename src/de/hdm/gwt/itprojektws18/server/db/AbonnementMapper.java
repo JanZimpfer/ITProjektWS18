@@ -146,7 +146,7 @@ public class AbonnementMapper {
 	}
 	
 	/**
-	 * Diese Mehtode dient dazu, alle vorhandenen Abonnements für einen Nutzer finden.
+	 * Diese Methode dient dazu, alle vorhandenen Abonnements für einen Nutzer finden.
 	 * 
 	 * @return Vector<Abonnement>
 	 */
@@ -167,6 +167,51 @@ public class AbonnementMapper {
 			
 			// Query ausführen
 			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK, erstellzeitpunkt  FROM abonnement WHERE nutzer_a_FK="
+					+ "'" + n.getId() + "'");
+
+			while (rs.next()) {
+
+				// Vorhandenes Ergebnis in ein Objekt umwandeln
+				Abonnement a = new Abonnement();
+				a.setId(rs.getInt("id"));
+				a.setNutzerFK(rs.getInt("nutzer_a_FK"));
+				a.setPinnwandFK(rs.getInt("pinnwand_a_FK"));
+				a.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
+				result.addElement(a);
+
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// Ergebnisvektor zurückgeben
+		return result;
+
+	}
+	
+	/**
+	 * Diese Mehtode dient dazu, alle vorhandenen Abonnenten eines Nutzers zu finden.
+	 * 
+	 * @return Vector<Abonnement>
+	 */
+
+	public Vector<Abonnement> getAllAbosForNutzer(Nutzer n) {
+		
+		/**
+		 * Verbindung zur DB Connection
+		 */
+
+		Connection con = DBConnection.connection();
+		Vector<Abonnement> result = new Vector<Abonnement>();
+
+		try {
+
+			// Statement ohne Inhalt anlegen
+			Statement stmt = con.createStatement();
+			
+			// Query ausführen
+			ResultSet rs = stmt.executeQuery("SELECT id, nutzer_a_FK, pinnwand_a_FK, erstellzeitpunkt  FROM abonnement WHERE pinnwand_a_FK="
 					+ "'" + n.getId() + "'");
 
 			while (rs.next()) {

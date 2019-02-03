@@ -1,6 +1,5 @@
 package de.hdm.gwt.itprojektws18.shared;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -103,4 +102,9 @@ public interface PinnwandVerwaltungAsync {
 	void getAboFor(int pinnwandId, int nutzerId, AsyncCallback<Abonnement> callback);
 
 	void getAllBeitraegeWithTime(Date firstDate, Date secondDate, AsyncCallback<Vector<Beitrag>> callback);
+
+	void getAllAbosForNutzer(Nutzer n, AsyncCallback<Vector<Abonnement>> callback);
+
+	void getAllAbosForNutzerWithTime(Nutzer n, Date firstDate, Date secondDate,
+			AsyncCallback<Vector<Abonnement>> callback);
 }

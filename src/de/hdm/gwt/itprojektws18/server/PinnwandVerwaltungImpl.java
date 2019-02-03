@@ -3,7 +3,6 @@ package de.hdm.gwt.itprojektws18.server;
 import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltung;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.Vector;
@@ -773,6 +772,16 @@ public PinnwandVerwaltungImpl() {
 	}
 	
 	/**
+	 * Auslesen aller Abonnenten eines Nutzers
+	 */
+	@Override
+	public Vector<Abonnement> getAllAbosForNutzer(Nutzer n) throws IllegalArgumentException {
+		
+		return this.aMapper.getAllAbosForNutzer(n);
+	}
+	
+	
+	/**
 	 * Auslesen aller Abonnements einer Pinnwand
 	 * @param Pinnwand p
 	 * @return Vector<Abonnement>
@@ -801,6 +810,27 @@ public PinnwandVerwaltungImpl() {
 		return filterVector;
 		
 	}
+	
+	/**
+	 * Auslesen aller Abonnenten eines Nutzers in einer Zeitspanne
+	 * @param Nutzer n, Date first Date, Date secondDate
+	 * @return Vector<Abonnement>
+	 */
+	@Override
+	public Vector<Abonnement> getAllAbosForNutzerWithTime(Nutzer n, Date firstDate, Date secondDate) throws IllegalArgumentException {
+		
+		Vector<Abonnement> aboVector = getAllAbosForNutzer(n);
+		Vector<Abonnement> filterVector  = new Vector<Abonnement>();
+		for (Abonnement abonnement : aboVector) {
+			if(abonnement.getErstellZeitpunkt().after(firstDate) && abonnement.getErstellZeitpunkt().before(secondDate)) {
+				filterVector.add(abonnement);
+			}
+		}
+	
+		return filterVector;
+		
+	}
+	
 		/**
 		 * Auslesen aller Beitraege eines Nutzers in einer bestimmten Zeitspanne
 		 * @param Nutzer n, Date firstDate, Date secondDate

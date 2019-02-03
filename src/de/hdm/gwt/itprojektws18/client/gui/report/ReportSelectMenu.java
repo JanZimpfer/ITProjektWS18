@@ -7,27 +7,37 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+//import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ReportSelectMenu extends HorizontalPanel {
+	
+	// Neues Image Objekt instanziieren für das Logo auf der Reportseite
 	private Image reportlogo = new Image();
+	//3 Buttons instanziieren für Nutzerstatistik; Beitragstatistik und Zurück
 	private Button reportButton1 = new Button("Nutzerstatistik");
 	private Button reportButton2 = new Button("Beitragstatistik");
 	private Button zurueck= new Button("Zurück");
 
 	public ReportSelectMenu() {
 		
+		//Logo in der GUI einpflegen
 		reportlogo.setUrl("/images/tellIT-logo.png");
 		reportlogo.setSize("210px", "120px");
 		
+		//Button Nutzerstatistik, Beitragstatistik und Zurück Button bekommen
+		//das gleiche Aussehen 
 		reportButton1.setStyleName("reportButton");
 		reportButton2.setStyleName("reportButton");
 		zurueck.setStyleName("reportButton");
+		
+		
 		
 		reportButton1.addClickHandler(new NutzerStatistikClickhandler());
 		reportButton2.addClickHandler(new BeitragStatistikClickhandler());
 		zurueck.addClickHandler(new ZurueckClickhandler() );
 		
+		
+		// Widgets werden dem Panel hinzugefügt 
 		this.add(reportlogo);
 		this.add(reportButton1);
 		this.add(reportButton2);
