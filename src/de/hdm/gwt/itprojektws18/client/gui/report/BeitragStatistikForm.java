@@ -22,8 +22,14 @@ import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 
 public class BeitragStatistikForm extends HorizontalPanel {
 
+	/**
+	 * Erzeugen eines Reportgenerator-Objekts um eine Report Verwaltung zu initialisieren
+	 */
 	ReportGeneratorAsync reportVerwaltung = ClientsideSettings.getReportGenerator();
 
+	/**
+	 * Erstellung benötigter GUI-Elemente
+	 */
 	private Button reportStart = new Button("Report Starten");
 	private Label startDatum = new Label("Startdatum");
 	private DateBox dateBox = new DateBox();
@@ -53,6 +59,9 @@ public class BeitragStatistikForm extends HorizontalPanel {
 		this.add(ft);
 	}
 
+	/**
+	 * Implementierung des ClickHandler für den "Report starten"-Button
+	 */
 	private class ReportStartClickhandler implements ClickHandler {
 
 		@Override
@@ -65,6 +74,10 @@ public class BeitragStatistikForm extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Implementierung des ValueChangeHandler für das Startdatum
+	 *
+	 */
 	private class StartDatum implements ValueChangeHandler<Date> {
 
 		@Override
@@ -77,6 +90,10 @@ public class BeitragStatistikForm extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Implementierung des ValueChangeHandler für das Enddatum
+	 *
+	 */
 	private class EndDatum implements ValueChangeHandler<Date> {
 		@Override
 		public void onValueChange(ValueChangeEvent<Date> event) {

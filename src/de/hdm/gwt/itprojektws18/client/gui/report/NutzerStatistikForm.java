@@ -27,6 +27,9 @@ import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
 public class NutzerStatistikForm extends HorizontalPanel {
 
+	/**
+	 * Erstellung benötigter GUI-Elemente
+	 */
 	private Button reportStart = new Button("Report Starten");
 	private Label startDatum = new Label("Startdatum");
 	private DateBox dateBox = new DateBox();
@@ -38,6 +41,10 @@ public class NutzerStatistikForm extends HorizontalPanel {
 	
 	private VerticalPanel vpanel = new VerticalPanel();
 	private DateTimeFormat dtf = DateTimeFormat.getFormat("dd.MM.yyyy");
+	
+	/**
+	 * Erzeugen eines Reportgenerator-Objekts um eine Report Verwaltung zu initialisieren
+	 */
 	private ReportGeneratorAsync reportverwaltung = ClientsideSettings.getReportGenerator();
 	
 	public NutzerStatistikForm() {
@@ -63,6 +70,11 @@ public class NutzerStatistikForm extends HorizontalPanel {
 		this.add(ft);
 	}
 
+	/**
+	 * Callback Aufruf zum Abruf aller Nutzer
+	 * Ergebnisvektor Vector<Nutzer> wird der ListBox hinzugefügt
+	 *
+	 */
 	private class GetAllNutzerCallback implements AsyncCallback<Vector<Nutzer>>{
 
 		@Override
@@ -80,6 +92,9 @@ public class NutzerStatistikForm extends HorizontalPanel {
 		
 	}
 	
+	/**
+	 * Implementierung des ClickHandler für den "Report starten"-Button
+	 */
 	private class ReportStartClickhandler implements ClickHandler {
 
 		@Override
@@ -95,6 +110,10 @@ public class NutzerStatistikForm extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Implementierung des ValueChangeHandler für das Startdatum
+	 *
+	 */
 	private class StartDatum implements ValueChangeHandler<Date> {
 
 		@Override
@@ -107,6 +126,10 @@ public class NutzerStatistikForm extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Implementierung des ValueChangeHandler für das Enddatum
+	 *
+	 */
 	private class EndDatum implements ValueChangeHandler<Date> {
 		@Override
 		public void onValueChange(ValueChangeEvent<Date> event) {
