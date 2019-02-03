@@ -57,7 +57,7 @@ public class ITProjektWS18Report implements EntryPoint{
 	@Override
 	public void onModuleLoad() {
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
-		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18.html", new AsyncCallback<LoginInfo>() {
+		loginService.login(GWT.getHostPageBaseURL() + "ITProjektWS18Report.html", new AsyncCallback<LoginInfo>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
