@@ -21,10 +21,22 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
+/**
+ * Diese Klasse ist der Container für die PinnwandBox und die darin beinhalteten
+ * Boxen zu Darstellung der Beiträge, Likes und Kommentare
+ *
+ */
 public class UebersichtBox extends VerticalPanel {
-
+	
+	/**
+	 * Erzeugen eines PinnwandVerwaltung-Objekts um eine Applikationsverwaltung zu
+	 * initialisieren.
+	 */
 	PinnwandVerwaltungAsync pinnwandVerwaltung = ClientsideSettings.getPinnwandVerwaltung();
 
+	/**
+	 * Instanziierung der GUI Elemente
+	 */
 	private ErstelleBeitragBox erstelleBeitragBox = new ErstelleBeitragBox();
 	private VerticalPanel beitragPanel = new VerticalPanel();
 	private HorizontalPanel abonnierenPanel = new HorizontalPanel();
@@ -78,6 +90,10 @@ public class UebersichtBox extends VerticalPanel {
 		super.onLoad();
 	}
 
+	/**
+	 * Nested Class für das Anlegen eines Abonnements
+	 *
+	 */
 	class AboErstellClickhandler implements ClickHandler {
 
 		@Override
@@ -91,6 +107,10 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für die Abfrage, ob eine Pinnwand bereits abonniert wurde
+	 *
+	 */
 	class AboInfoCallback implements AsyncCallback<Abonnement> {
 
 		@Override
@@ -115,6 +135,11 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für das Anlegen eines Abonnements und dessen Anzeige in
+	 * der AboBox
+	 *
+	 */
 	class AboErstellenCallback implements AsyncCallback<Abonnement> {
 
 		@Override
@@ -136,6 +161,11 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für das Entfernen eines Abonnements und dessen Anzeige in 
+	 * der AboBox
+	 *
+	 */
 	class AboLoeschenCallback implements AsyncCallback<Void> {
 
 		@Override
@@ -158,6 +188,11 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für die Überprüfung, ob der Button eine bestehende 
+	 * Abonnement-Beziehung anzeigt oder nicht
+	 *
+	 */
 	class AboPruefenCallback implements AsyncCallback<Abonnement> {
 
 		@Override
@@ -178,6 +213,12 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für die Anzeige des Vornamen und Nachnamen des Users, dessen
+	 * Pinnwand angezeigt wird. Wird nicht auf der Startseite des eingeloggten Users
+	 * angezeigt
+	 *
+	 */
 	class NutzerInformationenCallback implements AsyncCallback<Nutzer> {
 
 		@Override
@@ -194,6 +235,11 @@ public class UebersichtBox extends VerticalPanel {
 
 	}
 
+	/**
+	 * Nested Class für das Anzeigen aller Beiträge und Beitraginformationen
+	 * einer ausgewählten Pinnwand
+	 *
+	 */
 	public class BeitraegeAnzeigenCallback implements AsyncCallback<Vector<Beitrag>> {
 
 		@Override

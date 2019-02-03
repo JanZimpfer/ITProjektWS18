@@ -356,48 +356,5 @@ public class NutzerMapper {
 		// Ergebnisvektor zurückgeben
 		return result;
 	}
-	
-	/**
-	 * Diese Mehtode dient dazu, alle vorhandenen Nutzer über die Sucheingabe zu finden.
-	 * 
-	 * @return Vector<Nutzer>
-	 */
-
-	public Vector<Nutzer> searchNutzer(String sucheingabe) {
-		
-		/**
-		 * Verbindung zur DB Connection
-		 */
-
-		Connection con = DBConnection.connection();
-
-		Vector<Nutzer> result = new Vector<Nutzer>();
-
-		try {
-			
-			// Statement ohne Inhalt anlegen
-			Statement stmt = con.createStatement();
-			
-			// Query ausführen
-			ResultSet rs = stmt.executeQuery("SELECT * FROM nutzer " + "WHERE nickname= " + "'" + sucheingabe + "'"
-					+ "OR " + "vorname= " + "'" + sucheingabe + "'" + "OR " + "nachname= " + "'" + sucheingabe + "'");
-
-			while (rs.next()) {
-				// Vorhandenes Ergebnis in ein Objekt umwandeln
-				Nutzer n = new Nutzer();
-				n.setId(rs.getInt("id"));
-				n.setErstellZeitpunkt(rs.getTimestamp("erstellzeitpunkt"));
-				n.setVorname(rs.getString("vorname"));
-				n.setNachname(rs.getString("nachname"));
-				n.setNickname(rs.getString("nickname"));
-				result.addElement(n);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		// Ergebnisvektor zurückgeben
-		return result;
-	}
 
 }

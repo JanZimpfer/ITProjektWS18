@@ -257,22 +257,11 @@ public PinnwandVerwaltungImpl() {
 	/**
 	 * Auslesen aller Nutzer im System
 	 * 
-	 * NOCH NICHT FUNKTIONSFÄHIG
-	 * @return
+	 * @return Vector<Nutzer>
 	 */
 	public Vector <Nutzer> getAllNutzer() throws IllegalArgumentException {
 		
 		return this.nMapper.getAllNutzer();
-	}
-	
-	/**
-	 * Suchen eines Nutzers in der Datenbank anhand eines Suchbegriffs
-	 */
-	@Override
-	public Vector <Nutzer> searchNutzer(String sucheingabe) throws IllegalArgumentException {
-		
-		
-		return this.nMapper.searchNutzer(sucheingabe);
 	}
 	
 	/*
