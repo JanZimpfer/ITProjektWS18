@@ -219,7 +219,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		//Hinzufügen der zusammengestellten Kopfdaten zu dem Report
 		result.setHeaderData(header);
 
-		//Erstellen und Abrufen des benötigten Ergebnisvektors mittels PinnwandVerwaltung
+		//Erstellen und Abrufen des benötigten Ergebnisvektor mittels PinnwandVerwaltung
 		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeWithTime(startDate,
 				endDate);
 		// Kopfzeile für die Beitragstatistik- Tabelle.
@@ -267,7 +267,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	}
 
-	@Override
 	public Nutzer getNutzerByNickname(Nutzer nickname) throws IllegalArgumentException {
 		if (this.getPinnwandVerwaltung() == null) {
 
@@ -276,8 +275,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		}
 		return this.getPinnwandVerwaltung().getNutzerByNickname(nickname.getNickname());
 	}
-	
-	@Override
+
 	public Vector<Like> getLikesFromUser(Nutzer nutzer) {
 		return this.getLikesFromUser(nutzer);
 	}
