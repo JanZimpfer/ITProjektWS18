@@ -146,20 +146,8 @@ public PinnwandVerwaltungImpl() {
 	@Override
 	public Nutzer speichern(Nutzer n) throws IllegalArgumentException {
 		
-		Nutzer n1 = new Nutzer();
-		
-		n1 = nMapper.getNutzerByNickname(n.getNickname());
-		
-		if (n1 != null) {
-			
-			return null;
-		}
-		
-		else {
-			
 		nMapper.updateNutzer(n);
 		return n;
-		}		
 	}
 	
 	/**
