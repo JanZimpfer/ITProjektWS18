@@ -17,7 +17,7 @@ public class Column implements Serializable{
 	  /**
 	   * <p>
 	   * Serialisierbare Klassen, die mittels GWT-RPC transportiert werden sollen,
-	   * müssen einen No-Argument-Konstruktor besitzen. Ist kein Konstruktor
+	   * mÃ¼ssen einen No-Argument-Konstruktor besitzen. Ist kein Konstruktor
 	   * explizit angegeben, so existiert in Java-Klassen der Default-Konstruktor,
 	   * der dem No-Argument-Konstruktor entspricht.
 	   * </p>
@@ -25,7 +25,7 @@ public class Column implements Serializable{
 	   * Besitzt eine Klasse mind. einen explizit implementierten Konstruktor, so
 	   * gelten nur diese explizit implementierten Konstruktoren. Der
 	   * Default-Konstruktor gilt dann nicht. Wenn wir in einer solchen Situation
-	   * aber dennoch einen No-Argument-Konstruktor benötigen, müssen wir diesen wie
+	   * aber dennoch einen No-Argument-Konstruktor benÃ¶tigen, mÃ¼ssen wir diesen wie
 	   * in diesem Beispiel explizit implementieren.
 	   * </p>
 	   * 
@@ -58,7 +58,7 @@ public class Column implements Serializable{
 	  }
 
 	  /**
-	   * Überschreiben des aktuellen Spaltenwerts.
+	   * Ãœberschreiben des aktuellen Spaltenwerts.
 	   * 
 	   * @param value neuer Spaltenwert
 	   * @author thies
