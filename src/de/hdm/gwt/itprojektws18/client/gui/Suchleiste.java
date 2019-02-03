@@ -118,6 +118,11 @@ public class Suchleiste extends HorizontalPanel {
 		}
 
 	}
+	
+	/**
+	 * Erstellung der Pinnwand des ausgewählten Profils
+	 *
+	 */
 
 	class ShowPinnwandCallback implements AsyncCallback<Nutzer> {
 
@@ -137,6 +142,10 @@ public class Suchleiste extends HorizontalPanel {
 		}
 
 	}
+	
+	/**
+	 * Löschen des Anzeigetextes innerhlab der Textbox
+	 */
 
 	class SuggestClickhandler implements ClickHandler {
 

@@ -62,6 +62,10 @@ public class ProfilBox extends VerticalPanel {
 		super.onLoad();
 
 	}
+	
+	/**
+	 * Der User wird wieder auf seine Startseite weitergeleitet
+	 */
 
 	class eigenesProfilAnzeigen implements ClickHandler {
 
@@ -72,6 +76,10 @@ public class ProfilBox extends VerticalPanel {
 		}
 	}
 
+	/**
+	 * Der User wird zum Reportgenerator weitergeleitet
+	 */
+	
 	class ReportClickHandler implements ClickHandler {
 
 		@Override
