@@ -7,6 +7,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.gwt.itprojektws18.client.gui.report.LikeStatistikReport;
 import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
+import de.hdm.gwt.itprojektws18.shared.bo.Like;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 import de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport;
@@ -14,10 +15,6 @@ import de.hdm.gwt.itprojektws18.shared.report.NutzerStatistikReport;
 public interface ReportGeneratorAsync {
 
 	void init(AsyncCallback<Void> callback);
-
-
-	
-//	void createLikeStatistikReport(int like, AsyncCallback<LikeStatistikReport> callback);
 
 	void getNutzerByName(String vorname, String nachname, AsyncCallback<Vector<Nutzer>> callback);
 
@@ -29,13 +26,14 @@ public interface ReportGeneratorAsync {
 
 	void getNutzerById(int nutzerID, AsyncCallback<Nutzer> callback);
 
-
 	void createNutzerStatistikReport(String nickname, Date firstDate, Date lastDate,
 			AsyncCallback<NutzerStatistikReport> callback);
 
-
 	void getAllNutzer(AsyncCallback<Vector<Nutzer>> callback);
 
-
 	void createBeitragStatistikReport(Date startDate, Date endDate, AsyncCallback<BeitragStatistikReport> callback);
+
+	void getLikesFromUser(Nutzer nutzer, AsyncCallback<Vector<Like>> callback);
+
+	void getNutzerByNickname(Nutzer nickname, AsyncCallback<Nutzer> callback);
 }

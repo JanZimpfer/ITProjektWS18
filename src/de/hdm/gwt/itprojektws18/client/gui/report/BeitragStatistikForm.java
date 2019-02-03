@@ -18,7 +18,6 @@ import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.gwt.itprojektws18.client.BeitragStatistikCallback;
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
-import de.hdm.gwt.itprojektws18.client.NutzerStatistikCallback;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 
 public class BeitragStatistikForm extends HorizontalPanel {

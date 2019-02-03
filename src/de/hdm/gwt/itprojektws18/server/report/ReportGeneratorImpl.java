@@ -3,7 +3,7 @@ package de.hdm.gwt.itprojektws18.server.report;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import de.hdm.gwt.itprojektws18.server.PinnwandVerwaltungImpl;
@@ -79,7 +79,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 
 		CompositeParagraph imprint = new CompositeParagraph();
-		imprint.addSubParagraph(new SimpleParagraph("Impressum: "));
 		imprint.addSubParagraph(new SimpleParagraph("@tellIT"));
 		imprint.addSubParagraph(new SimpleParagraph("Nobelstraße 10"));
 		imprint.addSubParagraph(new SimpleParagraph("70569 Stuttgart"));
@@ -121,7 +120,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			 * 
 			 * @author in Anlehnung Thies
 			 */
+			CompositeParagraph header = new CompositeParagraph();
+			//Impressumsbezeichnung hinzufügen
+			header.addSubParagraph(new SimpleParagraph("Impressum: "));
+			//Hinzufügen des zusammengestellten Kopfdaten 
+			result.setHeaderData(header);
 
+			//Erstellen und Abrufen der benötigten Ergebnisvektoren mittels PinnwandVerwaltung
+			Vector<Abonnement> abonnenten = this.getPinnwandVerwaltung().getAllAbosForNutzerWithTime(n, firstDate, lastDate);
 			Vector<Abonnement> abos = this.getPinnwandVerwaltung().getAllAbosForWithTime(n, firstDate, lastDate);
 			Vector<Kommentar> kommentar = this.getPinnwandVerwaltung().getAllKommentareByNutzerWithTime(n, firstDate,
 					lastDate);
@@ -132,14 +138,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			// Kopfzeile für die Nutzerstatistik- Tabelle.
 			Row headline = new Row();
 			/**
-			 * Wir wollen Zeilen mit 4 Spalten in der Tabelle erzeugen. In die erste Spalte
-			 * schreiben wir die jeweilige Abonnementenanzahl, in die zweite Spalte die
-			 * jeweilige Beitraganzahl, in die dritte Spalte die jeweilige Kommentaranzahl
-			 * und in die vierte Spalte die jeweilige Likeanzahl. In der Kopfzeile werden
-			 * die entsprechenden Überschriften angelegt.
+			 * Wir wollen Zeilen mit 5 Spalten in der Tabelle erzeugen. In die erste Spalte
+			 * schreiben wir die Anzahl an Abonnenten, in die zweite Spalte die Anzahl von
+			 * Abonnements des Nutzers, in die dritte Spalte die jeweilige Beitraganzahl,
+			 * in die vierte Spalte die jeweilige Kommentaranzahl und in die fünfte Spalte die jeweilige Likeanzahl.
+			 * In der Kopfzeile werden die entsprechenden Überschriften angelegt.
 			 * 
 			 * @author Ayse, in Anlehnung Thies
 			 */
+			headline.addColumn(new Column("Abonnenten"));
 			headline.addColumn(new Column("Abonniert"));
 			headline.addColumn(new Column("Beitraganzahl"));
 			headline.addColumn(new Column("Kommentaranzahl"));
@@ -151,13 +158,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			// Eine leere Zeile anlegen.
 			Row row = new Row();
 
-			// Erste Spalte: Abonnementanzahl hinzufügen.
+			// Erste Spalte: Abonnentenanzahl
+			row.addColumn(new Column(abonnenten.size() + ""));
+			// Zweite Spalte: Abonnementanzahl hinzufügen.
 			row.addColumn(new Column(abos.size() + ""));
-			// Zweite Spalte: Beitraganzahl hinzufügen.
+			// Dritte Spalte: Beitraganzahl hinzufügen.
 			row.addColumn(new Column(alleBeitraege.size() + ""));
-			// Dritte Spalte: Kommentaranzahl hinzufügen.
+			// Vierte Spalte: Kommentaranzahl hinzufügen.
 			row.addColumn(new Column(kommentar.size() + ""));
-			// Vierte Spalte: Likeanzahl hinzufügen.
+			// Fünfte Spalte: Likeanzahl hinzufügen.
 			row.addColumn(new Column(likes.size() + ""));
 
 			// und die Zeilen dem Report hinzufügen
@@ -204,10 +213,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 * 
 		 * @author in Anlehnung Thies
 		 */
-		// Nickname des Nutzers aufnehmen.
-		
-		// Hinzufügen der zusammengestellten Kopfdaten zu dem Report.
+		CompositeParagraph header = new CompositeParagraph();
+		//Impressumsbezeichnung hinzufügen
+		header.addSubParagraph(new SimpleParagraph("Impressum: "));
+		//Hinzufügen der zusammengestellten Kopfdaten zu dem Report
+		result.setHeaderData(header);
 
+		//Erstellen und Abrufen des benötigten Ergebnisvektors mittels PinnwandVerwaltung
 		Vector<Beitrag> alleBeitraege = this.getPinnwandVerwaltung().getAllBeitraegeWithTime(startDate,
 				endDate);
 		// Kopfzeile für die Beitragstatistik- Tabelle.
@@ -255,6 +267,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	}
 
+	@Override
 	public Nutzer getNutzerByNickname(Nutzer nickname) throws IllegalArgumentException {
 		if (this.getPinnwandVerwaltung() == null) {
 
@@ -263,7 +276,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		}
 		return this.getPinnwandVerwaltung().getNutzerByNickname(nickname.getNickname());
 	}
-
+	
+	@Override
 	public Vector<Like> getLikesFromUser(Nutzer nutzer) {
 		return this.getLikesFromUser(nutzer);
 	}

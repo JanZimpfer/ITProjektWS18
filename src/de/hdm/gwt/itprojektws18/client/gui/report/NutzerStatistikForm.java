@@ -21,7 +21,7 @@ import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.gwt.itprojektws18.client.ClientsideSettings;
 import de.hdm.gwt.itprojektws18.client.NutzerStatistikCallback;
-import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
+//import de.hdm.gwt.itprojektws18.shared.PinnwandVerwaltungAsync;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 

@@ -2,13 +2,13 @@ package de.hdm.gwt.itprojektws18.client;
 
 import java.util.Date;
 
-import com.google.gwt.user.client.Cookies;
+//import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import de.hdm.gwt.itprojektws18.client.gui.report.HTMLResultPanel;
 import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
-import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
+//import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.report.HTMLReportWriter;
 import de.hdm.gwt.itprojektws18.shared.report.BeitragStatistikReport;
 

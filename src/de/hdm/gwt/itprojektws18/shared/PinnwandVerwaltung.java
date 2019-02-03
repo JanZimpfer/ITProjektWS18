@@ -1,7 +1,5 @@
 package de.hdm.gwt.itprojektws18.shared;
 
-
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -105,6 +103,11 @@ public interface PinnwandVerwaltung extends RemoteService {
 	Abonnement getAboFor(int pinnwandId, int nutzerId) throws IllegalArgumentException;
 
 	Vector<Beitrag> getAllBeitraegeWithTime(Date firstDate, Date secondDate) throws IllegalArgumentException;
+
+	Vector<Abonnement> getAllAbosForNutzer(Nutzer n) throws IllegalArgumentException;
+
+	Vector<Abonnement> getAllAbosForNutzerWithTime(Nutzer n, Date firstDate, Date secondDate)
+			throws IllegalArgumentException;
 
 
 	
