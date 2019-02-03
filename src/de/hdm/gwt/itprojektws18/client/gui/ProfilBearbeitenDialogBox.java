@@ -34,12 +34,10 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 	private VerticalPanel editPanel = new VerticalPanel();
 	private HorizontalPanel btnPanel = new HorizontalPanel();
 
-	private Label nicknameLbl = new Label("Neuer Nickname: ");
 	private Label vornameLbl = new Label("Neuer Vorname: ");
 	private Label nachnameLbl = new Label("Neuer Nachname: ");
 	private Label meldungLbl = new Label();
 
-	private TextBox nicknameTextbox = new TextBox();
 	private TextBox vornameTextbox = new TextBox();
 	private TextBox nachnameTextbox = new TextBox();
 
@@ -62,7 +60,7 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 
 		nutzer.setId(Integer.parseInt(Cookies.getCookie("id")));
 
-		nicknameTextbox.setText(n.getNickname());
+
 		vornameTextbox.setText(n.getVorname());
 		nachnameTextbox.setText(n.getNachname());
 
@@ -70,8 +68,6 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 		closeButton.addClickHandler(new CloseClickHandler());
 
 		editPanel.add(meldungLbl);
-		editPanel.add(nicknameLbl);
-		editPanel.add(nicknameTextbox);
 		editPanel.add(vornameLbl);
 		editPanel.add(vornameTextbox);
 		editPanel.add(nachnameLbl);
@@ -95,7 +91,6 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 
 			nutzer.setVorname(vornameTextbox.getText());
 			nutzer.setNachname(nachnameTextbox.getText());
-			nutzer.setNickname(nicknameTextbox.getText());
 
 			pinnwandVerwaltung.speichern(nutzer, new NutzerEditCallback());
 
@@ -117,19 +112,10 @@ public class ProfilBearbeitenDialogBox extends DialogBox {
 			@Override
 			public void onSuccess(Nutzer result) {
 
-				/*
-				 * Ist der Nickname bereits vorhanden, so wird eine Fehlermeldung ausgegeben.
-				 */
-				if (result == null) {
-					meldungLbl.setText("Nickname bereits vergeben!");
-
-				} else {
-
 					hide();
 					PinnwandBox pBox = new PinnwandBox();
 					RootPanel.get("InhaltDiv").clear();
 					RootPanel.get("InhaltDiv").add(pBox);
-				}
 
 			}
 
