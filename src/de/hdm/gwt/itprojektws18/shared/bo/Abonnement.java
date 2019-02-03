@@ -18,7 +18,7 @@ public class Abonnement extends BusinessObject{
 	}
 
 	/**
-	 * Der Fremdschl�ssel zum Bezugsprofil wird gesetzt.
+	 * Der Fremdschlüssel zum Bezugsprofil wird gesetzt.
 	 * @param nutzerId
 	 */
 	public void setNutzerFK(int nutzerFK) {

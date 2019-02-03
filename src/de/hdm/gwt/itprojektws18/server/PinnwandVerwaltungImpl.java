@@ -432,8 +432,7 @@ public PinnwandVerwaltungImpl() {
 	}
 	
 	/**
-	 * Auslesen aller Beitraege
-	 * NOCH NICHT FUNKTIONSFÄHIG
+	 * Auslesen aller Beiträge
 	 * @return Vector<Beitrag>
 	 */
 	@Override

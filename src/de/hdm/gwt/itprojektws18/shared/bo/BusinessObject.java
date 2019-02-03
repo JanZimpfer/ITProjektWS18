@@ -54,18 +54,18 @@ public abstract class BusinessObject implements Serializable{
 	   * <p>
 	   * Feststellen der <em>inhaltlichen</em> Gleichheit zweier
 	   * <code>BusinessObject</code>-Objekte. Die Gleichheit wird in diesem Beispiel auf eine
-	   * identische ID beschr�nkt.
+	   * identische ID beschränkt.
 	   * </p>
 	   * <p>
 	   * <b>ACHTUNG:</b> Die inhaltliche Gleichheit nicht mit dem Vergleich der
-	   * <em>Identit�t</em> eines Objekts mit einem anderen verwechseln!!! Dies
-	   * w�rde durch den Operator <code>==</code> bestimmt. Bei Unklarheit hierzu
-	   * k�nnen Sie nocheinmal in die Definition des Sprachkerns von Java schauen.
-	   * Die Methode <code>equals(...)</code> ist f�r jeden Referenzdatentyp
+	   * <em>Identität</em> eines Objekts mit einem anderen verwechseln!!! Dies
+	   * würde durch den Operator <code>==</code> bestimmt. Bei Unklarheit hierzu
+	   * können Sie nocheinmal in die Definition des Sprachkerns von Java schauen.
+	   * Die Methode <code>equals(...)</code> ist für jeden Referenzdatentyp
 	   * definiert, da sie bereits in der Klasse <code>Object</code> in einfachster
 	   * Form realisiert ist. Dort ist sie allerdings auf die simple Bestimmung der
-	   * Gleicheit der Java-internen Objekt-ID der verglichenen Objekte beschr�nkt.
-	   * In unseren eigenen Klassen k�nnen wir diese Methode �berschreiben und ihr
+	   * Gleicheit der Java-internen Objekt-ID der verglichenen Objekte beschränkt.
+	   * In unseren eigenen Klassen können wir diese Methode überschreiben und ihr
 	   * mehr Intelligenz verleihen.
 	   * </p>
 	   * 
