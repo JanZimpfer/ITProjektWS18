@@ -10,6 +10,13 @@ import de.hdm.gwt.itprojektws18.shared.bo.Beitrag;
 import de.hdm.gwt.itprojektws18.shared.bo.Kommentar;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 
+/**
+ * Diese Mapper Klasse stellt, Kommentar-Objekte auf einer relationalen 
+ * Datenbank dar. Sie beinhaltet Methoden zum suchen, erzeugen, bearbeiten
+ * und löschen von KommentarObjekten. DB-Strukturen können hierdurch
+ *  in Objekt-Strukturen und anders herum umgewandelt werden.
+ */
+
 public class KommentarMapper {
 
 	private static KommentarMapper kommentarMapper = null;
@@ -26,24 +33,28 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Einf�gen eines Kommentar-Objekts in die DB
+	 * Einfügen eines Kommentar-Objekts in die DB
 	 * 
 	 * @author Matthias
 	 */
 
 	public Kommentar insertKommentar(Kommentar k) {
-
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			
+			//Überprüfung des derzeitig höchsten Primärschlüssels(id) der Tabelle kommentar
 			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM kommentar");
 			
 			if (rs.next()) {
 				k.setId(rs.getInt("maxid")+1);
 				stmt =con.createStatement();
-			
+				
+			//Einfügen eines Kommentars in die nächsthöchste Zeile der Tabelle
 			stmt.executeUpdate("INSERT INTO kommentar ( text, erstellzeitpunkt, beitrag_k_FK, nutzer_k_FK) " + "VALUES("
 					+ k.getText() + "," + "'" + k.getErstellZeitpunkt() + "'" + "," + k.getBeitragFK() + ","
 					+ k.getNutzerFK() + ")");
@@ -57,15 +68,18 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * Diese Methode erm�glicht das editiern des �bergebenen Kommentar-Objekts
+	 * Diese Methode ermöglicht das editiern des übergebenen Kommentar-Objekts
 	 * 
 	 * @author Matthias
 	 */
 
 	public Kommentar updateKommentar(Kommentar k) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("UPDATE kommentar set "+
 					"text = " + "'" + k.getText() + "'" 
@@ -78,15 +92,18 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * L�schen des �bergebenen KOmmentar-Objekts
+	 * Löschen des übergebenen KOmmentar-Objekts
 	 * 
 	 * @author Matthias
 	 */
 
 	public void deleteKommentar(Kommentar k) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("DELETE FROM kommentar WHERE id =" + "'" + k.getId() + "'");
 		}
@@ -98,15 +115,18 @@ public class KommentarMapper {
 	}
 
 	/**
-	 * L�schen aller zugeh�rigen KOmmentar-Objekte des �bergebenen Beitrag-Objektes
+	 * Löschen aller zugehörigen KOmmentar-Objekte des übergebenen Beitrag-Objektes
 	 * 
 	 * @param b
 	 */
 
 	public void deleteKommentareOf(Beitrag b) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			/**
 			 * beitragFK ist ein FK der Tabelle Kommentar welcher auf die Tabelle beitag
@@ -128,15 +148,18 @@ public class KommentarMapper {
 	 */
 
 	public Kommentar getKommentarById(int id) {
-
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE id =" + "'" + id
 							+ "'");
-
+			
+			//Umwandlung des Ergebnis in Objekt
 			if (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
@@ -166,18 +189,21 @@ public class KommentarMapper {
 	 */
 
 	public Vector<Kommentar> getAllKommentare() {
-
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
-
+		
+		// Ergebnisvektor anlegen
 		Vector<Kommentar> result = new Vector<Kommentar>();
 
 		try {
+			//Anlegeneines Statements
 			Statement stmt = con.createStatement();
+			
 			ResultSet rs = stmt.executeQuery("SELECT * FROM kommentar");
 
-			while (rs.next())
-				;
-			{
+			//Umwandlung der Ergebnisse in Objekte und Befüllung des Vectors
+			while (rs.next()){
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
 				k.setText(rs.getString("text"));
@@ -200,16 +226,21 @@ public class KommentarMapper {
 
 	public Vector<Kommentar> getAllKommentareByBeitrag(int beitragFK) {
 
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
+		
+		//Ergebnisvektor anlegen
 		Vector<Kommentar> result = new Vector<Kommentar>();
 
 		try {
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
 
 			ResultSet rs = stmt.executeQuery(
 					"SELECT id, text, beitrag_k_FK, nutzer_k_FK, erstellzeitpunkt FROM kommentar WHERE beitrag_k_FK ="
 							+ "'" + beitragFK + "'" + "ORDER BY erstellzeitpunkt ASC");
-
+			
+			//Umwandlung der Ergebnisse in Objekte und Befüllung des Vectors
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));
@@ -235,17 +266,26 @@ public class KommentarMapper {
 		return getAllKommentareByBeitrag(b.getId());
 	}
 
+	/**
+	 * Ausgabe aller Kommentar-Objekte eines Nutzer-Objekts
+	 * 
+	 */
+	
 	public Vector<Kommentar> getAllKommentareByNutzer(int nutzerFK) {
 
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
+		
+		//Ergebnisvektor anlegen
 		Vector<Kommentar> result = new Vector<Kommentar>();
 
 		try {
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
 
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, nutzer_k_FK, beitrag_k_FK FROM kommentar WHERE nutzer_k_FK =" + "'" + nutzerFK + "'");
 					
-
+			//Umwandlung der Ergebnisse in Objekte und Befüllung des Vectors
 			while (rs.next()) {
 				Kommentar k = new Kommentar();
 				k.setId(rs.getInt("id"));

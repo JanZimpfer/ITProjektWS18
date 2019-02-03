@@ -13,7 +13,7 @@ import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 /**
  * Diese Mapper Klasse stellt, Beitrags-Objekte auf einer relationalen 
  * Datenbank dar. Sie beinhaltet Methoden zum suchen, erzeugen, bearbeiten
- * und l�schen von BeitragsObjekten. DB-Strukturen k�nnen hierdurch
+ * und löschen von BeitragsObjekten. DB-Strukturen können hierdurch
  *  in Objekt-Strukturen und anders herum umgewandelt werden.
  */
 
@@ -35,22 +35,30 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Einf�gen eines Beitrag-Objekts in die Datenbank
+	 * Einfügen eines Beitrag-Objekts in die Datenbank
 	 * @author Matthias
 	 */
 	
 	public Beitrag insertBeitrag(Beitrag b) {
+		
+		/**
+		 * Herstellen der Verbindung zur DB Connection 
+		 */
+		
 		Connection con = DBConnection.connection();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			
+			//Überprüfung des derzeitig höchsten Primärschlüssels(id) der Tabelle beitrag
 			ResultSet rs = stmt.executeQuery( "SELECT MAX(id) AS 'maxid' " + "FROM beitrag");
 			
 			if (rs.next()) {
 				b.setId(rs.getInt("maxid")+1);
 				stmt = con.createStatement();
 				
+				//Einfügen des Beitrags in die nächsthöchste Zeile der Tabelle
 				stmt.executeUpdate("INSERT INTO beitrag (id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK) "
 						+ "VALUES("
 						+ b.getId()
@@ -75,16 +83,21 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Diese Methode erm�glicht das editiern des �bergebenen 
+	 * Diese Methode ermöglicht das editiern des übergebenen 
 	 * Beitrag-Objekts
 	 * @author Matthias
 	 */
 	
 	public Beitrag updateBeitrag(Beitrag b) {
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con = DBConnection.connection();
 		
 		try {
+			
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
+			
+			//Update des Textes in ausgewählter Zeile
 			stmt.executeUpdate("UPDATE beitrag set "+
 			"text = " + "'" + b.getText() + "'" 
 			+"WHERE id=" + "'" + b.getId() + "'");
@@ -97,15 +110,20 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Diese Methode l�scht das �bergebene Beitrag-Objekt
+	 * Diese Methode löscht das übergebene Beitrag-Objekt
 	 * @author Matthias
 	 */
 	
 	public void deleteBeitrag(Beitrag b) {
+		
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con= DBConnection.connection();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt=con.createStatement();
+			
+			//Löschen des ausgewählten Beitragobjekts
 			stmt.executeUpdate("DELETE FROM beitrag WHERE id =" + "'" + b.getId() + "'");
 		}
 		
@@ -114,19 +132,23 @@ public class BeitragMapper {
 		}
 	}
 	/**
-	 * Diese Methode dient dem L�schen aller zugeh�rigen Beitrags-Objekte 
-	 * des �bergebenen Nutzerobjekts
+	 * Diese Methode dient dem Löschen aller zugehörigen Beitrags-Objekte 
+	 * des übergebenen Nutzerobjekts
 	 * @author Matthias
 	 */
 	
 	public void deleteBeitraegeOf(Nutzer n) {
+		
+		//Herstellung einer Verbindung zur DB-Connection
 		Connection con =DBConnection.connection();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			/**
 			 * nutzerId ist ein FK der Tabelle beitrag welcher auf die Tabelle nutzer verweist.
 			 */
+			//Löschen der ausgewählten Beitragobjekte
 			stmt.executeUpdate("DELETE FROM beitrag WHERE nutzer_b_FK=" + "'" + n.getId() + "'");
 		}
 		
@@ -141,12 +163,17 @@ public class BeitragMapper {
 	 */
 	
 	public Beitrag getBeitragById(int id) {
+		
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con = DBConnection.connection();
 	
 		try {
+			// Anlegen eines Statements
 			Statement stmt= con.createStatement();
+			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, pinnwand_b_FK, nutzer_b_FK, erstellzeitpunkt FROM beitrag WHERE id = " + "'" + id  +"'");
 			
+			//Ergebnis in Objekt umwandeln
 			if (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
@@ -171,20 +198,24 @@ public class BeitragMapper {
 	}
 	
 	/**
-	 * Ausgabe aller Beitraege
+	 * Methode zur Ausgabe aller Beiträge 
 	 * @author Matthias
 	 */
 	
 	public Vector<Beitrag> getAllBeitraege() {
+		
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con = DBConnection.connection();
 		
 		Vector<Beitrag> result = new Vector<Beitrag>();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
+			
 			ResultSet rs = stmt.executeQuery("SELECT * FROM beitrag");
 			
-			
+			//Umwandlung der Ergebnisse in Objekte und befüllung des Vectors
 			while (rs.next()){
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
@@ -208,14 +239,18 @@ public class BeitragMapper {
 	 */
 	
 	public Vector<Beitrag> getAllBeitraegeByPinnwand(int pinnwandFK) {
+		
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con = DBConnection.connection();
 		Vector<Beitrag> result = new Vector<Beitrag>();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE pinnwand_b_FK =" + "'" + pinnwandFK + "'" + "ORDER BY erstellzeitpunkt DESC");
 			
+			//Umwandlung der Ergebnisse in Objekte und befüllung des Vectors
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));
@@ -248,14 +283,18 @@ public class BeitragMapper {
 	 */
 	
 	public Vector<Beitrag> getAllBeitraegeByNutzer(int nutzerID) {
+		
+		//Herstellung einer Verbindung zur DBConnection
 		Connection con = DBConnection.connection();
 		Vector<Beitrag> result = new Vector<Beitrag>();
 		
 		try {
+			// Anlegen eines Statements
 			Statement stmt = con.createStatement();
 			
 			ResultSet rs = stmt.executeQuery("SELECT id, text, erstellzeitpunkt, pinnwand_b_FK, nutzer_b_FK FROM beitrag WHERE nutzer_b_FK =" + "'" + nutzerID + "'" + "ORDER BY erstellzeitpunkt DESC");
 			
+			//Umwandlung der Ergebnisse in Objekte und befüllung des Vectors
 			while (rs.next()) {
 				Beitrag b = new Beitrag();
 				b.setId(rs.getInt("id"));

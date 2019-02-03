@@ -41,6 +41,8 @@ public class LikeMapper {
 	 * @return Like l
 	 */
 	public Like insertLike(Like l) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
@@ -86,6 +88,7 @@ public class LikeMapper {
 	 * @param l
 	 */
 	public void deleteLike(Like l) {
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
@@ -102,13 +105,14 @@ public class LikeMapper {
 	
 	/**
 	 * Die Methode getLikeFor dient zur Ausgabe eines likesObjekt,
-	 * auf das die �bergebene beitragId AND nutzerId zutreffen.
-	 * Ist dies nicht der Fall wird null zur�ckgegeben.
+	 * auf das die übergebene beitragId AND nutzerId zutreffen.
+	 * Ist dies nicht der Fall wird null zurückgegeben.
 	 * @author matthias
 	 */
 	
 	public Like getLikeFor(int beitragId, int nutzerId) {
 		
+		//Herstellen der Verbindung zu DBConnection
 		Connection con =DBConnection.connection();
 		
 		try {
@@ -141,9 +145,12 @@ public class LikeMapper {
 	 * @param n
 	 */
 	public void deleteLikesOf(Nutzer n) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		try {
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
 
 
@@ -161,6 +168,8 @@ public class LikeMapper {
 	 * @param nutzerId
 	 */
 	public Vector<Like> getAllLikesByNutzer(int nutzerFK) {
+		
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
@@ -198,19 +207,26 @@ public class LikeMapper {
 		 */
 		return getAllLikesByNutzer(n.getId());
 	}
+	
+	/**
+	 * Aufrufen aller Like-Objekte zu eines Beitragobjekt
+	 * 
+	 */
 
 	public Vector<Like> getAllLikesByBeitrag(int beitragFK) {
+		//Herstellen der Verbindung zur DB Connection
 		Connection con = DBConnection.connection();
 
 		// Ergebnisvektor anlegen
 		Vector<Like> result = new Vector<Like>();
 
 		try {
+			//Anlegen eines Statements
 			Statement stmt = con.createStatement();
 
 			// Alle Likes für den Beitrag der zugehörigen ID abfragen und diese
 			// nach Erstellungszeitpunkt sortiert zurückgeben
-			// erstellungszeitpunkt removed
+			
 			ResultSet rs = stmt.executeQuery("SELECT id, beitrag_l_FK, nutzer_l_FK, erstellzeitpunkt FROM likes WHERE beitrag_l_FK =" + "'"+  beitragFK + "'"); //+ " ORDER BY erstellungszeitpunkt");
 
 			while (rs.next()) {
