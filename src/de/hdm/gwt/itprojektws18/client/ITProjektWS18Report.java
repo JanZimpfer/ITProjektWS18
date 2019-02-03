@@ -25,6 +25,10 @@ import de.hdm.gwt.itprojektws18.shared.ReportGeneratorAsync;
 import de.hdm.gwt.itprojektws18.shared.bo.Nutzer;
 import de.hdm.gwt.itprojektws18.shared.bo.Pinnwand;
 
+/**
+ * Entry Point Klasse für den Report des Projekts tellIT - ITProjektWS18
+ *
+ */
 @SuppressWarnings("unused")
 public class ITProjektWS18Report implements EntryPoint{
 	
